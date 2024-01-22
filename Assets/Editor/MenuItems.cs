@@ -10,7 +10,7 @@ using UnityEditor.SceneManagement;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-namespace Studio.Editor
+namespace ChebDoorStudio.Editor
 {
     internal static class MenuItems
     {
@@ -279,7 +279,7 @@ namespace Studio.Editor
         [MenuItem("Tools/Scenes/Open Game Scene")]
         public static void OpenGameplayScene()
         {
-            EditorSceneManager.OpenScene("Assets/Scenes/Gameplay.unity");
+            EditorSceneManager.OpenScene("Assets/Scenes/Game.unity");
         }
 
         [MenuItem("Tools/Scenes/Set Boot scene default")]

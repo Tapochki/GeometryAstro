@@ -1,7 +1,7 @@
-using Studio.Settings;
+using ChebDoorStudio.Settings;
 using UnityEngine;
 
-namespace Studio.Utilities
+namespace ChebDoorStudio.Utilities
 {
     public class Logger
     {

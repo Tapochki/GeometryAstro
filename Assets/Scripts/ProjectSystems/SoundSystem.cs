@@ -1,14 +1,13 @@
-using Studio.ScriptableObjects;
-using Studio.Settings;
-using Studio.Utilities;
+using ChebDoorStudio.ScriptableObjects;
+using ChebDoorStudio.Settings;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
-namespace Studio.ProjectSystems
+namespace ChebDoorStudio.ProjectSystems
 {
-    public class SoundSystem : IInitializable, ITickable
+    public class SoundSystem : MonoBehaviour
     {
         private List<SoundSource> _soundSources;
         private List<SoundPlayQueue> _soundPlayQueue;
@@ -50,9 +49,8 @@ namespace Studio.ProjectSystems
             _dataSystem.OnCacheLoadedEvent += CachedDataLoadedEventHandler;
         }
 
-        public void Tick()
+        public void Update()
         {
-            Debug.LogError("SoundSystem");
             if (_soundSources == null)
             {
                 return;
@@ -88,7 +86,7 @@ namespace Studio.ProjectSystems
 
         public void PlayClickSound()
         {
-
+            PlaySound(Sounds.Click);
         }
 
         public void PlaySound(Sounds soundType)

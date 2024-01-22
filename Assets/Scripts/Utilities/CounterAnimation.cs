@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Studio.Utilities
+namespace ChebDoorStudio.Utilities
 {
     public class CounterAnimation
     {

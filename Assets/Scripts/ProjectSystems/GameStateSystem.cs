@@ -1,10 +1,11 @@
-using Studio.Settings;
+using ChebDoorStudio.Settings;
 using System;
+using UnityEngine;
 using Zenject;
 
-namespace Studio.ProjectSystems
+namespace ChebDoorStudio.ProjectSystems
 {
-    public class GameStateSystem : IInitializable
+    public class GameStateSystem : MonoBehaviour
     {
         public event Action<GameStates> OnGameStateWasChangedEvent;
 

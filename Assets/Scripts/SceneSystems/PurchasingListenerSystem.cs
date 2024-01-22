@@ -1,10 +1,10 @@
-using Studio.ProjectSystems;
-using Studio.Settings;
+using ChebDoorStudio.ProjectSystems;
+using ChebDoorStudio.Settings;
 using System;
 using UnityEngine;
 using Zenject;
 
-namespace Studio.SceneSystems
+namespace ChebDoorStudio.SceneSystems
 {
     public class PurchasingListenerSystem : MonoBehaviour
     {

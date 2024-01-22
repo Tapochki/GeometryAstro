@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Studio.Utilities
+namespace ChebDoorStudio.Utilities
 {
     public class SafeAreaCheckerUtility : MonoBehaviour
     {

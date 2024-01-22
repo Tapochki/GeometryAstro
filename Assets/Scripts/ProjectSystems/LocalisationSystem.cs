@@ -1,13 +1,13 @@
-﻿using Studio.Settings;
+﻿using ChebDoorStudio.Settings;
 using System;
 using System.Collections.Generic;
 using System.Xml;
 using UnityEngine;
 using Zenject;
 
-namespace Studio.ProjectSystems
+namespace ChebDoorStudio.ProjectSystems
 {
-    public class LocalisationSystem : IInitializable
+    public class LocalisationSystem : MonoBehaviour
     {
         public event Action<Languages> OnLanguageWasChangedEvent;
 

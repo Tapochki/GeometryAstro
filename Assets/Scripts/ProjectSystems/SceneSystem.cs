@@ -1,14 +1,14 @@
-using Studio.Settings;
-using Studio.Utilities;
+using ChebDoorStudio.Settings;
+using ChebDoorStudio.Utilities;
 using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Zenject;
 
-namespace Studio.ProjectSystems
+namespace ChebDoorStudio.ProjectSystems
 {
-    public class SceneSystem : MonoBehaviour, IInitializable
+    public class SceneSystem : MonoBehaviour
     {
         public event Action<SceneNames> OnSceneLoadedEvent;
 
@@ -84,7 +84,7 @@ namespace Studio.ProjectSystems
             _sceneToLoadName = sceneName;
 
             _aimedAfterLoadingSceneName = aimedSceneNameAfterLoading;
-            
+
             StartCoroutine(LoadScene(sceneName.ToString()));
         }
 
@@ -97,7 +97,7 @@ namespace Studio.ProjectSystems
                 return;
             }
 
-           StartCoroutine(LoadScene(_aimedAfterLoadingSceneName.ToString()));
+            StartCoroutine(LoadScene(_aimedAfterLoadingSceneName.ToString()));
 
             _aimedAfterLoadingSceneName = SceneNames.Unknown;
         }

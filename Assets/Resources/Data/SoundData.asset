@@ -12,4 +12,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9be5c13bc050de34791e7dc188ca2780, type: 3}
   m_Name: SoundData
   m_EditorClassIdentifier: 
-  sounds: []
+  sounds:
+  - soundType: 1
+    audioClip: {fileID: 8300000, guid: 2db7387a88ade784aba29c169ea6c4ae, type: 3}
+    volume: 0.3
+    isLoop: 0
+    isSfx: 1
+  - soundType: 2
+    audioClip: {fileID: 8300000, guid: 4e70e079e6e79d84bb097d454809330d, type: 3}
+    volume: 0.5
+    isLoop: 0
+    isSfx: 1
+  - soundType: 3
+    audioClip: {fileID: 8300000, guid: c9fb0c3c86eb48f4c86778830cd581bf, type: 3}
+    volume: 0.5
+    isLoop: 0
+    isSfx: 1
+  - soundType: 4
+    audioClip: {fileID: 8300000, guid: 74c98f56bb51f8544a252a27a657e69e, type: 3}
+    volume: 0.8
+    isLoop: 0
+    isSfx: 1
+  - soundType: 5
+    audioClip: {fileID: 8300000, guid: e9d1dc249c5a9234bb631989bdadfef2, type: 3}
+    volume: 0.8
+    isLoop: 1
+    isSfx: 0

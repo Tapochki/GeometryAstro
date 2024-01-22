@@ -1,8 +1,8 @@
-using Studio.ScriptableObjects;
+using ChebDoorStudio.ScriptableObjects;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Studio.Settings
+namespace ChebDoorStudio.Settings
 {
     public class PlayerVaultData
     {

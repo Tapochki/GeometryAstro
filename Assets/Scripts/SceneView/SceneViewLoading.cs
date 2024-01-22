@@ -1,11 +1,11 @@
-using Studio.ProjectSystems;
-using Studio.Scenes.Base;
-using Studio.Settings;
-using Studio.UI.Views.Base;
+using ChebDoorStudio.ProjectSystems;
+using ChebDoorStudio.Scenes.Base;
+using ChebDoorStudio.Settings;
+using ChebDoorStudio.UI.Views.Base;
 using System.Collections.Generic;
 using Zenject;
 
-namespace Studio.Scenes
+namespace ChebDoorStudio.Scenes
 {
     public class SceneViewLoading : SceneView
     {

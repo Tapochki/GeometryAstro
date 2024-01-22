@@ -1,10 +1,10 @@
-using Studio.Settings;
+using ChebDoorStudio.Settings;
 using UnityEngine;
 using Zenject;
 
-namespace Studio.ProjectSystems
+namespace ChebDoorStudio.ProjectSystems
 {
-    public class LoadObjectsSystem : IInitializable
+    public class LoadObjectsSystem : MonoBehaviour
     {
         [Inject]
         public void Construct()

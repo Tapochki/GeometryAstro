@@ -1,14 +1,15 @@
-using Studio.Scenes.Base;
-using Studio.UI;
-using Studio.UI.Views.Base;
-using Studio.Utilities;
+using ChebDoorStudio.Scenes.Base;
+using ChebDoorStudio.UI;
+using ChebDoorStudio.UI.Views.Base;
+using ChebDoorStudio.Utilities;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 using Zenject;
 
-namespace Studio.ProjectSystems
+namespace ChebDoorStudio.ProjectSystems
 {
-    public class UISystem : IInitializable
+    public class UISystem : MonoBehaviour
     {
         private View _menuRootView;
         private View _gameRootView;
@@ -56,6 +57,10 @@ namespace Studio.ProjectSystems
             CurrentSceneView = sceneView;
 
             _views = views;
+        }
+
+        private void Update()
+        {
         }
 
         public List<View> TryToRemoveRootViewFromViewList(List<View> targetListOfViews, View rootView)

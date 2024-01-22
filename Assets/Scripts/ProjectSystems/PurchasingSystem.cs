@@ -1,12 +1,13 @@
-using Studio.Settings;
+using ChebDoorStudio.Settings;
 using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.Purchasing;
 using UnityEngine.Purchasing.Extension;
 using Zenject;
 
-namespace Studio.ProjectSystems
+namespace ChebDoorStudio.ProjectSystems
 {
-    public class PurchasingSystem : IInitializable, IDetailedStoreListener
+    public class PurchasingSystem : MonoBehaviour, IDetailedStoreListener
     {
         private DataSystem _dataSystem;
         private SoundSystem _soundSystem;

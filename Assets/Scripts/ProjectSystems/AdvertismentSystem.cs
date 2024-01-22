@@ -1,12 +1,12 @@
-using Studio.Settings;
+using ChebDoorStudio.Settings;
 using System;
 using UnityEngine;
 using UnityEngine.Advertisements;
 using Zenject;
 
-namespace Studio.ProjectSystems
+namespace ChebDoorStudio.ProjectSystems
 {
-    public class AdvertismentSystem : IInitializable, IUnityAdsInitializationListener, IUnityAdsLoadListener, IUnityAdsShowListener
+    public class AdvertismentSystem : MonoBehaviour, IUnityAdsInitializationListener, IUnityAdsLoadListener, IUnityAdsShowListener
     {
         public event Action OnAdvertismentCompleteEvent;
 
@@ -143,11 +143,6 @@ namespace Studio.ProjectSystems
 
         public void OnUnityAdsShowClick(string adUnitId)
         {
-        }
-
-        private void OnSystemBindedEventHandler()
-        {
-            Initialize();
         }
     }
 }

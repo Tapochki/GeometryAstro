@@ -1,9 +1,9 @@
-using Studio.Settings;
+using ChebDoorStudio.Settings;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Studio.ScriptableObjects
+namespace ChebDoorStudio.ScriptableObjects
 {
     [CreateAssetMenu(fileName = "SoundData", menuName = "ChebDoorStudio/SoundData", order = 1)]
     public class SoundData : ScriptableObject

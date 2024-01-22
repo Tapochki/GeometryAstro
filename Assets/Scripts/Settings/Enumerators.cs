@@ -1,4 +1,4 @@
-namespace Studio.Settings
+namespace ChebDoorStudio.Settings
 {
     public enum SceneNames
     {
@@ -19,9 +19,16 @@ namespace Studio.Settings
         Menu,
     }
 
+    public enum ItemTypes
+    {
+        Coin,
+    }
+
     public enum CacheType
     {
         AppSettingsData,
+        PurchaseData,
+        PlayerValutData,
     }
 
     public enum PurchasingType
@@ -48,13 +55,11 @@ namespace Studio.Settings
         Debug,
     }
 
-    internal enum SpreadsheetDataType
-    {
-        Localization,
-    }
-
     public enum Sounds
     {
         Unknown,
+
+        Click,
+        Background,
     }
 }

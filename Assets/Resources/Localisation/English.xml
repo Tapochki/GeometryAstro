@@ -1,7 +1,1 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Document>
-	<string name="button_title_start">Play</string>
-	<string name="button_title_setting">Settings</string>
-	<string name="button_title_exit">Exit</string>
-	<string name="button_title_exit123123">1232312</string>
-</Document>
+﻿<?xml version="1.0" encoding="utf-8"?><Document><string name="title_loading">Loading</string><string name="title_button_start">Tap to play</string><string name="title_best_result">Best result</string><string name="title_pause">Pause</string><string name="title_button_continue">Continue</string><string name="title_button_return">Return to menu</string><string name="title_game_over">Game over</string><string name="title_coins">Coins</string><string name="title_score">Score</string><string name="title_quit">Quit the game?</string><string name="title_button_yes">Yes</string><string name="title_button_no">No</string><string name="title_button_buy">Buy</string><string name="title_button_select">Select</string><string name="title_button_get_money">Get {0} coins</string></Document>

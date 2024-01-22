@@ -1,10 +1,10 @@
-﻿using Studio.ProjectSystems;
-using Studio.Settings;
+﻿using ChebDoorStudio.ProjectSystems;
+using ChebDoorStudio.Settings;
 using TMPro;
 using UnityEngine;
 using Zenject;
 
-namespace Studio.UI.Utilities.Localisation
+namespace ChebDoorStudio.UI.Utilities.Localisation
 {
     public class LocalisedTextMeshProUGUI : MonoBehaviour
     {

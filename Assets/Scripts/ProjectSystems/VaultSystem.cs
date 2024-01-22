@@ -1,9 +1,10 @@
 using System;
+using UnityEngine;
 using Zenject;
 
-namespace Studio.ProjectSystems
+namespace ChebDoorStudio.ProjectSystems
 {
-    public sealed class VaultSystem : IInitializable
+    public sealed class VaultSystem : MonoBehaviour
     {
         public event Action<int> OnCoinsAmountChangedEvent;
 
@@ -40,6 +41,7 @@ namespace Studio.ProjectSystems
             {
                 _dataSystem = dataSystem;
 
+                _storedItem = _dataSystem.PlayerVaultData.coins;
                 _changedVaultAction = changedVaultAction;
             }
 
@@ -48,7 +50,8 @@ namespace Studio.ProjectSystems
                 _storedItem += amount;
                 _changedVaultAction?.Invoke();
 
-
+                _dataSystem.PlayerVaultData.coins = _storedItem;
+                _dataSystem.SaveCache(Settings.CacheType.PlayerValutData);
             }
 
             public void Substruct(int amount)
@@ -56,7 +59,8 @@ namespace Studio.ProjectSystems
                 _storedItem -= amount;
                 _changedVaultAction?.Invoke();
 
-
+                _dataSystem.PlayerVaultData.coins = _storedItem;
+                _dataSystem.SaveCache(Settings.CacheType.PlayerValutData);
             }
 
             public int Get() => _storedItem;

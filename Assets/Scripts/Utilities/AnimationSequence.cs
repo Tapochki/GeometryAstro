@@ -3,7 +3,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Studio.Utilities
+namespace ChebDoorStudio.Utilities
 {
     public class AnimationSequence : MonoBehaviour
     {

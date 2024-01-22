@@ -1,12 +1,11 @@
-using Studio.Settings;
-using Studio.Utilities;
+using ChebDoorStudio.Settings;
 using System;
 using UnityEngine;
 using Zenject;
 
-namespace Studio.ProjectSystems
+namespace ChebDoorStudio.ProjectSystems
 {
-    public class InputsSystem : IInitializable, ITickable
+    public class InputsSystem : MonoBehaviour
     {
         public event Action OnMovementDirectionUpdatedEvent;
 
@@ -26,14 +25,8 @@ namespace Studio.ProjectSystems
         {
         }
 
-        public void UpdateMovementDirection()
+        public void Update()
         {
-            OnMovementDirectionUpdatedEvent?.Invoke();
-        }
-
-        public void Tick()
-        {
-            Debug.LogError("InputsSystem");
             if (_gameStateSystem.WorkerSceneInitialized)
             {
                 if (Input.GetKeyUp(KeyCode.Escape))
@@ -41,9 +34,15 @@ namespace Studio.ProjectSystems
                     OnEscapeButtonDownEvent?.Invoke();
                 }
             }
+
             if (_gameStateSystem.GameStarted)
             {
             }
+        }
+
+        public void UpdateMovementDirection()
+        {
+            OnMovementDirectionUpdatedEvent?.Invoke();
         }
     }
 }
