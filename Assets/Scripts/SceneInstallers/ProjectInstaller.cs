@@ -9,13 +9,13 @@ namespace Studio
     {
         public override void InstallBindings()
         {
+            Container.Bind<SceneSystem>().FromComponentInHierarchy().AsCached();
             Container.BindInterfacesAndSelfTo<LoadObjectsSystem>().AsCached();
             Container.BindInterfacesAndSelfTo<InputsSystem>().AsCached();
             Container.BindInterfacesAndSelfTo<LocalisationSystem>().AsCached();
             Container.BindInterfacesAndSelfTo<SoundSystem>().AsCached();
             Container.BindInterfacesAndSelfTo<DataSystem>().AsCached();
             Container.BindInterfacesAndSelfTo<UISystem>().AsCached();
-            Container.BindInterfacesAndSelfTo<SceneSystem>().AsCached();
             Container.BindInterfacesAndSelfTo<AdvertismentSystem>().AsCached();
             Container.BindInterfacesAndSelfTo<PurchasingSystem>().AsCached();
             Container.BindInterfacesAndSelfTo<VaultSystem>().AsCached();

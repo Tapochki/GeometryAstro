@@ -8,7 +8,7 @@ using Zenject;
 
 namespace Studio.ProjectSystems
 {
-    public class SoundSystem : IInitializable
+    public class SoundSystem : IInitializable, ITickable
     {
         private List<SoundSource> _soundSources;
         private List<SoundPlayQueue> _soundPlayQueue;
@@ -50,8 +50,9 @@ namespace Studio.ProjectSystems
             _dataSystem.OnCacheLoadedEvent += CachedDataLoadedEventHandler;
         }
 
-        public void OnUpdateEventHandler()
+        public void Tick()
         {
+            Debug.LogError("SoundSystem");
             if (_soundSources == null)
             {
                 return;

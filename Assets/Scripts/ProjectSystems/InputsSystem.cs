@@ -6,7 +6,7 @@ using Zenject;
 
 namespace Studio.ProjectSystems
 {
-    public class InputsSystem : IInitializable
+    public class InputsSystem : IInitializable, ITickable
     {
         public event Action OnMovementDirectionUpdatedEvent;
 
@@ -26,8 +26,14 @@ namespace Studio.ProjectSystems
         {
         }
 
-        public void OnUpdateEventHandler()
+        public void UpdateMovementDirection()
         {
+            OnMovementDirectionUpdatedEvent?.Invoke();
+        }
+
+        public void Tick()
+        {
+            Debug.LogError("InputsSystem");
             if (_gameStateSystem.WorkerSceneInitialized)
             {
                 if (Input.GetKeyUp(KeyCode.Escape))
@@ -35,15 +41,9 @@ namespace Studio.ProjectSystems
                     OnEscapeButtonDownEvent?.Invoke();
                 }
             }
-
             if (_gameStateSystem.GameStarted)
             {
             }
-        }
-
-        public void UpdateMovementDirection()
-        {
-            OnMovementDirectionUpdatedEvent?.Invoke();
         }
     }
 }

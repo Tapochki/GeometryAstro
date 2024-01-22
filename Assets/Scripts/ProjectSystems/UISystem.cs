@@ -58,10 +58,6 @@ namespace Studio.ProjectSystems
             _views = views;
         }
 
-        private void OnUpdateEventHandler()
-        {
-        }
-
         public List<View> TryToRemoveRootViewFromViewList(List<View> targetListOfViews, View rootView)
         {
             for (int i = 0; i < targetListOfViews.Count; i++)

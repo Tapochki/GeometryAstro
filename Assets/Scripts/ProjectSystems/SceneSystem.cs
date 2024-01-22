@@ -8,7 +8,7 @@ using Zenject;
 
 namespace Studio.ProjectSystems
 {
-    public class SceneSystem : IInitializable
+    public class SceneSystem : MonoBehaviour, IInitializable
     {
         public event Action<SceneNames> OnSceneLoadedEvent;
 
@@ -85,7 +85,7 @@ namespace Studio.ProjectSystems
 
             _aimedAfterLoadingSceneName = aimedSceneNameAfterLoading;
             
-            //_monoHelper.StartCoroutine(LoadScene(sceneName.ToString()));
+            StartCoroutine(LoadScene(sceneName.ToString()));
         }
 
         public void LoadAimedAfterLoadingScene()
@@ -97,7 +97,7 @@ namespace Studio.ProjectSystems
                 return;
             }
 
-           // _monoHelper.StartCoroutine(LoadScene(_aimedAfterLoadingSceneName.ToString()));
+           StartCoroutine(LoadScene(_aimedAfterLoadingSceneName.ToString()));
 
             _aimedAfterLoadingSceneName = SceneNames.Unknown;
         }
