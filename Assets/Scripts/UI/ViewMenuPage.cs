@@ -71,8 +71,8 @@ namespace ChebDoorStudio.UI.Views
             _startButton.transform.DOScale(new Vector3(0.8f, 0.8f, 0.8f), 0.3f).SetLoops(-1);
 
             _startButton.onClick.AddListener(StartButtonOnClickHandler);
-            _exitButton.onClick.AddListener(ExitButtonOnClickHandler);
-            _shopButton.onClick.AddListener(ShopButtonOnClickHandler);
+            //_exitButton.onClick.AddListener(ExitButtonOnClickHandler);
+            //_shopButton.onClick.AddListener(ShopButtonOnClickHandler);
         }
 
         public override void Show()
@@ -90,8 +90,8 @@ namespace ChebDoorStudio.UI.Views
             base.Dispose();
 
             _startButton.onClick.RemoveListener(StartButtonOnClickHandler);
-            _exitButton.onClick.RemoveListener(ExitButtonOnClickHandler);
-            _shopButton.onClick.RemoveListener(ShopButtonOnClickHandler);
+            //_exitButton.onClick.RemoveListener(ExitButtonOnClickHandler);
+            //_shopButton.onClick.RemoveListener(ShopButtonOnClickHandler);
 
             _startButton = null;
             _shopButton = null;
@@ -118,19 +118,19 @@ namespace ChebDoorStudio.UI.Views
             _sceneView.GameStarted();
         }
 
-        private void ExitButtonOnClickHandler()
-        {
-            _soundSystem.PlayClickSound();
+        //private void ExitButtonOnClickHandler()
+        //{
+        //    _soundSystem.PlayClickSound();
 
-            _sceneView.ShowView<ViewExitPage>();
-        }
+        //    _sceneView.ShowView<ViewExitPage>();
+        //}
 
-        private void ShopButtonOnClickHandler()
-        {
-            _soundSystem.PlayClickSound();
+        //private void ShopButtonOnClickHandler()
+        //{
+        //    _soundSystem.PlayClickSound();
 
-            _sceneView.ShowView<ViewShopPage>();
-        }
+        //    _sceneView.ShowView<ViewShopPage>();
+        //}
 
         private void OnBestScoreChangedEventHandler(int score)
         {

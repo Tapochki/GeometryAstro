@@ -26,13 +26,10 @@ namespace ChebDoorStudio.Scenes
         public override void Initialize()
         {
             _menuRootView = transform.Find("View - MenuPage").GetComponent<View>();
-            _gameRootView = transform.Find("View - GamePage").GetComponent<View>();
+
             _views = new List<View>()
             {
-                transform.Find("View - PausePage").GetComponent<View>(),
-                transform.Find("View - GameOverPage").GetComponent<View>(),
-                transform.Find("View - ExitPage").GetComponent<View>(),
-                transform.Find("View - ShopPage").GetComponent<View>(),
+ 
             };
 
             base.Initialize();
