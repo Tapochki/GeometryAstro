@@ -1,4 +1,4 @@
-namespace ChebDoorStudio.Settings
+namespace Studio.Settings
 {
     public enum SceneNames
     {
@@ -19,30 +19,9 @@ namespace ChebDoorStudio.Settings
         Menu,
     }
 
-    public enum ShopItemType
-    {
-        RedPlayer,
-        GreenPlayer,
-        BluePlayer,
-        PinkPlayer,
-        YellowPlayer,
-        CyanPlayer,
-        OrangePlayer,
-        PurplePlayer,
-    }
-
-    public enum ItemTypes
-    {
-        Coin,
-    }
-
     public enum CacheType
     {
         AppSettingsData,
-        PurchaseData,
-        PlayerValutData,
-        ShopPurchasedItemData,
-        SelectedPlayerSkinData,
     }
 
     public enum PurchasingType
@@ -69,14 +48,13 @@ namespace ChebDoorStudio.Settings
         Debug,
     }
 
+    internal enum SpreadsheetDataType
+    {
+        Localization,
+    }
+
     public enum Sounds
     {
         Unknown,
-
-        Click,
-        CoinPickUp,
-        PlayerChangeDirection,
-        PlayerDeath,
-        Background,
     }
 }

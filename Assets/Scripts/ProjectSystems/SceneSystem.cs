@@ -1,12 +1,12 @@
-using ChebDoorStudio.Settings;
-using ChebDoorStudio.Utilities;
+using Studio.Settings;
+using Studio.Utilities;
 using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Zenject;
 
-namespace ChebDoorStudio.ProjectSystems
+namespace Studio.ProjectSystems
 {
     public class SceneSystem : IInitializable
     {
@@ -24,15 +24,13 @@ namespace ChebDoorStudio.ProjectSystems
         private float _delayToOpenScene;
 
         private UISystem _uiSystem;
-        private MonoHelper _monoHelper;
 
         [Inject]
-        public void Construct(UISystem uiSystem, MonoHelper monoHelper)
+        public void Construct(UISystem uiSystem)
         {
             Utilities.Logger.Log("SceneSystem Construct", LogTypes.Info);
 
             _uiSystem = uiSystem;
-            _monoHelper = monoHelper;
         }
 
         public void Initialize()
@@ -86,8 +84,8 @@ namespace ChebDoorStudio.ProjectSystems
             _sceneToLoadName = sceneName;
 
             _aimedAfterLoadingSceneName = aimedSceneNameAfterLoading;
-
-            _monoHelper.StartCoroutine(LoadScene(sceneName.ToString()));
+            
+            //_monoHelper.StartCoroutine(LoadScene(sceneName.ToString()));
         }
 
         public void LoadAimedAfterLoadingScene()
@@ -99,7 +97,7 @@ namespace ChebDoorStudio.ProjectSystems
                 return;
             }
 
-            _monoHelper.StartCoroutine(LoadScene(_aimedAfterLoadingSceneName.ToString()));
+           // _monoHelper.StartCoroutine(LoadScene(_aimedAfterLoadingSceneName.ToString()));
 
             _aimedAfterLoadingSceneName = SceneNames.Unknown;
         }

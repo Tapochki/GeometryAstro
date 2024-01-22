@@ -1,9 +1,9 @@
-using ChebDoorStudio.ProjectSystems;
-using ChebDoorStudio.Utilities;
+using Studio.ProjectSystems;
+using Studio.Utilities;
 using UnityEngine;
 using Zenject;
 
-namespace ChebDoorStudio
+namespace Studio
 {
     public class ProjectInstaller : MonoInstaller
     {
@@ -21,8 +21,6 @@ namespace ChebDoorStudio
             Container.BindInterfacesAndSelfTo<VaultSystem>().AsCached();
 
             Container.BindInterfacesAndSelfTo<GameStateSystem>().AsCached();
-
-            Container.Bind<MonoHelper>().FromComponentInHierarchy().AsCached();
         }
 
         public override void Start()

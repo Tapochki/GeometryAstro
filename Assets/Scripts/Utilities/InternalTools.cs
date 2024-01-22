@@ -11,7 +11,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace ChebDoorStudio.Utilities
+namespace Studio.Utilities
 {
     public static class InternalTools
     {

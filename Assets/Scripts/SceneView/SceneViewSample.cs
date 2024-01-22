@@ -10,9 +10,9 @@ namespace Studio.Scenes
         {
         }
 
-        public override void Init()
-        {
-        }
+        //public override void Init()
+        //{
+        //}
 
         public override void ShowView(View view)
         {

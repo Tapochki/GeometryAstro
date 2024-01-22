@@ -1,10 +1,10 @@
-using ChebDoorStudio.ProjectSystems;
-using ChebDoorStudio.UI.Views.Base;
+using Studio.ProjectSystems;
+using Studio.UI.Views.Base;
 using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
-namespace ChebDoorStudio.Scenes.Base
+namespace Studio.Scenes.Base
 {
     public class SceneView : MonoBehaviour
     {
@@ -16,7 +16,7 @@ namespace ChebDoorStudio.Scenes.Base
         protected UISystem _uiSystem;
 
         [Inject]
-        public void Construct(UISystem uiSystem)
+        public virtual void Construct(SoundSystem soundSystem, UISystem uiSystem)
         {
             _uiSystem = uiSystem;
         }

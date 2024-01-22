@@ -1,13 +1,13 @@
-using Studio.Settings;
+using Studio.ScriptableObjects;
+using System.Collections.Generic;
+using UnityEngine;
 
-namespace Studio.Models
+namespace Studio.Settings
 {
-    public class CachedUserData
+    public class PlayerVaultData
     {
-        // coins
-        // diamonds
-        // chapter progress
-        // etc
+        public int bestScore;
+        public int coins;
     }
 
     public class PurchaseData

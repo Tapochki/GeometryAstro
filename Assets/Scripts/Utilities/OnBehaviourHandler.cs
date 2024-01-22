@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace ChebDoorStudio.Utilities
+namespace Studio.Utilities
 {
     public class OnBehaviourHandler : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IDragHandler,
         IBeginDragHandler, IEndDragHandler, IPointerDownHandler, IPointerUpHandler

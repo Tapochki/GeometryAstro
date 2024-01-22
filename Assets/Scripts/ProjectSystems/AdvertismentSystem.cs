@@ -1,10 +1,10 @@
-using ChebDoorStudio.Settings;
+using Studio.Settings;
 using System;
 using UnityEngine;
 using UnityEngine.Advertisements;
 using Zenject;
 
-namespace ChebDoorStudio.ProjectSystems
+namespace Studio.ProjectSystems
 {
     public class AdvertismentSystem : IInitializable, IUnityAdsInitializationListener, IUnityAdsLoadListener, IUnityAdsShowListener
     {

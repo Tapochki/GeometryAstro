@@ -1,9 +1,9 @@
-using ChebDoorStudio.ProjectSystems;
-using ChebDoorStudio.UI.Views;
-using ChebDoorStudio.UI.Views.Base;
+using Studio.ProjectSystems;
+using Studio.UI.Views;
+using Studio.UI.Views.Base;
 using System.Collections.Generic;
 
-namespace ChebDoorStudio.UI
+namespace Studio.UI
 {
     public class ViewStacks
     {
@@ -30,16 +30,16 @@ namespace ChebDoorStudio.UI
         {
             if (_stackOfViews.Count <= 0)
             {
-                if (_gameStateSystem.GameStarted)
-                {
-                    _uiSystem.ShowView<ViewPausePage>();
-                    return;
-                }
-                else
-                {
-                    _uiSystem.ShowView<ViewExitPage>();
-                    return;
-                }
+                //if (_gameStateSystem.GameStarted)
+                //{
+                //    _uiSystem.ShowView<ViewPausePage>();
+                //    return;
+                //}
+                //else
+                //{
+                //    _uiSystem.ShowView<ViewExitPage>();
+                //    return;
+                //}
             }
 
             _uiSystem.HideCurrentView();

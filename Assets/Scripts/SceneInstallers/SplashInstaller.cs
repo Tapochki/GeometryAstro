@@ -1,6 +1,6 @@
 using Zenject;
 
-namespace ChebDoorStudio.SceneInstallers
+namespace Studio.SceneInstallers
 {
     public class SplashInstaller : MonoInstaller
     {

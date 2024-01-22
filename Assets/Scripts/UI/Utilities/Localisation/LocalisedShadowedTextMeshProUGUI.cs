@@ -1,10 +1,10 @@
-using ChebDoorStudio.ProjectSystems;
-using ChebDoorStudio.Settings;
-using ChebDoorStudio.Utilities;
+using Studio.ProjectSystems;
+using Studio.Settings;
+using Studio.Utilities;
 using UnityEngine;
 using Zenject;
 
-namespace ChebDoorStudio.UI.Utilities.Localisation
+namespace Studio.UI.Utilities.Localisation
 {
     public class LocalisedShadowedTextMeshProUGUI : MonoBehaviour
     {

@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-namespace ChebDoorStudio.Utilities
+namespace Studio.Utilities
 {
     public class ShadowedTextMexhProUGUI : MonoBehaviour
     {

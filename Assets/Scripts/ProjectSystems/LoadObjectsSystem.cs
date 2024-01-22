@@ -1,8 +1,8 @@
-using ChebDoorStudio.Settings;
+using Studio.Settings;
 using UnityEngine;
 using Zenject;
 
-namespace ChebDoorStudio.ProjectSystems
+namespace Studio.ProjectSystems
 {
     public class LoadObjectsSystem : IInitializable
     {

@@ -1,12 +1,12 @@
-using ChebDoorStudio.Scenes.Base;
-using ChebDoorStudio.UI;
-using ChebDoorStudio.UI.Views.Base;
-using ChebDoorStudio.Utilities;
+using Studio.Scenes.Base;
+using Studio.UI;
+using Studio.UI.Views.Base;
+using Studio.Utilities;
 using System.Collections.Generic;
 using System.Linq;
 using Zenject;
 
-namespace ChebDoorStudio.ProjectSystems
+namespace Studio.ProjectSystems
 {
     public class UISystem : IInitializable
     {
@@ -25,19 +25,14 @@ namespace ChebDoorStudio.ProjectSystems
 
         private InputsSystem _inputSystem;
         private GameStateSystem _gameStateSystem;
-        private MonoHelper _monoHelper;
 
         [Inject]
-        public void Construct(InputsSystem inputsSystem, GameStateSystem gameStateSystem,
-                                MonoHelper monoHelper)
+        public void Construct(InputsSystem inputsSystem, GameStateSystem gameStateSystem)
         {
             Utilities.Logger.Log("UISystem Construct", Settings.LogTypes.Info);
 
             _inputSystem = inputsSystem;
             _gameStateSystem = gameStateSystem;
-            _monoHelper = monoHelper;
-
-            _monoHelper.OnUpdateEvent += OnUpdateEventHandler;
         }
 
         public void Initialize()

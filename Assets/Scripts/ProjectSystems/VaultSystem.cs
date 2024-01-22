@@ -1,7 +1,7 @@
 using System;
 using Zenject;
 
-namespace ChebDoorStudio.ProjectSystems
+namespace Studio.ProjectSystems
 {
     public sealed class VaultSystem : IInitializable
     {
@@ -40,7 +40,6 @@ namespace ChebDoorStudio.ProjectSystems
             {
                 _dataSystem = dataSystem;
 
-                _storedItem = _dataSystem.PlayerVaultData.coins;
                 _changedVaultAction = changedVaultAction;
             }
 
@@ -49,8 +48,7 @@ namespace ChebDoorStudio.ProjectSystems
                 _storedItem += amount;
                 _changedVaultAction?.Invoke();
 
-                _dataSystem.PlayerVaultData.coins = _storedItem;
-                _dataSystem.SaveCache(Settings.CacheType.PlayerValutData);
+
             }
 
             public void Substruct(int amount)
@@ -58,8 +56,7 @@ namespace ChebDoorStudio.ProjectSystems
                 _storedItem -= amount;
                 _changedVaultAction?.Invoke();
 
-                _dataSystem.PlayerVaultData.coins = _storedItem;
-                _dataSystem.SaveCache(Settings.CacheType.PlayerValutData);
+
             }
 
             public int Get() => _storedItem;

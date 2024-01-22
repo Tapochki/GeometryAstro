@@ -1,9 +1,9 @@
-using ChebDoorStudio.ProjectSystems;
+using Studio.ProjectSystems;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
-namespace ChebDoorStudio.UI.Views.Base
+namespace Studio.UI.Views.Base
 {
     [RequireComponent(typeof(Canvas))]
     [RequireComponent(typeof(CanvasRenderer))]

@@ -1,11 +1,11 @@
-﻿using ChebDoorStudio.Settings;
+﻿using Studio.Settings;
 using System;
 using System.Collections.Generic;
 using System.Xml;
 using UnityEngine;
 using Zenject;
 
-namespace ChebDoorStudio.ProjectSystems
+namespace Studio.ProjectSystems
 {
     public class LocalisationSystem : IInitializable
     {

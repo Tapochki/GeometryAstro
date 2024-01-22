@@ -1,8 +1,8 @@
-using ChebDoorStudio.Settings;
+using Studio.Settings;
 using System;
 using Zenject;
 
-namespace ChebDoorStudio.ProjectSystems
+namespace Studio.ProjectSystems
 {
     public class GameStateSystem : IInitializable
     {

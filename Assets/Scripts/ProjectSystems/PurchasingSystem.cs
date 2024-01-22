@@ -1,10 +1,10 @@
-using ChebDoorStudio.Settings;
+using Studio.Settings;
 using System.Collections.Generic;
 using UnityEngine.Purchasing;
 using UnityEngine.Purchasing.Extension;
 using Zenject;
 
-namespace ChebDoorStudio.ProjectSystems
+namespace Studio.ProjectSystems
 {
     public class PurchasingSystem : IInitializable, IDetailedStoreListener
     {

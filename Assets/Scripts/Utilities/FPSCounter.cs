@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace ChebDoorStudio.Utilities
+namespace Studio.Utilities
 {
     public class FPSCounter : MonoBehaviour
     {

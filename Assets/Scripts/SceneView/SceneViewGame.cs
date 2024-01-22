@@ -1,31 +1,24 @@
-using ChebDoorStudio.Gameplay.Player;
-using ChebDoorStudio.ProjectSystems;
-using ChebDoorStudio.Scenes.Base;
-using ChebDoorStudio.Settings;
-using ChebDoorStudio.UI.Views;
-using ChebDoorStudio.UI.Views.Base;
+using Studio.ProjectSystems;
+using Studio.Scenes.Base;
+using Studio.Settings;
+using Studio.UI.Views.Base;
 using System.Collections.Generic;
 using Zenject;
 
-namespace ChebDoorStudio.Scenes
+namespace Studio.Scenes
 {
     public class SceneViewGame : SceneView
     {
         private GameStateSystem _gameStateSystem;
         private SceneSystem _sceneSystem;
-        private PlayerComponent _playerComponent;
         private SoundSystem _soundSystem;
 
         [Inject]
-        public void Construct(GameStateSystem gameStateSystem, SceneSystem sceneSystem,
-                                PlayerComponent playerComponent, SoundSystem soundSystem)
+        public void Construct(GameStateSystem gameStateSystem, SceneSystem sceneSystem, SoundSystem soundSystem)
         {
             _gameStateSystem = gameStateSystem;
             _sceneSystem = sceneSystem;
-            _playerComponent = playerComponent;
             _soundSystem = soundSystem;
-
-            _playerComponent.OnPlayerDeathEvent += () => ShowView<ViewGameOverPage>();
         }
 
         [Inject]
@@ -47,7 +40,7 @@ namespace ChebDoorStudio.Scenes
 
             _gameStateSystem.WorkerInitialized();
 
-            _soundSystem.PlaySound(Sounds.Background);
+           // _soundSystem.PlaySound(Sounds.Background);
         }
 
         public override void ShowView(View view)

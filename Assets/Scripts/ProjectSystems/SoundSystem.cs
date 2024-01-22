@@ -1,12 +1,12 @@
-using ChebDoorStudio.ScriptableObjects;
-using ChebDoorStudio.Settings;
-using ChebDoorStudio.Utilities;
+using Studio.ScriptableObjects;
+using Studio.Settings;
+using Studio.Utilities;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
-namespace ChebDoorStudio.ProjectSystems
+namespace Studio.ProjectSystems
 {
     public class SoundSystem : IInitializable
     {
@@ -17,7 +17,6 @@ namespace ChebDoorStudio.ProjectSystems
 
         private LoadObjectsSystem _loadObjectsSystem;
         private DataSystem _dataSystem;
-        private MonoHelper _monoHelper;
 
         public float MusicVolume { get; private set; }
         public float SoundVolume { get; private set; }
@@ -29,16 +28,12 @@ namespace ChebDoorStudio.ProjectSystems
         public void SetSoundVolume(float value) => SoundVolume = value;
 
         [Inject]
-        public void Construct(LoadObjectsSystem loadObjectsSystem, DataSystem dataSystem,
-                                MonoHelper monoHelper)
+        public void Construct(LoadObjectsSystem loadObjectsSystem, DataSystem dataSystem)
         {
             Utilities.Logger.Log("SoundSystem Construct", LogTypes.Info);
 
             _loadObjectsSystem = loadObjectsSystem;
             _dataSystem = dataSystem;
-            _monoHelper = monoHelper;
-
-            _monoHelper.OnUpdateEvent += OnUpdateEventHandler;
         }
 
         public void Initialize()
@@ -92,7 +87,7 @@ namespace ChebDoorStudio.ProjectSystems
 
         public void PlayClickSound()
         {
-            PlaySound(Sounds.Click);
+
         }
 
         public void PlaySound(Sounds soundType)

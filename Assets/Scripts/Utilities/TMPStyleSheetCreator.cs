@@ -5,7 +5,7 @@ using UnityEngine;
 
 // Copiedd script from https://www.youtube.com/watch?v=jhQkd6VRSJI
 
-namespace ChebDoorStudio.Utilities
+namespace Studio.Utilities
 {
     public class TMPStyleSheetCreator : MonoBehaviour
     {

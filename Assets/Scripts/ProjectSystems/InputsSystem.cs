@@ -1,10 +1,10 @@
-using ChebDoorStudio.Settings;
-using ChebDoorStudio.Utilities;
+using Studio.Settings;
+using Studio.Utilities;
 using System;
 using UnityEngine;
 using Zenject;
 
-namespace ChebDoorStudio.ProjectSystems
+namespace Studio.ProjectSystems
 {
     public class InputsSystem : IInitializable
     {
@@ -13,17 +13,13 @@ namespace ChebDoorStudio.ProjectSystems
         public event Action OnEscapeButtonDownEvent;
 
         private GameStateSystem _gameStateSystem;
-        private MonoHelper _monoHelper;
 
         [Inject]
-        public void Construct(GameStateSystem gameStateSystem, MonoHelper monoHelper)
+        public void Construct(GameStateSystem gameStateSystem)
         {
             Utilities.Logger.Log("InputsSystem Construct", LogTypes.Info);
 
             _gameStateSystem = gameStateSystem;
-            _monoHelper = monoHelper;
-
-            _monoHelper.OnUpdateEvent += OnUpdateEventHandler;
         }
 
         public void Initialize()
