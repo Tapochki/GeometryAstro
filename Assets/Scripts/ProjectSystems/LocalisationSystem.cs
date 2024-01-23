@@ -1,11 +1,11 @@
-﻿using ChebDoorStudio.Settings;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Xml;
+using TandC.Settings;
 using UnityEngine;
 using Zenject;
 
-namespace ChebDoorStudio.ProjectSystems
+namespace TandC.ProjectSystems
 {
     public class LocalisationSystem : MonoBehaviour
     {

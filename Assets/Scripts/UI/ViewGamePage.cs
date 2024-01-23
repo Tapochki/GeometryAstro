@@ -1,12 +1,9 @@
-using ChebDoorStudio.ProjectSystems;
-using ChebDoorStudio.UI.Views.Base;
-using ChebDoorStudio.Utilities;
-using DG.Tweening;
-using UnityEngine;
+using TandC.ProjectSystems;
+using TandC.UI.Views.Base;
 using UnityEngine.UI;
 using Zenject;
 
-namespace ChebDoorStudio.UI.Views
+namespace TandC.UI.Views
 {
     public class ViewGamePage : View
     {

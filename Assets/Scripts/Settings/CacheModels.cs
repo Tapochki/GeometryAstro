@@ -1,8 +1,4 @@
-using ChebDoorStudio.ScriptableObjects;
-using System.Collections.Generic;
-using UnityEngine;
-
-namespace ChebDoorStudio.Settings
+namespace TandC.Settings
 {
     public class PlayerVaultData
     {

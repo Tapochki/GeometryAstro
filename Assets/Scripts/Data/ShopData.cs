@@ -1,9 +1,9 @@
-using UnityEngine;
 using System;
 using System.Collections.Generic;
-using ChebDoorStudio.Settings;
+using TandC.Settings;
+using UnityEngine;
 
-namespace ChebDoorStudio.Data
+namespace TandC.Data
 {
     [CreateAssetMenu(fileName = "GameplayData", menuName = "TandC/Game/ShopData", order = 3)]
     public class ShopData : ScriptableObject
@@ -16,7 +16,9 @@ namespace ChebDoorStudio.Data
             foreach (var item in ShopDataList)
             {
                 if (item.CustomisationType == type)
+                {
                     return item;
+                }
             }
 
             return ShopDataList[0];
@@ -27,7 +29,9 @@ namespace ChebDoorStudio.Data
             foreach (var item in UpgradeDataList)
             {
                 if (item.UpgradeType == type)
+                {
                     return item;
+                }
             }
 
             return null;
@@ -38,12 +42,14 @@ namespace ChebDoorStudio.Data
             foreach (var item in UpgradeDataList)
             {
                 if (item.UpgradeType == type)
+                {
                     return item.GetUpgradeValue();
+                }
             }
             return 0f;
         }
 
-        public int GetSumOfUpgradeLevel() 
+        public int GetSumOfUpgradeLevel()
         {
             int sum = 0;
 
@@ -54,8 +60,6 @@ namespace ChebDoorStudio.Data
             return sum;
         }
 
-        
-
         [Serializable]
         public class UpgradeData
         {
@@ -63,22 +67,24 @@ namespace ChebDoorStudio.Data
             public Sprite UpgradeSprite;
             public string Title;
             public string DescriptionKey;
+
             [TextArea(5, 10)]
             public string DescriptionForDev;
+
             public List<int> Cost;
             public UpgradeType UpgradeType;
             public bool IsProcent;
 
             public int CurrentLevel;
 
-            public float GetUpgradeValue() 
+            public float GetUpgradeValue()
             {
                 return UpgradeList[CurrentLevel];
             }
 
             public int GetCostValue()
             {
-                return Cost[CurrentLevel+1];
+                return Cost[CurrentLevel + 1];
             }
 
             public float GetProcentFromUpgrade()
@@ -86,34 +92,35 @@ namespace ChebDoorStudio.Data
                 float procent = 0;
 
                 float startValue = UpgradeList[0];
-                if(startValue == 0) 
+                if (startValue == 0)
                 {
                     startValue = 1;
                 }
                 float maxValue = 0;
-                if (CurrentLevel+1 >= UpgradeList.Count)
+                if (CurrentLevel + 1 >= UpgradeList.Count)
                 {
                     maxValue = UpgradeList[UpgradeList.Count - 1];
                 }
-                else 
+                else
                 {
-                    maxValue = UpgradeList[CurrentLevel+1];
+                    maxValue = UpgradeList[CurrentLevel + 1];
                 }
                 procent = ((maxValue / startValue) - 1) * 100;
 
-                if(procent < 0) 
+                if (procent < 0)
                 {
                     procent *= -1;
                 }
-                if (IsProcent) 
+                if (IsProcent)
                 {
                     procent = GetUpgradeValue();
                 }
                 return procent;
             }
         }
+
         [Serializable]
-        public class ProductData 
+        public class ProductData
         {
             public int Id;
             public Sprite Sprite;
@@ -133,7 +140,9 @@ namespace ChebDoorStudio.Data
                 foreach (var item in Products)
                 {
                     if (item.Id == id)
+                    {
                         return item;
+                    }
                 }
 
                 return Products[0];

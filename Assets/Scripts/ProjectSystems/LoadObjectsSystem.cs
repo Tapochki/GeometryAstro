@@ -1,8 +1,8 @@
-using ChebDoorStudio.Settings;
+using TandC.Settings;
 using UnityEngine;
 using Zenject;
 
-namespace ChebDoorStudio.ProjectSystems
+namespace TandC.ProjectSystems
 {
     public class LoadObjectsSystem : MonoBehaviour
     {

@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace ChebDoorStudio.Utilities
+namespace TandC.Utilities
 {
     [ExecuteAlways]
     public class SpriteRendererBasedText : MonoBehaviour

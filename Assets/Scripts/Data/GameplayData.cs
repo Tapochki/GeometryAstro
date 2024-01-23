@@ -1,8 +1,8 @@
-using UnityEngine;
 using System;
-using ChebDoorStudio.Settings;
+using TandC.Settings;
+using UnityEngine;
 
-namespace ChebDoorStudio.Data
+namespace TandC.Data
 {
     [CreateAssetMenu(fileName = "GameplayData", menuName = "TandC/Game/GameplayData", order = 3)]
     public class GameplayData : ScriptableObject
@@ -28,7 +28,9 @@ namespace ChebDoorStudio.Data
             foreach (var item in bonusTypes)
             {
                 if (item.type == type)
+                {
                     return item;
+                }
             }
 
             return null;
@@ -39,7 +41,9 @@ namespace ChebDoorStudio.Data
             foreach (var item in materials)
             {
                 if (item.type == type)
+                {
                     return item;
+                }
             }
 
             return null;
@@ -50,28 +54,34 @@ namespace ChebDoorStudio.Data
             foreach (var item in skillData)
             {
                 if (item.type == skillType)
+                {
                     return item;
+                }
             }
 
             return null;
         }
-        public Enemies GetEnemiesByType(EnemyType type) 
+
+        public Enemies GetEnemiesByType(EnemyType type)
         {
             foreach (var item in enemies)
             {
                 if (item.type == type)
+                {
                     return item;
+                }
             }
 
             return null;
         }
-        public MiniBoss GetMiniBossByPhaseId(int phaseId) 
+
+        public MiniBoss GetMiniBossByPhaseId(int phaseId)
         {
-            foreach(var item in miniBosses) 
+            foreach (var item in miniBosses)
             {
-                foreach(var bossPhases in item.PhaseID) 
+                foreach (var bossPhases in item.PhaseID)
                 {
-                    if(phaseId == bossPhases) 
+                    if (phaseId == bossPhases)
                     {
                         return item;
                     }
@@ -79,22 +89,28 @@ namespace ChebDoorStudio.Data
             }
             return null;
         }
-        public Phase GetPhaseById(int id) 
+
+        public Phase GetPhaseById(int id)
         {
             foreach (var item in gamePhases)
             {
                 if (item.PhaseId == id)
+                {
                     return item;
+                }
             }
 
             return null;
         }
+
         public PlayerWeaponData GetWeaponByType(WeaponType weaponType)
         {
             foreach (var item in weaponData)
             {
                 if (item.type == weaponType)
+                {
                     return item;
+                }
             }
 
             return null;
@@ -105,7 +121,9 @@ namespace ChebDoorStudio.Data
             foreach (var item in enemyWeaponData)
             {
                 if (item.type == enemyType)
+                {
                     return item;
+                }
             }
 
             return null;
@@ -116,7 +134,9 @@ namespace ChebDoorStudio.Data
             foreach (var item in bulletData)
             {
                 if (item.type == weaponType)
+                {
                     return item;
+                }
             }
 
             return null;
@@ -127,7 +147,9 @@ namespace ChebDoorStudio.Data
             foreach (var item in enemyBulletData)
             {
                 if (item.type == enemyType)
+                {
                     return item;
+                }
             }
 
             return null;
@@ -138,18 +160,22 @@ namespace ChebDoorStudio.Data
             foreach (var item in skillData)
             {
                 if (item.id == id)
+                {
                     return item;
+                }
             }
 
             return null;
         }
 
-        public ItemData GetItemDataByType(ItemType itemType) 
+        public ItemData GetItemDataByType(ItemType itemType)
         {
             foreach (var item in itemDatas)
             {
                 if (item.type == itemType)
+                {
                     return item;
+                }
             }
 
             return null;
@@ -162,7 +188,6 @@ namespace ChebDoorStudio.Data
         public BonusType type;
         public Sprite sprite;
     }
-
 
     [Serializable]
     public class PlayerData
@@ -190,8 +215,9 @@ namespace ChebDoorStudio.Data
         public GameObject playerPrefab;
         public WeaponType StartWeaponType;
     }
+
     [Serializable]
-    public class DropChanceData 
+    public class DropChanceData
     {
         public int StandartShotChance;
         public int LaserShotChance;
@@ -200,13 +226,15 @@ namespace ChebDoorStudio.Data
         public int DashChance;
         public int DronChance;
     }
+
     [Serializable]
-    public class DroneData 
+    public class DroneData
     {
         public GameObject prefab;
         public float StartDroneSpeed;
         public int StartDroneDamage;
     }
+
     public class BulletData
     {
         public int BulletSpeed;
@@ -214,6 +242,7 @@ namespace ChebDoorStudio.Data
         public int bulletLife;
         public GameObject ButlletObject;
     }
+
     [Serializable]
     public class PlayerBulletData : BulletData
     {
@@ -234,18 +263,22 @@ namespace ChebDoorStudio.Data
         public Enemies enemyData;
         public int[] PhaseID;
     }
+
     [Serializable]
     public class Phase
     {
         public int PhaseId;
         public float spawnTime;
         public EnemySpawnData[] enemyInPhase;
-       // public int[] EnemyCount;
+
+        // public int[] EnemyCount;
         public float timeBeforePhase;
+
         public bool IsRandomEnemySpawn;
     }
+
     [Serializable]
-    public class EnemySpawnData 
+    public class EnemySpawnData
     {
         public EnemyType enemyType;
         public SpawnType spawnType;
@@ -284,6 +317,7 @@ namespace ChebDoorStudio.Data
         public GameObject prefab;
         public ItemType type;
         public bool isForBoss;
+
         [TextArea(5, 10)]
         public string description;
     }
@@ -315,8 +349,10 @@ namespace ChebDoorStudio.Data
         public string nameForDev;
         public Sprite sprite;
         public int MaxLevel;
-       // public Skill Skill;
+
+        // public Skill Skill;
         public float Value = 0;
+
         public SkillType type;
         public SkillUseType useType;
         public string description;

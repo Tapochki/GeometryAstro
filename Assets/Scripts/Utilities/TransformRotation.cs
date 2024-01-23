@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace ChebDoorStudio.Utilities
+namespace TandC.Utilities
 {
     [ExecuteAlways]
     public class TransformRotation : MonoBehaviour

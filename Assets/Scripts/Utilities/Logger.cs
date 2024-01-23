@@ -1,7 +1,7 @@
-using ChebDoorStudio.Settings;
+using TandC.Settings;
 using UnityEngine;
 
-namespace ChebDoorStudio.Utilities
+namespace TandC.Utilities
 {
     public class Logger
     {

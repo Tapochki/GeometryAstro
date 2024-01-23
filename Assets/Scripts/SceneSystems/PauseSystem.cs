@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using Zenject;
 
-namespace ChebDoorStudio.SceneSystems
+namespace TandC.SceneSystems
 {
     public class PauseSystem : MonoBehaviour
     {

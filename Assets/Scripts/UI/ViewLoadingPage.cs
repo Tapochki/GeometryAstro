@@ -1,10 +1,10 @@
-using ChebDoorStudio.ProjectSystems;
-using ChebDoorStudio.UI.Views.Base;
 using DG.Tweening;
+using TandC.ProjectSystems;
+using TandC.UI.Views.Base;
 using UnityEngine;
 using Zenject;
 
-namespace ChebDoorStudio.UI.Views
+namespace TandC.UI.Views
 {
     public class ViewLoadingPage : View
     {

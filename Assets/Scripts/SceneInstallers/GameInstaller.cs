@@ -1,8 +1,7 @@
-using ChebDoorStudio.SceneSystems;
-using ChebDoorStudio.ScriptableObjects;
+using TandC.SceneSystems;
 using Zenject;
 
-namespace ChebDoorStudio.SceneInstallers
+namespace TandC.SceneInstallers
 {
     public class GameInstaller : MonoInstaller
     {

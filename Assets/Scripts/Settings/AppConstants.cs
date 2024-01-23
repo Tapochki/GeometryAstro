@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace ChebDoorStudio.Settings
+namespace TandC.Settings
 {
     public class AppConstants
     {

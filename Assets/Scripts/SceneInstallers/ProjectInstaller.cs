@@ -1,9 +1,8 @@
-using ChebDoorStudio.ProjectSystems;
-using ChebDoorStudio.Utilities;
+using TandC.ProjectSystems;
 using UnityEngine;
 using Zenject;
 
-namespace ChebDoorStudio
+namespace TandC
 {
     public class ProjectInstaller : MonoInstaller
     {

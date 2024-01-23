@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace ChebDoorStudio.Utilities
+namespace TandC.Utilities
 {
     public class ObjectPool<T>
     {

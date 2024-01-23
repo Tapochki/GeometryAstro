@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace ChebDoorStudio.Utilities
+namespace TandC.Utilities
 {
     [AddComponentMenu("UI/Effects/Extensions/Gradient")]
     public class Gradient : BaseMeshEffect

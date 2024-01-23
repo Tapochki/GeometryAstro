@@ -1,10 +1,10 @@
-using ChebDoorStudio.ProjectSystems;
-using ChebDoorStudio.Settings;
 using System;
+using TandC.ProjectSystems;
+using TandC.Settings;
 using UnityEngine;
 using Zenject;
 
-namespace ChebDoorStudio.SceneSystems
+namespace TandC.SceneSystems
 {
     public class PurchasingListenerSystem : MonoBehaviour
     {

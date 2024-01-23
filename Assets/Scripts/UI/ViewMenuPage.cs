@@ -1,9 +1,9 @@
-using ChebDoorStudio.ProjectSystems;
-using ChebDoorStudio.UI.Views.Base;
+using TandC.ProjectSystems;
+using TandC.UI.Views.Base;
 using UnityEngine.UI;
 using Zenject;
 
-namespace ChebDoorStudio.UI.Views
+namespace TandC.UI.Views
 {
     public sealed class ViewMenuPage : View
     {

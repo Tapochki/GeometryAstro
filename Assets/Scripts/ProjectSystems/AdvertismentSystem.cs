@@ -1,10 +1,10 @@
-using ChebDoorStudio.Settings;
 using System;
+using TandC.Settings;
 using UnityEngine;
 using UnityEngine.Advertisements;
 using Zenject;
 
-namespace ChebDoorStudio.ProjectSystems
+namespace TandC.ProjectSystems
 {
     public class AdvertismentSystem : MonoBehaviour, IUnityAdsInitializationListener, IUnityAdsLoadListener, IUnityAdsShowListener
     {

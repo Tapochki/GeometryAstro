@@ -1,12 +1,12 @@
-using ChebDoorStudio.Settings;
-using ChebDoorStudio.Utilities;
 using System;
 using System.Collections;
+using TandC.Settings;
+using TandC.Utilities;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Zenject;
 
-namespace ChebDoorStudio.ProjectSystems
+namespace TandC.ProjectSystems
 {
     public class SceneSystem : MonoBehaviour
     {

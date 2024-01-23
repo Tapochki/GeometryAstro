@@ -1,11 +1,11 @@
-using ChebDoorStudio.ScriptableObjects;
-using ChebDoorStudio.Settings;
 using System;
 using System.Collections.Generic;
+using TandC.ScriptableObjects;
+using TandC.Settings;
 using UnityEngine;
 using Zenject;
 
-namespace ChebDoorStudio.ProjectSystems
+namespace TandC.ProjectSystems
 {
     public class SoundSystem : MonoBehaviour
     {

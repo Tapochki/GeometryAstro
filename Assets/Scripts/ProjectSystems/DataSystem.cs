@@ -1,12 +1,12 @@
-using ChebDoorStudio.Settings;
-using ChebDoorStudio.Utilities;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using TandC.Settings;
+using TandC.Utilities;
 using UnityEngine;
 using Zenject;
 
-namespace ChebDoorStudio.ProjectSystems
+namespace TandC.ProjectSystems
 {
     public class DataSystem : MonoBehaviour
     {

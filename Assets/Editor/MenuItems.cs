@@ -10,7 +10,7 @@ using UnityEditor.SceneManagement;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-namespace ChebDoorStudio.Editor
+namespace TandC.Editor
 {
     internal static class MenuItems
     {

@@ -1,11 +1,11 @@
-using ChebDoorStudio.Settings;
 using System.Collections.Generic;
+using TandC.Settings;
 using UnityEngine;
 using UnityEngine.Purchasing;
 using UnityEngine.Purchasing.Extension;
 using Zenject;
 
-namespace ChebDoorStudio.ProjectSystems
+namespace TandC.ProjectSystems
 {
     public class PurchasingSystem : MonoBehaviour, IDetailedStoreListener
     {

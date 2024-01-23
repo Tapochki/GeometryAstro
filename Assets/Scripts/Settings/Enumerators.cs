@@ -1,4 +1,4 @@
-namespace ChebDoorStudio.Settings
+namespace TandC.Settings
 {
     public enum SceneNames
     {

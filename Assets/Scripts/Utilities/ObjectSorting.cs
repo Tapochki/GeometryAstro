@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace ChebDoorStudio.Utilities
+namespace TandC.Utilities
 {
     [ExecuteAlways]
     public sealed class ObjectSorting : MonoBehaviour

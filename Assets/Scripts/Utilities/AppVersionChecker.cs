@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-namespace ChebDoorStudio.Utilities
+namespace TandC.Utilities
 {
     public class AppVersionChecker : MonoBehaviour
     {

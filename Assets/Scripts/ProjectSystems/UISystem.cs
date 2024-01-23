@@ -1,13 +1,12 @@
-using ChebDoorStudio.Scenes.Base;
-using ChebDoorStudio.UI;
-using ChebDoorStudio.UI.Views.Base;
-using ChebDoorStudio.Utilities;
 using System.Collections.Generic;
 using System.Linq;
+using TandC.Scenes.Base;
+using TandC.UI;
+using TandC.UI.Views.Base;
 using UnityEngine;
 using Zenject;
 
-namespace ChebDoorStudio.ProjectSystems
+namespace TandC.ProjectSystems
 {
     public class UISystem : MonoBehaviour
     {

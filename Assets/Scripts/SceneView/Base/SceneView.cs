@@ -1,10 +1,10 @@
-using ChebDoorStudio.ProjectSystems;
-using ChebDoorStudio.UI.Views.Base;
 using System.Collections.Generic;
+using TandC.ProjectSystems;
+using TandC.UI.Views.Base;
 using UnityEngine;
 using Zenject;
 
-namespace ChebDoorStudio.Scenes.Base
+namespace TandC.Scenes.Base
 {
     public class SceneView : MonoBehaviour
     {

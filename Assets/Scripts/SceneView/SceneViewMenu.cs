@@ -1,12 +1,11 @@
-using ChebDoorStudio.ProjectSystems;
-using ChebDoorStudio.Scenes.Base;
-using ChebDoorStudio.Settings;
-using ChebDoorStudio.UI.Views.Base;
 using System.Collections.Generic;
-using UnityEngine;
+using TandC.ProjectSystems;
+using TandC.Scenes.Base;
+using TandC.Settings;
+using TandC.UI.Views.Base;
 using Zenject;
 
-namespace ChebDoorStudio.Scenes
+namespace TandC.Scenes
 {
     public class SceneViewMenu : SceneView
     {

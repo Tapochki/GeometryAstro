@@ -1,9 +1,8 @@
-using ChebDoorStudio.ProjectSystems;
-using ChebDoorStudio.UI.Views;
-using ChebDoorStudio.UI.Views.Base;
 using System.Collections.Generic;
+using TandC.ProjectSystems;
+using TandC.UI.Views.Base;
 
-namespace ChebDoorStudio.UI
+namespace TandC.UI
 {
     public class ViewStacks
     {
