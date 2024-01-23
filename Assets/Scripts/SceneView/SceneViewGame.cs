@@ -20,25 +20,24 @@ namespace ChebDoorStudio.Scenes
             _gameStateSystem = gameStateSystem;
             _sceneSystem = sceneSystem;
             _soundSystem = soundSystem;
+
+            _sceneSystem.LoadSceneByName(SceneNames.Loading, SceneNames.Menu);
         }
 
         [Inject]
         public override void Initialize()
         {
-            _menuRootView = transform.Find("View - MenuPage").GetComponent<View>();
+            _rootView = transform.Find("View - GamePage").GetComponent<View>();
 
             _views = new List<View>()
             {
- 
             };
 
             base.Initialize();
 
-            _gameStateSystem.ChangeGameState(GameStates.Menu);
+            _gameStateSystem.ChangeGameState(GameStates.Game);
 
             _gameStateSystem.WorkerInitialized();
-
-            _soundSystem.PlaySound(Sounds.Background);
         }
 
         public override void ShowView(View view)

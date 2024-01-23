@@ -11,8 +11,7 @@ namespace ChebDoorStudio.ProjectSystems
 {
     public class UISystem : MonoBehaviour
     {
-        private View _menuRootView;
-        private View _gameRootView;
+        private View _rootView;
 
         private List<View> _views;
 
@@ -40,12 +39,11 @@ namespace ChebDoorStudio.ProjectSystems
         {
         }
 
-        public void SetupViewsInCurrentScene(List<View> views, View menuRootMenu, View gameRootMenu, SceneView sceneView)
+        public void SetupViewsInCurrentScene(List<View> views, View rootView, SceneView sceneView)
         {
             CurrentSceneView = sceneView;
 
-            _menuRootView = menuRootMenu;
-            _gameRootView = gameRootMenu;
+            _rootView = rootView;
 
             _views = views;
 
@@ -98,14 +96,9 @@ namespace ChebDoorStudio.ProjectSystems
                 _views = null;
             }
 
-            if (_menuRootView != null)
+            if (_rootView != null)
             {
-                _menuRootView = null;
-            }
-
-            if (_gameRootView != null)
-            {
-                _gameRootView = null;
+                _rootView = null;
             }
 
             if (_viewStacks != null)

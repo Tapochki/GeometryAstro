@@ -7,6 +7,7 @@ namespace ChebDoorStudio.Settings
         Splash,
         Game,
         Loading,
+        Menu,
     }
 
     public enum BonusType
@@ -71,12 +72,14 @@ namespace ChebDoorStudio.Settings
         DistanceMove,
         MoveInPoint,
     }
+
     public enum EnemyActionType
     {
         Undefined,
         DefaultAction,
         WeaponAction,
     }
+
     public enum SpawnType
     {
         Random,
@@ -98,7 +101,6 @@ namespace ChebDoorStudio.Settings
         DownPosition,
         LeftPosition,
         RightPosition,
-
     }
 
     public enum MaterialTypes
@@ -123,6 +125,7 @@ namespace ChebDoorStudio.Settings
         Impulse,
         ImpulseSaw,
     }
+
     public enum WeaponType
     {
         Undefined,

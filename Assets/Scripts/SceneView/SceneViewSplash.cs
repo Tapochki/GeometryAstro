@@ -18,13 +18,13 @@ namespace ChebDoorStudio.Scenes
             _gameStateSystem = gameStateSystem;
             _sceneSystem = sceneSystem;
 
-            _sceneSystem.LoadSceneByName(Settings.SceneNames.Loading, Settings.SceneNames.Game);
+            _sceneSystem.LoadSceneByName(Settings.SceneNames.Loading, Settings.SceneNames.Menu);
         }
 
         [Inject]
         public override void Initialize()
         {
-            _menuRootView = transform.Find("View - SplashPage").GetComponent<View>();
+            _rootView = transform.Find("View - SplashPage").GetComponent<View>();
             _views = new List<View>();
 
             base.Initialize();

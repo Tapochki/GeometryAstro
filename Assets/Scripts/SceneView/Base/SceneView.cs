@@ -8,8 +8,7 @@ namespace ChebDoorStudio.Scenes.Base
 {
     public class SceneView : MonoBehaviour
     {
-        protected View _menuRootView;
-        protected View _gameRootView;
+        protected View _rootView;
 
         protected List<View> _views;
 
@@ -23,19 +22,14 @@ namespace ChebDoorStudio.Scenes.Base
 
         public virtual void Initialize()
         {
-            if (_menuRootView != null)
+            if (_rootView != null)
             {
-                _views = _uiSystem.TryToRemoveRootViewFromViewList(_views, _menuRootView);
-            }
-
-            if (_gameRootView != null)
-            {
-                _views = _uiSystem.TryToRemoveRootViewFromViewList(_views, _gameRootView);
+                _views = _uiSystem.TryToRemoveRootViewFromViewList(_views, _rootView);
             }
 
             _views = _uiSystem.TryToRemoveDuplicatesFromViewList(_views);
 
-            _uiSystem.SetupViewsInCurrentScene(_views, _menuRootView, _gameRootView, this);
+            _uiSystem.SetupViewsInCurrentScene(_views, _rootView, this);
 
             for (int i = 0; i < _views.Count; i++)
             {
@@ -44,31 +38,12 @@ namespace ChebDoorStudio.Scenes.Base
                 _views[i].Hide();
             }
 
-            if (_menuRootView != null)
+            if (_rootView != null)
             {
-                _menuRootView.Initialize();
+                _rootView.Initialize();
 
-                _menuRootView.Show();
+                _rootView.Show();
             }
-
-            if (_gameRootView != null)
-            {
-                _gameRootView.Initialize();
-
-                _gameRootView.Hide();
-            }
-        }
-
-        public void GameStarted()
-        {
-            _menuRootView.Hide();
-            _gameRootView.Show();
-        }
-
-        public void GameStoped()
-        {
-            _menuRootView.Show();
-            _gameRootView.Hide();
         }
 
         private void Update()
@@ -78,14 +53,9 @@ namespace ChebDoorStudio.Scenes.Base
                 return;
             }
 
-            if (_menuRootView != null)
+            if (_rootView != null)
             {
-                _menuRootView.Update();
-            }
-
-            if (_gameRootView != null)
-            {
-                _gameRootView.Update();
+                _rootView.Update();
             }
 
             for (int i = 0; i < _views.Count; i++)
@@ -120,15 +90,8 @@ namespace ChebDoorStudio.Scenes.Base
 
             _views = null;
 
-            _menuRootView.Dispose();
-            _menuRootView = null;
-
-            if (_gameRootView != null)
-            {
-                _gameRootView.Dispose();
-
-                _gameRootView = null;
-            }
+            _rootView.Dispose();
+            _rootView = null;
 
             _uiSystem = null;
         }

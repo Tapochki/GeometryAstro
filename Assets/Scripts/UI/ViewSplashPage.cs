@@ -11,7 +11,7 @@ namespace ChebDoorStudio.UI.Views
     public class ViewSplashPage : View
     {
         private Image _iconImage;
-        private ShadowedTextMexhProUGUI _titleText;
+        private GameObject _titleText;
 
         private Sequence _sequence;
 
@@ -26,7 +26,7 @@ namespace ChebDoorStudio.UI.Views
         public override void Initialize()
         {
             _iconImage = transform.Find("Image_Icon").GetComponent<Image>();
-            _titleText = transform.Find("ShadowedText_Title").GetComponent<ShadowedTextMexhProUGUI>();
+            _titleText = transform.Find("ShadowedText_Title").gameObject;
 
             base.Initialize();
 
