@@ -4,7 +4,11 @@ using UnityEngine;
 
 namespace TandC.Gameplay 
 {
-    public class MoveComponent 
+    public interface IMove 
+    {
+        public void Move(Vector2 direction, float moveSpeed);
+    }
+    public class MoveComponent : IMove
     {
         private Rigidbody2D _moveRigidbody2D;
         public MoveComponent(Rigidbody2D moveRigidbody2D) 
@@ -16,7 +20,6 @@ namespace TandC.Gameplay
         {
             Vector2 moveVelocity = direction * moveSpeed;
             _moveRigidbody2D.velocity = moveVelocity;
-            Debug.LogError(moveVelocity);
         }
     }
 }

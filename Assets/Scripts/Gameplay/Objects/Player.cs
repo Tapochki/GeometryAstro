@@ -1,17 +1,19 @@
 ﻿using System;
 using UnityEngine;
-
+using TandC.EventBus;
 
 namespace TandC.Gameplay 
 {
     public class Player : MonoBehaviour
     {
         [SerializeField] private float _moveSpeed;
-        [SerializeField] private Joystick _joystick;
+        [SerializeField] private InputHandler _inputHandler;
+        [SerializeField] private EventBusHolder _eventBusHolder;
+        [SerializeField] private Transform _bodyTransform;
 
-        private MoveComponent _moveComponent;
-        private RotateComponent _rotateComponent;
-        private HealthComponent _healthComponent;
+        private IMove _moveComponent;
+        private IRotation _mainRotateComponent;
+        private HealthComponent _healthComponent;       
 
         public Vector2 PlayerPosition { get => transform.position; }
 
@@ -21,24 +23,23 @@ namespace TandC.Gameplay
         private void Start()
         {
             _moveComponent = new MoveComponent(gameObject.GetComponent<Rigidbody2D>());
-            _rotateComponent = new RotateComponent(transform);
+            _mainRotateComponent = new PlayerRotateComponent(_bodyTransform);
             _healthComponent = new PlayerHealthComponent(100f, onPlayerDieEvent, _onHealthChageEvent);
 
-            onPlayerDieEvent += () => _busHolder.EventBus.Raise(new DieEvent());
-            _onHealthChageEvent += value => _busHolder.EventBus.Raise(new HealthChahgeEvent(value));
+            onPlayerDieEvent += () => _eventBusHolder.EventBus.Raise(new PlayerDieEvent());
+            _onHealthChageEvent += value => _eventBusHolder.EventBus.Raise(new PlayerHealthChangeEvent(value));
         }
 
         private void FixedUpdate()
         {
-            _moveComponent.Move(_joystick.Direction, _moveSpeed);
-
-            if (_joystick.Direction != Vector2.zero)
+            _moveComponent.Move(_inputHandler.MoveDirection, _moveSpeed);
+            if(_inputHandler.RotationDirection != Vector2.zero) 
             {
-                _rotateComponent.RotateTowards(_joystick.Direction);
+                _mainRotateComponent.Rotation(_inputHandler.RotationDirection);
             }
-            else
+            else if(_inputHandler.MoveDirection != Vector2.zero) 
             {
-                _rotateComponent.SaveLastRotation();
+                _mainRotateComponent.Rotation(_inputHandler.MoveDirection);
             }
         }
     }
