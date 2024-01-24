@@ -23,6 +23,9 @@ namespace TandC.Gameplay
             _moveComponent = new MoveComponent(gameObject.GetComponent<Rigidbody2D>());
             _rotateComponent = new RotateComponent(transform);
             _healthComponent = new PlayerHealthComponent(100f, onPlayerDieEvent, _onHealthChageEvent);
+
+            onPlayerDieEvent += () => _busHolder.EventBus.Raise(new DieEvent());
+            _onHealthChageEvent += value => _busHolder.EventBus.Raise(new HealthChahgeEvent(value));
         }
 
         private void FixedUpdate()
