@@ -82,8 +82,6 @@ namespace TandC.Settings
 
     public enum SpawnType
     {
-        Random,
-        Circle,
         SpawnFrontPlayer,
         EnemySpawnPosition_0,
         EnemySpawnPosition_1,
@@ -97,6 +95,8 @@ namespace TandC.Settings
         EnemySpawnPosition_9,
         EnemySpawnPosition_10,
         EnemySpawnPosition_11,
+        Random,
+        Circle,
         UpperPosition,
         DownPosition,
         LeftPosition,

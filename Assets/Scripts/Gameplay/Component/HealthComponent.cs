@@ -40,21 +40,21 @@ namespace TandC.Gameplay
         }
     }
 
-    public class PlayerHealthComponent : HealthComponent
+    public class HealthWithViewComponent : HealthComponent
     {
-        public PlayerHealthComponent(float maxHealth, Action onDeathEvent, Action<float> onHealthChangeEvent) : base(maxHealth, onDeathEvent, null)
+        public HealthWithViewComponent(float maxHealth, Action onDeathEvent, Action<float, float> onHealthChangeEvent) : base(maxHealth, onDeathEvent, null)
         {
-            this._onHealthChageEvent = () => onHealthChangeEvent?.Invoke(_currentHealth);
+            _onHealthChageEvent = () => onHealthChangeEvent?.Invoke(_currentHealth, _maxHealth);
         }
+    }
 
+    public class HealedHealthComponent : HealthWithViewComponent
+    {
+        public HealedHealthComponent(float maxHealth, Action onDeathEvent, Action<float, float> onHealthChangeEvent) : base(maxHealth, onDeathEvent, onHealthChangeEvent) { }
         public void Heal(float amount)
         {
             _currentHealth = Mathf.Min(_currentHealth + amount, _maxHealth);
-        }
-
-        protected override void Die()
-        {
-            base.Die();
+            _onHealthChageEvent?.Invoke();
         }
     }
 }

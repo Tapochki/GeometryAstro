@@ -3,11 +3,13 @@ namespace TandC.EventBus
 {
     public readonly struct PlayerHealthChangeEvent : IEvent
     {
-        public readonly float CurrentHealt;
+        public readonly float CurrentHealth;
+        public readonly float MaxHealth;
 
-        public PlayerHealthChangeEvent(float currentHealt)
+        public PlayerHealthChangeEvent(float currentHealt, float maxHealth)
         {
-            CurrentHealt = currentHealt;
+            CurrentHealth = currentHealt;
+            MaxHealth = maxHealth;
         }
     }
 

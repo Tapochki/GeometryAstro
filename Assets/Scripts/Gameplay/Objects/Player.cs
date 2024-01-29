@@ -1,10 +1,11 @@
 ﻿using System;
 using UnityEngine;
 using TandC.EventBus;
+using TandC.Data;
 
 namespace TandC.Gameplay 
 {
-    public class Player : MonoBehaviour
+    public class Player :  MonoBehaviour
     {
         [SerializeField] private float _moveSpeed;
         [SerializeField] private InputHandler _inputHandler;
@@ -13,21 +14,23 @@ namespace TandC.Gameplay
 
         private IMove _moveComponent;
         private IRotation _mainRotateComponent;
-        private HealthComponent _healthComponent;       
+        private HealthComponent _healthComponent;
+
+        private PlayerData _playerData;
 
         public Vector2 PlayerPosition { get => transform.position; }
 
-        private Action<float> _onHealthChageEvent;
+        private Action<float,float> _onHealthChageEvent;
         public Action onPlayerDieEvent;
 
         private void Start()
         {
             _moveComponent = new MoveComponent(gameObject.GetComponent<Rigidbody2D>());
             _mainRotateComponent = new PlayerRotateComponent(_bodyTransform);
-            _healthComponent = new PlayerHealthComponent(100f, onPlayerDieEvent, _onHealthChageEvent);
+            _healthComponent = new HealedHealthComponent(100f, onPlayerDieEvent, _onHealthChageEvent);
 
             onPlayerDieEvent += () => _eventBusHolder.EventBus.Raise(new PlayerDieEvent());
-            _onHealthChageEvent += value => _eventBusHolder.EventBus.Raise(new PlayerHealthChangeEvent(value));
+            _onHealthChageEvent += (currentHealth, maxHealth) => _eventBusHolder.EventBus.Raise(new PlayerHealthChangeEvent(currentHealth, maxHealth));
         }
 
         private void FixedUpdate()
@@ -42,6 +45,12 @@ namespace TandC.Gameplay
                 _mainRotateComponent.Rotation(_inputHandler.MoveDirection);
             }
         }
+
+        public void TakeDamage(float damage) 
+        {
+            _healthComponent.TakeDamage(damage);
+        }
+
     }
 }
 

@@ -7,7 +7,7 @@ namespace TandC.Data
     [CreateAssetMenu(fileName = "GameplayData", menuName = "TandC/Game/GameplayData", order = 3)]
     public class GameplayData : ScriptableObject
     {
-        public Enemies[] enemies;
+        public EnemyData[] enemies;
         public PlayerWeaponData[] weaponData;
         public EnemyWeaponData[] enemyWeaponData;
         public PlayerData playerData;
@@ -62,7 +62,7 @@ namespace TandC.Data
             return null;
         }
 
-        public Enemies GetEnemiesByType(EnemyType type)
+        public EnemyData GetEnemiesByType(EnemyType type)
         {
             foreach (var item in enemies)
             {
@@ -260,7 +260,7 @@ namespace TandC.Data
     [Serializable]
     public class MiniBoss
     {
-        public Enemies enemyData;
+        public EnemyData enemyData;
         public int[] PhaseID;
     }
 
@@ -286,7 +286,7 @@ namespace TandC.Data
     }
 
     [Serializable]
-    public class Enemies
+    public class EnemyData
     {
         public int enemyId;
         public float health;

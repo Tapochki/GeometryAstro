@@ -26,6 +26,27 @@ namespace TandC.Gameplay
         }
     }
 
+    public class NoRotationComponent : IRotation
+    {
+        public void Rotation(Vector2 targetDirection)
+        {
+
+        }
+    }
+
+    public class InfinitRotate: IRotation
+    {
+        private Transform _transform;
+        public InfinitRotate(Transform transform)
+        {
+            _transform = transform;
+        }
+        public void Rotation(Vector2 targetDirection)
+        {
+            _transform.Rotate(0, 0, 300 * Time.deltaTime);
+        }
+    }
+
     public class PlayerRotateComponent : IRotation
     {
         private const float _rotationSpeed = 1000f;
