@@ -8,13 +8,13 @@ namespace TandC.Gameplay
     {
         public interface IEnemyBuilder
         {
-            Enemy Build(GameObject prefab, EnemyData data, Player player);
+            Enemy Build(Enemy enemy, EnemyData data, Player player);
         }
         public class DefaultEnemyBuilder : IEnemyBuilder
         {
-            public Enemy Build(GameObject prefab, EnemyData data, Player player)
+            public Enemy Build(Enemy enemy, EnemyData data, Player player)
             {
-                SawEnemy enemy = Instantiate(prefab).AddComponent<SawEnemy>();
+                enemy.GetComponent<SpriteRenderer>().sprite = data.mainSprite;
                 enemy.SetData(data, player);
                 enemy.SetMovementComponent(new MoveToTargetComponent(enemy.GetComponent<Rigidbody2D>()));
                 enemy.SetRotationComponent(new NoRotationComponent());
@@ -25,12 +25,14 @@ namespace TandC.Gameplay
 
         public class SawEnemyBuilder : IEnemyBuilder
         {
-            public Enemy Build(GameObject prefab, EnemyData data, Player player)
+            public Enemy Build(Enemy enemy, EnemyData data, Player player)
             {
-                SawEnemy enemy = Instantiate(prefab).AddComponent<SawEnemy>();
+                enemy.GetComponent<SpriteRenderer>().sprite = data.mainSprite;
+                Transform enemyModel = enemy.transform.Find("Model");
+                enemyModel.GetComponent<SpriteRenderer>().sprite = data.enemyAdditionalSprite;
                 enemy.SetData(data, player);
                 enemy.SetMovementComponent(new MoveInDirectionComponent(enemy.GetComponent<Rigidbody2D>()));
-                enemy.SetRotationComponent(new InfinitRotate(enemy.gameObject.transform));//Поменять на модль пилы а то модель будет вращатся а оно нам нахуй не нужно
+                enemy.SetRotationComponent(new InfinitRotate(enemyModel));//Поменять на модль пилы а то модель будет вращатся а оно нам нахуй не нужно
                 enemy.SetHealthComponent(new HealthComponent(data.health, null, null));
                 return enemy;
             }

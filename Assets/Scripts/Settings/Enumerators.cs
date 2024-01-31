@@ -64,20 +64,10 @@ namespace TandC.Settings
         Drones = 5,
     }
 
-    public enum EnemyMovementType
+    public enum EnemyBuilderType
     {
-        Undefined,
-        DefaultMove,
-        SawMove,
-        DistanceMove,
-        MoveInPoint,
-    }
-
-    public enum EnemyActionType
-    {
-        Undefined,
-        DefaultAction,
-        WeaponAction,
+        Default,
+        Saw,
     }
 
     public enum SpawnType

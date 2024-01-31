@@ -21,15 +21,15 @@ namespace TandC.Gameplay
         public Vector2 PlayerPosition { get => transform.position; }
 
         private Action<float,float> _onHealthChageEvent;
-        public Action onPlayerDieEvent;
+        private Action _onPlayerDieEvent;
 
         private void Start()
         {
             _moveComponent = new MoveComponent(gameObject.GetComponent<Rigidbody2D>());
             _mainRotateComponent = new PlayerRotateComponent(_bodyTransform);
-            _healthComponent = new HealedHealthComponent(100f, onPlayerDieEvent, _onHealthChageEvent);
+            _healthComponent = new HealedHealthComponent(100f, _onPlayerDieEvent, _onHealthChageEvent);
 
-            onPlayerDieEvent += () => _eventBusHolder.EventBus.Raise(new PlayerDieEvent());
+            _onPlayerDieEvent += () => _eventBusHolder.EventBus.Raise(new PlayerDieEvent());
             _onHealthChageEvent += (currentHealth, maxHealth) => _eventBusHolder.EventBus.Raise(new PlayerHealthChangeEvent(currentHealth, maxHealth));
         }
 

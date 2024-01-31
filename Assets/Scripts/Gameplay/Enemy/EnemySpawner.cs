@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TandC.Data;
 using TandC.Settings;
 using TandC.Utilities;
+using UnityEditorInternal;
 using UnityEngine;
 
 namespace TandC.Gameplay
@@ -12,6 +13,7 @@ namespace TandC.Gameplay
         private const int ENEMY_PRELOAD_COUNT = 200;
         [SerializeField] private GameplayData _gameplayData;
         [SerializeField] EnemyFactory _enemyFactory;
+        [SerializeField] Enemy _enemyPrefab;
         [SerializeField] Camera _camera;
         [SerializeField] private List<Transform> _spawnPositions;
         [SerializeField] private Player _player;
@@ -20,7 +22,7 @@ namespace TandC.Gameplay
         private float _camWidth;
 
         private ObjectPool<Enemy> _enemyPool;
-        private List<EnemyData> _currentWaveEnemies;
+        private List<EnemySpawnData> _currentWaveEnemies;
 
         public void Start()
         {
@@ -28,7 +30,7 @@ namespace TandC.Gameplay
             _camHeight = _camera.orthographicSize;
             _camWidth = screenAspect * _camHeight;
             _enemyPool = new ObjectPool<Enemy>(Preload, GetAction, ReturnAction, ENEMY_PRELOAD_COUNT);
-            _currentWaveEnemies = new List<EnemyData>();
+            _currentWaveEnemies = new List<EnemySpawnData>();
         }
 
         private Vector2 GetSpawnPosition(SpawnType spawnType)
@@ -66,72 +68,31 @@ namespace TandC.Gameplay
             return position;
         }
 
-        private void SpecialSpawn(int spawnPointCountStart, int spawnPointCountEnd, Enemy enemy)
+        public void StartWave(List<EnemySpawnData> enemyDatas) 
         {
-            for (int i = spawnPointCountStart; i <= spawnPointCountEnd; i++)
-            {
-                SpawnEnemy(enemy, _spawnPositions[i].position);
-            }
-        }
-
-        //public void StartSpawnEnemy()
-        //{
-        //    if (_allEnemies.Count >= 200)
-        //    {
-        //        return;
-        //    }
-        //    int enemyInPhaseId = 0;
-        //    if (_currentPhase.IsRandomEnemySpawn)
-        //    {
-        //        enemyInPhaseId = UnityEngine.Random.Range(0, _enemysInPhase.Count);
-        //    }
-
-        //    EnemySpawnData enemySpawnData = _enemysInPhase[enemyInPhaseId];
-        //    _enemysInPhase.Remove(enemySpawnData);
-        //    switch (enemySpawnData.spawnType)
-        //    {
-        //        case SpawnType.Circle:
-        //            SpecialSpawn(0, _spawnsType.Count - 1, enemySpawnData.enemyType);
-        //            break;
-        //        case SpawnType.UpperPosition:
-        //            SpecialSpawn(0, 4, enemySpawnData.enemyType);
-        //            break;
-        //        case SpawnType.LeftPosition:
-        //            SpecialSpawn(4, 6, enemySpawnData.enemyType);
-        //            break;
-        //        case SpawnType.DownPosition:
-        //            SpecialSpawn(6, 10, enemySpawnData.enemyType);
-        //            break;
-        //        case SpawnType.RightPosition:
-        //            _enemies.Add(SpawnEnemy(_gameplayData.GetEnemiesByType(enemySpawnData.enemyType), SpawnType.EnemySpawnPosition_0, false));
-        //            SpecialSpawn(10, _spawnsType.Count - 1, enemySpawnData.enemyType);
-        //            break;
-        //        default:
-        //            _enemies.Add(SpawnEnemy(_gameplayData.GetEnemiesByType(enemySpawnData.enemyType), enemySpawnData.spawnType, false));
-        //            break;
-        //    }
-        //}
-
-        public void StartWave(List<EnemyData> enemyDatas) 
-        {
-            _enemyPool = new ObjectPool<Enemy>(Preload, GetAction, ReturnAction, ENEMY_PRELOAD_COUNT);
             _currentWaveEnemies = enemyDatas;
         }
 
-        private void SpawnEnemy(Enemy enemy, Vector2 position)
+        private EnemyData GetEnemyData(EnemyType enemyType) 
         {
-            
+            return _gameplayData.GetEnemiesByType(enemyType);
         }
 
-        private Enemy Preload()
+        private EnemySpawnData GetRandomEnemyFromWave()
         {
-            Enemy enemy = _enemyFactory.CreateEnemy(data, data.type);
-            return enemy;
+            //Maybe later change on special Random class with weight
+            int randomIndex = Random.Range(0, _currentWaveEnemies.Count);
+            return _currentWaveEnemies[randomIndex];
         }
-        public void GetAction(Enemy enemy) 
+
+        private Enemy Preload() => Instantiate(_enemyPrefab);
+
+        public void GetAction(Enemy enemy)
         {
-            enemy.transform.position = position;
-            SpawnEnemy(enemy, position);
+            EnemySpawnData enemySpawn = GetRandomEnemyFromWave();
+            EnemyData enemyData = GetEnemyData(enemySpawn.enemyType);
+            enemy = _enemyFactory.CreateEnemy(enemyData, enemy, enemyData.BuilderType);
+            enemy.transform.position = GetSpawnPosition(enemySpawn.spawnType);
             enemy.gameObject.SetActive(true);
         }
         public void ReturnAction(Enemy enemy)

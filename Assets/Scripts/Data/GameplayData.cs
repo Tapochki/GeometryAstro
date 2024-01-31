@@ -268,10 +268,9 @@ namespace TandC.Data
     public class Phase
     {
         public int PhaseId;
-        public float spawnTime;
+        public float waveTime;
         public EnemySpawnData[] enemyInPhase;
 
-        // public int[] EnemyCount;
         public float timeBeforePhase;
 
         public bool IsRandomEnemySpawn;
@@ -291,13 +290,11 @@ namespace TandC.Data
         public int enemyId;
         public float health;
         public int damage;
-        public int experience;
         public float movementSpeed;
-        public EnemyMovementType movementType;
-        public EnemyActionType actionType;
+        public EnemyBuilderType BuilderType;
         public EnemyType type;
-        public GameObject enemyPrefab;
-        public float lifeTime;
+        public Sprite mainSprite;
+        public Sprite enemyAdditionalSprite;
     }
 
     [Serializable]

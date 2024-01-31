@@ -35,22 +35,13 @@ namespace TandC.Gameplay
 
         public void Update()
         {
-            
+            _moveComponent.Move(_player.transform.position, _data.movementSpeed);
+            _rotationComponent.Rotation(_player.transform.position);
         }
 
         public void TakeDamage(float damage)
         {
             _healthComponent.TakeDamage(damage);
         }
-    }
-
-    public class DefaultEnemy : Enemy
-    {
-       
-    }
-
-    public class SawEnemy : Enemy
-    {
-        
     }
 }

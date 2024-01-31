@@ -6,7 +6,8 @@ namespace TandC.Gameplay
 {
     public class PlayerHealthView : MonoBehaviour, IEventReceiver<PlayerHealthChangeEvent>
     {
-        private Image _healtBar;
+
+        [SerializeField] private Image _healtBar;
         [SerializeField] private EventBusHolder _eventBusHolder;
 
         private void OnEnable()

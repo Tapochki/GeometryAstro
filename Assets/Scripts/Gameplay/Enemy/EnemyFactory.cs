@@ -10,21 +10,19 @@ namespace TandC.Gameplay
     public class EnemyFactory : MonoBehaviour
     {
         [SerializeField] Player _player;
-        public Enemy CreateEnemy(EnemyData data, EnemyType type)
+        public Enemy CreateEnemy(EnemyData data, Enemy enemy, EnemyBuilderType type)
         {
-            IEnemyBuilder builder = GetBuilder(type);
-            GameObject prefab = data.enemyPrefab;
-            
-            return builder.Build(prefab, data, _player);
+            IEnemyBuilder builder = GetBuilder(type);        
+            return builder.Build(enemy, data, _player);
         }
 
-        private IEnemyBuilder GetBuilder(EnemyType type)
+        private IEnemyBuilder GetBuilder(EnemyBuilderType type)
         {
             switch (type)
             {
-                case EnemyType.StandartSquare:
+                case EnemyBuilderType.Default:
                     return new DefaultEnemyBuilder();
-                case EnemyType.Saw:
+                case EnemyBuilderType.Saw:
                     return new SawEnemyBuilder();
                 default:
                     throw new ArgumentException("Unsupported enemy type");

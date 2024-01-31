@@ -53,7 +53,7 @@ namespace TandC.Gameplay
             _cooldownToSpawnEnemy -= Time.deltaTime;
             if (_cooldownToSpawnEnemy <= 0)
             {
-                _cooldownToSpawnEnemy = _currentPhase.spawnTime;
+                _cooldownToSpawnEnemy = _currentPhase.waveTime;
             }
         }
     }
