@@ -45,6 +45,7 @@ namespace TandC.Gameplay
         public HealthWithViewComponent(float maxHealth, Action onDeathEvent, Action<float, float> onHealthChangeEvent) : base(maxHealth, onDeathEvent, null)
         {
             _onHealthChageEvent = () => onHealthChangeEvent?.Invoke(_currentHealth, _maxHealth);
+            _onHealthChageEvent.Invoke();
         }
     }
 

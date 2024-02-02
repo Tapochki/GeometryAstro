@@ -28,13 +28,15 @@ namespace TandC.Gameplay
 
         private void SetNewPhase(int phaseId)
         {
-            if (CurrentPhaseIndex >= _gameplayData.gamePhases.Length)
-            {
-                IncreasePhaseIndex();
-            }
-
+            //if (CurrentPhaseIndex > _gameplayData.gamePhases.Length)
+            //{
+            //    IncreasePhaseIndex();
+            //}
+            Debug.LogError("StartWaves");
             CurrentPhaseIndex = phaseId;
             _currentPhase = _gameplayData.GetPhaseById(phaseId);
+
+            _enemySpawner.StartWave(_currentPhase.enemyInPhase, _currentPhase.enemySpawnDelay);
         }
 
         public void IncreasePhaseIndex()

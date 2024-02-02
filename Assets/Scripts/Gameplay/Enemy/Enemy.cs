@@ -7,15 +7,25 @@ namespace TandC.Gameplay
 {
     public class Enemy : MonoBehaviour
     {
-        protected Player _player;
+        protected Transform _target;
+        protected Vector2 _rotateDirection;
         protected IMove _moveComponent;
         protected IRotation _rotationComponent;
         protected HealthComponent _healthComponent;
         protected EnemyData _data;
-        public void SetData(EnemyData data, Player player) 
+        public void SetData(EnemyData data) 
         {
-            _player = player;
             _data = data;
+        }
+
+        public void SetTargetDirection(Transform target) 
+        {
+            _target = target;
+        }
+
+        public void SetTargetRotation(Vector2 rotateDirection)
+        {
+            _rotateDirection = rotateDirection;
         }
 
         public void SetMovementComponent(IMove moveComponent)
@@ -35,8 +45,8 @@ namespace TandC.Gameplay
 
         public void Update()
         {
-            _moveComponent.Move(_player.transform.position, _data.movementSpeed);
-            _rotationComponent.Rotation(_player.transform.position);
+            _moveComponent.Move(_target.position, _data.movementSpeed);
+            _rotationComponent.Rotation(_rotateDirection);
         }
 
         public void TakeDamage(float damage)

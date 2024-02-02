@@ -9,11 +9,10 @@ namespace TandC.Gameplay
 {
     public class EnemyFactory : MonoBehaviour
     {
-        [SerializeField] Player _player;
-        public Enemy CreateEnemy(EnemyData data, Enemy enemy, EnemyBuilderType type)
+        public Enemy CreateEnemy(EnemyData data, Enemy enemy, Transform target, Vector2 direction, EnemyBuilderType type)
         {
             IEnemyBuilder builder = GetBuilder(type);        
-            return builder.Build(enemy, data, _player);
+            return builder.Build(enemy, data, target, direction);
         }
 
         private IEnemyBuilder GetBuilder(EnemyBuilderType type)

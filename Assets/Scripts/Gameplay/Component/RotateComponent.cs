@@ -10,20 +10,31 @@ namespace TandC.Gameplay
         public void Rotation(Vector2 targetDirection);
     }
 
-    public class OnTargetRotateCompont : IRotation
+    public class OnTargetRotateComponte : IRotation
     {
         private Transform _transform;
+        private bool _hasRotated;
 
-        public OnTargetRotateCompont(Transform transform)
+        public OnTargetRotateComponte(Transform transform, Vector2 target)
         {
             _transform = transform;
+            RotateOnSpawn(target);
         }
         public void Rotation(Vector2 targetDirection)
         {
-            Vector2 direction = targetDirection - (Vector2)_transform.position;
-            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90;
-            _transform.localEulerAngles = new Vector3(0, 0, angle);
+
         }
+        private void RotateOnSpawn(Vector2 target)
+        {
+            if (!_hasRotated)
+            {
+                Vector2 direction = target - (Vector2)_transform.position;
+                float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90;
+                _transform.localEulerAngles = new Vector3(0, 0, angle);
+                _hasRotated = true;
+            }
+        }
+
     }
 
     public class NoRotationComponent : IRotation
@@ -31,19 +42,6 @@ namespace TandC.Gameplay
         public void Rotation(Vector2 targetDirection)
         {
 
-        }
-    }
-
-    public class InfinitRotate: IRotation
-    {
-        private Transform _transform;
-        public InfinitRotate(Transform transform)
-        {
-            _transform = transform;
-        }
-        public void Rotation(Vector2 targetDirection)
-        {
-            _transform.Rotate(0, 0, 300 * Time.deltaTime);
         }
     }
 

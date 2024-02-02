@@ -269,11 +269,9 @@ namespace TandC.Data
     {
         public int PhaseId;
         public float waveTime;
+        public float enemySpawnDelay;
+
         public EnemySpawnData[] enemyInPhase;
-
-        public float timeBeforePhase;
-
-        public bool IsRandomEnemySpawn;
     }
 
     [Serializable]
@@ -281,7 +279,7 @@ namespace TandC.Data
     {
         public EnemyType enemyType;
         public SpawnType spawnType;
-        public int EnemyCount;
+        public TargetType targetType;
     }
 
     [Serializable]
