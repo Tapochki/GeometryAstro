@@ -19,8 +19,12 @@ namespace TandC.Utilities
         private GameObject _shadowTextObject;
         [HideInInspector] public TextMeshProUGUI ShadowText;
 
+        private GameObject _highlightTextObject;
+        [HideInInspector] public TextMeshProUGUI HighlightText;
+
         private bool _initialized;
         private bool _shadowInitialized;
+        private bool _highLightInitialized;
 
         #region Text Settings
 
@@ -46,6 +50,7 @@ namespace TandC.Utilities
         [SerializeField] private Color _mainColor = Color.white;
         [SerializeField] private TMP_SpriteAsset _spriteAsset;
         private bool _isHaveShadow;
+        private bool _isHaveHighlight;
 
         #endregion Main Text
 
@@ -57,6 +62,15 @@ namespace TandC.Utilities
 
         #endregion Shadow Text
 
+        #region Highlight Text
+
+        [HideInInspector] public Color HighlightColor = Color.black;
+
+        [HideInInspector] public float HighlightThsickness = 0.5f;
+        [HideInInspector] public Vector3 HighlightOffset;
+
+        #endregion Highlight Text
+
         #endregion Text Settings
 
         public bool GetInitState() => _initialized;
@@ -66,6 +80,12 @@ namespace TandC.Utilities
         public bool GetIsHaveShadow() => _isHaveShadow;
 
         public void SetIsHaveShadow(bool value) => _isHaveShadow = value;
+
+        public bool GetHighlightInitState() => _highLightInitialized;
+
+        public bool GetIsHaveHighlight() => _isHaveHighlight;
+
+        public void SetIsHaveHighlight(bool value) => _isHaveHighlight = value;
 
         public TMP_FontAsset GetFontAsset() => _fontAsset;
 
@@ -84,6 +104,13 @@ namespace TandC.Utilities
             if (GetIsHaveShadow())
             {
                 RefreshShadow();
+            }
+
+            SetIsHaveHighlight(IsHighlightTextExist());
+
+            if (GetIsHaveHighlight())
+            {
+                RefreshHighlight();
             }
 
             SetupFontSettings(MainText);
@@ -139,29 +166,89 @@ namespace TandC.Utilities
             InitShadowTextVariables();
 
             SetupFontSettings(ShadowText);
-            TMP_Text text = ShadowText;
-            //ShadowText.color = ShadowColor;
-            //ShadowText.raycastTarget = false;
 
-            text.color = ShadowColor;
-            text.raycastTarget = false;
-            text.outlineWidth = ShadowThsickness;
-            text.outlineColor = ShadowColor;
-            //ShadowText.outlineWidth = ShadowThsickness;
-            //ShadowText.outlineColor = ShadowColor;
-            ShadowText = text as TextMeshProUGUI;
+            ShadowText = UpdatePreferencesInTextObject(ShadowText, ShadowColor, ShadowThsickness) as TextMeshProUGUI;
 
-            text = null;
             _shadowTextObject.transform.localPosition = ShadowOffset;
 
             _shadowInitialized = true;
+        }
+
+        public void AddHighlightToText()
+        {
+            InitHighlightTextVariables();
+
+            SetupFontSettings(HighlightText);
+
+            HighlightText = UpdatePreferencesInTextObject(HighlightText, HighlightColor, HighlightThsickness) as TextMeshProUGUI;
+
+            _highlightTextObject.transform.localPosition = HighlightOffset;
+
+            _highLightInitialized = true;
+        }
+
+        private TMP_Text UpdatePreferencesInTextObject(TextMeshProUGUI textObject, Color color, float thsickness)
+        {
+            TMP_Text text = textObject;
+
+            text.color = color;
+            text.raycastTarget = false;
+            text.outlineWidth = thsickness;
+            text.outlineColor = color;
+            return text;
         }
 
         public bool IsMainTextExist() => GetSelfObject().transform.Find("Text_Main")?.gameObject != null;
 
         public bool IsShadowTextExist() => GetSelfObject().transform.Find("Text_Shadow")?.gameObject != null;
 
+        public bool IsHighlightTextExist() => GetSelfObject().transform.Find("Text_Highlight")?.gameObject != null;
+
         #endregion Main Text
+
+        #region Highlight Text
+
+        public void RefreshHighlight()
+        {
+            List<GameObject> childs = new List<GameObject>();
+            var hightlightObject = GetSelfObject().transform.Find("Text_Highlight").gameObject;
+
+            for (int i = 0; i < hightlightObject.transform.childCount; i++)
+            {
+                GameObject child = hightlightObject.transform.GetChild(i).gameObject;
+
+                if (child != null)
+                {
+                    child.transform.SetParent(_selfObject.transform);
+                    childs.Add(child);
+                }
+            }
+
+            RemoveHighlight();
+
+            AddHighlightToText();
+
+            for (int i = 0; i < childs.Count; i++)
+            {
+                GameObject child = childs[i];
+
+                if (child != null)
+                {
+                    child.transform.SetParent(_highlightTextObject.transform);
+                    childs.Remove(child);
+                }
+            }
+        }
+
+        public void RemoveHighlight()
+        {
+            _highLightInitialized = false;
+
+            DestroyImmediate(_highlightTextObject);
+            HighlightText = null;
+        }
+
+        #endregion Highlight Text
 
         #region Shadow Text
 
@@ -215,9 +302,11 @@ namespace TandC.Utilities
 
             _mainTextObject = _selfObject.transform.Find("Text_Main").gameObject;
             _shadowTextObject = _selfObject.transform.Find("Text_Shadow").gameObject;
+            _highlightTextObject = _selfObject.transform.Find("Text_Highlight").gameObject;
 
             MainText = _mainTextObject.GetComponent<TextMeshProUGUI>();
             ShadowText = _shadowTextObject.GetComponent<TextMeshProUGUI>();
+            HighlightText = _highlightTextObject.GetComponent<TextMeshProUGUI>();
         }
 
         private void SetupFontSettings(TextMeshProUGUI targetText)
@@ -269,38 +358,56 @@ namespace TandC.Utilities
             }
         }
 
-        private void InitShadowTextVariables()
+        private TextMeshProUGUI InitAditionalText(GameObject textObject, string textObjectName)
         {
             _selfObject = null;
             _selfObject = GetSelfObject();
 
-            Transform textObject = _selfObject.transform.Find("Text_Shadow");
-            if (textObject == null)
+            if (textObject.TryGetComponent<TextMeshProUGUI>(out TextMeshProUGUI textValue))
             {
-                _shadowTextObject = new GameObject("Text_Shadow");
-                _shadowTextObject.transform.parent = _selfObject.transform;
-                _shadowTextObject.transform.localScale = Vector3.one;
-                _shadowTextObject.transform.localPosition = Vector3.zero;
-
-                _shadowTextObject.transform.SetAsFirstSibling();
-
-                _shadowTextObject.AddComponent<RectTransform>();
-
-                UpdateTextObjectPositionAndAnchors(_shadowTextObject);
+                return textValue;
             }
             else
             {
-                _shadowTextObject = textObject.gameObject;
+                return textObject.AddComponent<TextMeshProUGUI>();
             }
+        }
 
-            if (_shadowTextObject.TryGetComponent<TextMeshProUGUI>(out TextMeshProUGUI text))
+        private GameObject CreateTextObject(string textObjectName)
+        {
+            Transform text = _selfObject.transform.Find(textObjectName);
+            GameObject textObject;
+            if (text == null)
             {
-                ShadowText = text;
+                textObject = new GameObject(textObjectName);
+                textObject.transform.parent = _selfObject.transform;
+                textObject.transform.localScale = Vector3.one;
+                textObject.transform.localPosition = Vector3.zero;
+
+                textObject.transform.SetAsFirstSibling();
+
+                textObject.AddComponent<RectTransform>();
+
+                UpdateTextObjectPositionAndAnchors(textObject);
             }
             else
             {
-                ShadowText = _shadowTextObject.AddComponent<TextMeshProUGUI>();
+                textObject = text.gameObject;
             }
+
+            return textObject;
+        }
+
+        private void InitHighlightTextVariables()
+        {
+            _highlightTextObject = CreateTextObject("Text_Highlight");
+            HighlightText = InitAditionalText(_highlightTextObject, "Text_Highlight");
+        }
+
+        private void InitShadowTextVariables()
+        {
+            _shadowTextObject = CreateTextObject("Text_Shadow");
+            ShadowText = InitAditionalText(_shadowTextObject, "Text_Shadow");
         }
 
         private void UpdateTextObjectPositionAndAnchors(GameObject textObject)
@@ -328,6 +435,11 @@ namespace TandC.Utilities
             {
                 ShadowText.text = value;
             }
+
+            if (HighlightText != null)
+            {
+                HighlightText.text = value;
+            }
         }
 
         public void UpdateSpriteAsset(TMP_SpriteAsset asset)
@@ -340,6 +452,11 @@ namespace TandC.Utilities
             if (ShadowText != null)
             {
                 ShadowText.spriteAsset = asset;
+            }
+
+            if (HighlightText != null)
+            {
+                HighlightText.spriteAsset = asset;
             }
         }
     }

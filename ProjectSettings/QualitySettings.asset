@@ -27,7 +27,7 @@ QualitySettings:
     softVegetation: 0
     realtimeReflectionProbes: 0
     billboardsFaceCameraPosition: 0
-    useLegacyDetailDistribution: 1
+    useLegacyDetailDistribution: 0
     adaptiveVsync: 0
     vSyncCount: 0
     realtimeGICPUUsage: 25
@@ -61,13 +61,16 @@ QualitySettings:
   m_TextureMipmapLimitGroupNames: []
   m_PerPlatformDefaultQuality:
     Android: 0
+    Bratwurst: 0
+    EmbeddedLinux: 0
     GameCoreScarlett: 0
     GameCoreXboxOne: 0
-    Lumin: 0
+    LinuxHeadlessSimulation: 0
     Nintendo Switch: 0
     PS4: 0
     PS5: 0
-    Stadia: 0
+    QNX: 0
+    Server: 0
     Standalone: 0
     WebGL: 0
     Windows Store Apps: 0

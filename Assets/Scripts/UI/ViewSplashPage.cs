@@ -45,7 +45,7 @@ namespace TandC.UI.Views
             _shadeImage.transform.localPosition = new Vector3(-800.0f, 256.0f, 0.0f);
 
             _sequence.AppendInterval(0.2f);
-            _sequence.Append(_iconImage.DOColor(new Color(1.0f, 1.0f, 1.0f, 1.0f), 3.0f));
+            _sequence.Append(_iconImage.DOColor(new Color(1.0f, 1.0f, 1.0f, 1.0f), 6.0f));
             _sequence.Join(_shadeImage.transform.DOLocalMove(new Vector3(800.0f, 256.0f, 0.0f), 4.0f));
             _sequence.AppendInterval(0.2f);
             _sequence.OnComplete(() => _sceneSystem.OpenLoadedScene());

@@ -1,13 +1,11 @@
-﻿using TandC.Utilities;
-using UnityEditor;
+﻿using UnityEditor;
 using UnityEngine;
 
-namespace RomanMalitskyi.Utilities.Editor
+namespace TandC.Utilities.Editor
 {
     [CustomEditor(typeof(ShadowedTextMexhProUGUI))]
     public class ShadowedTextMexhProUGUIEditor : UnityEditor.Editor
     {
-        private GUIStyle _defaultStyle;
         private ShadowedTextMexhProUGUI _target;
 
         public override void OnInspectorGUI()
@@ -21,10 +19,20 @@ namespace RomanMalitskyi.Utilities.Editor
                 _target.SetIsHaveShadow(EditorGUILayout.Toggle("Is Have Shadow", _target.GetIsHaveShadow()));
             }
 
+            if (!_target.GetHighlightInitState())
+            {
+                _target.SetIsHaveHighlight(EditorGUILayout.Toggle("Is Have Highlight", _target.GetIsHaveHighlight()));
+            }
+
             EditorGUILayout.Space();
             if (_target.GetShadowInitState())
             {
                 AddShadowSettings();
+            }
+            EditorGUILayout.Space();
+            if (_target.GetHighlightInitState())
+            {
+                AddHighlightSettings();
             }
 
             EditorGUILayout.Space();
@@ -45,7 +53,7 @@ namespace RomanMalitskyi.Utilities.Editor
                     _target.RefreshText();
                 }
 
-                if (!_target.GetShadowInitState())
+                if (!_target.GetShadowInitState() || !_target.GetHighlightInitState())
                 {
                     if (GUILayout.Button("Remove text"))
                     {
@@ -60,9 +68,9 @@ namespace RomanMalitskyi.Utilities.Editor
                     if (!_target.GetShadowInitState())
                     {
                         EditorGUILayout.Space();
-                        EditorGUILayout.LabelField("Make sure the padding is large enough to show the shadow.");
+                        EditorGUILayout.LabelField("Make sure the padding is large enough to show the Shadow.");
                         EditorGUILayout.Space();
-                        if (GUILayout.Button("Init shadow"))
+                        if (GUILayout.Button("Init Shadow"))
                         {
                             _target.AddShadowToText();
                         }
@@ -71,15 +79,46 @@ namespace RomanMalitskyi.Utilities.Editor
                     {
                         EditorGUILayout.Space();
                         EditorGUILayout.BeginHorizontal();
-                        if (GUILayout.Button("Refresh shadow"))
+                        if (GUILayout.Button("Refresh Shadow"))
                         {
                             _target.RefreshShadow();
                         }
 
-                        if (GUILayout.Button("Remove shadow"))
+                        if (GUILayout.Button("Remove Shadow"))
                         {
                             _target.RemoveShadow();
                             _target.SetIsHaveShadow(false);
+                        }
+                        EditorGUILayout.EndHorizontal();
+                    }
+                }
+
+                EditorGUILayout.Space();
+                if (_target.GetIsHaveHighlight())
+                {
+                    if (!_target.GetHighlightInitState())
+                    {
+                        EditorGUILayout.Space();
+                        EditorGUILayout.LabelField("Make sure the padding is large enough to show the highlight.");
+                        EditorGUILayout.Space();
+                        if (GUILayout.Button("Init Highlight"))
+                        {
+                            _target.AddHighlightToText();
+                        }
+                    }
+                    else
+                    {
+                        EditorGUILayout.Space();
+                        EditorGUILayout.BeginHorizontal();
+                        if (GUILayout.Button("Refresh Highlight"))
+                        {
+                            _target.RefreshHighlight();
+                        }
+
+                        if (GUILayout.Button("Remove Highlight"))
+                        {
+                            _target.RemoveHighlight();
+                            _target.SetIsHaveHighlight(false);
                         }
                         EditorGUILayout.EndHorizontal();
                     }
@@ -94,51 +133,16 @@ namespace RomanMalitskyi.Utilities.Editor
             _target.ShadowOffset = EditorGUILayout.Vector2Field("Shadow Offset", _target.ShadowOffset);
         }
 
+        private void AddHighlightSettings()
+        {
+            _target.HighlightColor = EditorGUILayout.ColorField("Highlight Color", _target.HighlightColor);
+            _target.HighlightThsickness = EditorGUILayout.Slider("Highlight Thsickness", _target.HighlightThsickness, 0f, 1f);
+            _target.HighlightOffset = EditorGUILayout.Vector2Field("Highlight Offset", _target.HighlightOffset);
+        }
+
         private void InitScriptTarget()
         {
             _target = (ShadowedTextMexhProUGUI)target;
-        }
-
-        private void InitStyle()
-        {
-            _defaultStyle = new GUIStyle()
-            {
-                alignment = TextAnchor.MiddleCenter,
-                fontStyle = FontStyle.Bold,
-
-                normal = new GUIStyleState()
-                {
-                    background = Texture2D.grayTexture,
-                    textColor = Color.white
-                },
-                hover = new GUIStyleState()
-                {
-                    background = Texture2D.whiteTexture,
-                    textColor = Color.white
-                },
-                active = new GUIStyleState()
-                {
-                    background = Texture2D.blackTexture,
-                    textColor = Color.white
-                }
-            };
-        }
-
-        private Texture2D MakeBackgroundTexture(int width, int height, Color color)
-        {
-            Color[] pixels = new Color[width * height];
-
-            for (int i = 0; i < pixels.Length; i++)
-            {
-                pixels[i] = color;
-            }
-
-            Texture2D backgroundTexture = new Texture2D(width, height);
-
-            backgroundTexture.SetPixels(pixels);
-            backgroundTexture.Apply();
-
-            return backgroundTexture;
         }
     }
 }

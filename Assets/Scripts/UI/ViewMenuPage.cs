@@ -1,5 +1,6 @@
 using TandC.ProjectSystems;
 using TandC.UI.Views.Base;
+using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
@@ -8,7 +9,22 @@ namespace TandC.UI.Views
     public sealed class ViewMenuPage : View
     {
         private Button _startButton;
+        private Button _settingsButton;
+        private Button _shopButton;
+        private Button _leadeboardButton;
 
+        private Animator _adviceAnimator;
+
+        private float _hideAdviceCooldown = 10.0f;
+        private float _showAdviceCooldown = 5.0f;
+        private float _adviceCooldown;
+
+        private bool _isShowAdvice;
+        private bool _isHideAdvice;
+
+        private int _adviceIndex;
+
+        private LocalisationSystem _localisationSystem;
         private SceneSystem _sceneSystems;
         private VaultSystem _vaultSystem;
 

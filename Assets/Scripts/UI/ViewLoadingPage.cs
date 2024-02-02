@@ -28,7 +28,7 @@ namespace TandC.UI.Views
         {
             base.Show();
 
-            InternalTools.DoActionDelayed(() => _sceneSystems.OpenLoadedScene(), 2.0f);
+            InternalTools.DoActionDelayed(() => _sceneSystems.OpenLoadedScene(), 4.0f);
         }
 
         public override void Hide()
