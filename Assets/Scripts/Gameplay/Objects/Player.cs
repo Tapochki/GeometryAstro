@@ -1,11 +1,11 @@
 ﻿using System;
-using UnityEngine;
-using TandC.EventBus;
 using TandC.Data;
+using TandC.EventBus;
+using UnityEngine;
 
-namespace TandC.Gameplay 
+namespace TandC.Gameplay
 {
-    public class Player :  MonoBehaviour
+    public class Player : MonoBehaviour
     {
         [SerializeField] private float _moveSpeed;
         [SerializeField] private InputHandler _inputHandler;
@@ -20,7 +20,7 @@ namespace TandC.Gameplay
 
         public Vector2 PlayerPosition { get => transform.position; }
 
-        private Action<float,float> _onHealthChageEvent;
+        private Action<float, float> _onHealthChageEvent;
         private Action _onPlayerDieEvent;
 
         private void Start()
@@ -36,21 +36,19 @@ namespace TandC.Gameplay
         private void FixedUpdate()
         {
             _moveComponent.Move(_inputHandler.MoveDirection, _moveSpeed);
-            if(_inputHandler.RotationDirection != Vector2.zero) 
+            if (_inputHandler.RotationDirection != Vector2.zero)
             {
                 _mainRotateComponent.Rotation(_inputHandler.RotationDirection);
             }
-            else if(_inputHandler.MoveDirection != Vector2.zero) 
+            else if (_inputHandler.MoveDirection != Vector2.zero)
             {
                 _mainRotateComponent.Rotation(_inputHandler.MoveDirection);
             }
         }
 
-        public void TakeDamage(float damage) 
+        public void TakeDamage(float damage)
         {
             _healthComponent.TakeDamage(damage);
         }
-
     }
 }
-

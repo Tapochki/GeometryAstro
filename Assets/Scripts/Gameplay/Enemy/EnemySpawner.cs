@@ -1,9 +1,7 @@
-using System.Collections;
 using System.Collections.Generic;
 using TandC.Data;
 using TandC.Settings;
 using TandC.Utilities;
-using UnityEditorInternal;
 using UnityEngine;
 
 namespace TandC.Gameplay
@@ -12,9 +10,9 @@ namespace TandC.Gameplay
     {
         private const int ENEMY_PRELOAD_COUNT = 200;
         [SerializeField] private GameplayData _gameplayData;
-        [SerializeField] EnemyFactory _enemyFactory;
-        [SerializeField] Enemy _enemyPrefab;
-        [SerializeField] Camera _camera;
+        [SerializeField] private EnemyFactory _enemyFactory;
+        [SerializeField] private Enemy _enemyPrefab;
+        [SerializeField] private Camera _camera;
         [SerializeField] private List<Transform> _spawnPositions;
         [SerializeField] private Player _player;
 
@@ -26,7 +24,7 @@ namespace TandC.Gameplay
 
         public void Start()
         {
-            float screenAspect = (float)Screen.width / (float)Screen.height;
+            float screenAspect = Screen.width / (float)Screen.height;
             _camHeight = _camera.orthographicSize;
             _camWidth = screenAspect * _camHeight;
             _enemyPool = new ObjectPool<Enemy>(Preload, GetAction, ReturnAction, ENEMY_PRELOAD_COUNT);
@@ -68,12 +66,12 @@ namespace TandC.Gameplay
             return position;
         }
 
-        public void StartWave(List<EnemySpawnData> enemyDatas) 
+        public void StartWave(List<EnemySpawnData> enemyDatas)
         {
             _currentWaveEnemies = enemyDatas;
         }
 
-        private EnemyData GetEnemyData(EnemyType enemyType) 
+        private EnemyData GetEnemyData(EnemyType enemyType)
         {
             return _gameplayData.GetEnemiesByType(enemyType);
         }
@@ -95,10 +93,10 @@ namespace TandC.Gameplay
             enemy.transform.position = GetSpawnPosition(enemySpawn.spawnType);
             enemy.gameObject.SetActive(true);
         }
+
         public void ReturnAction(Enemy enemy)
         {
             enemy.gameObject.SetActive(false);
         }
     }
 }
-

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace TandC.EventBus 
+namespace TandC.EventBus
 {
     public class EventBusHolder : MonoBehaviour
     {

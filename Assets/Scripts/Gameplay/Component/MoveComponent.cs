@@ -1,17 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-namespace TandC.Gameplay 
+namespace TandC.Gameplay
 {
-    public interface IMove 
+    public interface IMove
     {
         public void Move(Vector2 direction, float moveSpeed);
     }
+
     public class MoveComponent : IMove
     {
         private Rigidbody2D _moveRigidbody2D;
-        public MoveComponent(Rigidbody2D moveRigidbody2D) 
+
+        public MoveComponent(Rigidbody2D moveRigidbody2D)
         {
             _moveRigidbody2D = moveRigidbody2D;
         }
@@ -26,6 +26,7 @@ namespace TandC.Gameplay
     public class MoveToTargetComponent : IMove
     {
         private Rigidbody2D _moveRigidbody2D;
+
         public MoveToTargetComponent(Rigidbody2D moveRigidbody2D)
         {
             _moveRigidbody2D = moveRigidbody2D;
@@ -42,6 +43,7 @@ namespace TandC.Gameplay
     public class MoveInDirectionComponent : IMove
     {
         private Rigidbody2D _moveRigidbody2D;
+
         public MoveInDirectionComponent(Rigidbody2D moveRigidbody2D)
         {
             _moveRigidbody2D = moveRigidbody2D;
@@ -53,4 +55,3 @@ namespace TandC.Gameplay
         }
     }
 }
-

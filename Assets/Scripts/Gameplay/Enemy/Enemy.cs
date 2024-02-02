@@ -1,9 +1,7 @@
 using TandC.Data;
 using UnityEngine;
-using UnityEngine.UIElements;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
-namespace TandC.Gameplay 
+namespace TandC.Gameplay
 {
     public class Enemy : MonoBehaviour
     {
@@ -12,7 +10,8 @@ namespace TandC.Gameplay
         protected IRotation _rotationComponent;
         protected HealthComponent _healthComponent;
         protected EnemyData _data;
-        public void SetData(EnemyData data, Player player) 
+
+        public void SetData(EnemyData data, Player player)
         {
             _player = player;
             _data = data;

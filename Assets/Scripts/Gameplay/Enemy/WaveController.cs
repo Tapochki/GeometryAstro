@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using TandC.Data;
-using TandC.Settings;
 using UnityEngine;
 
 namespace TandC.Gameplay
@@ -42,7 +39,7 @@ namespace TandC.Gameplay
             CurrentPhaseIndex++;
             if (CurrentPhaseIndex >= _gameplayData.gamePhases.Length - 1)
             {
-               //_enemySpawner.IncreaseEnemyParam();
+                //_enemySpawner.IncreaseEnemyParam();
                 CurrentPhaseIndex = 0;
             }
             SetNewPhase(CurrentPhaseIndex);
@@ -58,4 +55,3 @@ namespace TandC.Gameplay
         }
     }
 }
-

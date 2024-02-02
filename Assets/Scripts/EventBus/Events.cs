@@ -1,5 +1,4 @@
-using UnityEngine;
-namespace TandC.EventBus 
+namespace TandC.EventBus
 {
     public readonly struct PlayerHealthChangeEvent : IEvent
     {
@@ -15,7 +14,5 @@ namespace TandC.EventBus
 
     public readonly struct PlayerDieEvent : IEvent
     {
-
     }
 }
-

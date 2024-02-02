@@ -1,6 +1,7 @@
-namespace TandC.EventBus 
+namespace TandC.EventBus
 {
-    public interface IEvent { }
+    public interface IEvent
+    { }
 
     public interface IBaseEventReceiver
     {
@@ -12,4 +13,3 @@ namespace TandC.EventBus
         void OnEvent(T @event);
     }
 }
-

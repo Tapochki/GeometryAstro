@@ -9,12 +9,14 @@ namespace TandC.UI.Views
 {
     public class ViewSplashPage : View
     {
+        private Image _shadeImage;
         private Image _iconImage;
-        private GameObject _titleText;
 
         private Sequence _sequence;
 
         private SceneSystem _sceneSystem;
+
+        private Color _iconColor = new Color(1.0f, 1.0f, 1.0f, 0.0f);
 
         [Inject]
         public void Construct(SceneSystem sceneSystem)
@@ -24,8 +26,8 @@ namespace TandC.UI.Views
 
         public override void Initialize()
         {
+            _shadeImage = transform.Find("Image_ShadedIcon/Image_Shade").GetComponent<Image>();
             _iconImage = transform.Find("Image_Icon").GetComponent<Image>();
-            _titleText = transform.Find("ShadowedText_Title").gameObject;
 
             base.Initialize();
 
@@ -38,19 +40,14 @@ namespace TandC.UI.Views
 
             _sequence = DOTween.Sequence();
 
-            _iconImage.transform.localEulerAngles = new Vector3(90.0f, 0.0f, -45.0f);
-            _titleText.transform.localEulerAngles = new Vector3(90.0f, 0.0f, 0.0f);
+            _iconImage.color = _iconColor;
 
-            _sequence.Append(_iconImage.transform.DORotate(new Vector3(0.0f, 0.0f, -45.0f), 0.5f));
+            _shadeImage.transform.localPosition = new Vector3(-800.0f, 256.0f, 0.0f);
+
             _sequence.AppendInterval(0.2f);
-            _sequence.Append(_iconImage.transform.DOScale(1.2f, 0.6f));
+            _sequence.Append(_iconImage.DOColor(new Color(1.0f, 1.0f, 1.0f, 1.0f), 3.0f));
+            _sequence.Join(_shadeImage.transform.DOLocalMove(new Vector3(800.0f, 256.0f, 0.0f), 4.0f));
             _sequence.AppendInterval(0.2f);
-            _sequence.Append(_iconImage.transform.DORotate(new Vector3(0.0f, 0.0f, -1035.0f), 2.0f)).
-                      Join(_titleText.transform.DORotate(new Vector3(0.0f, 0.0f, 0.0f), 1.0f));
-            _sequence.AppendInterval(1.5f);
-            _sequence.Append(_iconImage.transform.DOScale(1.0f, 0.6f));
-            _sequence.Append(_iconImage.transform.DORotate(new Vector3(90.0f, 0.0f, -1035.0f), 0.3f)).
-                      Join(_titleText.transform.DORotate(new Vector3(90.0f, 0.0f, 0.0f), 0.3f));
             _sequence.OnComplete(() => _sceneSystem.OpenLoadedScene());
         }
 

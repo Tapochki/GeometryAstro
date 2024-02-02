@@ -1,6 +1,6 @@
 using System;
 
-namespace TandC.EventBus 
+namespace TandC.EventBus
 {
     public record UniqueId
     {
@@ -10,4 +10,3 @@ namespace TandC.EventBus
         public static implicit operator string(UniqueId uniqueId) => uniqueId.Id;
     }
 }
-

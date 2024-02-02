@@ -21,6 +21,7 @@ namespace TandC.Gameplay
         {
             transform.position = PlayerPosition;
         }
+
         private void UpdateParallax()
         {
             UpdateMaterialOffset(_back_0Material, 15f);
@@ -32,7 +33,5 @@ namespace TandC.Gameplay
         {
             meshRenderer.material.mainTextureOffset = PlayerPosition / speed * Time.deltaTime;
         }
-
     }
 }
-

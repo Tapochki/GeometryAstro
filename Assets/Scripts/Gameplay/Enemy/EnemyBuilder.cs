@@ -1,8 +1,7 @@
 ﻿using TandC.Data;
-using TandC.Gameplay;
 using UnityEngine;
 
-namespace TandC.Gameplay 
+namespace TandC.Gameplay
 {
     public class EnemyBuilder : MonoBehaviour
     {
@@ -10,6 +9,7 @@ namespace TandC.Gameplay
         {
             Enemy Build(Enemy enemy, EnemyData data, Player player);
         }
+
         public class DefaultEnemyBuilder : IEnemyBuilder
         {
             public Enemy Build(Enemy enemy, EnemyData data, Player player)
@@ -39,4 +39,3 @@ namespace TandC.Gameplay
         }
     }
 }
-
