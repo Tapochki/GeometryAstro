@@ -113,7 +113,6 @@ namespace TandC.Gameplay
         {
             while (_isCanSpawn)
             {
-                Debug.LogError("Spawn Enemy");
                 SpawnEnemy();
                 yield return new WaitForSeconds(_spawnDelay);
             }

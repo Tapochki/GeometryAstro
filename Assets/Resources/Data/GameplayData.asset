@@ -699,6 +699,9 @@ MonoBehaviour:
     - enemyType: 0
       spawnType: 0
       targetType: 0
+    - enemyType: 0
+      spawnType: 0
+      targetType: 0
   materials:
   - type: 0
     material: {fileID: 2100000, guid: f521a23a080ca494da48ccf12275dddf, type: 2}

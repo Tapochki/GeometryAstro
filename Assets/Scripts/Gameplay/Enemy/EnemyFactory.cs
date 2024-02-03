@@ -1,11 +1,9 @@
-﻿
-using System;
+﻿using System;
 using TandC.Data;
 using TandC.Settings;
 using UnityEngine;
-using static TandC.Gameplay.EnemyBuilder;
 
-namespace TandC.Gameplay 
+namespace TandC.Gameplay
 {
     public class EnemyFactory : MonoBehaviour
     {

@@ -54,7 +54,7 @@ namespace TandC.Gameplay
             RegisterSpawnPoint(SpawnPositionType.VerticalRightCenter, screenX + offsetX, 0f);
             RegisterSpawnPoint(SpawnPositionType.VerticalRightBottom, screenX + offsetX, -screenY + offsetY);
 
-            _playerDirectionSpawnPoint.position = new Vector2(0, screenY + offsetY);
+            _playerDirectionSpawnPoint.position = new Vector2(0, screenX + offsetY);
         }
 
         private void RegisterSpawnPoint(SpawnPositionType spawnType, float x, float y)
