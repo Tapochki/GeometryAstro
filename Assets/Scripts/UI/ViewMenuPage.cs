@@ -16,9 +16,7 @@ namespace TandC.UI.Views
 
         private Animator _adviceAnimator;
 
-        private ShadowedTextMexhProUGUI _adviceTitleText;
         private ShadowedTextMexhProUGUI _adviceDescriptionText;
-        private ShadowedTextMexhProUGUI _adviceNoFoundText;
 
         private float _hideAdviceCooldown = 20.0f;
         private float _showAdviceCooldown = 10.0f;
@@ -50,16 +48,11 @@ namespace TandC.UI.Views
             _shopButton = transform.Find("Container_Buttons/Button_Shop").GetComponent<Button>();
             _leadeboardButton = transform.Find("Container_Buttons/Button_Leaderboard").GetComponent<Button>();
 
-            _adviceTitleText = transform.Find("Container_Advice/Container_Info/ShadowedText_Title").GetComponent<ShadowedTextMexhProUGUI>();
             _adviceDescriptionText = transform.Find("Container_Advice/Container_Info/ShadowedText_Description").GetComponent<ShadowedTextMexhProUGUI>();
-            _adviceNoFoundText = transform.Find("Container_Advice/Container_Info/Container_NoSignal/ShadowedText_Title").GetComponent<ShadowedTextMexhProUGUI>();
 
             _adviceAnimator = transform.Find("Container_Advice").GetComponent<Animator>();
 
             base.Initialize();
-
-            _adviceTitleText.UpdateTextAndShadowValue(_localisationSystem.GetString("key_advice_title"));
-            _adviceNoFoundText.UpdateTextAndShadowValue(_localisationSystem.GetString("key_advice_no_found_title"));
 
             _adviceIndex = 0;
 
@@ -157,11 +150,15 @@ namespace TandC.UI.Views
         private void SettingsButtonOnClickHandler()
         {
             _soundSystem.PlayClickSound();
+
+            _sceneView.ShowView<ViewSettingsPage>();
         }
 
         private void ShopButtonOnClickHandler()
         {
             _soundSystem.PlayClickSound();
+
+            _sceneView.ShowView<ViewSelectShopPage>();
         }
 
         private void LeaderbordButtonOnClickHandler()
