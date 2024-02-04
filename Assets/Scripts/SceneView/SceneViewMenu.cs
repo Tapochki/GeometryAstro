@@ -27,7 +27,14 @@ namespace TandC.Scenes
         public override void Initialize()
         {
             _rootView = transform.Find("View - MenuPage").GetComponent<View>();
-            _views = new List<View>();
+            _views = new List<View>()
+            {
+                transform.Find("View - SettingsPage").GetComponent<View>(),
+                transform.Find("View - SelectShopPage").GetComponent<View>(),
+                transform.Find("View - CustomizationPage").GetComponent<View>(),
+                transform.Find("View - UpgradesPage").GetComponent<View>(),
+                transform.Find("View - AboutPage").GetComponent<View>(),
+            };
 
             base.Initialize();
 
