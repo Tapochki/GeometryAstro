@@ -13952,6 +13952,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2082096669}
   - component: {fileID: 2082096670}
+  - component: {fileID: 2082096671}
   m_Layer: 5
   m_Name: ShadowedText_Title
   m_TagString: Untagged
@@ -14016,6 +14017,19 @@ MonoBehaviour:
   HighlightColor: {r: 0.6556604, g: 0.9578015, b: 1, a: 1}
   HighlightThsickness: 0
   HighlightOffset: {x: 0, y: 6, z: 0}
+--- !u!114 &2082096671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2082096668}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8744dea27f97c0d45b659e5ae0e7319c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: key_settings_title
 --- !u!21 &2083899953
 Material:
   serializedVersion: 8

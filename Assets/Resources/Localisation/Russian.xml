@@ -1,1 +1,19 @@
-﻿<?xml version="1.0" encoding="utf-8"?><Document><string name="title_loading">Загрузка</string><string name="title_button_start">Нажмите чтобы играть</string><string name="title_best_result">Лучший результат</string><string name="title_pause">Пауза</string><string name="title_button_continue">Продолжить</string><string name="title_button_return">Вернутся в меню</string><string name="title_game_over">Игра окончена</string><string name="title_coins">Монеты</string><string name="title_score">Очки</string><string name="title_quit">Выйти из игры?</string><string name="title_button_yes">Да</string><string name="title_button_no">Нет</string><string name="title_button_buy">Купить</string><string name="title_button_select">Выбрать</string><string name="title_button_get_money">Получить {0} монет</string></Document>
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Document>
+	<string name="title_loading">Загрузка</string>
+	<string name="title_button_start">Нажмите чтобы играть</string>
+	<string name="title_best_result">Лучший результат</string>
+	<string name="title_pause">Пауза</string>
+	<string name="title_button_continue">Продолжить</string>
+	<string name="title_button_return">Вернутся в меню</string>
+	<string name="title_game_over">Игра окончена</string>
+	<string name="title_coins">Монеты</string>
+	<string name="title_score">Очки</string>
+	<string name="title_quit">Выйти из игры?</string>
+	<string name="title_button_yes">Да</string>
+	<string name="title_button_no">Нет</string>
+	<string name="title_button_buy">Купить</string>
+	<string name="title_button_select">Выбрать</string>
+	<string name="key_settings_title">Настройки</string>
+	<string name="title_button_get_money">Получить {0} монет</string>
+</Document>

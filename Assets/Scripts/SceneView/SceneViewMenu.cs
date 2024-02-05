@@ -20,7 +20,7 @@ namespace TandC.Scenes
             _sceneSystem = sceneSystem;
             _soundSystem = soundSystem;
 
-            _sceneSystem.LoadSceneByName(Settings.SceneNames.Loading, Settings.SceneNames.Game);
+            _sceneSystem.LoadSceneByName(SceneNames.Loading, SceneNames.Game);
         }
 
         [Inject]
@@ -29,6 +29,7 @@ namespace TandC.Scenes
             _rootView = transform.Find("View - MenuPage").GetComponent<View>();
             _views = new List<View>()
             {
+                transform.Find("View - MenuPage").GetComponent<View>(),
                 transform.Find("View - SettingsPage").GetComponent<View>(),
                 transform.Find("View - SelectShopPage").GetComponent<View>(),
                 transform.Find("View - CustomizationPage").GetComponent<View>(),
