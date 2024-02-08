@@ -11,8 +11,6 @@ namespace TandC.Gameplay
         protected Action _onDeathEvent;
         protected Action _onHealthChageEvent;
 
-        protected GameObject _gameObject;
-
         public HealthComponent(float maxHealth, Action onDeathEvent, Action onHealthChageEvent) 
         {
             _maxHealth = _currentHealth = maxHealth;
@@ -35,7 +33,6 @@ namespace TandC.Gameplay
 
         protected virtual void Die()
         {
-            _gameObject.SetActive(false);
             _onDeathEvent?.Invoke();
         }
     }

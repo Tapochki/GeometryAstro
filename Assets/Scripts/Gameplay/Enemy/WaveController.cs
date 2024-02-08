@@ -32,7 +32,6 @@ namespace TandC.Gameplay
             //{
             //    IncreasePhaseIndex();
             //}
-            Debug.LogError("StartWaves");
             CurrentPhaseIndex = phaseId;
             _currentPhase = _gameplayData.GetPhaseById(phaseId);
 

@@ -15,7 +15,7 @@ namespace TandC.Gameplay
         private Transform _transform;
         private bool _hasRotated;
 
-        public OnTargetRotateComponte(Transform transform, Vector2 target)
+        public OnTargetRotateComponte(Transform transform, Vector3 target)
         {
             _transform = transform;
             RotateOnSpawn(target);
@@ -24,11 +24,11 @@ namespace TandC.Gameplay
         {
 
         }
-        private void RotateOnSpawn(Vector2 target)
+        private void RotateOnSpawn(Vector3 target)
         {
             if (!_hasRotated)
             {
-                Vector2 direction = target - (Vector2)_transform.position;
+                Vector2 direction = target - _transform.position;
                 float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90;
                 _transform.localEulerAngles = new Vector3(0, 0, angle);
                 _hasRotated = true;

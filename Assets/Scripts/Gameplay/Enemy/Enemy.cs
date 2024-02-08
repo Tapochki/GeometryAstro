@@ -1,3 +1,4 @@
+using System;
 using TandC.Data;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -12,10 +13,17 @@ namespace TandC.Gameplay
         protected IMove _moveComponent;
         protected IRotation _rotationComponent;
         protected HealthComponent _healthComponent;
+        protected AttackComponent _attackComponent;
         protected EnemyData _data;
+        protected Action<Enemy> _enemyBackToPoolEvent;
         public void SetData(EnemyData data) 
         {
             _data = data;
+        }
+
+        public void SetBackToPoolEvent(Action<Enemy> enemyBackToPoolEvent) 
+        {
+            _enemyBackToPoolEvent = enemyBackToPoolEvent;
         }
 
         public void SetTargetDirection(Transform target) 
@@ -43,15 +51,44 @@ namespace TandC.Gameplay
             _healthComponent = healthComponent;
         }
 
+        public void SetAttackComponent(AttackComponent healthComponent)
+        {
+            _attackComponent = healthComponent;
+        }
+
         public void Update()
         {
             _moveComponent.Move(_target.position, _data.movementSpeed);
             _rotationComponent.Rotation(_rotateDirection);
+            _attackComponent.Update();
         }
 
         public void TakeDamage(float damage)
         {
             _healthComponent.TakeDamage(damage);
+        }
+
+        private void OnCollisionEnter2D(Collision2D collision)
+        {
+            if (collision.gameObject.TryGetComponent(out Player player))
+            {
+                _attackComponent.SubscribePlayer(player);
+            }
+        }
+
+        private void OnCollisionExit2D(Collision2D collision)
+        {
+            if (collision.gameObject.TryGetComponent(out Player player))
+            {
+                _attackComponent.UnSubscribePlayer();
+            }
+        }
+
+        public void ProccesingEnemyDeath() 
+        {
+            //TODO start VFX effect
+            //TODO spawn item afterDeath
+            _enemyBackToPoolEvent?.Invoke(this);
         }
     }
 }

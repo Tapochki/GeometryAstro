@@ -26,7 +26,7 @@ namespace TandC.Gameplay
 
         public void Start()
         {
-            _enemyPool = new ObjectPool<Enemy>(Preload, GetAction, ReturnAction, ENEMY_PRELOAD_COUNT);
+            _enemyPool = new ObjectPool<Enemy>(Preload, GetReadyEnemy, BackEnemyToPool, ENEMY_PRELOAD_COUNT);
             _currentWaveEnemies = new List<EnemySpawnData>();
         }
 
@@ -49,7 +49,6 @@ namespace TandC.Gameplay
 
         public void StartWave(EnemySpawnData[] enemyDatas, float spawnDelay) 
         {
-            Debug.LogError("EnemySpawner Start Wave");
             _currentWaveEnemies = new List<EnemySpawnData>();
             _spawnDelay = spawnDelay;
             _currentWaveEnemies.AddRange(enemyDatas);
@@ -76,9 +75,9 @@ namespace TandC.Gameplay
 
         private Enemy Preload() => Instantiate(_enemyPrefab, _enemyParent);
 
-        public void GetAction(Enemy enemy){}
+        private void GetReadyEnemy(Enemy enemy){}
 
-        public void ReturnAction(Enemy enemy)
+        private void BackEnemyToPool(Enemy enemy)
         {
             enemy.gameObject.SetActive(false);
         }
@@ -105,7 +104,7 @@ namespace TandC.Gameplay
         private void ConstractEnemy(Enemy enemy, EnemyData enemyData, Vector2 spawnPosition, Vector2 directPosition)
         {
             enemy.transform.position = spawnPosition;
-            enemy = _enemyFactory.CreateEnemy(enemyData, enemy, _player.transform, directPosition, enemyData.BuilderType);
+            enemy = _enemyFactory.CreateEnemy(enemyData, enemy, BackEnemyToPool, _player.transform, directPosition, enemyData.BuilderType);
             enemy.gameObject.SetActive(true);
         }
 
