@@ -2,18 +2,17 @@
 using TandC.Data;
 using TandC.Settings;
 using UnityEngine;
-using static TandC.Gameplay.EnemyBuilder;
 
 namespace TandC.Gameplay
 {
     public class EnemyFactory : MonoBehaviour
     {
-        [SerializeField] private Player _player;
-
-        public Enemy CreateEnemy(EnemyData data, Enemy enemy, EnemyBuilderType type)
+        [SerializeField]
+        private ItemSpawner _spawner;
+        public Enemy CreateEnemy(EnemyData data, Enemy enemy, Action<Enemy> backToPoolEvent, Transform target, Vector2 direction, EnemyBuilderType type)
         {
-            IEnemyBuilder builder = GetBuilder(type);
-            return builder.Build(enemy, data, _player);
+            IEnemyBuilder builder = GetBuilder(type);        
+            return builder.Build(enemy, data, backToPoolEvent, target, direction, _spawner);
         }
 
         private IEnemyBuilder GetBuilder(EnemyBuilderType type)
@@ -22,13 +21,12 @@ namespace TandC.Gameplay
             {
                 case EnemyBuilderType.Default:
                     return new DefaultEnemyBuilder();
-
                 case EnemyBuilderType.Saw:
                     return new SawEnemyBuilder();
-
                 default:
                     throw new ArgumentException("Unsupported enemy type");
             }
         }
     }
 }
+

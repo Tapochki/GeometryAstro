@@ -1,20 +1,42 @@
+using System;
 using TandC.Data;
 using UnityEngine;
+using UnityEngine.UIElements;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
-namespace TandC.Gameplay
+namespace TandC.Gameplay 
 {
     public class Enemy : MonoBehaviour
     {
-        protected Player _player;
+        protected Transform _target;
+        protected Vector2 _rotateDirection;
         protected IMove _moveComponent;
         protected IRotation _rotationComponent;
         protected HealthComponent _healthComponent;
+        protected AttackComponent _attackComponent;
         protected EnemyData _data;
+        protected Action<Enemy> _enemyBackToPoolEvent;
 
-        public void SetData(EnemyData data, Player player)
+        private ItemSpawner _itemSpawner;//TODO change inject later
+        public void SetData(EnemyData data, ItemSpawner itemSpawner) 
         {
-            _player = player;
             _data = data;
+            _itemSpawner = itemSpawner;
+        }
+
+        public void SetBackToPoolEvent(Action<Enemy> enemyBackToPoolEvent) 
+        {
+            _enemyBackToPoolEvent = enemyBackToPoolEvent;
+        }
+
+        public void SetTargetDirection(Transform target) 
+        {
+            _target = target;
+        }
+
+        public void SetTargetRotation(Vector2 rotateDirection)
+        {
+            _rotateDirection = rotateDirection;
         }
 
         public void SetMovementComponent(IMove moveComponent)
@@ -32,15 +54,45 @@ namespace TandC.Gameplay
             _healthComponent = healthComponent;
         }
 
+        public void SetAttackComponent(AttackComponent healthComponent)
+        {
+            _attackComponent = healthComponent;
+        }
+
         public void Update()
         {
-            _moveComponent.Move(_player.transform.position, _data.movementSpeed);
-            _rotationComponent.Rotation(_player.transform.position);
+            _moveComponent.Move(_target.position, _data.movementSpeed);
+            _rotationComponent.Rotation(_rotateDirection);
+            _attackComponent.Update();
         }
 
         public void TakeDamage(float damage)
         {
             _healthComponent.TakeDamage(damage);
+        }
+
+        private void OnCollisionEnter2D(Collision2D collision)
+        {
+            if (collision.gameObject.TryGetComponent(out Player player))
+            {
+                _attackComponent.SubscribePlayer(player);
+            }
+        }
+
+        private void OnCollisionExit2D(Collision2D collision)
+        {
+            if (collision.gameObject.TryGetComponent(out Player player))
+            {
+                _attackComponent.UnSubscribePlayer();
+            }
+        }
+
+        public void ProccesingEnemyDeath() 
+        {
+            //TODO start VFX effect
+            //TODO spawn item afterDeath
+            _enemyBackToPoolEvent?.Invoke(this);
+            _itemSpawner.DropItem(_data.droperType, gameObject.transform.position);
         }
     }
 }

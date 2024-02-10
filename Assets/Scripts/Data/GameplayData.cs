@@ -269,11 +269,9 @@ namespace TandC.Data
     {
         public int PhaseId;
         public float waveTime;
+        public float enemySpawnDelay;
+
         public EnemySpawnData[] enemyInPhase;
-
-        public float timeBeforePhase;
-
-        public bool IsRandomEnemySpawn;
     }
 
     [Serializable]
@@ -281,7 +279,7 @@ namespace TandC.Data
     {
         public EnemyType enemyType;
         public SpawnType spawnType;
-        public int EnemyCount;
+        public TargetType targetType;
     }
 
     [Serializable]
@@ -293,6 +291,7 @@ namespace TandC.Data
         public float movementSpeed;
         public EnemyBuilderType BuilderType;
         public EnemyType type;
+        public DropItemRareType droperType;
         public Sprite mainSprite;
         public Sprite enemyAdditionalSprite;
     }
@@ -312,6 +311,7 @@ namespace TandC.Data
         public int itemValueMax;
         public float weight;
         public GameObject prefab;
+        public Sprite sprite;
         public ItemType type;
         public bool isForBoss;
 

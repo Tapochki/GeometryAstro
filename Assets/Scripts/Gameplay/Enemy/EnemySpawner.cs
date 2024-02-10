@@ -1,4 +1,6 @@
+﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TandC.Data;
 using TandC.Settings;
 using TandC.Utilities;
@@ -11,92 +13,109 @@ namespace TandC.Gameplay
         private const int ENEMY_PRELOAD_COUNT = 200;
         [SerializeField] private GameplayData _gameplayData;
         [SerializeField] private EnemyFactory _enemyFactory;
+        [SerializeField] private EnemySpawnPositionService _enemySpawnPositionRegistrator;
         [SerializeField] private Enemy _enemyPrefab;
-        [SerializeField] private Camera _camera;
-        [SerializeField] private List<Transform> _spawnPositions;
         [SerializeField] private Player _player;
+        [SerializeField] private Transform _enemyParent;
 
-        private float _camHeight;
-        private float _camWidth;
 
         private ObjectPool<Enemy> _enemyPool;
         private List<EnemySpawnData> _currentWaveEnemies;
+        private float _spawnDelay;
+        private bool _isCanSpawn;
 
         public void Start()
         {
-            float screenAspect = Screen.width / (float)Screen.height;
-            _camHeight = _camera.orthographicSize;
-            _camWidth = screenAspect * _camHeight;
-            _enemyPool = new ObjectPool<Enemy>(Preload, GetAction, ReturnAction, ENEMY_PRELOAD_COUNT);
+            _enemyPool = new ObjectPool<Enemy>(Preload, GetReadyEnemy, BackEnemyToPool, ENEMY_PRELOAD_COUNT);
             _currentWaveEnemies = new List<EnemySpawnData>();
         }
 
-        private Vector2 GetSpawnPosition(SpawnType spawnType)
+        private List<Transform> GetSpawnPosition(SpawnType spawnType)
         {
-            Vector2 position;
-            Transform spawnTransform;
-            if (spawnType == SpawnType.Random)
-            {
-                int index = UnityEngine.Random.Range(0, _spawnPositions.Count);
-
-                spawnTransform = _spawnPositions[index];
-            }
-            Transform spawnPoint = _spawnPositions[(int)spawnType];
-
-            if (spawnType == SpawnType.SpawnFrontPlayer)
-            {
-                spawnPoint.transform.localPosition = new Vector2(0, spawnPoint.transform.localPosition.y);
-                int range = UnityEngine.Random.Range(-200, 200);
-                spawnPoint.transform.localPosition = new Vector2(spawnPoint.transform.localPosition.x + range, spawnPoint.transform.localPosition.y);
-                position = new Vector2(spawnPoint.transform.position.x, spawnPoint.transform.position.y);
-                return position;
-            }
-            position = spawnPoint.position;
-            if (spawnPoint.localPosition.x == 0 || (spawnPoint.localPosition.x < _camWidth / 2 && spawnPoint.position.x > (_camWidth / 2) * -1))
-            {
-                int range = UnityEngine.Random.Range(-100, 101);
-                position = new Vector2(spawnPoint.position.x + range, spawnPoint.position.y);
-            }
-            if (spawnPoint.localPosition.y == 100 || spawnPoint.localPosition.y == -100)
-            {
-                int range = UnityEngine.Random.Range(-100, 101);
-                position = new Vector2(spawnPoint.position.x, spawnPoint.position.y + range);
-            }
-
-            return position;
+            return _enemySpawnPositionRegistrator.GetSpawnPointsForType(spawnType);
         }
 
-        public void StartWave(List<EnemySpawnData> enemyDatas)
+        private Vector2 GetDirectionPosition(TargetType targetType, Vector2 spawnPosition)
         {
-            _currentWaveEnemies = enemyDatas;
+            if(targetType == TargetType.Player) 
+            {
+                return _player.transform.position;
+            }
+            else 
+            {
+                return _enemySpawnPositionRegistrator.GetOppositePosition(spawnPosition);
+            }
         }
 
-        private EnemyData GetEnemyData(EnemyType enemyType)
+        public void StartWave(EnemySpawnData[] enemyDatas, float spawnDelay) 
+        {
+            _currentWaveEnemies = new List<EnemySpawnData>();
+            _spawnDelay = spawnDelay;
+            _currentWaveEnemies.AddRange(enemyDatas);
+            _isCanSpawn = true;
+            StartCoroutine(SpawnEnemiesRoutine());
+        }
+
+        private EnemyData GetEnemyData(EnemyType enemyType) 
         {
             return _gameplayData.GetEnemiesByType(enemyType);
         }
 
-        private EnemySpawnData GetRandomEnemyFromWave()
+        private EnemySpawnData GetEnemyFromWave()
         {
-            //Maybe later change on special Random class with weight
+            if (_currentWaveEnemies.Count == 0)
+            {
+                Debug.LogError("No enemies in the current wave.");
+                return null;
+            }
+
             int randomIndex = Random.Range(0, _currentWaveEnemies.Count);
             return _currentWaveEnemies[randomIndex];
         }
 
-        private Enemy Preload() => Instantiate(_enemyPrefab);
+        private Enemy Preload() => Instantiate(_enemyPrefab, _enemyParent);
 
-        public void GetAction(Enemy enemy)
-        {
-            EnemySpawnData enemySpawn = GetRandomEnemyFromWave();
-            EnemyData enemyData = GetEnemyData(enemySpawn.enemyType);
-            enemy = _enemyFactory.CreateEnemy(enemyData, enemy, enemyData.BuilderType);
-            enemy.transform.position = GetSpawnPosition(enemySpawn.spawnType);
-            enemy.gameObject.SetActive(true);
-        }
+        private void GetReadyEnemy(Enemy enemy){}
 
-        public void ReturnAction(Enemy enemy)
+        private void BackEnemyToPool(Enemy enemy)
         {
             enemy.gameObject.SetActive(false);
         }
+
+        private void SpawnEnemy() 
+        {
+            if (_currentWaveEnemies.Count == 0)
+            {
+                Debug.LogError("No enemies in the list.");
+                return;
+            }
+            EnemySpawnData selectedEnemySpawnData = GetEnemyFromWave();
+            Enemy currentEnemy = _enemyPool.Get();
+            EnemyData enemyData = GetEnemyData(selectedEnemySpawnData.enemyType);
+            List<Transform> spawnPoints = GetSpawnPosition(selectedEnemySpawnData.spawnType);
+
+            foreach(var spawnPoint in spawnPoints) 
+            {
+                Vector2 directionPosition = GetDirectionPosition(selectedEnemySpawnData.targetType, spawnPoint.position);
+                ConstractEnemy(currentEnemy, enemyData, spawnPoint.position, directionPosition);
+            }
+        }
+
+        private void ConstractEnemy(Enemy enemy, EnemyData enemyData, Vector2 spawnPosition, Vector2 directPosition)
+        {
+            enemy.transform.position = spawnPosition;
+            enemy = _enemyFactory.CreateEnemy(enemyData, enemy, BackEnemyToPool, _player.transform, directPosition, enemyData.BuilderType);
+            enemy.gameObject.SetActive(true);
+        }
+
+        private IEnumerator SpawnEnemiesRoutine()
+        {
+            while (_isCanSpawn)
+            {
+                SpawnEnemy();
+                yield return new WaitForSeconds(_spawnDelay);
+            }
+        }
     }
 }
+

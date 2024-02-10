@@ -70,27 +70,51 @@ namespace TandC.Settings
         Saw,
     }
 
+    public enum SpawnPositionType
+    {
+        CornerTopLeft,
+        CornerTopRight,
+        CornerBottomLeft,
+        CornerBottomRight,
+        HorizontalTopLeft,
+        HorizontalTopCenter,
+        HorizontalTopRight,
+        HorizontalBottomLeft,
+        HorizontalBottomCenter,
+        HorizontalBottomRight,
+        VerticalLeftTop,
+        VerticalLeftCenter,
+        VerticalLeftBottom,
+        VerticalRightTop,
+        VerticalRightCenter,
+        VerticalRightBottom
+    }
+
+    public enum TargetType
+    {
+        Player,
+        RandomPosition,
+        OpositionPosition,
+    }
+
+    public enum DropItemRareType
+    {
+        DefaultDrop,
+        OnlyExpirienceDrop,
+        RareDrop,
+        BossDrop,
+    }
+
     public enum SpawnType
     {
-        SpawnFrontPlayer,
-        EnemySpawnPosition_0,
-        EnemySpawnPosition_1,
-        EnemySpawnPosition_2,
-        EnemySpawnPosition_3,
-        EnemySpawnPosition_4,
-        EnemySpawnPosition_5,
-        EnemySpawnPosition_6,
-        EnemySpawnPosition_7,
-        EnemySpawnPosition_8,
-        EnemySpawnPosition_9,
-        EnemySpawnPosition_10,
-        EnemySpawnPosition_11,
-        Random,
-        Circle,
-        UpperPosition,
-        DownPosition,
-        LeftPosition,
-        RightPosition,
+        RandomSpawn,
+        CircleSpawn,
+        AllTopHorizontalSpawn,
+        AllBottomHorizontalSpawn,
+        AllRightVerticalSpawn,
+        AllLeftVerticalSpawn,
+        SpawnByLineOnOnePisition,
+        SpawnOnPlayerDirectionm,
     }
 
     public enum MaterialTypes

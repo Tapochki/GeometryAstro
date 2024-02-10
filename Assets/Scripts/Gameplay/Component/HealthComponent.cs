@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace TandC.Gameplay
+namespace TandC.Gameplay 
 {
     public class HealthComponent
     {
@@ -11,9 +11,7 @@ namespace TandC.Gameplay
         protected Action _onDeathEvent;
         protected Action _onHealthChageEvent;
 
-        protected GameObject _gameObject;
-
-        public HealthComponent(float maxHealth, Action onDeathEvent, Action onHealthChageEvent)
+        public HealthComponent(float maxHealth, Action onDeathEvent, Action onHealthChageEvent) 
         {
             _maxHealth = _currentHealth = maxHealth;
             _onDeathEvent = onDeathEvent;
@@ -35,7 +33,6 @@ namespace TandC.Gameplay
 
         protected virtual void Die()
         {
-            _gameObject.SetActive(false);
             _onDeathEvent?.Invoke();
         }
     }
@@ -45,15 +42,13 @@ namespace TandC.Gameplay
         public HealthWithViewComponent(float maxHealth, Action onDeathEvent, Action<float, float> onHealthChangeEvent) : base(maxHealth, onDeathEvent, null)
         {
             _onHealthChageEvent = () => onHealthChangeEvent?.Invoke(_currentHealth, _maxHealth);
+            _onHealthChageEvent.Invoke();
         }
     }
 
     public class HealedHealthComponent : HealthWithViewComponent
     {
-        public HealedHealthComponent(float maxHealth, Action onDeathEvent, Action<float, float> onHealthChangeEvent) : base(maxHealth, onDeathEvent, onHealthChangeEvent)
-        {
-        }
-
+        public HealedHealthComponent(float maxHealth, Action onDeathEvent, Action<float, float> onHealthChangeEvent) : base(maxHealth, onDeathEvent, onHealthChangeEvent) { }
         public void Heal(float amount)
         {
             _currentHealth = Mathf.Min(_currentHealth + amount, _maxHealth);
@@ -61,3 +56,4 @@ namespace TandC.Gameplay
         }
     }
 }
+

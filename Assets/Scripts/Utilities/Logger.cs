@@ -19,11 +19,11 @@ namespace TandC.Utilities
                     break;
 
                 case LogTypes.Warning:
-                    Debug.Log("<color=#fdffb6>[WARNING]</color> " + message);
+                    Debug.LogWarning("<color=#fdffb6>[WARNING]</color> " + message);
                     break;
 
                 case LogTypes.Error:
-                    Debug.Log("<color=#f72585>[ERROR]</color> " + message);
+                    Debug.LogError("<color=#f72585>[ERROR]</color> " + message);
                     break;
 
                 case LogTypes.Debug:

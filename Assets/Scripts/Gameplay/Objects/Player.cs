@@ -25,12 +25,18 @@ namespace TandC.Gameplay
 
         private void Start()
         {
+            _onHealthChageEvent += (currentHealth, maxHealth) => _eventBusHolder.EventBus.Raise(new PlayerHealthChangeEvent(currentHealth, maxHealth));
+            _onPlayerDieEvent += () => _eventBusHolder.EventBus.Raise(new PlayerDieEvent());
+
             _moveComponent = new MoveComponent(gameObject.GetComponent<Rigidbody2D>());
             _mainRotateComponent = new PlayerRotateComponent(_bodyTransform);
             _healthComponent = new HealedHealthComponent(100f, _onPlayerDieEvent, _onHealthChageEvent);
 
-            _onPlayerDieEvent += () => _eventBusHolder.EventBus.Raise(new PlayerDieEvent());
-            _onHealthChageEvent += (currentHealth, maxHealth) => _eventBusHolder.EventBus.Raise(new PlayerHealthChangeEvent(currentHealth, maxHealth));
+        }
+
+        private void UpdatePlayerHealth(float maxValue, float minValue) 
+        {
+            Debug.LogError(maxValue + minValue);
         }
 
         private void FixedUpdate()
@@ -43,6 +49,11 @@ namespace TandC.Gameplay
             else if (_inputHandler.MoveDirection != Vector2.zero)
             {
                 _mainRotateComponent.Rotation(_inputHandler.MoveDirection);
+            }
+
+            if (Input.GetKeyDown(KeyCode.Space)) 
+            {
+                _healthComponent.TakeDamage(10);
             }
         }
 

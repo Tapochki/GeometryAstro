@@ -11,10 +11,9 @@ GameObject:
   - component: {fileID: 218965217888290086}
   - component: {fileID: 7111864115057471748}
   - component: {fileID: 678568841831051725}
-  - component: {fileID: 5110268834939052519}
   - component: {fileID: 242339747202839596}
   - component: {fileID: 7568523497335778425}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: BasicEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -120,28 +119,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!95 &5110268834939052519
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 218965217888290087}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!61 &242339747202839596
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -210,7 +187,7 @@ GameObject:
   m_Component:
   - component: {fileID: 294387566186552440}
   - component: {fileID: 7559705392752510068}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: AdditionalModel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -338,6 +315,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Particle_Death
       objectReference: {fileID: 0}
+    - target: {fileID: 4953662319019140615, guid: c65a1f763cb2ad147bc96884342a2755, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4953662319019140615, guid: c65a1f763cb2ad147bc96884342a2755, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4953662319359027391, guid: c65a1f763cb2ad147bc96884342a2755, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -359,6 +348,14 @@ PrefabInstance:
     - target: {fileID: 1345950679473157435, guid: 03c51be6666e1e6469f1b9df62914da1, type: 3}
       propertyPath: m_Name
       value: DamagePointVFX
+      objectReference: {fileID: 0}
+    - target: {fileID: 1345950679473157435, guid: 03c51be6666e1e6469f1b9df62914da1, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1345950679473157435, guid: 03c51be6666e1e6469f1b9df62914da1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2484190969094126895, guid: 03c51be6666e1e6469f1b9df62914da1, type: 3}
       propertyPath: m_LocalPosition.x
