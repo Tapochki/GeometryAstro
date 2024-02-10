@@ -6,14 +6,14 @@ namespace TandC.Gameplay
 {
     public interface IEnemyBuilder
     {
-        Enemy Build(Enemy enemy, EnemyData data, Action<Enemy> deathEvent, Transform target, Vector2 rotationDirection);
+        Enemy Build(Enemy enemy, EnemyData data, Action<Enemy> deathEvent, Transform target, Vector2 rotationDirection, ItemSpawner itemSpawner);
     }
     public class DefaultEnemyBuilder : IEnemyBuilder
     {
-        public Enemy Build(Enemy enemy, EnemyData data, Action<Enemy> backToPoolEvent, Transform target, Vector2 rotationDirection)
+        public Enemy Build(Enemy enemy, EnemyData data, Action<Enemy> backToPoolEvent, Transform target, Vector2 rotationDirection, ItemSpawner itemSpawner)
         {
             enemy.GetComponent<SpriteRenderer>().sprite = data.mainSprite;
-            enemy.SetData(data);
+            enemy.SetData(data, itemSpawner);
             enemy.SetTargetDirection(target);
             enemy.SetTargetRotation(rotationDirection);
             enemy.SetBackToPoolEvent(backToPoolEvent);
@@ -27,12 +27,12 @@ namespace TandC.Gameplay
 
     public class SawEnemyBuilder : IEnemyBuilder
     {
-        public Enemy Build(Enemy enemy, EnemyData data, Action<Enemy> backToPoolEvent, Transform target, Vector2 rotationDirection)
+        public Enemy Build(Enemy enemy, EnemyData data, Action<Enemy> backToPoolEvent, Transform target, Vector2 rotationDirection, ItemSpawner itemSpawner)
         {
             enemy.GetComponent<SpriteRenderer>().sprite = data.mainSprite;
             Transform enemyModel = enemy.transform.Find("Model");
             enemyModel.GetComponent<SpriteRenderer>().sprite = data.enemyAdditionalSprite;
-            enemy.SetData(data);
+            enemy.SetData(data, itemSpawner);
             enemy.SetTargetDirection(target);
             enemy.SetTargetRotation(rotationDirection);
             enemy.SetBackToPoolEvent(backToPoolEvent);

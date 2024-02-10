@@ -47,7 +47,6 @@ namespace TandC.Gameplay
         {
             for(int i = 0; i < _activatedDirection; i++) 
             {
-                Debug.LogError(0);
                 GetReadyBullet(_shootDirections[i]);
             }
             StartReload();

@@ -16,9 +16,12 @@ namespace TandC.Gameplay
         protected AttackComponent _attackComponent;
         protected EnemyData _data;
         protected Action<Enemy> _enemyBackToPoolEvent;
-        public void SetData(EnemyData data) 
+
+        private ItemSpawner _itemSpawner;//TODO change inject later
+        public void SetData(EnemyData data, ItemSpawner itemSpawner) 
         {
             _data = data;
+            _itemSpawner = itemSpawner;
         }
 
         public void SetBackToPoolEvent(Action<Enemy> enemyBackToPoolEvent) 
@@ -89,6 +92,7 @@ namespace TandC.Gameplay
             //TODO start VFX effect
             //TODO spawn item afterDeath
             _enemyBackToPoolEvent?.Invoke(this);
+            _itemSpawner.DropItem(_data.droperType, gameObject.transform.position);
         }
     }
 }

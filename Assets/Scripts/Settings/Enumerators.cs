@@ -97,6 +97,14 @@ namespace TandC.Settings
         OpositionPosition,
     }
 
+    public enum DropItemRareType
+    {
+        DefaultDrop,
+        OnlyExpirienceDrop,
+        RareDrop,
+        BossDrop,
+    }
+
     public enum SpawnType
     {
         RandomSpawn,

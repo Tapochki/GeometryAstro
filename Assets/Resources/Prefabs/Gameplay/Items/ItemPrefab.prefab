@@ -11,13 +11,13 @@ GameObject:
   - component: {fileID: 5560601010963558593}
   - component: {fileID: 6515653615684624768}
   - component: {fileID: 5412216683555334488}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Particle_Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5560601010963558593
 Transform:
   m_ObjectHideFlags: 0
@@ -4845,8 +4845,9 @@ GameObject:
   - component: {fileID: 7963918631549896521}
   - component: {fileID: 5666435587778584723}
   - component: {fileID: 3496093743789411767}
-  m_Layer: 6
-  m_Name: SmallExperiance
+  - component: {fileID: 8400502660207885777}
+  m_Layer: 0
+  m_Name: ItemPrefab
   m_TagString: Items
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4986,6 +4987,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &8400502660207885777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4128430794202135926}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8a4b9a285af52a4c973ab293030f3de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5413396871213546916
 GameObject:
   m_ObjectHideFlags: 0
@@ -4997,13 +5010,13 @@ GameObject:
   - component: {fileID: 4509511823016255195}
   - component: {fileID: 7957769131001236684}
   - component: {fileID: 3628524648515246787}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Particles_Lines
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4509511823016255195
 Transform:
   m_ObjectHideFlags: 0

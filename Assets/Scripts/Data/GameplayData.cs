@@ -291,6 +291,7 @@ namespace TandC.Data
         public float movementSpeed;
         public EnemyBuilderType BuilderType;
         public EnemyType type;
+        public DropItemRareType droperType;
         public Sprite mainSprite;
         public Sprite enemyAdditionalSprite;
     }
@@ -310,6 +311,7 @@ namespace TandC.Data
         public int itemValueMax;
         public float weight;
         public GameObject prefab;
+        public Sprite sprite;
         public ItemType type;
         public bool isForBoss;
 
