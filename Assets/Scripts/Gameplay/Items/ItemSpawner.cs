@@ -18,9 +18,8 @@ namespace TandC.Gameplay
         private ItemView _itemViewPrefab;
         [SerializeField]
         private Transform _itemParent;
-        [SerializeField]
-        private Player _player;
 
+        private Player _player;
         private ItemFactory _itemfactory;
         private Dictionary<DropItemRareType, RandomDroper<ItemData>> _itemsRandomDropers;
         private RandomDropItemFactory _randomDroperFactory;
@@ -29,9 +28,10 @@ namespace TandC.Gameplay
         private ObjectPool<ItemView> _itemPool;
 
         [Inject]
-        private void Construct(ItemFactory itemFactory) 
+        private void Construct(ItemFactory itemFactory, Player player) 
         {
             _itemfactory = itemFactory;
+            _player = player;
         }
 
         private void Start()
