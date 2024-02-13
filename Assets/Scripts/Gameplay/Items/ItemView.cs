@@ -7,7 +7,7 @@ namespace TandC.Gameplay
 {
     public class ItemView : MonoBehaviour
     {
-        private Action<ItemView> _onItemCollected;
+        private Action<ItemView, bool> _onItemCollected;
         private ItemModel _itemModel;
         private IMove _moveComponent;
 
@@ -25,7 +25,7 @@ namespace TandC.Gameplay
             MoveToPlayer();
         }
 
-        public void Init(Action<ItemView> backToPoolEvent, Transform player, Sprite itemSprite, ItemModel itemModel)
+        public void Init(Action<ItemView,bool> backToPoolEvent, Transform player, Sprite itemSprite, ItemModel itemModel)
         {
             gameObject.GetComponent<SpriteRenderer>().sprite = itemSprite;
             _onItemCollected = backToPoolEvent;
@@ -47,7 +47,7 @@ namespace TandC.Gameplay
         {
             if (collision.gameObject.TryGetComponent(out Player player))
             {
-                _onItemCollected?.Invoke(this);
+                _onItemCollected?.Invoke(this, false);
                 _itemModel.ReleseItem();
             }
         }

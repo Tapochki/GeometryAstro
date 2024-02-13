@@ -73,7 +73,7 @@ namespace TandC.Gameplay
 
         private void GetItem(ItemView item) { }
 
-        private void BackItemToPool(ItemView item) { item.gameObject.SetActive(false); }
+        private void BackItemToPool(ItemView item, bool isFirstInizialization) { item.gameObject.SetActive(false); }
 
     }
     public class RandomDropItemFactory

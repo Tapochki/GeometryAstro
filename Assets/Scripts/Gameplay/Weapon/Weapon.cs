@@ -80,7 +80,7 @@ namespace TandC.Gameplay
 
         protected void GetReadyBullet(Bullet bullet) { }
 
-        protected void BackEnemyToPool(Bullet bullet) {bullet.gameObject.SetActive(false);}
+        protected void BackEnemyToPool(Bullet bullet, bool isFirstInizialization) {bullet.gameObject.SetActive(false);}
 
         [Serializable]
         protected class ShootDirection

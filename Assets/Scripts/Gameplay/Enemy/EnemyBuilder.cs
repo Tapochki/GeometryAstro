@@ -10,7 +10,7 @@ namespace TandC.Gameplay
     }
     public class DefaultEnemyBuilder : IEnemyBuilder
     {
-        public Enemy Build(Enemy enemy, EnemyData data, Action<Enemy> backToPoolEvent, Transform target, Vector2 rotationDirection)
+        public Enemy Build(Enemy enemy, EnemyData data, Action<Enemy, bool> backToPoolEvent, Transform target, Vector2 rotationDirection)
         {
             enemy.GetComponent<SpriteRenderer>().sprite = data.mainSprite;
             enemy.SetData(data);
