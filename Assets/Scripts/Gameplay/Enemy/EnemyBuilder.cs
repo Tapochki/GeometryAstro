@@ -6,7 +6,7 @@ namespace TandC.Gameplay
 {
     public interface IEnemyBuilder
     {
-        Enemy Build(Enemy enemy, EnemyData data, Action<Enemy> deathEvent, Transform target, Vector2 rotationDirection);
+        Enemy Build(Enemy enemy, EnemyData data, Action<Enemy, bool> deathEvent, Transform target, Vector2 rotationDirection);
     }
     public class DefaultEnemyBuilder : IEnemyBuilder
     {
@@ -27,7 +27,7 @@ namespace TandC.Gameplay
 
     public class SawEnemyBuilder : IEnemyBuilder
     {
-        public Enemy Build(Enemy enemy, EnemyData data, Action<Enemy> backToPoolEvent, Transform target, Vector2 rotationDirection)
+        public Enemy Build(Enemy enemy, EnemyData data, Action<Enemy, bool> backToPoolEvent, Transform target, Vector2 rotationDirection)
         {
             enemy.GetComponent<SpriteRenderer>().sprite = data.mainSprite;
             Transform enemyModel = enemy.transform.Find("Model");

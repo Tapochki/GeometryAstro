@@ -23,18 +23,11 @@ namespace TandC.SceneInstallers
             InstallGameServiceBindings();
             InstallUiBindings();
             InstalPlayerBindings();
-            InstallEnemyPrefabBindings();
         }
 
         private void InstallUiBindings()
         {
             Container.Bind<PlayerHealthView>().FromInstance(_playerHealthView).AsSingle();
-        }
-
-        private void InstallEnemyPrefabBindings()
-        {
-            //Container.Bind<Enemy>().FromComponentInNewPrefab(_enemyPrefab).AsCached();
-            Container.BindFactory<Enemy, EnemyFactory>().FromComponentInNewPrefab(_enemyPrefab).AsSingle();
         }
 
         private void InstallGameServiceBindings() 
@@ -47,6 +40,8 @@ namespace TandC.SceneInstallers
             Container.Bind<EventBusHolder>().FromComponentInHierarchy().AsSingle();
             Container.Bind<EnemySpawnPositionService>().FromComponentInHierarchy().AsSingle();
             Container.Bind<EnemySpawner>().FromComponentInHierarchy().AsSingle();
+            Container.Bind<EnemyFactory>().FromComponentInHierarchy().AsSingle();
+            Container.Bind<EnemyDeathProcessor>().FromComponentInHierarchy().AsSingle();
         }
 
         private void InstalPlayerBindings()

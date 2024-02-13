@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using TandC.Utilities;
+using UnityEngine;
 
 namespace TandC.Gameplay 
 {
@@ -34,6 +35,7 @@ namespace TandC.Gameplay
             }
 
             float roll = UnityEngine.Random.Range(0f, _totalWeight);
+            Debug.LogError(12);
             foreach (var item in _dropItemsList)
             {
                 if (item.Weight >= roll)

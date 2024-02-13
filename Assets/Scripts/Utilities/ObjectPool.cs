@@ -29,12 +29,12 @@ namespace TandC.Utilities
 
         private readonly Func<T> _preloadFunc;
         private readonly Action<T> _getAction;
-        private readonly Action<T> _returnAction;
+        private readonly Action<T, bool> _returnAction;
 
         private Queue<T> _pool;
         private List<T> _active;
 
-        public ObjectPool(Func<T> preloadFunc, Action<T> getAction, Action<T> returnAction, int preloadCount)
+        public ObjectPool(Func<T> preloadFunc, Action<T> getAction, Action<T, bool> returnAction, int preloadCount)
         {
             _preloadFunc = preloadFunc;
             _getAction = getAction;
@@ -51,7 +51,7 @@ namespace TandC.Utilities
 
             for (int i = 0; i < preloadCount; i++)
             {
-                Return(preloadFunc());
+                Return(preloadFunc(), true);
             }
         }
 
@@ -64,14 +64,14 @@ namespace TandC.Utilities
             return item;
         }
 
-        public void Return(T item)
+        public void Return(T item, bool isInitializeReturn)
         {
             if (item == null)
             {
                 return;
             }
 
-            _returnAction(item);
+            _returnAction(item, isInitializeReturn);
             _pool.Enqueue(item);
             _active.Remove(item);
         }
@@ -80,7 +80,7 @@ namespace TandC.Utilities
         {
             foreach (T item in _active.ToArray())
             {
-                Return(item);
+                Return(item, true);
             }
         }
 

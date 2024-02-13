@@ -57,6 +57,7 @@ namespace TandC.Gameplay
         public void DropItem(DropItemRareType type, Vector2 spawnPosition) 
         {
             ItemData itemData = _itemsRandomDropers[type].GetDrop();
+            Debug.LogError(itemData);
             if(itemData == null) 
             {
                 return;
@@ -90,7 +91,7 @@ namespace TandC.Gameplay
             {
                 case DropItemRareType.DefaultDrop:
                     return CreateRandomDroper(new List<RandomDropItem<ItemData>>(){
-                    { CreateEmptyDropItem(10) },
+                    { CreateEmptyDropItem(1) },
                     { CreateRandomDropItem(ItemType.SmallXp, 100) },
                     { CreateRandomDropItem(ItemType.Medecine, 10) },
                 });

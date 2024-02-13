@@ -19,6 +19,7 @@ namespace TandC.Gameplay
 
         private Player _player;
         private EnemyFactory _enemyFactory;
+        private EnemyDeathProcessor _enemyDeathProcessor;
         private EnemySpawnPositionService _enemySpawnPositionRegistrator;
         private ObjectPool<Enemy> _enemyPool;
         private List<EnemySpawnData> _currentWaveEnemies;
@@ -26,11 +27,12 @@ namespace TandC.Gameplay
         private bool _isCanSpawn;
 
         [Inject]
-        private void Construct(EnemyFactory enemyFactory, EnemySpawnPositionService enemySpawnPositionRegistrator, Player player)
+        private void Construct(EnemyFactory enemyFactory, EnemySpawnPositionService enemySpawnPositionRegistrator, EnemyDeathProcessor enemyDeathProcessor, Player player)
         {
             _player = player;
             _enemyFactory = enemyFactory;
             _enemySpawnPositionRegistrator = enemySpawnPositionRegistrator;
+            _enemyDeathProcessor = enemyDeathProcessor;
         }
 
         public void Start()
@@ -86,8 +88,10 @@ namespace TandC.Gameplay
 
         private void GetReadyEnemy(Enemy enemy){}
 
-        private void BackEnemyToPool(Enemy enemy)
+        private void BackEnemyToPool(Enemy enemy, bool isInitializeReturn)
         {
+            if(!isInitializeReturn)
+                _enemyDeathProcessor.EnemyDeathHandler(enemy);
             enemy.gameObject.SetActive(false);
         }
 

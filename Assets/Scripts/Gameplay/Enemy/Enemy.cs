@@ -16,22 +16,16 @@ namespace TandC.Gameplay
         protected IRotation _rotationComponent;
         protected HealthComponent _healthComponent;
         protected AttackComponent _attackComponent;
-        protected EnemyData _data;
-        protected Action<Enemy> _enemyBackToPoolEvent;
-        private ItemSpawner _itemSpawner;
+        protected Action<Enemy, bool> _enemyBackToPoolEvent;
 
-        [Inject]
-        private void Construct(ItemSpawner itemSpawner)
-        {
-            Debug.LogError(12);
-            _itemSpawner = itemSpawner;
-        }
+        public EnemyData EnemyData { get; private set; }
+
         public void SetData(EnemyData data) 
         {
-            _data = data;
+            EnemyData = data;
         }
 
-        public void SetBackToPoolEvent(Action<Enemy> enemyBackToPoolEvent) 
+        public void SetBackToPoolEvent(Action<Enemy, bool> enemyBackToPoolEvent) 
         {
             _enemyBackToPoolEvent = enemyBackToPoolEvent;
         }
@@ -68,7 +62,7 @@ namespace TandC.Gameplay
 
         public void Update()
         {
-            _moveComponent.Move(_target.position, _data.movementSpeed);
+            _moveComponent.Move(_target.position, EnemyData.movementSpeed);
             _rotationComponent.Rotation(_rotateDirection);
             _attackComponent.Update();
         }
@@ -96,10 +90,7 @@ namespace TandC.Gameplay
 
         public void ProccesingEnemyDeath() 
         {
-            //TODO start VFX effect
-            //TODO spawn item afterDeath
-            _enemyBackToPoolEvent?.Invoke(this);
-            _itemSpawner.DropItem(_data.droperType, gameObject.transform.position);
+            _enemyBackToPoolEvent?.Invoke(this, false);
         }
     }
 }
