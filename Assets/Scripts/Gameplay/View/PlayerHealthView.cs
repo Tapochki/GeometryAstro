@@ -2,6 +2,7 @@ using TandC.EventBus;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 namespace TandC.Gameplay 
 {
@@ -10,11 +11,13 @@ namespace TandC.Gameplay
 
         [SerializeField] private Image _healthBar;
         [SerializeField] private TextMeshProUGUI _healthText;
-        [SerializeField] private EventBusHolder _eventBusHolder;
 
-        private void Awake()
+        private EventBusHolder _eventBusHolder;
+
+        [Inject]
+        private void Construct(EventBusHolder eventBusHolder)
         {
-            RegisterEvent();
+            _eventBusHolder = eventBusHolder;
         }
 
         private void RegisterEvent()

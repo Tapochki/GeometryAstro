@@ -1,7 +1,9 @@
 using System;
 using TandC.Data;
+using TandC.EventBus;
 using UnityEngine;
 using UnityEngine.UIElements;
+using Zenject;
 using static UnityEditor.Experimental.GraphView.GraphView;
 
 namespace TandC.Gameplay 
@@ -16,12 +18,17 @@ namespace TandC.Gameplay
         protected AttackComponent _attackComponent;
         protected EnemyData _data;
         protected Action<Enemy> _enemyBackToPoolEvent;
+        private ItemSpawner _itemSpawner;
 
-        private ItemSpawner _itemSpawner;//TODO change inject later
-        public void SetData(EnemyData data, ItemSpawner itemSpawner) 
+        [Inject]
+        private void Construct(ItemSpawner itemSpawner)
+        {
+            Debug.LogError(12);
+            _itemSpawner = itemSpawner;
+        }
+        public void SetData(EnemyData data) 
         {
             _data = data;
-            _itemSpawner = itemSpawner;
         }
 
         public void SetBackToPoolEvent(Action<Enemy> enemyBackToPoolEvent) 

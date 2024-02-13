@@ -2,15 +2,17 @@
 using TandC.Data;
 using TandC.EventBus;
 using UnityEngine;
+using Zenject;
 
 namespace TandC.Gameplay
 {
     public class Player : MonoBehaviour
     {
         [SerializeField] private float _moveSpeed;
-        [SerializeField] private InputHandler _inputHandler;
-        [SerializeField] private EventBusHolder _eventBusHolder;
         [SerializeField] private Transform _bodyTransform;
+
+        private InputHandler _inputHandler;
+        private EventBusHolder _eventBusHolder;
 
         private IMove _moveComponent;
         private IRotation _mainRotateComponent;
@@ -22,6 +24,13 @@ namespace TandC.Gameplay
 
         private Action<float, float> _onHealthChageEvent;
         private Action _onPlayerDieEvent;
+
+        [Inject]
+        private void Construct(InputHandler inputHandler, EventBusHolder eventBusHolder)
+        {
+            _inputHandler = inputHandler;
+            _eventBusHolder = eventBusHolder;
+        }
 
         private void Start()
         {

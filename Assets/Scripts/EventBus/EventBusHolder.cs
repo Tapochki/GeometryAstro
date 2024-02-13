@@ -1,4 +1,6 @@
+using TandC.Gameplay;
 using UnityEngine;
+using Zenject;
 
 namespace TandC.EventBus
 {
@@ -6,6 +8,10 @@ namespace TandC.EventBus
     {
         public EventBus EventBus { get; private set; }
 
-        private void Awake() => EventBus = new EventBus();
+        [Inject]
+        private void Construct()
+        {
+            EventBus = new EventBus();
+        }
     }
 }

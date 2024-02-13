@@ -5,6 +5,8 @@ using TandC.Data;
 using TandC.Settings;
 using TandC.Utilities;
 using UnityEngine;
+using Zenject;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 namespace TandC.Gameplay
 {
@@ -12,17 +14,24 @@ namespace TandC.Gameplay
     {
         private const int ENEMY_PRELOAD_COUNT = 200;
         [SerializeField] private GameplayData _gameplayData;
-        [SerializeField] private EnemyFactory _enemyFactory;
-        [SerializeField] private EnemySpawnPositionService _enemySpawnPositionRegistrator;
         [SerializeField] private Enemy _enemyPrefab;
-        [SerializeField] private Player _player;
         [SerializeField] private Transform _enemyParent;
 
-
+        private Player _player;
+        private EnemyFactory _enemyFactory;
+        private EnemySpawnPositionService _enemySpawnPositionRegistrator;
         private ObjectPool<Enemy> _enemyPool;
         private List<EnemySpawnData> _currentWaveEnemies;
         private float _spawnDelay;
         private bool _isCanSpawn;
+
+        [Inject]
+        private void Construct(EnemyFactory enemyFactory, EnemySpawnPositionService enemySpawnPositionRegistrator, Player player)
+        {
+            _player = player;
+            _enemyFactory = enemyFactory;
+            _enemySpawnPositionRegistrator = enemySpawnPositionRegistrator;
+        }
 
         public void Start()
         {

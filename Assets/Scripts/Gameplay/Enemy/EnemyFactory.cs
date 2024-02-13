@@ -2,17 +2,16 @@
 using TandC.Data;
 using TandC.Settings;
 using UnityEngine;
+using Zenject;
 
 namespace TandC.Gameplay
 {
-    public class EnemyFactory : MonoBehaviour
+    public class EnemyFactory : PlaceholderFactory<Enemy>
     {
-        [SerializeField]
-        private ItemSpawner _spawner;
         public Enemy CreateEnemy(EnemyData data, Enemy enemy, Action<Enemy> backToPoolEvent, Transform target, Vector2 direction, EnemyBuilderType type)
         {
             IEnemyBuilder builder = GetBuilder(type);        
-            return builder.Build(enemy, data, backToPoolEvent, target, direction, _spawner);
+            return builder.Build(enemy, data, backToPoolEvent, target, direction);
         }
 
         private IEnemyBuilder GetBuilder(EnemyBuilderType type)

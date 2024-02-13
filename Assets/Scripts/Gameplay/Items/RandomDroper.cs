@@ -21,7 +21,6 @@ namespace TandC.Gameplay
             float totalWeight = 0f;
             foreach (var item in _dropItemsList)
             {
-                Logger.Log($"{item.Weight}", Settings.LogTypes.Error);
                 totalWeight += item.Weight;
             }
             return totalWeight;
@@ -35,7 +34,6 @@ namespace TandC.Gameplay
             }
 
             float roll = UnityEngine.Random.Range(0f, _totalWeight);
-            Logger.Log($"{roll} {_totalWeight}", Settings.LogTypes.Error);
             foreach (var item in _dropItemsList)
             {
                 if (item.Weight >= roll)

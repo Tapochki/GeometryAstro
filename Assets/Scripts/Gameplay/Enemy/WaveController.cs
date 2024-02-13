@@ -1,17 +1,25 @@
 using TandC.Data;
 using UnityEngine;
+using Zenject;
 
 namespace TandC.Gameplay
 {
     public class WaveController : MonoBehaviour
     {
         [SerializeField] private GameplayData _gameplayData;
-        [SerializeField] private EnemySpawner _enemySpawner;
+
+        private EnemySpawner _enemySpawner;
 
         private float _cooldownToSpawnEnemy;
 
         private Phase _currentPhase;
         public int CurrentPhaseIndex { get; private set; }
+
+        [Inject]
+        private void Construct(EnemySpawner enemySpawner)
+        {
+            _enemySpawner = enemySpawner;
+        }
 
         public void Start()
         {
@@ -31,7 +39,6 @@ namespace TandC.Gameplay
             //}
             CurrentPhaseIndex = phaseId;
             _currentPhase = _gameplayData.GetPhaseById(phaseId);
-
             _enemySpawner.StartWave(_currentPhase.enemyInPhase, _currentPhase.enemySpawnDelay);
         }
 

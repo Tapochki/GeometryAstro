@@ -4,6 +4,7 @@ using TandC.Data;
 using TandC.Settings;
 using TandC.Utilities;
 using UnityEngine;
+using Zenject;
 
 namespace TandC.Gameplay 
 {
@@ -19,14 +20,19 @@ namespace TandC.Gameplay
         private Transform _itemParent;
         [SerializeField]
         private Player _player;
-        [SerializeField]
-        private ItemFactory _itemfactory;
 
+        private ItemFactory _itemfactory;
         private Dictionary<DropItemRareType, RandomDroper<ItemData>> _itemsRandomDropers;
         private RandomDropItemFactory _randomDroperFactory;
 
 
         private ObjectPool<ItemView> _itemPool;
+
+        [Inject]
+        private void Construct(ItemFactory itemFactory) 
+        {
+            _itemfactory = itemFactory;
+        }
 
         private void Start()
         {
