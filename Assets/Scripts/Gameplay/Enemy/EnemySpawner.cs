@@ -94,7 +94,7 @@ namespace TandC.Gameplay
         private void EnemyDeathProcess(Enemy enemy) 
         {
             _enemyDeathProcessor.EnemyDeathHandler(enemy);
-            BackEnemyToPool(enemy);
+            _enemyPool.Return(enemy);
         }
 
         private void SpawnEnemy() 

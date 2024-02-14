@@ -59,7 +59,7 @@ namespace TandC.Gameplay
         protected virtual void GetReadyBullet(ShootDirection shotDirection) 
         {
             Bullet bullet = _bulletPool.Get();
-            bullet.Init(shotDirection.StartPosition.position, shotDirection.DirectionPosition.position, BackEnemyToPool, _currentBulletData, _currentWeaponData.baseDamage);
+            bullet.Init(shotDirection.StartPosition.position, shotDirection.DirectionPosition.position, ReturnToPool, _currentBulletData, _currentWeaponData.baseDamage);
             bullet.Activate();
         }
 
@@ -81,6 +81,11 @@ namespace TandC.Gameplay
         protected void GetReadyBullet(Bullet bullet) { }
 
         protected void BackEnemyToPool(Bullet bullet) {bullet.gameObject.SetActive(false);}
+
+        protected void ReturnToPool(Bullet bullet)
+        {
+            _bulletPool.Return(bullet);
+        }
 
         [Serializable]
         protected class ShootDirection

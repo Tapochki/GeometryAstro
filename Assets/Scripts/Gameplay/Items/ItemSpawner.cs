@@ -62,9 +62,14 @@ namespace TandC.Gameplay
                 return;
             }
             ItemView itemView = _itemPool.Get();
-            itemView.Init(BackItemToPool, _player.transform, itemData.sprite, _itemfactory.GetItemModel(itemData.type));
+            itemView.Init(ReturnToPool, _player.transform, itemData.sprite, _itemfactory.GetItemModel(itemData.type));
             itemView.transform.position = spawnPosition;
             itemView.gameObject.SetActive(true);
+        }
+
+        private void ReturnToPool(ItemView itemView) 
+        {
+            _itemPool.Return(itemView);
         }
 
         private ItemView Preload() => Instantiate(_itemViewPrefab, _itemParent);
