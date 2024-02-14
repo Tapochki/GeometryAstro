@@ -57,12 +57,10 @@ namespace TandC.Gameplay
         public void DropItem(DropItemRareType type, Vector2 spawnPosition) 
         {
             ItemData itemData = _itemsRandomDropers[type].GetDrop();
-            Debug.LogError(itemData);
             if(itemData == null) 
             {
                 return;
             }
-            Debug.LogError(itemData.type);
             ItemView itemView = _itemPool.Get();
             itemView.Init(BackItemToPool, _player.transform, itemData.sprite, _itemfactory.GetItemModel(itemData.type));
             itemView.transform.position = spawnPosition;
@@ -73,7 +71,7 @@ namespace TandC.Gameplay
 
         private void GetItem(ItemView item) { }
 
-        private void BackItemToPool(ItemView item, bool isFirstInizialization) { item.gameObject.SetActive(false); }
+        private void BackItemToPool(ItemView item) { item.gameObject.SetActive(false); }
 
     }
     public class RandomDropItemFactory

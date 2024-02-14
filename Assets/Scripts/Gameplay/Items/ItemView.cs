@@ -1,15 +1,14 @@
 using System;
-using TandC.Data;
-using TandC.Settings;
 using UnityEngine;
 
 namespace TandC.Gameplay 
 {
     public class ItemView : MonoBehaviour
     {
-        private Action<ItemView, bool> _onItemCollected;
+        private Action<ItemView> _onItemCollected;
         private ItemModel _itemModel;
         private IMove _moveComponent;
+        private IDoTweenAnimationComponent _doTweenAnimationComponent;
 
         private Transform _playerTransform;
 
@@ -18,6 +17,7 @@ namespace TandC.Gameplay
         private void Start()
         {
             _moveComponent = new MoveToTargetComponent(gameObject.GetComponent<Rigidbody2D>());
+            _doTweenAnimationComponent = new YournameDoTweenAnimation();
         }
 
         private void Update()
@@ -25,7 +25,7 @@ namespace TandC.Gameplay
             MoveToPlayer();
         }
 
-        public void Init(Action<ItemView,bool> backToPoolEvent, Transform player, Sprite itemSprite, ItemModel itemModel)
+        public void Init(Action<ItemView> backToPoolEvent, Transform player, Sprite itemSprite, ItemModel itemModel)
         {
             gameObject.GetComponent<SpriteRenderer>().sprite = itemSprite;
             _onItemCollected = backToPoolEvent;
@@ -37,18 +37,28 @@ namespace TandC.Gameplay
         {
             if (collision.gameObject.TryGetComponent(out ItemPickUper pickUper))
             {
-                _isMoveToPlayer = true;
+                _doTweenAnimationComponent.DoAnimation(gameObject, StartMoveToPlayer);
                 return;
             }
             PickByPlayer(collision);
+        }
+
+        private void StartMoveToPlayer() 
+        {
+            _isMoveToPlayer = true;
+        }
+
+        private void PickByPlayerFinish() 
+        {
+            _onItemCollected?.Invoke(this, false);
+            _itemModel.ReleseItem();
         }
 
         private void PickByPlayer(Collider2D collision) 
         {
             if (collision.gameObject.TryGetComponent(out Player player))
             {
-                _onItemCollected?.Invoke(this, false);
-                _itemModel.ReleseItem();
+                _doTweenAnimationComponent.DoAnimation(gameObject, PickByPlayerFinish);
             }
         }
 
@@ -56,7 +66,7 @@ namespace TandC.Gameplay
         {
             if (_isMoveToPlayer) 
             {
-                _moveComponent.Move(_playerTransform.position, 100f);
+                _moveComponent.Move(_playerTransform.position, 1000f);
             }
         }
     }

@@ -7,7 +7,7 @@ using UnityEngine;
 namespace TandC.Gameplay
 {
 
-    public class EnemySpawnPositionService : MonoBehaviour
+    public class EnemySpawnPositionService : MonoBehaviour, IEnemySpawnPositionService
     {
         [SerializeField] private Transform _playerDirectionSpawnPoint;
         [SerializeField] private Camera _camera;

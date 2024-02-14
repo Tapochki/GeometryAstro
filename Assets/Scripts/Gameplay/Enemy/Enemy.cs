@@ -16,7 +16,7 @@ namespace TandC.Gameplay
         protected IRotation _rotationComponent;
         protected HealthComponent _healthComponent;
         protected AttackComponent _attackComponent;
-        protected Action<Enemy, bool> _enemyBackToPoolEvent;
+        protected Action<Enemy> _enemyBackToPoolEvent;
 
         public EnemyData EnemyData { get; private set; }
 
@@ -25,7 +25,7 @@ namespace TandC.Gameplay
             EnemyData = data;
         }
 
-        public void SetBackToPoolEvent(Action<Enemy, bool> enemyBackToPoolEvent) 
+        public void SetBackToPoolEvent(Action<Enemy> enemyBackToPoolEvent) 
         {
             _enemyBackToPoolEvent = enemyBackToPoolEvent;
         }

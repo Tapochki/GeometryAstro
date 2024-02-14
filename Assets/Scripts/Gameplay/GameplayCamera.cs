@@ -24,9 +24,9 @@ namespace TandC.Gameplay
 
         private void UpdateParallax()
         {
-            UpdateMaterialOffset(_back_0Material, 15f);
-            UpdateMaterialOffset(_back_1Material, 10f);
-            UpdateMaterialOffset(_back_2Material, 8f);
+            UpdateMaterialOffset(_back_0Material, 30f);
+            UpdateMaterialOffset(_back_1Material, 20f);
+            UpdateMaterialOffset(_back_2Material, 16f);
         }
 
         private void UpdateMaterialOffset(MeshRenderer meshRenderer, float speed)

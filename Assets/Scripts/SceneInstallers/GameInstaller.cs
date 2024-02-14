@@ -1,12 +1,8 @@
-using System;
-using TandC.Data;
 using TandC.EventBus;
 using TandC.Gameplay;
 using TandC.SceneSystems;
-using TandC.Settings;
 using UnityEngine;
 using Zenject;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 namespace TandC.SceneInstallers
 {
@@ -16,8 +12,7 @@ namespace TandC.SceneInstallers
         private Player _player;
         [SerializeField]
         private PlayerHealthView _playerHealthView;
-        [SerializeField]
-        private GameObject _enemyPrefab;
+
         public override void InstallBindings()
         {
             InstallGameServiceBindings();
@@ -38,10 +33,10 @@ namespace TandC.SceneInstallers
             Container.Bind<ItemFactory>().FromComponentInHierarchy().AsSingle();
             Container.Bind<WaveController>().FromComponentInHierarchy().AsSingle();
             Container.Bind<EventBusHolder>().FromComponentInHierarchy().AsSingle();
-            Container.Bind<EnemySpawnPositionService>().FromComponentInHierarchy().AsSingle();
-            Container.Bind<EnemySpawner>().FromComponentInHierarchy().AsSingle();
-            Container.Bind<EnemyFactory>().FromComponentInHierarchy().AsSingle();
-            Container.Bind<EnemyDeathProcessor>().FromComponentInHierarchy().AsSingle();
+            Container.Bind<IEnemySpawnPositionService>().To<EnemySpawnPositionService>().FromComponentInHierarchy().AsSingle();
+            Container.Bind<IEnemySpawner>().To<EnemySpawner>().FromComponentInHierarchy().AsSingle();
+            Container.Bind<IEnemyFactory>().To<EnemyFactory>().FromComponentInHierarchy().AsSingle();
+            Container.Bind<IEnemyDeathProcessor>().To<EnemyDeathProcessor>().FromComponentInHierarchy().AsSingle();
         }
 
         private void InstalPlayerBindings()

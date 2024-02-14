@@ -6,7 +6,7 @@ using Zenject;
 
 namespace TandC.Gameplay
 {
-    public class EnemyFactory : MonoBehaviour
+    public class EnemyFactory : MonoBehaviour, IEnemyFactory
     {
         public Enemy CreateEnemy(EnemyData data, Enemy enemy, Action<Enemy, bool> backToPoolEvent, Transform target, Vector2 direction, EnemyBuilderType type)
         {

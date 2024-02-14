@@ -4122,7 +4122,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _player: {fileID: 2052597561}
   _playerHealthView: {fileID: 1431986195}
-  _enemyPrefab: {fileID: 218965217888290087, guid: 00b67cf2c2f62d54a88824b22272469a, type: 3}
 --- !u!1 &474570879
 GameObject:
   m_ObjectHideFlags: 0
@@ -11614,7 +11613,6 @@ MonoBehaviour:
   _gameplayData: {fileID: 11400000, guid: cd45d4cde8e7f6a4d960cbc3b3c937be, type: 2}
   _itemViewPrefab: {fileID: 8400502660207885777, guid: 20c53f79d6b5cee4fa45a05076f4ef87, type: 3}
   _itemParent: {fileID: 300311227}
-  _player: {fileID: 0}
 --- !u!1 &1759865959
 GameObject:
   m_ObjectHideFlags: 0

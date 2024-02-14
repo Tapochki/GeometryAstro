@@ -8,7 +8,7 @@ namespace TandC.Gameplay
     {
         [SerializeField] private GameplayData _gameplayData;
 
-        private EnemySpawner _enemySpawner;
+        private IEnemySpawner _enemySpawner;
 
         private float _cooldownToSpawnEnemy;
 
@@ -16,7 +16,7 @@ namespace TandC.Gameplay
         public int CurrentPhaseIndex { get; private set; }
 
         [Inject]
-        private void Construct(EnemySpawner enemySpawner)
+        private void Construct(IEnemySpawner enemySpawner)
         {
             _enemySpawner = enemySpawner;
         }

@@ -1,16 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using TandC.Data;
 using TandC.Settings;
 using TandC.Utilities;
 using UnityEngine;
 using Zenject;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 namespace TandC.Gameplay
 {
-    public class EnemySpawner : MonoBehaviour
+    public class EnemySpawner : MonoBehaviour, IEnemySpawner
     {
         private const int ENEMY_PRELOAD_COUNT = 200;
         [SerializeField] private GameplayData _gameplayData;
@@ -18,16 +16,16 @@ namespace TandC.Gameplay
         [SerializeField] private Transform _enemyParent;
 
         private Player _player;
-        private EnemyFactory _enemyFactory;
-        private EnemyDeathProcessor _enemyDeathProcessor;
-        private EnemySpawnPositionService _enemySpawnPositionRegistrator;
+        private IEnemyFactory _enemyFactory;
+        private IEnemyDeathProcessor _enemyDeathProcessor;
+        private IEnemySpawnPositionService _enemySpawnPositionRegistrator;
         private ObjectPool<Enemy> _enemyPool;
         private List<EnemySpawnData> _currentWaveEnemies;
         private float _spawnDelay;
         private bool _isCanSpawn;
 
         [Inject]
-        private void Construct(EnemyFactory enemyFactory, EnemySpawnPositionService enemySpawnPositionRegistrator, EnemyDeathProcessor enemyDeathProcessor, Player player)
+        private void Construct(IEnemyFactory enemyFactory, IEnemySpawnPositionService enemySpawnPositionRegistrator, IEnemyDeathProcessor enemyDeathProcessor, Player player)
         {
             _player = player;
             _enemyFactory = enemyFactory;
@@ -35,7 +33,7 @@ namespace TandC.Gameplay
             _enemyDeathProcessor = enemyDeathProcessor;
         }
 
-        public void Start()
+        private void Start()
         {
             _enemyPool = new ObjectPool<Enemy>(Preload, GetReadyEnemy, BackEnemyToPool, ENEMY_PRELOAD_COUNT);
             _currentWaveEnemies = new List<EnemySpawnData>();
@@ -88,11 +86,15 @@ namespace TandC.Gameplay
 
         private void GetReadyEnemy(Enemy enemy){}
 
-        private void BackEnemyToPool(Enemy enemy, bool isInitializeReturn)
+        private void BackEnemyToPool(Enemy enemy)
         {
-            if(!isInitializeReturn)
-                _enemyDeathProcessor.EnemyDeathHandler(enemy);
             enemy.gameObject.SetActive(false);
+        }
+
+        private void EnemyDeathProcess(Enemy enemy) 
+        {
+            _enemyDeathProcessor.EnemyDeathHandler(enemy);
+            BackEnemyToPool(enemy);
         }
 
         private void SpawnEnemy() 
@@ -117,7 +119,7 @@ namespace TandC.Gameplay
         private void ConstractEnemy(Enemy enemy, EnemyData enemyData, Vector2 spawnPosition, Vector2 directPosition)
         {
             enemy.transform.position = spawnPosition;
-            enemy = _enemyFactory.CreateEnemy(enemyData, enemy, BackEnemyToPool, _player.transform, directPosition, enemyData.BuilderType);
+            enemy = _enemyFactory.CreateEnemy(enemyData, enemy, EnemyDeathProcess, _player.transform, directPosition, enemyData.BuilderType);
             enemy.gameObject.SetActive(true);
         }
 
