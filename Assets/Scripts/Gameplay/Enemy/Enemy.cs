@@ -90,7 +90,7 @@ namespace TandC.Gameplay
 
         public void ProccesingEnemyDeath() 
         {
-            _enemyBackToPoolEvent?.Invoke(this, false);
+            _enemyBackToPoolEvent?.Invoke(this);
         }
     }
 }

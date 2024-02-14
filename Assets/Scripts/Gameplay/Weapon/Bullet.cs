@@ -6,7 +6,7 @@ namespace TandC.Gameplay
 {
     public class Bullet : MonoBehaviour
     {
-        private Action<Bullet, bool> _bulletBackToPoolEvent;
+        private Action<Bullet> _bulletBackToPoolEvent;
 
         private IMove _moveComponent;
         private IRotation _rotationComponent;
@@ -15,7 +15,7 @@ namespace TandC.Gameplay
         private float _lifeTimer;
         private float _damage;
 
-        public void Init(Vector2 startPosition, Vector2 target, Action<Bullet, bool> bulletBackToPoolEvent, BulletData bulletData, float damage)
+        public void Init(Vector2 startPosition, Vector2 target, Action<Bullet> bulletBackToPoolEvent, BulletData bulletData, float damage)
         {
             gameObject.transform.position = startPosition;
 
@@ -50,7 +50,7 @@ namespace TandC.Gameplay
 
         private void Dispose() 
         {
-            _bulletBackToPoolEvent?.Invoke(this, false);
+            _bulletBackToPoolEvent?.Invoke(this);
         }
 
         protected virtual void BulletDie() 

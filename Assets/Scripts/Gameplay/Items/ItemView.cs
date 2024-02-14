@@ -50,7 +50,7 @@ namespace TandC.Gameplay
 
         private void PickByPlayerFinish() 
         {
-            _onItemCollected?.Invoke(this, false);
+            _onItemCollected?.Invoke(this);
             _itemModel.ReleseItem();
         }
 
