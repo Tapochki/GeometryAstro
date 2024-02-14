@@ -5,28 +5,6 @@ namespace TandC.Utilities
 {
     public class ObjectPool<T>
     {
-        /*
-         * Simple guid how to use
-         *
-         * First need to create Preload func like => public Missle Preload() => Instantiane(prefab);
-         *
-         * Where Missle is our class with object that need to spawn.
-         *
-         * Second need to create actions where [get] is => public void GetAction(Missle missle) => missle.gameObject.SetActive(true);
-         *
-         * and [return] is => public void ReturnAction(Missle missle) => missle.gameObject.SetActive(false);
-         *
-         * After this simple manipulations we have pool of missles. When pool haven't empty object (mean all objects is active) would created one new object.
-         *
-         * preloadCount need for creating starting object that in future would panipulated by script.
-         *
-         * init of pool recomended doing in Awake() func with exited params => _misslesPool = new ObjectPool<Missles>(Preload, GetAction, ReturnAction, 20);
-         *
-         * where _misslesPool is => private ObjectPool<Missles> _misslesPool;
-         *
-         * Good luck!
-         */
-
         private readonly Func<T> _preloadFunc;
         private readonly Action<T> _getAction;
         private readonly Action<T> _returnAction;

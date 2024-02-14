@@ -9,10 +9,10 @@ namespace TandC.Gameplay
         [SerializeField] private GameplayData _gameplayData;
 
         private IEnemySpawner _enemySpawner;
+        private Phase _currentPhase;
 
         private float _cooldownToSpawnEnemy;
 
-        private Phase _currentPhase;
         public int CurrentPhaseIndex { get; private set; }
 
         [Inject]
@@ -21,12 +21,12 @@ namespace TandC.Gameplay
             _enemySpawner = enemySpawner;
         }
 
-        public void Start()
+        private void Start()
         {
             StartWaves();
         }
 
-        public void StartWaves()
+        private void StartWaves()
         {
             SetNewPhase(0);
         }
@@ -42,18 +42,18 @@ namespace TandC.Gameplay
             _enemySpawner.StartWave(_currentPhase.enemyInPhase, _currentPhase.enemySpawnDelay);
         }
 
-        public void IncreasePhaseIndex()
+        private void IncreasePhaseIndex()
         {
             CurrentPhaseIndex++;
             if (CurrentPhaseIndex >= _gameplayData.gamePhases.Length - 1)
             {
-                //_enemySpawner.IncreaseEnemyParam();
+                //TODO _enemySpawner.IncreaseEnemyParam();
                 CurrentPhaseIndex = 0;
             }
             SetNewPhase(CurrentPhaseIndex);
         }
 
-        public void Update()
+        private void Update()
         {
             _cooldownToSpawnEnemy -= Time.deltaTime;
             if (_cooldownToSpawnEnemy <= 0)

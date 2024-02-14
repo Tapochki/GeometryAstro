@@ -1,11 +1,10 @@
-using System.Collections;
 using System.Collections.Generic;
 using TandC.Settings;
 using UnityEngine;
 
 namespace TandC.Gameplay 
 {
-    public class ItemFactory : MonoBehaviour
+    public class ItemFactory : MonoBehaviour, IItemFactory
     {
         private Dictionary<ItemType, ItemModel> _itemModels;
 

@@ -1,13 +1,21 @@
 using UnityEngine;
+using Zenject;
 
 namespace TandC.Gameplay
 {
     public class GameplayCamera : MonoBehaviour
     {
-        [SerializeField] private Player _player;
         [SerializeField] private MeshRenderer _back_0Material;
         [SerializeField] private MeshRenderer _back_1Material;
         [SerializeField] private MeshRenderer _back_2Material;
+
+        private Player _player;
+
+        [Inject]
+        private void Construct(Player player)
+        {
+            _player = player;
+        }
 
         private Vector2 PlayerPosition => _player.transform.position;
 

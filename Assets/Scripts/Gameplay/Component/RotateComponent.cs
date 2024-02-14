@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 namespace TandC.Gameplay 
 {
@@ -48,13 +45,16 @@ namespace TandC.Gameplay
     public class PlayerRotateComponent : IRotation
     {
         private const float _rotationSpeed = 1000f;
+
         private Transform _mainTransform;
         private Quaternion _lastRotation;
+
         public PlayerRotateComponent(Transform transform)
         {
             _mainTransform = transform;
             _lastRotation = _mainTransform.rotation;
         }
+
         public void Rotation(Vector2 direction)
         {
             if(direction == Vector2.zero) 

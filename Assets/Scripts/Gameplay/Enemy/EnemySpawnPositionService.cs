@@ -54,7 +54,7 @@ namespace TandC.Gameplay
             RegisterSpawnPoint(SpawnPositionType.VerticalRightCenter, screenX + offsetX, 0f);
             RegisterSpawnPoint(SpawnPositionType.VerticalRightBottom, screenX + offsetX, -screenY + offsetY);
 
-           // _playerDirectionSpawnPoint.position = new Vector2(0, screenX + offsetY);
+            _playerDirectionSpawnPoint.position = new Vector2(0, screenX + offsetY);
         }
 
         private void RegisterSpawnPoint(SpawnPositionType spawnType, float x, float y)
@@ -111,7 +111,7 @@ namespace TandC.Gameplay
 
             if (randomValue == 0)
             {
-                spawnPositions.Add(GetRandomPositionFromRegister());
+                spawnPositions.Add(GetPlayerMoveDirectionPosition());
             }
             else
             {
@@ -127,10 +127,10 @@ namespace TandC.Gameplay
             return (spawnPointList.Count > 0) ? spawnPointList[UnityEngine.Random.Range(0, spawnPointList.Count)] : null;
         }
 
-        //private Transform GetPlayerMoveDirectionPosition()
-        //{
-        //    return _playerDirectionSpawnPoint;
-        //}
+        private Transform GetPlayerMoveDirectionPosition()
+        {
+            return _playerDirectionSpawnPoint;
+        }
 
         private List<Transform> GetAllTopHorizontalSpawnPositions()
         {
@@ -190,9 +190,7 @@ namespace TandC.Gameplay
             throw new ArgumentException($"Unknown spawn position: {positionType}");
         }
         #endregion
-
     }
-
 }
 
 

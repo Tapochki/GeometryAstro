@@ -8,21 +8,16 @@ namespace TandC.Gameplay
 {
     public abstract class Weapon : MonoBehaviour
     {
-        [SerializeField]
-        protected Bullet _bulletPrefab;
-        [SerializeField]
-        protected GameplayData _gameplayData;
-        [SerializeField]
-        protected Transform _bulletParent;
-        [SerializeField]
-        protected WeaponType _weaponType;
+        [SerializeField] protected Bullet _bulletPrefab;
+        [SerializeField] protected GameplayData _gameplayData;
+        [SerializeField] protected Transform _bulletParent;
+        [SerializeField] protected WeaponType _weaponType;
 
         protected ObjectPool<Bullet> _bulletPool;
         protected BulletData _currentBulletData;
         protected WeaponData _currentWeaponData;
 
         protected float _shootDeleyTimer;
-
         protected bool _isReloaded;
         
         protected abstract void InitializeBulletPrefab();
@@ -90,18 +85,12 @@ namespace TandC.Gameplay
         [Serializable]
         protected class ShootDirection
         {
-            [SerializeField]
-            private Transform _startPosition;
-
-            [SerializeField]
-            private Transform _directionPosition;
+            [SerializeField] private Transform _startPosition;
+            [SerializeField] private Transform _directionPosition;
 
             public Transform StartPosition { get { return _startPosition; } }
             public Transform DirectionPosition { get { return _directionPosition; } }
         }
-
     }
-
-
 }
 

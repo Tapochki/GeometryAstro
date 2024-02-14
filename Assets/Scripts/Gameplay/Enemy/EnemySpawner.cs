@@ -11,6 +11,7 @@ namespace TandC.Gameplay
     public class EnemySpawner : MonoBehaviour, IEnemySpawner
     {
         private const int ENEMY_PRELOAD_COUNT = 200;
+
         [SerializeField] private GameplayData _gameplayData;
         [SerializeField] private Enemy _enemyPrefab;
         [SerializeField] private Transform _enemyParent;

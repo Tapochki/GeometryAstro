@@ -9,6 +9,7 @@ namespace TandC.Gameplay
         private List<RandomDropItem<T>> _dropItemsList;
 
         private float _totalWeight;
+
         public RandomDroper(List<RandomDropItem<T>> dropList)
         {
             _dropItemsList = dropList;

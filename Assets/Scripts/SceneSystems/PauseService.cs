@@ -4,14 +4,14 @@ using Zenject;
 
 namespace TandC.SceneSystems
 {
-    public class PauseSystem : MonoBehaviour
+    public class PauseService : MonoBehaviour, IPauseService
     {
         public event Action<bool> OnGameplayPausedEvent;
 
         public bool IsPaused { get; private set; }
 
         [Inject]
-        public void Construct()
+        private void Construct()
         {
         }
 

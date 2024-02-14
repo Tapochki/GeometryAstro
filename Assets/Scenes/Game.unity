@@ -6595,7 +6595,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 503fe63fbbeb4404e86a97e03c177eb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerDirectionSpawnPoint: {fileID: 0}
+  _playerDirectionSpawnPoint: {fileID: 1993292977}
   _camera: {fileID: 7738628207554482028}
   _spawnOffsetFactor: 0.3
 --- !u!1 &1126167583
@@ -12699,6 +12699,11 @@ PrefabInstance:
 --- !u!4 &1993292976 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3408672469861044306, guid: ba9a5900e16ef8f438e17b0d84372c7a, type: 3}
+  m_PrefabInstance: {fileID: 1993292975}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1993292977 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4983368793506692877, guid: ba9a5900e16ef8f438e17b0d84372c7a, type: 3}
   m_PrefabInstance: {fileID: 1993292975}
   m_PrefabAsset: {fileID: 0}
 --- !u!21 &2000643886

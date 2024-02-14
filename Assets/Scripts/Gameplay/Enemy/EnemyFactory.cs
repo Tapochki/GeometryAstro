@@ -2,7 +2,6 @@
 using TandC.Data;
 using TandC.Settings;
 using UnityEngine;
-using Zenject;
 
 namespace TandC.Gameplay
 {

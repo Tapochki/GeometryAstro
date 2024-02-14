@@ -8,7 +8,6 @@ namespace TandC.Gameplay
 {
     public class PlayerHealthView : MonoBehaviour, IEventReceiver<PlayerHealthChangeEvent>
     {
-
         [SerializeField] private Image _healthBar;
         [SerializeField] private TextMeshProUGUI _healthText;
 

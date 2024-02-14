@@ -8,27 +8,23 @@ using Zenject;
 
 namespace TandC.Gameplay 
 {
-    public class ItemSpawner : MonoBehaviour
+    public class ItemSpawner : MonoBehaviour, IItemSpawner
     {
         private const int ITEM_PRELOAD_COUNT = 200;
 
-        [SerializeField]
-        private GameplayData _gameplayData;
-        [SerializeField]
-        private ItemView _itemViewPrefab;
-        [SerializeField]
-        private Transform _itemParent;
+        [SerializeField] private GameplayData _gameplayData;
+        [SerializeField] private ItemView _itemViewPrefab;
+        [SerializeField] private Transform _itemParent;
 
         private Player _player;
-        private ItemFactory _itemfactory;
+        private IItemFactory _itemfactory;
         private Dictionary<DropItemRareType, RandomDroper<ItemData>> _itemsRandomDropers;
         private RandomDropItemFactory _randomDroperFactory;
-
 
         private ObjectPool<ItemView> _itemPool;
 
         [Inject]
-        private void Construct(ItemFactory itemFactory, Player player) 
+        private void Construct(IItemFactory itemFactory, Player player) 
         {
             _itemfactory = itemFactory;
             _player = player;
@@ -40,10 +36,12 @@ namespace TandC.Gameplay
             InitializeDrops();
             InitializePool();
         }
+
         private void InitializePool()
         {
             _itemPool = new ObjectPool<ItemView>(Preload, GetItem, BackItemToPool, ITEM_PRELOAD_COUNT);
         }
+
         private void InitializeDrops()
         {
             _itemsRandomDropers = new Dictionary<DropItemRareType, RandomDroper<ItemData>>()

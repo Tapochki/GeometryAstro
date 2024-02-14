@@ -7,14 +7,10 @@ namespace TandC.Gameplay
     public class DefaultWeapon : Weapon
     {
         private const int DEFAULT_BULLET_PRELOAD_COUNT = 200;
-        [SerializeField]
-        private GameObject _shootReloadDetector;
 
-        [SerializeField]
-        private List<ShootDirection> _shootDirections;
-
-        [SerializeField]
-        private LineEnemyDetector _enemyLineDetector;
+        [SerializeField] private GameObject _shootReloadDetector;
+        [SerializeField] private List<ShootDirection> _shootDirections;
+        [SerializeField] private LineEnemyDetector _enemyLineDetector;
 
         private int _activatedDirection;
 

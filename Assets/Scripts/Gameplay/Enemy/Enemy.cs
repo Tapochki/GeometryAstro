@@ -1,10 +1,6 @@
 using System;
 using TandC.Data;
-using TandC.EventBus;
 using UnityEngine;
-using UnityEngine.UIElements;
-using Zenject;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 namespace TandC.Gameplay 
 {

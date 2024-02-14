@@ -5,12 +5,14 @@ namespace TandC.Gameplay
 {
     public class EnemyDeathProcessor : MonoBehaviour, IEnemyDeathProcessor
     {
-        private ItemSpawner _itemSpawner;
+        private IItemSpawner _itemSpawner;
+
         [Inject]
-        private void Construct(ItemSpawner enemySpawner)
+        private void Construct(IItemSpawner enemySpawner)
         {
             _itemSpawner = enemySpawner;
         }
+
         public void EnemyDeathHandler(Enemy enemy)
         {
             _itemSpawner.DropItem(enemy.EnemyData.droperType, enemy.transform.position);

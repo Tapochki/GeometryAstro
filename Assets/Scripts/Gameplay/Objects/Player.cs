@@ -11,7 +11,7 @@ namespace TandC.Gameplay
         [SerializeField] private float _moveSpeed;
         [SerializeField] private Transform _bodyTransform;
 
-        private InputHandler _inputHandler;
+        private IInputHandler _inputHandler;
         private EventBusHolder _eventBusHolder;
 
         private IMove _moveComponent;
@@ -26,7 +26,7 @@ namespace TandC.Gameplay
         private Action _onPlayerDieEvent;
 
         [Inject]
-        private void Construct(InputHandler inputHandler, EventBusHolder eventBusHolder)
+        private void Construct(IInputHandler inputHandler, EventBusHolder eventBusHolder)
         {
             _inputHandler = inputHandler;
             _eventBusHolder = eventBusHolder;
