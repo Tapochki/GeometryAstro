@@ -12,7 +12,7 @@ namespace TandC.Gameplay
     {
         private const int ENEMY_PRELOAD_COUNT = 200;
 
-        [SerializeField] private GameplayData _gameplayData;
+        [SerializeField] private EnemyConfig _enemiesConfig;
         [SerializeField] private Enemy _enemyPrefab;
         [SerializeField] private Transform _enemyParent;
 
@@ -68,7 +68,7 @@ namespace TandC.Gameplay
 
         private EnemyData GetEnemyData(EnemyType enemyType) 
         {
-            return _gameplayData.GetEnemiesByType(enemyType);
+            return _enemiesConfig.GetEnemiesByType(enemyType);
         }
 
         private EnemySpawnData GetEnemyFromWave()

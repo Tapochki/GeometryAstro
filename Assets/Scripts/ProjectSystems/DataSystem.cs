@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using TandC.Data;
 using TandC.Settings;
 using TandC.Utilities;
 using UnityEngine;
@@ -19,11 +20,13 @@ namespace TandC.ProjectSystems
         public PlayerVaultData PlayerVaultData { get; private set; }
         public AppSettingsData AppSettingsData { get; private set; }
         public PurchaseData PurchaseData { get; private set; }
+        public PlayerConfig PlayerConfig { get; private set; }
 
         [Inject]
-        public void Construct()
+        private void Construct(PlayerConfig playerConfig)
         {
             Utilities.Logger.Log("DataSystem Construct", LogTypes.Info);
+            PlayerConfig = playerConfig;
         }
 
         public void Initialize()
@@ -69,15 +72,19 @@ namespace TandC.ProjectSystems
             switch (type)
             {
                 case CacheType.AppSettingsData:
-                    File.WriteAllText(_cacheDataPathes[type], InternalTools.SerializeData(AppSettingsData));
+                    WriteTextToFile(_cacheDataPathes[type], InternalTools.SerializeData(AppSettingsData));
                     break;
 
                 case CacheType.PurchaseData:
-                    File.WriteAllText(_cacheDataPathes[type], InternalTools.SerializeData(PurchaseData));
+                    WriteTextToFile(_cacheDataPathes[type], InternalTools.SerializeData(PurchaseData));
                     break;
 
                 case CacheType.PlayerValutData:
-                    File.WriteAllText(_cacheDataPathes[type], InternalTools.SerializeData(PlayerVaultData));
+                    WriteTextToFile(_cacheDataPathes[type], InternalTools.SerializeData(PlayerVaultData));
+                    break;
+
+                case CacheType.PlayerData:
+                    WriteTextToFile(_cacheDataPathes[type], InternalTools.SerializeData(PlayerConfig.PlayerData));
                     break;
 
                 default:
@@ -86,59 +93,68 @@ namespace TandC.ProjectSystems
             }
         }
 
+        private void WriteTextToFile(string dataPath, string contents) 
+        {
+            File.WriteAllText(dataPath, contents);
+        }
+
+        private void SetDefaultAppSettingData() 
+        {
+            AppSettingsData = new AppSettingsData()
+            {
+                isFirstRun = true,
+                appLanguage = (Languages)Application.systemLanguage,
+                musicVolume = 1,
+                soundVolume = 1,
+            };
+        }
+
+        private void SetDefaultPurchaseData()
+        {
+            PurchaseData = new PurchaseData()
+            {
+                isRemovedAds = false,
+            };
+        }
+
+        private void SetDefaultPlayerVaultData() 
+        {
+            PlayerVaultData = new PlayerVaultData()
+            {
+                bestScore = 0,
+                coins = 0,
+            };
+        }
+
         private void LoadCachedData(CacheType type)
         {
             switch (type)
             {
                 case CacheType.AppSettingsData:
-                    if (!File.Exists(_cacheDataPathes[type]))
-                    {
-                        AppSettingsData = new AppSettingsData()
-                        {
-                            isFirstRun = true,
-                            appLanguage = (Languages)Application.systemLanguage,
-                            musicVolume = 1,
-                            soundVolume = 1,
-                        };
-
-                        SaveCache(type);
-                    }
-                    else
+                    if (CheckIfPathExist(type, SetDefaultAppSettingData))
                     {
                         AppSettingsData = InternalTools.DeserializeData<AppSettingsData>(File.ReadAllText(_cacheDataPathes[type]));
                     }
                     break;
 
                 case CacheType.PurchaseData:
-                    if (!File.Exists(_cacheDataPathes[type]))
-                    {
-                        PurchaseData = new PurchaseData()
-                        {
-                            isRemovedAds = false,
-                        };
-
-                        SaveCache(type);
-                    }
-                    else
+                    if (CheckIfPathExist(type, SetDefaultPurchaseData))
                     {
                         PurchaseData = InternalTools.DeserializeData<PurchaseData>(File.ReadAllText(_cacheDataPathes[type]));
                     }
                     break;
 
                 case CacheType.PlayerValutData:
-                    if (!File.Exists(_cacheDataPathes[type]))
-                    {
-                        PlayerVaultData = new PlayerVaultData()
-                        {
-                            bestScore = 0,
-                            coins = 0,
-                        };
-
-                        SaveCache(type);
-                    }
-                    else
+                    if (CheckIfPathExist(type, SetDefaultPlayerVaultData))
                     {
                         PlayerVaultData = InternalTools.DeserializeData<PlayerVaultData>(File.ReadAllText(_cacheDataPathes[type]));
+                    }
+                    break;
+
+                case CacheType.PlayerData:
+                    if (CheckIfPathExist(type, PlayerConfig.SetDefaultPlayerData)) 
+                    {
+                        PlayerConfig.PlayerData = InternalTools.DeserializeData<PlayerData>(File.ReadAllText(_cacheDataPathes[type]));
                     }
                     break;
 
@@ -150,6 +166,18 @@ namespace TandC.ProjectSystems
             }
         }
 
+        private bool CheckIfPathExist(CacheType type, Action SetDefault) 
+        {
+            if (!File.Exists(_cacheDataPathes[type])) 
+            {
+                Debug.LogError(type);
+                SetDefault?.Invoke();
+                SaveCache(type);
+                return false;
+            }
+            return true;
+        }
+
         private void FillCacheDataPathes()
         {
             _cacheDataPathes = new Dictionary<CacheType, string>
@@ -157,6 +185,7 @@ namespace TandC.ProjectSystems
                 { CacheType.AppSettingsData, Application.persistentDataPath + AppConstants.LOCAL_APP_DATA_FILE_PATH },
                 { CacheType.PurchaseData, Application.persistentDataPath + AppConstants.LOCAL_PURCHASE_DATA_FILE_PATH },
                 { CacheType.PlayerValutData, Application.persistentDataPath + AppConstants.LOCAL_PLAYER_VAULT_DATA_FILE_PATH },
+                { CacheType.PlayerData,  Application.persistentDataPath + AppConstants.LOCAL_PLAYER_DATA_FILE_PATH}
             };
         }
 
@@ -165,38 +194,15 @@ namespace TandC.ProjectSystems
             switch (type)
             {
                 case CacheType.AppSettingsData:
-
-                    AppSettingsData = new AppSettingsData()
-                    {
-                        isFirstRun = true,
-                        appLanguage = (Languages)Application.systemLanguage,
-                        musicVolume = 1,
-                        soundVolume = 1,
-                    };
-
+                    SetDefaultPurchaseData();
                     break;
 
                 case CacheType.PurchaseData:
-
-                    PurchaseData = new PurchaseData()
-                    {
-                        isRemovedAds = false,
-                    };
-
+                    SetDefaultPurchaseData();
                     break;
 
                 case CacheType.PlayerValutData:
-                    if (!File.Exists(_cacheDataPathes[type]))
-                    {
-                        PlayerVaultData = new PlayerVaultData()
-                        {
-                            bestScore = 0,
-                            coins = 0,
-                        };
-
-                        SaveCache(type);
-                    }
-                    else
+                    if (CheckIfPathExist(type, SetDefaultPlayerVaultData))
                     {
                         PlayerVaultData = InternalTools.DeserializeData<PlayerVaultData>(File.ReadAllText(_cacheDataPathes[type]));
                     }
@@ -210,7 +216,6 @@ namespace TandC.ProjectSystems
             }
 
             SaveCache(type);
-
             OnCacheResetEvent?.Invoke(type);
         }
     }

@@ -6,7 +6,7 @@ namespace TandC.Gameplay
 {
     public class WaveController : MonoBehaviour
     {
-        [SerializeField] private GameplayData _gameplayData;
+        [SerializeField] private PhaseConfig _phaseConfig;
 
         private IEnemySpawner _enemySpawner;
         private Phase _currentPhase;
@@ -33,19 +33,19 @@ namespace TandC.Gameplay
 
         private void SetNewPhase(int phaseId)
         {
-            //if (CurrentPhaseIndex > _gameplayData.gamePhases.Length)
+            //if (CurrentPhaseIndex > _phaseConfig.gamePhases.Length)
             //{
             //    IncreasePhaseIndex();
             //}
             CurrentPhaseIndex = phaseId;
-            _currentPhase = _gameplayData.GetPhaseById(phaseId);
+            _currentPhase = _phaseConfig.GetPhaseById(phaseId);
             _enemySpawner.StartWave(_currentPhase.enemyInPhase, _currentPhase.enemySpawnDelay);
         }
 
         private void IncreasePhaseIndex()
         {
             CurrentPhaseIndex++;
-            if (CurrentPhaseIndex >= _gameplayData.gamePhases.Length - 1)
+            if (CurrentPhaseIndex >= _phaseConfig.PhasesCount - 1)
             {
                 //TODO _enemySpawner.IncreaseEnemyParam();
                 CurrentPhaseIndex = 0;

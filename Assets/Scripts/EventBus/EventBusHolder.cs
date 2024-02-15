@@ -9,12 +9,6 @@ namespace TandC.EventBus
 
         public EventBusHolder() 
         {
-            Debug.LogError(12);
-        }
-
-        [Inject]
-        private void Construct()
-        {
             EventBus = new EventBus();
         }
     }

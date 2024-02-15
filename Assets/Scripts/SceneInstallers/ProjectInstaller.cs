@@ -1,3 +1,4 @@
+using TandC.Data;
 using TandC.ProjectSystems;
 using UnityEngine;
 using Zenject;
@@ -6,8 +7,11 @@ namespace TandC
 {
     public class ProjectInstaller : MonoInstaller
     {
+        [SerializeField] private PlayerConfig _playerConfig;
+
         public override void InstallBindings()
         {
+            Container.Bind<PlayerConfig>().FromInstance(_playerConfig);
             Container.Bind<LoadObjectsSystem>().FromComponentInHierarchy().AsSingle();
             Container.Bind<InputsSystem>().FromComponentInHierarchy().AsSingle();
             Container.Bind<LocalisationSystem>().FromComponentInHierarchy().AsSingle();
@@ -77,8 +81,8 @@ namespace TandC
             _inputsSystem.Initialize();
             _localisationSystem.Initialize();
             _soundSystem.Initialize();
-            _dataSystem.Initialize();
             _uiSystem.Initialize();
+            _dataSystem.Initialize();
             _sceneSystem.Initialize();
             _advertismentSystem.Initialize();
             _purchasingSystem.Initialize();

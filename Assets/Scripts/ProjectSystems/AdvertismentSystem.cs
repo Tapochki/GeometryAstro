@@ -20,6 +20,7 @@ namespace TandC.ProjectSystems
         private string _rewardedVideo;
 
         private string _gameId;
+
         public bool IsLoadRewardVideo { get; private set; }
         public bool IsLoadVideo { get; private set; }
 

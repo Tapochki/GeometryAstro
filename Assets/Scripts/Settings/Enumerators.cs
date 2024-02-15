@@ -243,6 +243,7 @@ namespace TandC.Settings
         AppSettingsData,
         PurchaseData,
         PlayerValutData,
+        PlayerData
     }
 
     public enum PurchasingType
