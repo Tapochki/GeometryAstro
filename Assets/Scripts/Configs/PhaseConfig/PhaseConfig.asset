@@ -12,8 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4f7eadf91e66f84c8123975b60f76c2, type: 3}
   m_Name: PhaseConfig
   m_EditorClassIdentifier: 
-  gamePhases:
+  _gamePhases:
   - PhaseId: 0
-    waveTime: 0
-    enemySpawnDelay: 0
-    enemyInPhase: []
+    waveTime: 100
+    enemySpawnDelay: 3
+    enemyInPhase:
+    - enemyType: 0
+      spawnType: 0
+      targetType: 0

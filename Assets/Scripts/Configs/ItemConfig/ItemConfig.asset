@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ac5605cc3f90bb4691a2985f04c9bad, type: 3}
+  m_Name: ItemConfig
+  m_EditorClassIdentifier: 
+  _itemData:
+  - itemId: 0
+    itemValueMin: 10
+    itemValueMax: 100
+    weight: 100
+    prefab: {fileID: 0}
+    sprite: {fileID: 21300000, guid: 85024921523293b4b94bdf2de612c5f8, type: 3}
+    type: 0
+    isForBoss: 0
+    description: 
+  - itemId: 0
+    itemValueMin: 100
+    itemValueMax: 20
+    weight: 10
+    prefab: {fileID: 0}
+    sprite: {fileID: 21300000, guid: 15bd7ab1f1fc6064b8be2af484d5fb23, type: 3}
+    type: 4
+    isForBoss: 0
+    description: 

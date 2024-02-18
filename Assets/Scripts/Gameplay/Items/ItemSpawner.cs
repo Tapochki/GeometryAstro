@@ -12,11 +12,11 @@ namespace TandC.Gameplay
     {
         private const int ITEM_PRELOAD_COUNT = 200;
 
-        [SerializeField] private GameplayData _gameplayData;
         [SerializeField] private ItemView _itemViewPrefab;
         [SerializeField] private Transform _itemParent;
 
         private Player _player;
+        private ItemConfig _itemsConfig;
         private IItemFactory _itemfactory;
         private Dictionary<DropItemRareType, RandomDroper<ItemData>> _itemsRandomDropers;
         private RandomDropItemFactory _randomDroperFactory;
@@ -24,15 +24,16 @@ namespace TandC.Gameplay
         private ObjectPool<ItemView> _itemPool;
 
         [Inject]
-        private void Construct(IItemFactory itemFactory, Player player) 
+        private void Construct(IItemFactory itemFactory, ItemConfig itemsConfig, Player player) 
         {
             _itemfactory = itemFactory;
             _player = player;
+            _itemsConfig = itemsConfig;
         }
 
         private void Start()
         {
-            _randomDroperFactory = new RandomDropItemFactory(_gameplayData);
+            _randomDroperFactory = new RandomDropItemFactory(_itemsConfig);
             InitializeDrops();
             InitializePool();
         }
@@ -52,9 +53,14 @@ namespace TandC.Gameplay
             };
         }
 
-        public void DropItem(DropItemRareType type, Vector2 spawnPosition) 
+        public void DropRandomItem(DropItemRareType type, Vector2 spawnPosition) 
         {
             ItemData itemData = _itemsRandomDropers[type].GetDrop();
+            DropItem(itemData, spawnPosition);
+        }
+
+        private void DropItem(ItemData itemData, Vector2 spawnPosition) 
+        {           
             if(itemData == null) 
             {
                 return;
@@ -79,11 +85,11 @@ namespace TandC.Gameplay
     }
     public class RandomDropItemFactory
     {
-        private GameplayData _gameplayData;
+        private ItemConfig _itemConfig;
 
-        public RandomDropItemFactory(GameplayData gameplayData) 
+        public RandomDropItemFactory(ItemConfig itemConfig) 
         {
-            _gameplayData = gameplayData;
+            _itemConfig = itemConfig;
         }
 
         public RandomDroper<ItemData> InitializeRandomDroper(DropItemRareType dropType)
@@ -121,7 +127,7 @@ namespace TandC.Gameplay
 
         private RandomDropItem<ItemData> CreateRandomDropItem(ItemType type, float weight)
         {
-            return new RandomDropItem<ItemData>(_gameplayData.GetItemDataByType(type), weight);
+            return new RandomDropItem<ItemData>(_itemConfig.GetItemDataByType(type), weight);
         }
 
         private RandomDropItem<ItemData> CreateEmptyDropItem(float weight)

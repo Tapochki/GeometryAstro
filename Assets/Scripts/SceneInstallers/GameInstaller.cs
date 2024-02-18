@@ -72,7 +72,7 @@ namespace TandC.SceneInstallers
 
         private void InstallInputHandler() 
         {
-            Container.Bind<IInputHandler>().To<InputHandler>().FromComponentInHierarchy().AsSingle();
+            Container.Bind<IGameplayInputHandler>().To<GameplayInputHandler>().FromComponentInHierarchy().AsSingle();
         }
 
         private void InstallPauseService() 

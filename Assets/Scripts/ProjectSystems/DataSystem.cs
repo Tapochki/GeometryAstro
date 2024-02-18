@@ -170,7 +170,6 @@ namespace TandC.ProjectSystems
         {
             if (!File.Exists(_cacheDataPathes[type])) 
             {
-                Debug.LogError(type);
                 SetDefault?.Invoke();
                 SaveCache(type);
                 return false;
@@ -194,7 +193,7 @@ namespace TandC.ProjectSystems
             switch (type)
             {
                 case CacheType.AppSettingsData:
-                    SetDefaultPurchaseData();
+                    SetDefaultAppSettingData();
                     break;
 
                 case CacheType.PurchaseData:

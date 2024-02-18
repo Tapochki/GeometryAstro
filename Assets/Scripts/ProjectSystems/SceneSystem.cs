@@ -72,7 +72,7 @@ namespace TandC.ProjectSystems
                                                 float delayToOpenScene = 0.3f)
         {
             ReturnIfTargetSceneIsCurrentScene(sceneName);
-
+            Debug.LogError(sceneName);
             _isAutoOpen = true;
             _delayToOpenScene = delayToOpenScene;
 

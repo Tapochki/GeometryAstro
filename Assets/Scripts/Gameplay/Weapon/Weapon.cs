@@ -3,6 +3,7 @@ using TandC.Data;
 using TandC.Settings;
 using TandC.Utilities;
 using UnityEngine;
+using Zenject;
 
 namespace TandC.Gameplay
 {
@@ -14,11 +15,16 @@ namespace TandC.Gameplay
         [SerializeField] protected WeaponType _weaponType;
 
         protected ObjectPool<Bullet> _bulletPool;
-        protected BulletData _currentBulletData;
         protected WeaponData _currentWeaponData;
 
         protected float _shootDeleyTimer;
         protected bool _isReloaded;
+
+        [Inject]
+        private void Construct(WeaponConfig weaponConfig) 
+        {
+            _currentWeaponData = weaponConfig.GetWeaponByType(_weaponType);
+        }
         
         protected abstract void InitializeBulletPrefab();
 
@@ -32,8 +38,7 @@ namespace TandC.Gameplay
 
         private void GetDatas()
         {
-            _currentBulletData = _gameplayData.GetBulletByType(_weaponType);
-            _currentWeaponData = _gameplayData.GetWeaponByType(_weaponType);
+            
             //TODO Мне вот эта дичь чет совсем не нра что что и через геймплей дату мы гетаем еще и булет и веапон дата, мб мы их совместим но это после того как конфиги настроим нормально но пока так
         }
 
@@ -54,7 +59,7 @@ namespace TandC.Gameplay
         protected virtual void GetReadyBullet(ShootDirection shotDirection) 
         {
             Bullet bullet = _bulletPool.Get();
-            bullet.Init(shotDirection.StartPosition.position, shotDirection.DirectionPosition.position, ReturnToPool, _currentBulletData, _currentWeaponData.baseDamage);
+            bullet.Init(shotDirection.StartPosition.position, shotDirection.DirectionPosition.position, ReturnToPool, _currentWeaponData.bulletData, _currentWeaponData.baseDamage);
             bullet.Activate();
         }
 

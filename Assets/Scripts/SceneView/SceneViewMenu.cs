@@ -3,6 +3,7 @@ using TandC.ProjectSystems;
 using TandC.Scenes.Base;
 using TandC.Settings;
 using TandC.UI.Views.Base;
+using UnityEngine;
 using Zenject;
 
 namespace TandC.Scenes
@@ -16,6 +17,7 @@ namespace TandC.Scenes
         [Inject]
         public void Construct(GameStateSystem gameStateSystem, SceneSystem sceneSystem, SoundSystem soundSystem)
         {
+            Debug.LogError("Contstruct");
             _gameStateSystem = gameStateSystem;
             _sceneSystem = sceneSystem;
             _soundSystem = soundSystem;
@@ -26,6 +28,7 @@ namespace TandC.Scenes
         [Inject]
         public override void Initialize()
         {
+            Debug.LogError("Initialize");
             _rootView = transform.Find("View - MenuPage").GetComponent<View>();
             _views = new List<View>()
             {

@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 7fef49996ef88fd4795ab11dd6cc3007
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - _enemyConfig: {fileID: 11400000, guid: 793ab3f4d4ec29a4d86a66ebee610312, type: 2}
+  - _itemConfig: {fileID: 11400000, guid: ad85d4143ec458140bcc600b2f3477cb, type: 2}
+  - _phaseConfig: {fileID: 11400000, guid: 9fac98022ce0e564d913e1fa4f2580b4, type: 2}
+  - _skillConfig: {fileID: 11400000, guid: 0691f6d76309ef64aaafc04d3bedaa0b, type: 2}
+  - _weaponConfig: {fileID: 11400000, guid: 8fd911e7d00a4da4e9fcb07dbd8163f7, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

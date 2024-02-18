@@ -11,14 +11,14 @@ namespace TandC.Gameplay
         [SerializeField] private float _moveSpeed;
         [SerializeField] private Transform _bodyTransform;
 
-        private IInputHandler _inputHandler;
+        private IGameplayInputHandler _inputHandler;
         private EventBusHolder _eventBusHolder;
+
+        private PlayerConfig _playerConfig;
 
         private IMove _moveComponent;
         private IRotation _mainRotateComponent;
         private HealthComponent _healthComponent;
-
-        private PlayerData _playerData;
 
         public Vector2 PlayerPosition { get => transform.position; }
 
@@ -26,26 +26,23 @@ namespace TandC.Gameplay
         private Action _onPlayerDieEvent;
 
         [Inject]
-        private void Construct(IInputHandler inputHandler, EventBusHolder eventBusHolder)
+        private void Construct(IGameplayInputHandler inputHandler, PlayerConfig playerConfig, EventBusHolder eventBusHolder)
         {
             _inputHandler = inputHandler;
             _eventBusHolder = eventBusHolder;
+            _playerConfig = playerConfig;
         }
 
         private void Start()
         {
+            _moveSpeed = _playerConfig.PlayerData.StartSpeed;
             _onHealthChageEvent += (currentHealth, maxHealth) => _eventBusHolder.EventBus.Raise(new PlayerHealthChangeEvent(currentHealth, maxHealth));
             _onPlayerDieEvent += () => _eventBusHolder.EventBus.Raise(new PlayerDieEvent());
 
             _moveComponent = new MoveComponent(gameObject.GetComponent<Rigidbody2D>());
             _mainRotateComponent = new PlayerRotateComponent(_bodyTransform);
-            _healthComponent = new HealedHealthComponent(100f, _onPlayerDieEvent, _onHealthChageEvent);
+            _healthComponent = new HealedHealthComponent(_playerConfig.PlayerData.StartHealth, _onPlayerDieEvent, _onHealthChageEvent);
 
-        }
-
-        private void UpdatePlayerHealth(float maxValue, float minValue) 
-        {
-            Debug.LogError(maxValue + minValue);
         }
 
         private void FixedUpdate()

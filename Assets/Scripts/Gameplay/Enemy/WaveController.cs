@@ -6,7 +6,7 @@ namespace TandC.Gameplay
 {
     public class WaveController : MonoBehaviour
     {
-        [SerializeField] private PhaseConfig _phaseConfig;
+        private PhaseConfig _phaseConfig;
 
         private IEnemySpawner _enemySpawner;
         private Phase _currentPhase;
@@ -16,9 +16,10 @@ namespace TandC.Gameplay
         public int CurrentPhaseIndex { get; private set; }
 
         [Inject]
-        private void Construct(IEnemySpawner enemySpawner)
+        private void Construct(IEnemySpawner enemySpawner, PhaseConfig phaseConfig)
         {
             _enemySpawner = enemySpawner;
+            _phaseConfig = phaseConfig;
         }
 
         private void Start()

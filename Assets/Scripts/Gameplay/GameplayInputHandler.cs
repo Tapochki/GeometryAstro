@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace TandC.Gameplay
 {
-    public class InputHandler : MonoBehaviour, IInputHandler
+    public class GameplayInputHandler : MonoBehaviour, IGameplayInputHandler
     {
         [SerializeField] private Joystick _moveJoystick;
         [SerializeField] private Joystick _rotationJoystick;

@@ -9,10 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb8f03432d700d449b98c642ccfeb6f4, type: 3}
-  m_Name: PlayerConfig
+  m_Script: {fileID: 11500000, guid: c95222b075f65eb4ab3215b5f456d11d, type: 3}
+  m_Name: GameConfigInstaller
   m_EditorClassIdentifier: 
-  PlayerData:
-    StartHealth: 100
-    StartSpeed: 200
-    ModelId: 0
+  gameConfig: {fileID: 11400000, guid: 5e985a4a50cc40b459cf6bf9a34dceb2, type: 2}

@@ -14,6 +14,7 @@ namespace TandC.Gameplay
             InitializeExpirienceItemModel();
             InitializeMedecineItemModel();
         }
+
         private void InitializeExpirienceItemModel()
         {
             _itemModels.Add(ItemType.SmallXp, new ExpirienceItemModel());

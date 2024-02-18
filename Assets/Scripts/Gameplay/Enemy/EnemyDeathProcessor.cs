@@ -15,7 +15,7 @@ namespace TandC.Gameplay
 
         public void EnemyDeathHandler(Enemy enemy)
         {
-            _itemSpawner.DropItem(enemy.EnemyData.droperType, enemy.transform.position);
+            _itemSpawner.DropRandomItem(enemy.EnemyData.droperType, enemy.transform.position);
         }
     }
 }

@@ -12,11 +12,11 @@ namespace TandC.Gameplay
     {
         private const int ENEMY_PRELOAD_COUNT = 200;
 
-        [SerializeField] private EnemyConfig _enemiesConfig;
         [SerializeField] private Enemy _enemyPrefab;
         [SerializeField] private Transform _enemyParent;
 
         private Player _player;
+        private EnemyConfig _enemiesConfig;
         private IEnemyFactory _enemyFactory;
         private IEnemyDeathProcessor _enemyDeathProcessor;
         private IEnemySpawnPositionService _enemySpawnPositionRegistrator;
@@ -26,12 +26,14 @@ namespace TandC.Gameplay
         private bool _isCanSpawn;
 
         [Inject]
-        private void Construct(IEnemyFactory enemyFactory, IEnemySpawnPositionService enemySpawnPositionRegistrator, IEnemyDeathProcessor enemyDeathProcessor, Player player)
+        private void Construct(IEnemyFactory enemyFactory, IEnemySpawnPositionService enemySpawnPositionRegistrator, 
+            EnemyConfig enemiesConfig, IEnemyDeathProcessor enemyDeathProcessor, Player player)
         {
             _player = player;
             _enemyFactory = enemyFactory;
             _enemySpawnPositionRegistrator = enemySpawnPositionRegistrator;
             _enemyDeathProcessor = enemyDeathProcessor;
+            _enemiesConfig = enemiesConfig;
         }
 
         private void Start()
