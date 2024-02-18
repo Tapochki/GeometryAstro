@@ -13,7 +13,7 @@ namespace TandC.Data
             PlayerData = new PlayerData()
             {
                 StartHealth = 100f,
-                StartSpeed = 1000f,
+                StartSpeed = 500f,
                 ModelId = 0
             };
         }

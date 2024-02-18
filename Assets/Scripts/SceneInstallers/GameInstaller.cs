@@ -23,11 +23,17 @@ namespace TandC.SceneInstallers
             InstallEnemySpawner();
             InstallEnemyFactory();
             InstallEnemyDeathProcessor();
+            InstallLevelModel();
 
-            IntstallPlayerView();
+           // IntstallPlayerView();
 
             InstallCameraBinding();
             InstallPlayerBinding();
+        }
+
+        private void InstallLevelModel() 
+        {
+            Container.Bind<LevelModel>().FromComponentInHierarchy().AsSingle();
         }
 
         private void IntstallPlayerView()

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace TandC.Gameplay 
@@ -11,9 +9,16 @@ namespace TandC.Gameplay
 
     public class ExpirienceItemModel : ItemModel 
     {
+        private LevelModel _levelModel;
+
+        public ExpirienceItemModel(LevelModel levelModel) 
+        {
+            _levelModel = levelModel;
+        }
+
         public override void ReleseItem() 
         {
-            Debug.LogError("ExpirienceItemModel");
+            _levelModel.AddExpirience(50);//TODO change to item
         }
     }
 

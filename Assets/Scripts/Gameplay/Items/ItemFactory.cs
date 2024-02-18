@@ -1,12 +1,21 @@
 using System.Collections.Generic;
 using TandC.Settings;
 using UnityEngine;
+using Zenject;
 
 namespace TandC.Gameplay 
 {
     public class ItemFactory : MonoBehaviour, IItemFactory
     {
         private Dictionary<ItemType, ItemModel> _itemModels;
+
+        private LevelModel _levelModel;
+
+        [Inject]
+        private void Construct(LevelModel levelModel) 
+        {
+            _levelModel = levelModel;
+        }
 
         private void Start()
         {
@@ -17,7 +26,7 @@ namespace TandC.Gameplay
 
         private void InitializeExpirienceItemModel()
         {
-            _itemModels.Add(ItemType.SmallXp, new ExpirienceItemModel());
+            _itemModels.Add(ItemType.SmallXp, new ExpirienceItemModel(_levelModel));
         }
 
         private void InitializeMedecineItemModel()
