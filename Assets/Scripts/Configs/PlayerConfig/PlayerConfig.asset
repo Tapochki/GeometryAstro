@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerData:
     StartHealth: 100
-    StartSpeed: 200
+    StartSpeed: 500
     ModelId: 0

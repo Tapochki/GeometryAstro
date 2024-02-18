@@ -20,5 +20,5 @@ MonoBehaviour:
     BuilderType: 0
     type: 0
     droperType: 0
-    mainSprite: {fileID: 21300000, guid: 1120737f073bad14d8303f5de0cdda1d, type: 3}
+    mainSprite: {fileID: 21300000, guid: 943f12e80666c644ea6a8eba5e3166eb, type: 3}
     enemyAdditionalSprite: {fileID: 0}
