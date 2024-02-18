@@ -8,6 +8,13 @@ namespace TandC.Gameplay
 
         private int _currentXp;
         private int _xpForNextLevel;
+
+        public void AddExpirience() 
+        {
+
+        }
+
+        private Check
     }
 }
 
