@@ -1,22 +1,27 @@
+using DG.Tweening;
 using System;
 using UnityEngine;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
-namespace TandC.Gameplay 
+namespace TandC.Gameplay
 {
     public interface IDoTweenAnimationComponent
     {
-        public void DoAnimation(GameObject gameObject, Action animationFinishEvent);
+        public void DoAnimation(GameObject gameObject, Transform target, Action animationFinishEvent);
     }
 
-    public class YournameDoTweenAnimation : IDoTweenAnimationComponent
+    public class TriggerItemPickupDoTweenAnimation : IDoTweenAnimationComponent
     {
-        public void DoAnimation(GameObject gameObject, Action animationFinishEvent)
+        public void DoAnimation(GameObject gameObject, Transform target, Action animationFinishEvent)
         {
-            //Do dootween animation
-            // on finish
-            animationFinishEvent?.Invoke();
+            Vector2 initialDragDirection = ((Vector2)target.position - (Vector2)gameObject.transform.position).normalized;
+
+            gameObject.transform.DOLocalMove((Vector2)gameObject.transform.position + initialDragDirection, 0.3f)
+            .SetEase(Ease.OutQuad)
+            .OnComplete(() =>
+            {
+                animationFinishEvent?.Invoke();
+            });
         }
     }
 }
-
-

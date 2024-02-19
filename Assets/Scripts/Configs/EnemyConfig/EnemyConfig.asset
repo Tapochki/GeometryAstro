@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _enemies:
   - enemyId: 0
-    health: 50
+    health: 1
     damage: 10
     movementSpeed: 100
     BuilderType: 0

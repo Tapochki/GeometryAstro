@@ -31,8 +31,6 @@ namespace TandC.ProjectSystems
 
         public void Initialize()
         {
-            Debug.LogError("Initi");
-
             FillCacheDataPathes();
 
             if (!Directory.Exists(AppConstants.PATH_TO_GAMES_CACHE))
@@ -93,12 +91,12 @@ namespace TandC.ProjectSystems
             }
         }
 
-        private void WriteTextToFile(string dataPath, string contents) 
+        private void WriteTextToFile(string dataPath, string contents)
         {
             File.WriteAllText(dataPath, contents);
         }
 
-        private void SetDefaultAppSettingData() 
+        private void SetDefaultAppSettingData()
         {
             AppSettingsData = new AppSettingsData()
             {
@@ -117,7 +115,7 @@ namespace TandC.ProjectSystems
             };
         }
 
-        private void SetDefaultPlayerVaultData() 
+        private void SetDefaultPlayerVaultData()
         {
             PlayerVaultData = new PlayerVaultData()
             {
@@ -152,7 +150,7 @@ namespace TandC.ProjectSystems
                     break;
 
                 case CacheType.PlayerData:
-                    if (CheckIfPathExist(type, PlayerConfig.SetDefaultPlayerData)) 
+                    if (CheckIfPathExist(type, PlayerConfig.SetDefaultPlayerData))
                     {
                         PlayerConfig.PlayerData = InternalTools.DeserializeData<PlayerData>(File.ReadAllText(_cacheDataPathes[type]));
                     }
@@ -166,9 +164,9 @@ namespace TandC.ProjectSystems
             }
         }
 
-        private bool CheckIfPathExist(CacheType type, Action SetDefault) 
+        private bool CheckIfPathExist(CacheType type, Action SetDefault)
         {
-            if (!File.Exists(_cacheDataPathes[type])) 
+            if (!File.Exists(_cacheDataPathes[type]))
             {
                 SetDefault?.Invoke();
                 SaveCache(type);

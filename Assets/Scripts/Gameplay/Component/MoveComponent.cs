@@ -51,7 +51,7 @@ namespace TandC.Gameplay
 
         public void Move(Vector2 direction, float moveSpeed)
         {
-            _moveRigidbody2D.AddForce(_moveRigidbody2D.transform.up * moveSpeed * Time.deltaTime, ForceMode2D.Impulse);
+            _moveRigidbody2D.velocity = _moveRigidbody2D.transform.up * moveSpeed * Time.deltaTime;
         }
     }
 }

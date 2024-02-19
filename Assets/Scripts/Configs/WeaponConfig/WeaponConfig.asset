@@ -16,12 +16,12 @@ MonoBehaviour:
   - type: 1
     weaponName: Default
     baseDamage: 25
-    shootDeley: 0.5
+    shootDeley: 0.1
     bulletData:
-      BulletSpeed: 1000
+      BulletSpeed: 30000
       bulletLifeTime: 10
       bulletLife: 1
       ButlletObject: {fileID: 5271754677532632859, guid: 9e64d4062dc713c468222ae9ad90a1f5, type: 3}
-      type: 0
+      type: 1
       IsNotCustomise: 0
       CustomisationType: 1

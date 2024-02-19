@@ -1,23 +1,26 @@
 using System;
 using UnityEngine;
 
-namespace TandC.Gameplay 
+namespace TandC.Gameplay
 {
     public class ItemView : MonoBehaviour
     {
         private Action<ItemView> _onItemCollected;
         private ItemModel _itemModel;
         private IMove _moveComponent;
-        private IDoTweenAnimationComponent _doTweenAnimationComponent;
+        private IDoTweenAnimationComponent _triggerItemDoTweenAnimationComponent;
 
         private Transform _playerTransform;
 
         private bool _isMoveToPlayer;
 
+        private bool _isPickedByPickaper;
+
         private void Start()
         {
             _moveComponent = new MoveToTargetComponent(gameObject.GetComponent<Rigidbody2D>());
-            _doTweenAnimationComponent = new YournameDoTweenAnimation();
+
+            _triggerItemDoTweenAnimationComponent = new TriggerItemPickupDoTweenAnimation();
         }
 
         private void Update()
@@ -31,46 +34,48 @@ namespace TandC.Gameplay
             _onItemCollected = backToPoolEvent;
             _itemModel = itemModel;
             _playerTransform = player;
+            _isPickedByPickaper = false;
         }
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            if (collision.gameObject.TryGetComponent(out ItemPickUper pickUper))
+            if (collision.gameObject.TryGetComponent(out ItemPickUper pickUper) && !_isPickedByPickaper)
             {
-                _doTweenAnimationComponent.DoAnimation(gameObject, StartMoveToPlayer);
+                _isPickedByPickaper = true;
+                _triggerItemDoTweenAnimationComponent.DoAnimation(gameObject, _playerTransform, StartMoveToPlayer);
                 return;
             }
+
             PickByPlayer(collision);
         }
 
-        private void StartMoveToPlayer() 
+        private void StartMoveToPlayer()
         {
             _isMoveToPlayer = true;
         }
 
-        private void PickByPlayerFinish() 
+        private void PickByPlayerFinish()
         {
             _onItemCollected?.Invoke(this);
             _itemModel.ReleseItem();
+
+            _isPickedByPickaper = false;
         }
 
-        private void PickByPlayer(Collider2D collision) 
+        private void PickByPlayer(Collider2D collision)
         {
             if (collision.gameObject.TryGetComponent(out Player player))
             {
-                _doTweenAnimationComponent.DoAnimation(gameObject, PickByPlayerFinish);
+                PickByPlayerFinish();
             }
         }
 
-        private void MoveToPlayer() 
+        private void MoveToPlayer()
         {
-            if (_isMoveToPlayer) 
+            if (_isMoveToPlayer)
             {
                 _moveComponent.Move(_playerTransform.position, 1000f);
             }
         }
     }
 }
-
-
-

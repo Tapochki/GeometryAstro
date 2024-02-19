@@ -15,7 +15,7 @@ MonoBehaviour:
   _gamePhases:
   - PhaseId: 0
     waveTime: 100
-    enemySpawnDelay: 3
+    enemySpawnDelay: 0.2
     enemyInPhase:
     - enemyType: 0
       spawnType: 0
