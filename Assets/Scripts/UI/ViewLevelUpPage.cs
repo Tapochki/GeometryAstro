@@ -4,7 +4,6 @@ using TandC.ProjectSystems;
 using TandC.Settings;
 using TandC.UI.Views.Base;
 using TandC.Utilities;
-using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 

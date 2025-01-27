@@ -80,6 +80,8 @@ namespace TandC.Gameplay
 
         protected void GetReadyBullet(Bullet bullet) { }
 
+        protected void UpgradeWeapon() { }
+
         protected void BackEnemyToPool(Bullet bullet) {bullet.gameObject.SetActive(false);}
 
         protected void ReturnToPool(Bullet bullet)

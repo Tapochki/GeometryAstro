@@ -12,7 +12,19 @@ namespace TandC.EventBus
         }
     }
 
-    public readonly struct PlayerDieEvent : IEvent
-    {
-    }
+    public readonly struct PlayerDieEvent : IEvent { }
+
+    public readonly struct HealthSkillUpgradeEvent : IEvent { }
+
+    public readonly struct SpeedSkillUpgradeEvent : IEvent { }
+
+    public readonly struct ArmorSkillUpgradeEvent : IEvent { }
+
+    public readonly struct RocketLaunherSkillEvent : IEvent { }
+
+    public readonly struct MaskSkillEvent : IEvent { }
+
+    public readonly struct DashSkillEvent : IEvent { }
+
+    public readonly struct StandartGunSkillEvent: IEvent { }
 }

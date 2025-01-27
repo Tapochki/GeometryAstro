@@ -1,4 +1,6 @@
+using TandC.EventBus;
 using UnityEngine;
+using Zenject;
 
 namespace TandC.Gameplay 
 {
@@ -13,6 +15,14 @@ namespace TandC.Gameplay
 
         private float _currentXp;
         private float _xpForNextLevel;
+
+        private ISkillService _skillService;
+
+        [Inject]
+        private void Construct(ISkillService skillService)
+        {
+            _skillService = skillService;
+        }
 
         private void Start() 
         {
@@ -50,7 +60,7 @@ namespace TandC.Gameplay
             _levelView.UpdateLevel(_currentLevel);
         }
 
-        private void CheckForNewLevel() 
+        public void CheckForNewLevel() 
         {
             if (_currentXp >= _xpForNextLevel)
             {
@@ -69,6 +79,7 @@ namespace TandC.Gameplay
         {
             _currentLevel++;
             UpdateViewLevel();
+            _skillService.StartGenerateSkills();
         }
     }
 }

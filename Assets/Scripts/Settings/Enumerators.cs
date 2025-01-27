@@ -156,70 +156,33 @@ namespace TandC.Settings
     {
         Active,
         Passive,
-        Additional,
+        //Additional,
     }
 
     public enum SkillType
     {
+        StandartGun,
         MaxHealthIncrease,
         MovementSpeedIncrease,
-
         Shield,
-        ShieldRecoverTime,
-        ShieldHealthIncrease,
-
         Armor,
-
-        ShotAfterShot,
-        DoubleShot,
-
         BlowMina,
-        BlowMinaDamage,
-
         BulletSpeed,
         RecoverTimerDecrease,
         DamageIncrease,
-
         Drone,
-        IncreaseDroneSpeed,
-
         CriticalChanceIncrease,
         CriticalDamageMultilpier,
-
         AutoGun,
-        AutoGunShotCount,
-
         Dash,
-        DashDistanceIncrease,
-
         Mask,
-        MaskActiveTimeIncrease,
-
         Rocket,
-        RocketMaxCountUpgrade,
-        RocketExplosionSizeIncrese,
-
         HealthRestore,
-        HealthRestoreTimeDecrease,
-        HealthRestoreCountIncrese,
-
         XpMultiplierIncrese,
-
         LaserGun,
-        LaserGunSizeIncrese,
-
         Minigun,
-        MinigunShotIncrease,
-        MinigunSizeIncrease,
-        MinigunSizeDecrease,
-
         EnergyGun,
-        EnergyGunShotCount,
-        EnergyGunFasterHit,
-
         LightningGun,
-        LightningGunChainCount,
-
         PickUpRadiusIncrease,
     }
 

@@ -9,7 +9,6 @@ namespace TandC.SceneInstallers
     public class GameInstaller : MonoInstaller
     {
         [SerializeField] private Player _player;
-        [SerializeField] private PlayerHealthView _playerHealthView;
 
         public override void InstallBindings()
         {
@@ -24,21 +23,21 @@ namespace TandC.SceneInstallers
             InstallEnemyFactory();
             InstallEnemyDeathProcessor();
             InstallLevelModel();
-
-           // IntstallPlayerView();
+            InstallSkillService();
 
             InstallCameraBinding();
             InstallPlayerBinding();
         }
 
+        private void InstallSkillService()
+        {
+            Container.Bind<ISkillService>().To<SkillService>().FromComponentInHierarchy().AsSingle();
+            Container.Bind<ISkillFactory>().To<SkillFactory>().FromComponentInHierarchy().AsSingle();
+        }
+
         private void InstallLevelModel() 
         {
             Container.Bind<LevelModel>().FromComponentInHierarchy().AsSingle();
-        }
-
-        private void IntstallPlayerView()
-        {
-            Container.Bind<PlayerHealthView>().FromInstance(_playerHealthView).AsSingle();
         }
 
         private void InstallItemSpawner() 

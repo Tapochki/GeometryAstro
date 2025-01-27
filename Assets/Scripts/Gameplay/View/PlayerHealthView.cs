@@ -16,7 +16,6 @@ namespace TandC.Gameplay
         [Inject]
         private void Construct(EventBusHolder eventBusHolder)
         {
-            Debug.LogError("Inject");
             _eventBusHolder = eventBusHolder;
         }
 
