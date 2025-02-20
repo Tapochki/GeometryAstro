@@ -10,7 +10,7 @@ using UnityEngine;
 
 namespace TandC.GeometryAstro.Services
 {
-    public class DataSystem : ILoadUnit
+    public class DataService : ILoadUnit
     {
         public event Action OnCacheLoadedEvent;
 

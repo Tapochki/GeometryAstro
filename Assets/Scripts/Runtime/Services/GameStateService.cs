@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace TandC.GeometryAstro.Services
 {
-    public class GameStateSystem : MonoBehaviour
+    public class GameStateService : MonoBehaviour
     {
         public event Action<GameStates> OnGameStateWasChangedEvent;
 

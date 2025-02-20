@@ -6,15 +6,15 @@ using UnityEngine;
 
 namespace TandC.GeometryAstro.Services
 {
-    public class SoundSystem : MonoBehaviour
+    public class SoundService : MonoBehaviour
     {
         private List<SoundSource> _soundSources;
         private List<SoundPlayQueue> _soundPlayQueue;
 
         private Transform _soundContainer;
 
-        private LoadObjectsSystem _loadObjectsSystem;
-        private DataSystem _dataSystem;
+        private LoadObjectsService _loadObjectsSystem;
+        private DataService _dataSystem;
 
         public float MusicVolume { get; private set; }
         public float SoundVolume { get; private set; }
@@ -25,7 +25,7 @@ namespace TandC.GeometryAstro.Services
 
         public void SetSoundVolume(float value) => SoundVolume = value;
 
-        public void Construct(LoadObjectsSystem loadObjectsSystem, DataSystem dataSystem)
+        public void Construct(LoadObjectsService loadObjectsSystem, DataService dataSystem)
         {
             _loadObjectsSystem = loadObjectsSystem;
             _dataSystem = dataSystem;
@@ -203,10 +203,10 @@ namespace TandC.GeometryAstro.Services
         public Sounds SoundType { get; }
         public SoundParameters SoundParameters { get; }
 
-        private SoundSystem _soundSystem;
+        private SoundService _soundSystem;
 
         public SoundSource(Transform parent, AudioClip sound, Sounds soundType, SoundParameters parameters,
-                           SoundSystem soundSystem)
+                           SoundService soundSystem)
         {
             Sound = sound;
             SoundType = soundType;

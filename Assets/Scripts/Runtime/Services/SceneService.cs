@@ -5,7 +5,7 @@ using UnitySceneManager = UnityEngine.SceneManagement.SceneManager;
 
 namespace TandC.GeometryAstro.Services
 {
-    public class SceneManager
+    public class SceneService
     {
         private const string LogTag = "SCENE";
         

@@ -8,9 +8,9 @@ namespace TandC.GeometryAstro.Meta
     public class MetaFlow : IStartable
     {
         private readonly LoadingService _loadingService;
-        private readonly SceneManager _sceneManager;
+        private readonly SceneService _sceneManager;
 
-        public MetaFlow(LoadingService loadingService, SceneManager sceneManager)
+        public MetaFlow(LoadingService loadingService, SceneService sceneManager)
         {
             _loadingService = loadingService;
             _sceneManager = sceneManager;

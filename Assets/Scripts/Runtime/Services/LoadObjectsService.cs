@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace TandC.GeometryAstro.Services
 {
-    public class LoadObjectsSystem : MonoBehaviour
+    public class LoadObjectsService : MonoBehaviour
     {
         public void Construct()
         {

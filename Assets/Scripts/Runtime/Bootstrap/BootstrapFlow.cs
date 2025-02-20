@@ -8,9 +8,9 @@ namespace TandC.GeometryAstro.Bootstrap
     public class BootstrapFlow : IStartable
     {
         private readonly LoadingService _loadingService;
-        private readonly SceneManager _sceneManager;
+        private readonly SceneService _sceneManager;
 
-        public BootstrapFlow(LoadingService loadingService, SceneManager sceneManager)
+        public BootstrapFlow(LoadingService loadingService, SceneService sceneManager)
         {
             _loadingService = loadingService;
             _sceneManager = sceneManager;

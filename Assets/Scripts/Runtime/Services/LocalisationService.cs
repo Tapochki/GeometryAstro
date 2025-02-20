@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace TandC.GeometryAstro.Services
 {
-    public class LocalisationSystem : MonoBehaviour
+    public class LocalisationService : MonoBehaviour
     {
         public event Action<Languages> OnLanguageWasChangedEvent;
 
@@ -19,13 +19,13 @@ namespace TandC.GeometryAstro.Services
 
         private bool _isLanguageLoaded;
 
-        private DataSystem _dataSystem;
+        private DataService _dataSystem;
 
         public SystemLanguage CurrentLanguage { get; private set; }
 
         public void SetLanguage(SystemLanguage lang) => CurrentLanguage = lang;
 
-        public void Construct(DataSystem dataSystem)
+        public void Construct(DataService dataSystem)
         {
             _dataSystem = dataSystem;
         }

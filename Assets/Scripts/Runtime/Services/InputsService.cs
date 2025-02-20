@@ -3,15 +3,15 @@ using UnityEngine;
 
 namespace TandC.GeometryAstro.Services
 {
-    public class InputsSystem : MonoBehaviour
+    public class InputsService : MonoBehaviour
     {
         public event Action OnMovementDirectionUpdatedEvent;
 
         public event Action OnEscapeButtonDownEvent;
 
-        private GameStateSystem _gameStateSystem;
+        private GameStateService _gameStateSystem;
 
-        public void Construct(GameStateSystem gameStateSystem)
+        public void Construct(GameStateService gameStateSystem)
         {
             _gameStateSystem = gameStateSystem;
         }

@@ -6,13 +6,13 @@ using UnityEngine;
 
 namespace TandC.GeometryAstro.Services
 {
-    public class PurchasingListenerSystem : MonoBehaviour
+    public class PurchasingListenerService : MonoBehaviour
     {
         private PurchasingSystem _purchasingSystem;
 
         public void Construct(PurchasingSystem purchasingSystem)
         {
-            Utilities.Logger.Log("PurchasingListenerSystem Construct", LogTypes.Info);
+            Utilities.Logger.Log("PurchasingListenerService Construct", LogTypes.Info);
 
             _purchasingSystem = purchasingSystem;
         }

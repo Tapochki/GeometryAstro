@@ -9,9 +9,9 @@ namespace TandC.GeometryAstro.Core
     public class CoreFlow : IStartable
     {
         private readonly LoadingService _loadingService;
-        private readonly SceneManager _sceneManager;
+        private readonly SceneService _sceneManager;
 
-        public CoreFlow(LoadingService loadingService, SceneManager sceneManager)
+        public CoreFlow(LoadingService loadingService, SceneService sceneManager)
         {
             _loadingService = loadingService;
             _sceneManager = sceneManager;

@@ -16,7 +16,7 @@ namespace TandC.GeometryAstro.Bootstrap
         protected override void Configure(IContainerBuilder builder)
         {
             builder.Register<LoadingService>(Lifetime.Scoped);
-            builder.Register<SceneManager>(Lifetime.Singleton);
+            builder.Register<SceneService>(Lifetime.Singleton);
             
             builder.RegisterEntryPoint<BootstrapFlow>();
         }

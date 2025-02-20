@@ -8,9 +8,9 @@ namespace TandC.GeometryAstro.Loading
     public class LoadingFlow : IStartable
     {
         private readonly LoadingService _loadingService;
-        private readonly SceneManager _sceneManager;
+        private readonly SceneService _sceneManager;
 
-        public LoadingFlow(LoadingService loadingService, SceneManager sceneManager)
+        public LoadingFlow(LoadingService loadingService, SceneService sceneManager)
         {
             _loadingService = loadingService;
             _sceneManager = sceneManager;

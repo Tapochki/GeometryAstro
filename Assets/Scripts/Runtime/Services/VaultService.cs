@@ -3,16 +3,16 @@ using UnityEngine;
 
 namespace TandC.GeometryAstro.Services
 {
-    public sealed class VaultSystem : MonoBehaviour
+    public sealed class VaultService : MonoBehaviour
     {
         public event Action<int> OnCoinsAmountChangedEvent;
 
-        private DataSystem _dataSystem;
-        private GameStateSystem _gameStateSystem;
+        private DataService _dataSystem;
+        private GameStateService _gameStateSystem;
 
         public VaultCoin Coins { get; private set; }
 
-        public void Construct(DataSystem dataSystem, GameStateSystem gameStateSystem)
+        public void Construct(DataService dataSystem, GameStateService gameStateSystem)
         {
             _dataSystem = dataSystem;
         }
@@ -31,11 +31,11 @@ namespace TandC.GeometryAstro.Services
         {
             private Action _changedVaultAction;
 
-            private DataSystem _dataSystem;
+            private DataService _dataSystem;
 
             private int _storedItem;
 
-            public VaultCase(DataSystem dataSystem, Action changedVaultAction)
+            public VaultCase(DataService dataSystem, Action changedVaultAction)
             {
                 _dataSystem = dataSystem;
 
@@ -66,7 +66,7 @@ namespace TandC.GeometryAstro.Services
 
         public sealed class VaultCoin : VaultCase
         {
-            public VaultCoin(DataSystem dataSystem, Action changedVaultAction) : base(dataSystem, changedVaultAction)
+            public VaultCoin(DataService dataSystem, Action changedVaultAction) : base(dataSystem, changedVaultAction)
             {
             }
         }
