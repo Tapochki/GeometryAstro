@@ -2,18 +2,19 @@
 using TandC.GeometryAstro.Data;
 using TandC.GeometryAstro.EventBus;
 using UnityEngine;
+using VContainer;
 
 namespace TandC.GeometryAstro.Gameplay
 {
     public class Player : MonoBehaviour
-    {
-        [SerializeField] private float _moveSpeed;
+    {    
         [SerializeField] private Transform _bodyTransform;
 
+        private float _moveSpeed;
         private IGameplayInputHandler _inputHandler;
         private EventBusHolder _eventBusHolder;
 
-        private PlayerConfig _playerConfig;
+        private PlayerData _playerData;
 
         private IMove _moveComponent;
         private IRotation _mainRotateComponent;
@@ -28,23 +29,23 @@ namespace TandC.GeometryAstro.Gameplay
 
         private PlayerDieEvent _playerDieEvent;
 
-        private void Construct(IGameplayInputHandler inputHandler, PlayerConfig playerConfig, EventBusHolder eventBusHolder)
+        [Inject]
+        private void Construct(IGameplayInputHandler inputHandler, EventBusHolder eventBusHolder)
         {
             _inputHandler = inputHandler;
             _eventBusHolder = eventBusHolder;
-            _playerConfig = playerConfig;
         }
 
-        private void Start()
+        public void Init(PlayerData playerData)
         {
-            _moveSpeed = _playerConfig.PlayerData.StartSpeed;
+            _playerData = playerData;
+            _moveSpeed = _playerData.StartSpeed;
             _onHealthChageEvent += (currentHealth, maxHealth) => _eventBusHolder.EventBus.Raise(new PlayerHealthChangeEvent(currentHealth, maxHealth));
             _onPlayerDieEvent += () => _eventBusHolder.EventBus.Raise(new PlayerDieEvent());
 
             _moveComponent = new MoveComponent(gameObject.GetComponent<Rigidbody2D>());
             _mainRotateComponent = new PlayerRotateComponent(_bodyTransform);
-            _healthComponent = new HealedHealthComponent(_playerConfig.PlayerData.StartHealth, _onPlayerDieEvent, _onHealthChageEvent);
-
+            _healthComponent = new HealedHealthComponent(_playerData.StartHealth, _onPlayerDieEvent, _onHealthChageEvent);
         }
 
         private void FixedUpdate()

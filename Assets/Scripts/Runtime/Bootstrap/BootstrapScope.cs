@@ -8,14 +8,14 @@ namespace TandC.GeometryAstro.Bootstrap
     {
         protected override void Awake()
         {
-          //  IsRoot = true;
             DontDestroyOnLoad(this);
             base.Awake();
         }
 
         protected override void Configure(IContainerBuilder builder)
         {
-            builder.Register<LoadingService>(Lifetime.Scoped);
+            builder.Register<LoadingService>(Lifetime.Singleton);
+            builder.Register<DataService>(Lifetime.Singleton).AsSelf();
             builder.Register<SceneService>(Lifetime.Singleton);
             
             builder.RegisterEntryPoint<BootstrapFlow>();

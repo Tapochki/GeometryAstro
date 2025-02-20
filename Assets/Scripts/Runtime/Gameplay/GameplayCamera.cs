@@ -1,4 +1,5 @@
 using UnityEngine;
+using VContainer;
 
 namespace TandC.GeometryAstro.Gameplay
 {
@@ -8,12 +9,8 @@ namespace TandC.GeometryAstro.Gameplay
         [SerializeField] private MeshRenderer _back_1Material;
         [SerializeField] private MeshRenderer _back_2Material;
 
+        [Inject]
         private Player _player;
-
-        private void Construct(Player player)
-        {
-            _player = player;
-        }
 
         private Vector2 PlayerPosition => _player.transform.position;
 

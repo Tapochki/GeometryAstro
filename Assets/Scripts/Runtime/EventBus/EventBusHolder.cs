@@ -1,8 +1,6 @@
-using UnityEngine;
-
 namespace TandC.GeometryAstro.EventBus
 {
-    public class EventBusHolder : MonoBehaviour
+    public class EventBusHolder
     {
         public EventBus EventBus { get; private set; }
 

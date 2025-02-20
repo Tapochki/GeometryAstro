@@ -21,7 +21,7 @@ namespace TandC.GeometryAstro.Services
         public PlayerVaultData PlayerVaultData { get; private set; }
         public AppSettingsData AppSettingsData { get; private set; }
         public PurchaseData PurchaseData { get; private set; }
-        public PlayerConfig PlayerConfig { get; private set; }
+        public UserData UserData { get; private set; }
 
         public async UniTask Load()
         {
@@ -29,12 +29,7 @@ namespace TandC.GeometryAstro.Services
             await UniTask.CompletedTask;
         }
 
-        private void Construct(PlayerConfig playerConfig)
-        {
-            PlayerConfig = playerConfig;
-        }
-
-        public void Initialize()
+        private void Initialize()
         {
             FillCacheDataPathes();
 
@@ -42,6 +37,8 @@ namespace TandC.GeometryAstro.Services
             {
                 Directory.CreateDirectory(AppConstants.PATH_TO_GAMES_CACHE);
             }
+
+           // UserData = new UserData();
 
             StartLoadCache();
         }
@@ -86,8 +83,8 @@ namespace TandC.GeometryAstro.Services
                     WriteTextToFile(_cacheDataPathes[type], InternalTools.SerializeData(PlayerVaultData));
                     break;
 
-                case CacheType.PlayerData:
-                    WriteTextToFile(_cacheDataPathes[type], InternalTools.SerializeData(PlayerConfig.PlayerData));
+                case CacheType.UserData:
+                    WriteTextToFile(_cacheDataPathes[type], InternalTools.SerializeData(UserData));
                     break;
 
                 default:
@@ -129,6 +126,11 @@ namespace TandC.GeometryAstro.Services
             };
         }
 
+        private void SetDefaultUserData() 
+        {
+            UserData = new UserData();
+        }
+
         private void LoadCachedData(CacheType type)
         {
             switch (type)
@@ -154,10 +156,10 @@ namespace TandC.GeometryAstro.Services
                     }
                     break;
 
-                case CacheType.PlayerData:
-                    if (CheckIfPathExist(type, PlayerConfig.SetDefaultPlayerData))
+                case CacheType.UserData:
+                    if (CheckIfPathExist(type, SetDefaultUserData))
                     {
-                        PlayerConfig.PlayerData = InternalTools.DeserializeData<PlayerData>(File.ReadAllText(_cacheDataPathes[type]));
+                        UserData = InternalTools.DeserializeData<UserData>(File.ReadAllText(_cacheDataPathes[type]));
                     }
                     break;
 
@@ -187,7 +189,7 @@ namespace TandC.GeometryAstro.Services
                 { CacheType.AppSettingsData, Application.persistentDataPath + AppConstants.LOCAL_APP_DATA_FILE_PATH },
                 { CacheType.PurchaseData, Application.persistentDataPath + AppConstants.LOCAL_PURCHASE_DATA_FILE_PATH },
                 { CacheType.PlayerValutData, Application.persistentDataPath + AppConstants.LOCAL_PLAYER_VAULT_DATA_FILE_PATH },
-                { CacheType.PlayerData,  Application.persistentDataPath + AppConstants.LOCAL_PLAYER_DATA_FILE_PATH}
+                { CacheType.UserData,  Application.persistentDataPath + AppConstants.LOCAL_PLAYER_DATA_FILE_PATH}
             };
         }
 
@@ -208,6 +210,10 @@ namespace TandC.GeometryAstro.Services
                     {
                         PlayerVaultData = InternalTools.DeserializeData<PlayerVaultData>(File.ReadAllText(_cacheDataPathes[type]));
                     }
+                    break;
+
+                case CacheType.UserData:
+                    SetDefaultUserData();
                     break;
 
                 default:

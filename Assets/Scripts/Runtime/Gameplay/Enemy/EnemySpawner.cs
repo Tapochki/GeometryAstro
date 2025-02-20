@@ -83,7 +83,7 @@ namespace TandC.GeometryAstro.Gameplay
             return _currentWaveEnemies[randomIndex];
         }
 
-        private Enemy Preload() => Instantiate(_enemyPrefab, _enemyParent);
+        private Enemy Preload() => GameObject.Instantiate(_enemyPrefab, _enemyParent);
 
         private void GetReadyEnemy(Enemy enemy){}
 

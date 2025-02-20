@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb8f03432d700d449b98c642ccfeb6f4, type: 3}
+  m_Script: {fileID: 11500000, guid: c0a8e189864456a4586d35355679c0a5, type: 3}
   m_Name: PlayerConfig
   m_EditorClassIdentifier: 
   PlayerData:
     StartHealth: 100
-    StartSpeed: 500
+    StartSpeed: 100
     ModelId: 0

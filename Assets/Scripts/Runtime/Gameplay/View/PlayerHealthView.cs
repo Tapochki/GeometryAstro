@@ -12,19 +12,14 @@ namespace TandC.GeometryAstro.Gameplay
 
         private EventBusHolder _eventBusHolder;
 
-        private void Construct(EventBusHolder eventBusHolder)
-        {
-            _eventBusHolder = eventBusHolder;
-        }
-
         private void RegisterEvent()
         {
-            _eventBusHolder.EventBus.Register(this as IEventReceiver<PlayerHealthChangeEvent>);
+           // _eventBusHolder.EventBus.Register(this as IEventReceiver<PlayerHealthChangeEvent>);
         }
 
         private void UnregisterEvent()
         {
-            _eventBusHolder.EventBus.Unregister(this as IEventReceiver<PlayerHealthChangeEvent>);
+           // _eventBusHolder.EventBus.Unregister(this as IEventReceiver<PlayerHealthChangeEvent>);
         }
 
         private void OnEnable()

@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace TandC.GeometryAstro.Gameplay
 {
-    public class EnemyFactory : MonoBehaviour, IEnemyFactory
+    public class EnemyFactory : IEnemyFactory
     {
         public Enemy CreateEnemy(EnemyData data, Enemy enemy, Action<Enemy> backToPoolEvent, Transform target, Vector2 direction, EnemyBuilderType type)
         {

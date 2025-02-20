@@ -3,12 +3,18 @@ using UnityEngine;
 
 namespace TandC.GeometryAstro.Data
 {
-    [CreateAssetMenu(fileName = "PlayerConfig", menuName = "TandC/Game/PlayerConfig", order = 1)]
-    public class PlayerConfig : ScriptableObject
+    [CreateAssetMenu(fileName = "UserData", menuName = "TandC/Game/UserData", order = 1)]
+    public class UserData : ScriptableObject
     {
         public PlayerData PlayerData;
 
-        public void SetDefaultPlayerData() 
+        public UserData() 
+        {
+            SetDefaultPlayerData();
+
+        }
+
+        private void SetDefaultPlayerData() 
         {
             PlayerData = new PlayerData()
             {

@@ -18,7 +18,7 @@ namespace TandC.GeometryAstro.Meta
 
         public async void Start()
         {
-            await _loadingService.BeginLoading(new FooLoadingUnit(3));
+            await _loadingService.BeginLoading(new FooLoadingUnit(1));
             _sceneManager.LoadScene(RuntimeConstants.Scenes.Core).Forget();
         }
     }

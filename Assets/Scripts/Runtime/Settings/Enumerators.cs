@@ -206,7 +206,7 @@ namespace TandC.GeometryAstro.Settings
         AppSettingsData,
         PurchaseData,
         PlayerValutData,
-        PlayerData
+        UserData
     }
 
     public enum PurchasingType
