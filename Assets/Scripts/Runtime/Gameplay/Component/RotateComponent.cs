@@ -4,7 +4,8 @@ namespace TandC.GeometryAstro.Gameplay
 {
     public interface IRotation 
     {
-        public void Rotation(Vector2 targetDirection);
+        public void SetRotation(Vector2 targetDirection);
+        public void Update();
     }
 
     public class OnTargetRotateComponte : IRotation
@@ -17,10 +18,16 @@ namespace TandC.GeometryAstro.Gameplay
             _transform = transform;
             RotateOnSpawn(target);
         }
-        public void Rotation(Vector2 targetDirection)
+        public void SetRotation(Vector2 targetDirection)
         {
 
         }
+
+        public void Update() 
+        {
+
+        }
+
         private void RotateOnSpawn(Vector3 target)
         {
             if (!_hasRotated)
@@ -36,7 +43,12 @@ namespace TandC.GeometryAstro.Gameplay
 
     public class NoRotationComponent : IRotation
     {
-        public void Rotation(Vector2 targetDirection)
+        public void SetRotation(Vector2 targetDirection)
+        {
+
+        }
+
+        public void Update()
         {
 
         }
@@ -48,6 +60,7 @@ namespace TandC.GeometryAstro.Gameplay
 
         private Transform _mainTransform;
         private Quaternion _lastRotation;
+        private Vector2 _direction;
 
         public PlayerRotateComponent(Transform transform)
         {
@@ -55,17 +68,22 @@ namespace TandC.GeometryAstro.Gameplay
             _lastRotation = _mainTransform.rotation;
         }
 
-        public void Rotation(Vector2 direction)
+        public void SetRotation(Vector2 direction)
         {
-            if(direction == Vector2.zero) 
+            _direction = direction;
+        }
+
+        public void Update()
+        {
+            if (_direction == Vector2.zero)
             {
                 SaveLastRotation();
             }
-            Quaternion toRotation = Quaternion.LookRotation(Vector3.forward, direction);
+            Quaternion toRotation = Quaternion.LookRotation(Vector3.forward, _direction);
             _mainTransform.rotation = Quaternion.RotateTowards(_mainTransform.rotation, toRotation, Time.deltaTime * _rotationSpeed);
             _lastRotation = _mainTransform.rotation;
-
         }
+
         public void SaveLastRotation()
         {
             _mainTransform.rotation = _lastRotation;

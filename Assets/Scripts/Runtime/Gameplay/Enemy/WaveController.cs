@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using TandC.GeometryAstro.Data;
 using UniRx;
 using UnityEngine;
@@ -5,18 +7,20 @@ using VContainer;
 
 namespace TandC.GeometryAstro.Gameplay
 {
-    public class WaveController
+    public class WaveController : IDisposable
     {
         private LevelConfig _levelConfig;
-
         private IEnemySpawner _enemySpawner;
+
         private WaveData _currentWave;
-
         private CompositeDisposable _disposables = new();
+        private CompositeDisposable _waveDisposables = new();
 
-        private float _cooldownToSpawnEnemy;
+        private BoolReactiveProperty _isBossActive = new BoolReactiveProperty(false);
+        private Dictionary<WaveEvent, int> _eventExecutions = new Dictionary<WaveEvent, int>();
 
         public int CurrentWaveIndex { get; private set; }
+        public IReadOnlyReactiveProperty<bool> IsBossActive => _isBossActive;
 
         [Inject]
         private void Construct(IEnemySpawner enemySpawner, GameConfig gameConfig)
@@ -28,39 +32,113 @@ namespace TandC.GeometryAstro.Gameplay
         public void Init()
         {
             StartWaves();
-            Observable.EveryUpdate().Subscribe(_ => Update()).AddTo(_disposables);
         }
 
         private void StartWaves()
         {
-            SetNewPhase(0);
+            SetNewWave(0);
         }
 
-        private void SetNewPhase(int phaseId)
+        private void SetNewWave(int waveId)
         {
-            CurrentWaveIndex = phaseId;
-            _currentWave = _levelConfig.GetWhaveById(phaseId);
-            _cooldownToSpawnEnemy = _currentWave.waveDuration;
-            _enemySpawner.StartWave(_currentWave.enemies, _currentWave.spawnInterval);
+            _waveDisposables?.Dispose();
+            _waveDisposables = new CompositeDisposable();
+            _eventExecutions.Clear();
+
+            CurrentWaveIndex = waveId;
+            _currentWave = _levelConfig.GetWhaveById(waveId);
+
+            SpawnBossIfNeeded();
+            StartEnemySpawning();
+            StartWaveTimer();
+            ProcessWaveEvents();
         }
 
-        private void IncreaseWaveIndex()
+        private void StartEnemySpawning()
         {
-            CurrentWaveIndex++;
-            if (CurrentWaveIndex >= _levelConfig.WhavesCount - 1)
+            if (_currentWave.enemies.Length == 0) return;
+
+            Observable.Interval(TimeSpan.FromSeconds(_currentWave.spawnInterval))
+                .Where(_ => !_isBossActive.Value)
+                .Subscribe(_ => SpawnRandomEnemy())
+                .AddTo(_waveDisposables);
+        }
+
+        private void SpawnRandomEnemy()
+        {
+            var randomEnemy = _currentWave.enemies[UnityEngine.Random.Range(0, _currentWave.enemies.Length)];
+            _enemySpawner.SpawnEnemy();
+        }
+
+        private void StartWaveTimer()
+        {
+            Observable.Timer(TimeSpan.FromSeconds(_currentWave.waveDuration))
+                .Where(_ => !_isBossActive.Value)
+                .Subscribe(_ => CompleteWave())
+                .AddTo(_waveDisposables);
+        }
+
+        private void ProcessWaveEvents()
+        {
+            foreach (var waveEvent in _currentWave.waveEvents)
             {
-                CurrentWaveIndex = 0;
+                Observable.Timer(TimeSpan.FromSeconds(waveEvent.activationTime))
+                    .Where(_ => !_isBossActive.Value && CheckEventChance(waveEvent))
+                    .Subscribe(_ => HandleWaveEvent(waveEvent))
+                    .AddTo(_waveDisposables);
             }
-            SetNewPhase(CurrentWaveIndex);
         }
 
-        private void Update()
+        private bool CheckEventChance(WaveEvent waveEvent)
         {
-            _cooldownToSpawnEnemy -= Time.deltaTime;
-            if (_cooldownToSpawnEnemy <= 0)
+            return UnityEngine.Random.value <= waveEvent.eventChance / 100f;
+        }
+
+        private void HandleWaveEvent(WaveEvent waveEvent)
+        {
+            if (_eventExecutions.ContainsKey(waveEvent))
             {
-                IncreaseWaveIndex();
+                if (_eventExecutions[waveEvent] >= waveEvent.maxRepetitions) return;
+                _eventExecutions[waveEvent]++;
             }
+            else
+            {
+                _eventExecutions.Add(waveEvent, 1);
+            }
+
+            Debug.Log($"Event triggered: {waveEvent.eventType}");
+        }
+
+        private void SpawnBossIfNeeded()
+        {
+            //if (_currentWave.bossInPhase == null) return;
+
+            //_isBossActive.Value = true;
+            //_enemySpawner.SpawnBoss(_currentWave.bossInPhase.boss, OnBossDefeated);
+        }
+
+        private void OnBossDefeated()
+        {
+            _isBossActive.Value = false;
+            CompleteWave();
+        }
+
+        private void CompleteWave()
+        {
+            if (CurrentWaveIndex >= _levelConfig.MaxWavesCount - 1)
+            {
+                Debug.Log("All waves completed!");
+                return;
+            }
+
+            SetNewWave(CurrentWaveIndex + 1);
+        }
+
+
+        public void Dispose()
+        {
+            _disposables?.Dispose();
+            _waveDisposables?.Dispose();
         }
     }
 }

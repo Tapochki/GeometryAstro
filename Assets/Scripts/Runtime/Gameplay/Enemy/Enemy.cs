@@ -6,61 +6,59 @@ namespace TandC.GeometryAstro.Gameplay
 {
     public class Enemy : MonoBehaviour
     {
-        protected Transform _target;
-        protected Vector2 _rotateDirection;
-        protected IMove _moveComponent;
-        protected IRotation _rotationComponent;
-        protected HealthComponent _healthComponent;
-        protected AttackComponent _attackComponent;
-        protected Action<Enemy> _enemyBackToPoolEvent;
+        [Header("References")]
+        [SerializeField] private SpriteRenderer _modelViewRenderer;
+        [SerializeField] private Rigidbody2D _rigidbody;
+
+        private Transform _target;
+        private IMove _moveComponent;
+        private IRotation _rotationComponent;
+        private HealthComponent _healthComponent;
+        private AttackComponent _attackComponent;
+        private Action<Enemy> _onDeathEvent;
 
         public EnemyData EnemyData { get; private set; }
 
-        public void SetData(EnemyData data) 
+        private void Update()
+        {
+            if (_moveComponent != null)
+                _moveComponent.Move(_target.position, EnemyData.movementSpeed);
+
+            if (_rotationComponent != null)
+                _rotationComponent.Update();
+
+            if (_attackComponent !=null)
+                _attackComponent.Update();
+        }
+
+        public void Initialize(EnemyData data, Transform target, Action<Enemy> onDeathEvent)
         {
             EnemyData = data;
-        }
-
-        public void SetBackToPoolEvent(Action<Enemy> enemyBackToPoolEvent) 
-        {
-            _enemyBackToPoolEvent = enemyBackToPoolEvent;
-        }
-
-        public void SetTargetDirection(Transform target) 
-        {
             _target = target;
+            _onDeathEvent = onDeathEvent;
+
+            _modelViewRenderer.sprite = data.mainSprite;
+            SetupHealthComponent();
         }
 
-        public void SetTargetRotation(Vector2 rotateDirection)
+        public void SetupHealthComponent()
         {
-            _rotateDirection = rotateDirection;
+            _healthComponent = new HealthComponent(
+                EnemyData.health,
+                ProccesingEnemyDeath,
+                null);
         }
 
-        public void SetMovementComponent(IMove moveComponent)
+        public void ProccesingEnemyDeath()
+        {
+            _onDeathEvent?.Invoke(this);
+        }
+
+        public void ConfigureComponents(IMove moveComponent, IRotation rotationComponent, AttackComponent attackComponent)
         {
             _moveComponent = moveComponent;
-        }
-
-        public void SetRotationComponent(IRotation rotationComponent)
-        {
             _rotationComponent = rotationComponent;
-        }
-
-        public void SetHealthComponent(HealthComponent healthComponent)
-        {
-            _healthComponent = healthComponent;
-        }
-
-        public void SetAttackComponent(AttackComponent healthComponent)
-        {
-            _attackComponent = healthComponent;
-        }
-
-        public void Update()
-        {
-            _moveComponent.Move(_target.position, EnemyData.movementSpeed);
-            _rotationComponent.Rotation(_rotateDirection);
-            _attackComponent.Update();
+            _attackComponent = attackComponent;
         }
 
         public void TakeDamage(float damage)
@@ -84,9 +82,5 @@ namespace TandC.GeometryAstro.Gameplay
             }
         }
 
-        public void ProccesingEnemyDeath() 
-        {
-            _enemyBackToPoolEvent?.Invoke(this);
-        }
     }
 }

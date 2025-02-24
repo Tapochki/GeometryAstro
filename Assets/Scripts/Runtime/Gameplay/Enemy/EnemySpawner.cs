@@ -1,9 +1,10 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using TandC.GeometryAstro.Data;
 using TandC.GeometryAstro.Settings;
 using TandC.GeometryAstro.Utilities;
 using UnityEngine;
+using VContainer;
 
 namespace TandC.GeometryAstro.Gameplay
 {
@@ -18,113 +19,120 @@ namespace TandC.GeometryAstro.Gameplay
         private EnemyConfig _enemiesConfig;
         private IEnemyFactory _enemyFactory;
         private IEnemyDeathProcessor _enemyDeathProcessor;
-        private IEnemySpawnPositionService _enemySpawnPositionRegistrator;
+        private IEnemySpawnPositionService _enemySpawnPositionService;
         private ObjectPool<Enemy> _enemyPool;
         private List<EnemySpawnData> _currentWaveEnemies;
-        private float _spawnDelay;
-        private bool _isCanSpawn;
 
-        private void Construct(IEnemyFactory enemyFactory, IEnemySpawnPositionService enemySpawnPositionRegistrator, 
-            EnemyConfig enemiesConfig, IEnemyDeathProcessor enemyDeathProcessor, Player player)
+        [Inject]
+        private void Construct(
+            IEnemyFactory enemyFactory,
+            IEnemySpawnPositionService enemySpawnPositionService,
+            EnemyConfig enemiesConfig,
+            IEnemyDeathProcessor enemyDeathProcessor,
+            Player player)
         {
             _player = player;
             _enemyFactory = enemyFactory;
-            _enemySpawnPositionRegistrator = enemySpawnPositionRegistrator;
+            _enemySpawnPositionService = enemySpawnPositionService;
             _enemyDeathProcessor = enemyDeathProcessor;
             _enemiesConfig = enemiesConfig;
         }
 
         private void Start()
         {
-            _enemyPool = new ObjectPool<Enemy>(Preload, GetReadyEnemy, BackEnemyToPool, ENEMY_PRELOAD_COUNT);
+            InitializePool();
             _currentWaveEnemies = new List<EnemySpawnData>();
         }
 
-        private List<Transform> GetSpawnPosition(SpawnType spawnType)
+        private void InitializePool()
         {
-            return _enemySpawnPositionRegistrator.GetSpawnPointsForType(spawnType);
+            _enemyPool = new ObjectPool<Enemy>(
+                preloadFunc: PreloadEnemy,
+                getAction: EnableEnemy,
+                returnAction: DisableEnemy,
+                preloadCount: ENEMY_PRELOAD_COUNT
+            );
         }
 
-        private Vector2 GetDirectionPosition(Vector2 spawnPosition)
+        public void StartWave(EnemySpawnData[] enemyDatas)
         {
-            return _enemySpawnPositionRegistrator.GetOppositePosition(spawnPosition);
-        }
-
-        public void StartWave(EnemySpawnData[] enemyDatas, float spawnDelay) 
-        {
-            _currentWaveEnemies = new List<EnemySpawnData>();
-            _spawnDelay = spawnDelay;
+            _currentWaveEnemies.Clear();
             _currentWaveEnemies.AddRange(enemyDatas);
-            _isCanSpawn = true;
-            StartCoroutine(SpawnEnemiesRoutine());
         }
 
-        private EnemyData GetEnemyData(EnemyType enemyType) 
-        {
-            return _enemiesConfig.GetEnemiesByType(enemyType);
-        }
-
-        private EnemySpawnData GetEnemyFromWave()
+        public void SpawnEnemy()
         {
             if (_currentWaveEnemies.Count == 0)
             {
-                Debug.LogError("No enemies in the current wave.");
-                return null;
+                Debug.LogWarning("No enemies available in current wave");
+                return;
             }
 
-            int randomIndex = Random.Range(0, _currentWaveEnemies.Count);
-            return _currentWaveEnemies[randomIndex];
+            var spawnData = GetRandomSpawnData();
+            var enemyData = GetEnemyData(spawnData.enemyType);
+            var spawnPoints = GetSpawnPoints(spawnData.spawnType);
+
+            foreach (var point in spawnPoints)
+            {
+                var enemy = _enemyPool.Get();
+                SetupEnemy(enemy, enemyData, point.position);
+            }
         }
 
-        private Enemy Preload() => GameObject.Instantiate(_enemyPrefab, _enemyParent);
+        private EnemySpawnData GetRandomSpawnData()
+        {
+            return _currentWaveEnemies[UnityEngine.Random.Range(0, _currentWaveEnemies.Count)];
+        }
 
-        private void GetReadyEnemy(Enemy enemy){}
+        private EnemyData GetEnemyData(EnemyType type)
+        {
+            return _enemiesConfig.GetEnemiesByType(type);
+        }
 
-        private void BackEnemyToPool(Enemy enemy)
+        private List<Transform> GetSpawnPoints(SpawnType spawnType)
+        {
+            return _enemySpawnPositionService.GetSpawnPointsForType(spawnType);
+        }
+
+        private Enemy PreloadEnemy()
+        {
+            return Instantiate(_enemyPrefab, _enemyParent);
+        }
+
+        private void EnableEnemy(Enemy enemy)
+        {
+            enemy.gameObject.SetActive(true);
+        }
+
+        private void DisableEnemy(Enemy enemy)
         {
             enemy.gameObject.SetActive(false);
         }
 
-        private void EnemyDeathProcess(Enemy enemy) 
+        private void SetupEnemy(Enemy enemy, EnemyData data, Vector2 spawnPosition)
+        {
+            enemy.transform.position = spawnPosition;
+            var direction = _enemySpawnPositionService.GetOppositePosition(spawnPosition);
+
+            _enemyFactory.CreateEnemy(
+                enemyData: data,
+                enemy: enemy,
+                onDeathEvent: (enemy) => HandleEnemyDeath(enemy),
+                target: _player.transform,
+                moveDirection: direction,
+                builderType: data.BuilderType
+            );
+        }
+
+        private void HandleEnemyDeath(Enemy enemy)
         {
             _enemyDeathProcessor.EnemyDeathHandler(enemy);
             _enemyPool.Return(enemy);
         }
 
-        private void SpawnEnemy() 
+        public void SpawnBoss(EnemySpawnData bossData, Action onBossDefeated)
         {
-            if (_currentWaveEnemies.Count == 0)
-            {
-                Debug.LogError("No enemies in the list.");
-                return;
-            }
-            EnemySpawnData selectedEnemySpawnData = GetEnemyFromWave();
-            Enemy currentEnemy = _enemyPool.Get();
-            EnemyData enemyData = GetEnemyData(selectedEnemySpawnData.enemyType);
-            List<Transform> spawnPoints = GetSpawnPosition(selectedEnemySpawnData.spawnType);
-
-            foreach(var spawnPoint in spawnPoints) 
-            {
-                Vector2 directionPosition = GetDirectionPosition(spawnPoint.position);
-                ConstractEnemy(currentEnemy, enemyData, spawnPoint.position, directionPosition);
-            }
-        }
-
-        private void ConstractEnemy(Enemy enemy, EnemyData enemyData, Vector2 spawnPosition, Vector2 directPosition)
-        {
-            enemy.transform.position = spawnPosition;
-            enemy = _enemyFactory.CreateEnemy(enemyData, enemy, EnemyDeathProcess, _player.transform, directPosition, enemyData.BuilderType);
-            enemy.gameObject.SetActive(true);
-        }
-
-        private IEnumerator SpawnEnemiesRoutine()
-        {
-            while (_isCanSpawn)
-            {
-                SpawnEnemy();
-                yield return new WaitForSeconds(_spawnDelay);
-            }
+            //Boss spawn
         }
     }
 }
-

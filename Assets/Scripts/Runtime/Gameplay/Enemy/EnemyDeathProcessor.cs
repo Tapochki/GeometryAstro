@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace TandC.GeometryAstro.Gameplay 
 {
-    public class EnemyDeathProcessor : MonoBehaviour, IEnemyDeathProcessor
+    public class EnemyDeathProcessor : IEnemyDeathProcessor
     {
         private IItemSpawner _itemSpawner;
 

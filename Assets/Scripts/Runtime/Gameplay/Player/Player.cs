@@ -53,11 +53,11 @@ namespace TandC.GeometryAstro.Gameplay
             _moveComponent.Move(_inputHandler.MoveDirection, _moveSpeed);
             if (_inputHandler.RotationDirection != Vector2.zero)
             {
-                _mainRotateComponent.Rotation(_inputHandler.RotationDirection);
+                _mainRotateComponent.SetRotation(_inputHandler.RotationDirection);
             }
             else if (_inputHandler.MoveDirection != Vector2.zero)
             {
-                _mainRotateComponent.Rotation(_inputHandler.MoveDirection);
+                _mainRotateComponent.SetRotation(_inputHandler.MoveDirection);
             }
         }
 

@@ -123,6 +123,11 @@ namespace TandC.GeometryAstro.Settings
         FlashEnemyMaterial
     }
 
+    public enum WaveEventType 
+    {
+        none = 0,
+    }
+
     public enum EnemyType
     {
         StandartSquare,

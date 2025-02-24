@@ -4,7 +4,8 @@ namespace TandC.GeometryAstro.Gameplay
 {
     public interface IEnemySpawner
     {
-        public void StartWave(EnemySpawnData[] enemyDatas, float spawnDelay);
+        public void StartWave(EnemySpawnData[] enemyDatas);
+        public void SpawnEnemy();
     }
 }
 
