@@ -90,12 +90,12 @@ namespace TandC.GeometryAstro.Settings
         VerticalRightBottom
     }
 
-    public enum TargetType
-    {
-        Player,
-        RandomPosition,
-        OpositionPosition,
-    }
+    //public enum TargetType
+    //{
+    //    Player,
+    //    RandomPosition,
+    //    OpositionPosition,
+    //}
 
     public enum DropItemRareType
     {

@@ -1,28 +1,34 @@
 using TandC.GeometryAstro.Data;
+using UniRx;
 using UnityEngine;
+using VContainer;
 
 namespace TandC.GeometryAstro.Gameplay
 {
-    public class WaveController : MonoBehaviour
+    public class WaveController
     {
-        private PhaseConfig _phaseConfig;
+        private LevelConfig _levelConfig;
 
         private IEnemySpawner _enemySpawner;
-        private Phase _currentPhase;
+        private WaveData _currentWave;
+
+        private CompositeDisposable _disposables = new();
 
         private float _cooldownToSpawnEnemy;
 
-        public int CurrentPhaseIndex { get; private set; }
+        public int CurrentWaveIndex { get; private set; }
 
-        private void Construct(IEnemySpawner enemySpawner, PhaseConfig phaseConfig)
+        [Inject]
+        private void Construct(IEnemySpawner enemySpawner, GameConfig gameConfig)
         {
             _enemySpawner = enemySpawner;
-            _phaseConfig = phaseConfig;
+            _levelConfig = gameConfig.LevelsConfig;
         }
 
-        private void Start()
+        public void Init()
         {
             StartWaves();
+            Observable.EveryUpdate().Subscribe(_ => Update()).AddTo(_disposables);
         }
 
         private void StartWaves()
@@ -32,24 +38,20 @@ namespace TandC.GeometryAstro.Gameplay
 
         private void SetNewPhase(int phaseId)
         {
-            //if (CurrentPhaseIndex > _phaseConfig.gamePhases.Length)
-            //{
-            //    IncreasePhaseIndex();
-            //}
-            CurrentPhaseIndex = phaseId;
-            _currentPhase = _phaseConfig.GetPhaseById(phaseId);
-            _enemySpawner.StartWave(_currentPhase.enemyInPhase, _currentPhase.enemySpawnDelay);
+            CurrentWaveIndex = phaseId;
+            _currentWave = _levelConfig.GetWhaveById(phaseId);
+            _cooldownToSpawnEnemy = _currentWave.waveDuration;
+            _enemySpawner.StartWave(_currentWave.enemies, _currentWave.spawnInterval);
         }
 
-        private void IncreasePhaseIndex()
+        private void IncreaseWaveIndex()
         {
-            CurrentPhaseIndex++;
-            if (CurrentPhaseIndex >= _phaseConfig.PhasesCount - 1)
+            CurrentWaveIndex++;
+            if (CurrentWaveIndex >= _levelConfig.WhavesCount - 1)
             {
-                //TODO _enemySpawner.IncreaseEnemyParam();
-                CurrentPhaseIndex = 0;
+                CurrentWaveIndex = 0;
             }
-            SetNewPhase(CurrentPhaseIndex);
+            SetNewPhase(CurrentWaveIndex);
         }
 
         private void Update()
@@ -57,7 +59,7 @@ namespace TandC.GeometryAstro.Gameplay
             _cooldownToSpawnEnemy -= Time.deltaTime;
             if (_cooldownToSpawnEnemy <= 0)
             {
-                _cooldownToSpawnEnemy = _currentPhase.waveTime;
+                IncreaseWaveIndex();
             }
         }
     }

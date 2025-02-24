@@ -45,16 +45,9 @@ namespace TandC.GeometryAstro.Gameplay
             return _enemySpawnPositionRegistrator.GetSpawnPointsForType(spawnType);
         }
 
-        private Vector2 GetDirectionPosition(TargetType targetType, Vector2 spawnPosition)
+        private Vector2 GetDirectionPosition(Vector2 spawnPosition)
         {
-            if(targetType == TargetType.Player) 
-            {
-                return _player.transform.position;
-            }
-            else 
-            {
-                return _enemySpawnPositionRegistrator.GetOppositePosition(spawnPosition);
-            }
+            return _enemySpawnPositionRegistrator.GetOppositePosition(spawnPosition);
         }
 
         public void StartWave(EnemySpawnData[] enemyDatas, float spawnDelay) 
@@ -112,7 +105,7 @@ namespace TandC.GeometryAstro.Gameplay
 
             foreach(var spawnPoint in spawnPoints) 
             {
-                Vector2 directionPosition = GetDirectionPosition(selectedEnemySpawnData.targetType, spawnPoint.position);
+                Vector2 directionPosition = GetDirectionPosition(spawnPoint.position);
                 ConstractEnemy(currentEnemy, enemyData, spawnPoint.position, directionPosition);
             }
         }
