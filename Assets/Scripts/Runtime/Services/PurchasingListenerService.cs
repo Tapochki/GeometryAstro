@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace TandC.GeometryAstro.Services
 {
-    public class PurchasingListenerService : MonoBehaviour
+    public class PurchasingListenerService
     {
         private PurchasingSystem _purchasingSystem;
 

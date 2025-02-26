@@ -9,10 +9,17 @@ namespace TandC.GeometryAstro.Gameplay
         [SerializeField] private MeshRenderer _back_1Material;
         [SerializeField] private MeshRenderer _back_2Material;
 
+        public Camera Camera { get; private set; }
+
         [Inject]
         private Player _player;
 
         private Vector2 PlayerPosition => _player.transform.position;
+
+        private void Awake()
+        {
+            Camera = GetComponent<Camera>();
+        }
 
         private void FixedUpdate()
         {

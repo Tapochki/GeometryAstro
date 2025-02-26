@@ -8,18 +8,18 @@ namespace TandC.GeometryAstro.Loading
     public class LoadingFlow : IStartable
     {
         private readonly LoadingService _loadingService;
-        private readonly SceneService _sceneManager;
+        private readonly SceneService _sceneService;
 
-        public LoadingFlow(LoadingService loadingService, SceneService sceneManager)
+        public LoadingFlow(LoadingService loadingService, SceneService sceneService)
         {
             _loadingService = loadingService;
-            _sceneManager = sceneManager;
+            _sceneService = sceneService;
         }
 
         public async void Start()
         {
             await _loadingService.BeginLoading(new FooLoadingUnit(1));
-            _sceneManager.LoadScene(RuntimeConstants.Scenes.Meta).Forget();
+            _sceneService.LoadScene(RuntimeConstants.Scenes.Meta).Forget();
         }
     }
 }

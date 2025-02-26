@@ -1,9 +1,8 @@
-using TandC.GeometryAstro.Settings;
 using UnityEngine;
 
 namespace TandC.GeometryAstro.Services
 {
-    public class LoadObjectsService : MonoBehaviour
+    public class LoadObjectsService
     {
         public void Construct()
         {
@@ -37,6 +36,7 @@ namespace TandC.GeometryAstro.Services
                     path += '/';
                 }
             }
+            Debug.LogError(path);
             return path;
         }
     }

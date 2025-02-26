@@ -122,6 +122,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e39a16ff2d9acd744a336e4327c8b134, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _modelViewRenderer: {fileID: 7559705392752510068}
+  _rigidbody: {fileID: 678568841831051725}
 --- !u!1 &2686331235539291630
 GameObject:
   m_ObjectHideFlags: 0
@@ -132,7 +134,7 @@ GameObject:
   m_Component:
   - component: {fileID: 294387566186552440}
   - component: {fileID: 7559705392752510068}
-  - component: {fileID: 8660977198783756451}
+  - component: {fileID: 4974342017143899876}
   m_Layer: 0
   m_Name: ModelView
   m_TagString: Untagged
@@ -209,7 +211,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &8660977198783756451
+--- !u!114 &4974342017143899876
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -218,19 +220,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 2686331235539291630}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc236325d23e77c4e82c1138a8e99328, type: 3}
+  m_Script: {fileID: 11500000, guid: eae7fbd7f8c479b4d88923dcda55ad94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  frames:
-  - {fileID: 21300000, guid: dbf828637df39934ea9d5b19f567223f, type: 3}
-  - {fileID: 21300000, guid: 768d8cf63ba673a43bb02f98f71508b1, type: 3}
-  - {fileID: 21300000, guid: 5629c9efc12e7184aa6de988bbed4347, type: 3}
-  framesPerSecond: 6
-  loop: 1
+  frames: []
+  framesPerSecond: 0
+  loop: 0
   currentFrame: 0
   wasPaused: 0
   isPlaying: 0
-  playAtStart: 1
+  playAtStart: 0
 --- !u!1001 &675736823346989491
 PrefabInstance:
   m_ObjectHideFlags: 0

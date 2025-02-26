@@ -9,7 +9,7 @@ namespace TandC.GeometryAstro.Gameplay
     public abstract class Weapon : MonoBehaviour
     {
         [SerializeField] protected Bullet _bulletPrefab;
-        [SerializeField] protected GameplayData _gameplayData;
+        [SerializeField] protected GameConfig _gameConfig;
         [SerializeField] protected Transform _bulletParent;
         [SerializeField] protected WeaponType _weaponType;
 
@@ -19,9 +19,9 @@ namespace TandC.GeometryAstro.Gameplay
         protected float _shootDeleyTimer;
         protected bool _isReloaded;
 
-        private void Construct(WeaponConfig weaponConfig) 
+        private void Awake() 
         {
-            _currentWeaponData = weaponConfig.GetWeaponByType(_weaponType);
+            _currentWeaponData = _gameConfig.WeaponConfig.GetWeaponByType(_weaponType);
         }
         
         protected abstract void InitializeBulletPrefab();

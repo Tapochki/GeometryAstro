@@ -6,7 +6,9 @@ namespace TandC.GeometryAstro.Gameplay
 {
     public interface IEnemySpawnPositionService
     {
-        public List<Transform> GetSpawnPointsForType(SpawnType spawnType);
+        public void Init();
+
+        public Transform GetRandomPositionFromRegister();
 
         public Vector2 GetOppositePosition(Vector2 spawnPosition);
     }

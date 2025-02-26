@@ -1,193 +1,254 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using TandC.GeometryAstro.Settings;
 using UnityEngine;
+using VContainer;
 
 namespace TandC.GeometryAstro.Gameplay
 {
 
-    public class EnemySpawnPositionService : MonoBehaviour, IEnemySpawnPositionService
+    public class EnemySpawnPositionService : IEnemySpawnPositionService
     {
-        [SerializeField] private Transform _playerDirectionSpawnPoint;
-        [SerializeField] private Camera _camera;
-        [SerializeField] private float _spawnOffsetFactor = 0.3f;
+        [Inject] private GameplayCamera _gameplayCamera;
 
-        private Dictionary<SpawnPositionType, Transform> _spawnPointObjects;
+        [SerializeField] private float _spawnOffsetFactor = 0.4f;
 
-        private Dictionary<SpawnType, Func<List<Transform>>> _spawnTypes;
+        private Dictionary<SpawnPositionType, Transform> _spawnPoints;
+        private ScreenBoundsCalculator _screenBounds;
+        private Transform _spawnPointsParent;
 
-#region Initializing
-        private void Start()
+        #region Initialization
+
+        public void Init()
         {
-            RegisterSpawnPositions();
-            InitializeSpawnTypes();
+            _spawnPointsParent = new GameObject("[SpawnPoints]").transform;
+            _spawnPointsParent.SetParent(_gameplayCamera.transform);
+
+            _screenBounds = new ScreenBoundsCalculator(_gameplayCamera.Camera);
+
+            _spawnPoints = new Dictionary<SpawnPositionType, Transform>();
+
+            var offset = _screenBounds.GetOffset(_spawnOffsetFactor);
+
+            CreateCornerPoints(offset);
+
+            GenerateHorizontalTopPoints(offset);
+            GenerateHorizontalBottomPoints(offset);
+            GenerateVerticalLeftPoints(offset);
+            GenerateVerticalRightPoints(offset);
+
+
+            CacheSpawnGroups();
+        }
+        #endregion
+        #region Generate Points
+
+        private void GenerateHorizontalTopPoints(Vector2 offset) 
+        {
+            GenerateHorizontalLine(
+                SpawnPositionType.HorizontalTopLeft,
+                SpawnPositionType.HorizontalTopCenter,
+                SpawnPositionType.HorizontalTopRight,
+                _screenBounds.VerticalMax + offset.y
+                );
         }
 
-        private void RegisterSpawnPositions()
+        private void GenerateHorizontalBottomPoints(Vector2 offset)
         {
-            float screenX = _camera.orthographicSize * Screen.width / Screen.height;
-            float screenY = _camera.orthographicSize;
-            float offsetX = _spawnOffsetFactor * screenX;
-            float offsetY = _spawnOffsetFactor * screenY;
-
-            _spawnPointObjects = new Dictionary<SpawnPositionType, Transform>();
-
-            RegisterSpawnPoint(SpawnPositionType.CornerTopLeft, -screenX - offsetX, screenY + offsetY);
-            RegisterSpawnPoint(SpawnPositionType.CornerTopRight, screenX + offsetX, screenY + offsetY);
-            RegisterSpawnPoint(SpawnPositionType.CornerBottomLeft, -screenX - offsetX, -screenY - offsetY);
-            RegisterSpawnPoint(SpawnPositionType.CornerBottomRight, screenX + offsetX, -screenY - offsetY);
-
-            RegisterSpawnPoint(SpawnPositionType.HorizontalTopLeft, -screenX + offsetX, screenY + offsetY);
-            RegisterSpawnPoint(SpawnPositionType.HorizontalTopCenter, 0f, screenY + offsetY);
-            RegisterSpawnPoint(SpawnPositionType.HorizontalTopRight, screenX - offsetX, screenY + offsetY);
-
-            RegisterSpawnPoint(SpawnPositionType.HorizontalBottomLeft, -screenX + offsetX, -screenY - offsetY);
-            RegisterSpawnPoint(SpawnPositionType.HorizontalBottomCenter, 0f, -screenY - offsetY);
-            RegisterSpawnPoint(SpawnPositionType.HorizontalBottomRight, screenX - offsetX, -screenY - offsetY);
-
-            RegisterSpawnPoint(SpawnPositionType.VerticalLeftTop, -screenX - offsetX, screenY - offsetY);
-            RegisterSpawnPoint(SpawnPositionType.VerticalLeftCenter, -screenX - offsetX, 0f);
-            RegisterSpawnPoint(SpawnPositionType.VerticalLeftBottom, -screenX - offsetX, -screenY + offsetY);
-
-            RegisterSpawnPoint(SpawnPositionType.VerticalRightTop, screenX + offsetX, screenY - offsetY);
-            RegisterSpawnPoint(SpawnPositionType.VerticalRightCenter, screenX + offsetX, 0f);
-            RegisterSpawnPoint(SpawnPositionType.VerticalRightBottom, screenX + offsetX, -screenY + offsetY);
-
-            _playerDirectionSpawnPoint.position = new Vector2(0, screenX + offsetY);
+            GenerateHorizontalLine(
+                SpawnPositionType.HorizontalBottomLeft,
+                SpawnPositionType.HorizontalBottomCenter,
+                SpawnPositionType.HorizontalBottomRight,
+                -_screenBounds.VerticalMax - offset.y
+                );
         }
 
-        private void RegisterSpawnPoint(SpawnPositionType spawnType, float x, float y)
+        private void GenerateVerticalLeftPoints(Vector2 offset)
         {
-            GameObject spawnPointObject = new GameObject(spawnType.ToString());
-            spawnPointObject.transform.position = new Vector3(x, y, 0);
-            spawnPointObject.transform.parent = _camera.transform;
-
-            _spawnPointObjects.Add(spawnType, spawnPointObject.transform);
+            GenerateVerticalLine(
+                SpawnPositionType.VerticalLeftTop,
+                SpawnPositionType.VerticalLeftCenter,
+                SpawnPositionType.VerticalLeftBottom,
+                -_screenBounds.HorizontalMax - offset.x 
+                );
         }
 
-        private void InitializeSpawnTypes()
+        private void GenerateVerticalRightPoints(Vector2 offset)
         {
-            _spawnTypes = new Dictionary<SpawnType, Func<List<Transform>>>
-            {
-                { SpawnType.RandomSpawn, GetRandomSpawnPosition },
-                { SpawnType.CircleSpawn, GetCircleSpawnPositions },
-                { SpawnType.AllTopHorizontalSpawn, GetAllTopHorizontalSpawnPositions },
-                { SpawnType.AllBottomHorizontalSpawn, GetAllBottomHorizontalSpawnPositions },
-                { SpawnType.AllLeftVerticalSpawn, GetAllLeftVerticalSpawnPositions },
-                { SpawnType.AllRightVerticalSpawn, GetAllRightVerticalSpawnPositions }
-            };
+            GenerateVerticalLine(
+                SpawnPositionType.VerticalRightTop,
+                SpawnPositionType.VerticalRightCenter,
+                SpawnPositionType.VerticalRightBottom,
+                _screenBounds.HorizontalMax + offset.x
+            );
         }
-#endregion
 
-        public List<Transform> GetSpawnPointsForType(SpawnType spawnType) 
+        private void CreateCornerTopLeftPoint(Vector2 offset) 
         {
-            if (_spawnTypes.TryGetValue(spawnType, out var spawnMethod))
-            {
-                return spawnMethod.Invoke();
-            }
-
-            throw new ArgumentException($"Unknown spawn type: {spawnType}");
+            CreateSpawnPoint(
+                SpawnPositionType.CornerTopLeft,
+                -_screenBounds.HorizontalMax - offset.x,
+                _screenBounds.VerticalMax + offset.y
+            );
         }
+
+        private void CreateCornerTopRightPoint(Vector2 offset)
+        {
+            CreateSpawnPoint(
+                SpawnPositionType.CornerTopRight,
+                _screenBounds.HorizontalMax + offset.x,
+                _screenBounds.VerticalMax + offset.y
+            );
+        }
+
+        private void CreateCornerBottomLeftPoint(Vector2 offset)
+        {
+            CreateSpawnPoint(
+                SpawnPositionType.CornerBottomLeft,
+                -_screenBounds.HorizontalMax - offset.x,
+                -_screenBounds.VerticalMax - offset.y
+            );
+        }
+
+        private void CreateCornerBottomRightPoint(Vector2 offset)
+        {
+            CreateSpawnPoint(
+                SpawnPositionType.CornerBottomRight,
+                _screenBounds.HorizontalMax + offset.x,
+                -_screenBounds.VerticalMax - offset.y
+            );
+        }
+
+        private void CreateCornerPoints(Vector2 offset)
+        {
+            CreateCornerTopLeftPoint(offset);
+            CreateCornerTopRightPoint(offset);
+            CreateCornerBottomLeftPoint(offset);
+            CreateCornerBottomRightPoint(offset);
+        }
+
+        private void GenerateHorizontalLine(SpawnPositionType leftType, SpawnPositionType centerType, SpawnPositionType rightType, float yPosition)
+        {
+            float horizontalOffset = _screenBounds.HorizontalMax * 0.25f;
+
+            CreateSpawnPoint(
+                leftType,
+                -_screenBounds.HorizontalMax + horizontalOffset,
+                yPosition
+            );
+
+            CreateSpawnPoint(
+                centerType,
+                0,
+                yPosition
+            );
+
+            CreateSpawnPoint(
+                rightType,
+                _screenBounds.HorizontalMax - horizontalOffset,
+                yPosition
+            );
+        }
+
+        private void GenerateVerticalLine(SpawnPositionType topType, SpawnPositionType centerType, SpawnPositionType bottomType, float xPosition)
+        {
+            float verticalOffset = _screenBounds.VerticalMax * 0.25f;
+
+            CreateSpawnPoint(
+                topType,
+                xPosition,
+                _screenBounds.VerticalMax - verticalOffset
+            );
+
+            CreateSpawnPoint(
+                centerType,
+                xPosition,
+                0
+            );
+
+            CreateSpawnPoint(
+                bottomType,
+                xPosition,
+                -_screenBounds.VerticalMax + verticalOffset
+            );
+        }
+        #endregion
+
+        #region Public Interface
 
         public Vector2 GetOppositePosition(Vector2 spawnPosition)
         {
-            Vector2 oppositeSpawnPoint = -spawnPosition;
-            return oppositeSpawnPoint;
+            return _screenBounds.GetMirroredPosition(spawnPosition);
         }
 
-#region DifferentSpawnTypes
-
-        private List<Transform> GetCircleSpawnPositions()
+        public Transform GetRandomPositionFromRegister()
         {
-            return new List<Transform>(_spawnPointObjects.Values);
+            List<Transform> spawnPointList = _spawnPoints.Values.ToList();
+            return spawnPointList[UnityEngine.Random.Range(0, spawnPointList.Count)];
         }
 
-        private List<Transform> GetRandomSpawnPosition()
+        #endregion
+
+        #region Helper Classes
+        private class ScreenBoundsCalculator
         {
-            List<Transform> spawnPositions = new List<Transform>();
+            private readonly Camera _camera;
+            public float HorizontalMax { get; }
+            public float VerticalMax { get; }
 
-            int randomValue = UnityEngine.Random.Range(0, 2);
-
-            if (randomValue == 0)
+            public ScreenBoundsCalculator(Camera camera)
             {
-                spawnPositions.Add(GetPlayerMoveDirectionPosition());
-            }
-            else
-            {
-                spawnPositions.Add(GetRandomPositionFromRegister());
-            }
-
-            return spawnPositions;
-        }
-
-        private Transform GetRandomPositionFromRegister()
-        {
-            List<Transform> spawnPointList = _spawnPointObjects.Values.ToList();
-            return (spawnPointList.Count > 0) ? spawnPointList[UnityEngine.Random.Range(0, spawnPointList.Count)] : null;
-        }
-
-        private Transform GetPlayerMoveDirectionPosition()
-        {
-            return _playerDirectionSpawnPoint;
-        }
-
-        private List<Transform> GetAllTopHorizontalSpawnPositions()
-        {
-            return new List<Transform>
-            {
-                GetSpawnRegisterPosition(SpawnPositionType.CornerTopLeft),
-                GetSpawnRegisterPosition(SpawnPositionType.HorizontalBottomLeft),
-                GetSpawnRegisterPosition(SpawnPositionType.HorizontalBottomCenter),
-                GetSpawnRegisterPosition(SpawnPositionType.HorizontalBottomRight),
-                GetSpawnRegisterPosition(SpawnPositionType.CornerTopRight)
-            };
-        }
-
-        private List<Transform> GetAllBottomHorizontalSpawnPositions()
-        {
-            return new List<Transform>
-            {
-                GetSpawnRegisterPosition(SpawnPositionType.CornerBottomLeft),
-                GetSpawnRegisterPosition(SpawnPositionType.HorizontalTopLeft),
-                GetSpawnRegisterPosition(SpawnPositionType.HorizontalTopCenter),
-                GetSpawnRegisterPosition(SpawnPositionType.HorizontalTopRight),
-                GetSpawnRegisterPosition(SpawnPositionType.CornerBottomRight)
-            };
-        }
-
-        private List<Transform> GetAllRightVerticalSpawnPositions()
-        {
-            return new List<Transform>
-            {
-                GetSpawnRegisterPosition(SpawnPositionType.CornerTopRight),
-                GetSpawnRegisterPosition(SpawnPositionType.VerticalRightTop),
-                GetSpawnRegisterPosition(SpawnPositionType.VerticalRightCenter),
-                GetSpawnRegisterPosition(SpawnPositionType.VerticalRightBottom),
-                GetSpawnRegisterPosition(SpawnPositionType.CornerBottomRight)
-            };
-        }
-
-        private List<Transform> GetAllLeftVerticalSpawnPositions()
-        {
-            return new List<Transform>
-            {
-                GetSpawnRegisterPosition(SpawnPositionType.CornerTopLeft),
-                GetSpawnRegisterPosition(SpawnPositionType.VerticalLeftTop),
-                GetSpawnRegisterPosition(SpawnPositionType.VerticalLeftCenter),
-                GetSpawnRegisterPosition(SpawnPositionType.VerticalLeftBottom),
-                GetSpawnRegisterPosition(SpawnPositionType.CornerBottomLeft)
-            };
-        }
-
-        private Transform GetSpawnRegisterPosition(SpawnPositionType positionType)
-        {
-            if (_spawnPointObjects.TryGetValue(positionType, out Transform spawnPoint))
-            {
-                return spawnPoint;
+                _camera = camera;
+                VerticalMax = _camera.orthographicSize;
+                HorizontalMax = VerticalMax * _camera.aspect;
             }
 
-            throw new ArgumentException($"Unknown spawn position: {positionType}");
+            public Vector2 GetOffset(float factor) =>
+                new Vector2(HorizontalMax * factor, VerticalMax * factor);
+
+            public Vector2 GetMirroredPosition(Vector2 position) =>
+                _camera.transform.position - (Vector3)position;
+        }
+        #endregion
+
+        #region Spawn Groups
+        private void CacheSpawnGroups()
+        {
+            //_cachedSpawnGroups = new Dictionary<SpawnType, Transform>
+            //{
+            //    [SpawnType.RandomSpawn] = new { GetRandomPositionFromRegister() },
+            //};
+
+        }
+
+        private IReadOnlyList<Transform> GetAllPoints() =>
+            _spawnPoints.Values.ToArray();
+
+        private IReadOnlyList<Transform> GetHorizontalGroup(bool isTop)
+        {
+            var typePrefix = isTop ?
+                SpawnPositionType.HorizontalTop :
+                SpawnPositionType.HorizontalBottom;
+
+            return Enumerable.Range(0, 3)
+                .Select(i => _spawnPoints[typePrefix + i])
+                .ToArray();
+        }
+        #endregion
+
+        #region Factory
+        private void CreateSpawnPoint(SpawnPositionType type, float x, float y)
+        {
+            var point = new GameObject(type.ToString())
+            {
+                transform =
+            {
+                position = new Vector3(x, y, 0),
+                parent = _spawnPointsParent
+            }
+            };
+
+            _spawnPoints.Add(type, point.transform);
         }
         #endregion
     }

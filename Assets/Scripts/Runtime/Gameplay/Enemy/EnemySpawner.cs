@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using TandC.GeometryAstro.Data;
+using TandC.GeometryAstro.Services;
 using TandC.GeometryAstro.Settings;
 using TandC.GeometryAstro.Utilities;
 using UnityEngine;
@@ -8,38 +9,54 @@ using VContainer;
 
 namespace TandC.GeometryAstro.Gameplay
 {
-    public class EnemySpawner : MonoBehaviour, IEnemySpawner
+    public class EnemySpawner : IEnemySpawner
     {
-        private const int ENEMY_PRELOAD_COUNT = 200;
+        private const int ENEMY_PRELOAD_COUNT = 300;
 
-        [SerializeField] private Enemy _enemyPrefab;
-        [SerializeField] private Transform _enemyParent;
+        private int _maximumEnemies = ENEMY_PRELOAD_COUNT;
 
+        private Enemy _enemyPrefab;
+        private GameObject _enemyParent;
+
+        private LoadObjectsService _loadObjectsService;
         private Player _player;
         private EnemyConfig _enemiesConfig;
         private IEnemyFactory _enemyFactory;
-        private IEnemyDeathProcessor _enemyDeathProcessor;
         private IEnemySpawnPositionService _enemySpawnPositionService;
         private ObjectPool<Enemy> _enemyPool;
+
+        private List<Enemy> _activeEnemyList;
         private List<EnemySpawnData> _currentWaveEnemies;
+
+        public int ActiveEnemyCount => _activeEnemyList.Count;
 
         [Inject]
         private void Construct(
-            IEnemyFactory enemyFactory,
+            LoadObjectsService loadObjectsService,
             IEnemySpawnPositionService enemySpawnPositionService,
-            EnemyConfig enemiesConfig,
-            IEnemyDeathProcessor enemyDeathProcessor,
+            GameConfig gameConfig,
             Player player)
         {
+            _loadObjectsService = loadObjectsService;
             _player = player;
-            _enemyFactory = enemyFactory;
             _enemySpawnPositionService = enemySpawnPositionService;
-            _enemyDeathProcessor = enemyDeathProcessor;
-            _enemiesConfig = enemiesConfig;
+           // _enemyDeathProcessor = enemyDeathProcessor;
+            _enemiesConfig = gameConfig.EnemyConfig;
         }
 
-        private void Start()
+        public void Init()
         {
+            _enemyParent = new GameObject("[EnemyParent]");
+
+            _enemyPrefab = _loadObjectsService.GetObjectByPath<Enemy>("Prefabs/Gameplay/Enemies/BasicEnemy");
+
+            if (_enemyPrefab == null)
+            {
+                Debug.LogError("Enemy prefab not found at path: Resources/Prefabs/Gameplay/Enemies/BasicEnemy");
+            }
+
+            _activeEnemyList = new List<Enemy>();
+            _enemyFactory = new EnemyFactory();
             InitializePool();
             _currentWaveEnemies = new List<EnemySpawnData>();
         }
@@ -68,18 +85,25 @@ namespace TandC.GeometryAstro.Gameplay
                 return;
             }
 
-            var spawnData = GetRandomSpawnData();
-            var enemyData = GetEnemyData(spawnData.enemyType);
-            var spawnPoints = GetSpawnPoints(spawnData.spawnType);
+            if(ActiveEnemyCount >= _maximumEnemies) 
+            {
+                Debug.LogWarning("Maximum enemies");
+                return;
+            }
 
-            foreach (var point in spawnPoints)
+            var spawnData = GetRandomEnemyInWaveData();
+            var enemyData = GetEnemyData(spawnData.enemyType);
+            var spawnPoint = GetSpawnPoint();
+
+            if(spawnPoint != null) 
             {
                 var enemy = _enemyPool.Get();
-                SetupEnemy(enemy, enemyData, point.position);
+                _activeEnemyList.Add(enemy);
+                SetupEnemy(enemy, enemyData, spawnPoint.position);
             }
         }
 
-        private EnemySpawnData GetRandomSpawnData()
+        private EnemySpawnData GetRandomEnemyInWaveData()
         {
             return _currentWaveEnemies[UnityEngine.Random.Range(0, _currentWaveEnemies.Count)];
         }
@@ -89,14 +113,14 @@ namespace TandC.GeometryAstro.Gameplay
             return _enemiesConfig.GetEnemiesByType(type);
         }
 
-        private List<Transform> GetSpawnPoints(SpawnType spawnType)
+        private Transform GetSpawnPoint()
         {
-            return _enemySpawnPositionService.GetSpawnPointsForType(spawnType);
+            return _enemySpawnPositionService.GetRandomPositionFromRegister();
         }
 
         private Enemy PreloadEnemy()
         {
-            return Instantiate(_enemyPrefab, _enemyParent);
+            return MonoBehaviour.Instantiate(_enemyPrefab, _enemyParent.transform);
         }
 
         private void EnableEnemy(Enemy enemy)
@@ -111,10 +135,8 @@ namespace TandC.GeometryAstro.Gameplay
 
         private void SetupEnemy(Enemy enemy, EnemyData data, Vector2 spawnPosition)
         {
-            enemy.transform.position = spawnPosition;
             var direction = _enemySpawnPositionService.GetOppositePosition(spawnPosition);
-
-            _enemyFactory.CreateEnemy(
+            enemy = _enemyFactory.CreateEnemy(
                 enemyData: data,
                 enemy: enemy,
                 onDeathEvent: (enemy) => HandleEnemyDeath(enemy),
@@ -122,11 +144,12 @@ namespace TandC.GeometryAstro.Gameplay
                 moveDirection: direction,
                 builderType: data.BuilderType
             );
+            enemy.transform.position = spawnPosition;
         }
 
         private void HandleEnemyDeath(Enemy enemy)
         {
-            _enemyDeathProcessor.EnemyDeathHandler(enemy);
+            _activeEnemyList.Remove(enemy);
             _enemyPool.Return(enemy);
         }
 

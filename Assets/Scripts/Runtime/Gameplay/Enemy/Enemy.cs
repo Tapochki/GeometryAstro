@@ -81,6 +81,5 @@ namespace TandC.GeometryAstro.Gameplay
                 _attackComponent.UnSubscribePlayer();
             }
         }
-
     }
 }

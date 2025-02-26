@@ -9,13 +9,15 @@ namespace TandC.GeometryAstro.Bootstrap
     {
         private readonly LoadingService _loadingService;
         private readonly DataService _dataService;
-        private readonly SceneService _sceneManager;
+        private readonly SceneService _sceneService;
+        private readonly LoadObjectsService _loadObjectService;
 
-        public BootstrapFlow(LoadingService loadingService, SceneService sceneManager, DataService dataService)
+        public BootstrapFlow(LoadingService loadingService, SceneService sceneService, DataService dataService, LoadObjectsService loadObjectService)
         {
             _loadingService = loadingService;
-            _sceneManager = sceneManager;
+            _sceneService = sceneService;
             _dataService = dataService;
+            _loadObjectService = loadObjectService;
         }
         
         public async void Start()
@@ -24,7 +26,7 @@ namespace TandC.GeometryAstro.Bootstrap
             await _loadingService.BeginLoading(fooLoadingUnit);
             await _loadingService.BeginLoading(_dataService);
 
-            _sceneManager.LoadScene(RuntimeConstants.Scenes.Loading).Forget();
+            _sceneService.LoadScene(RuntimeConstants.Scenes.Loading).Forget();
         }
     }
 }

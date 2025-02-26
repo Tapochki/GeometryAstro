@@ -9,11 +9,11 @@ namespace TandC.GeometryAstro.Services
 
         public event Action OnEscapeButtonDownEvent;
 
-        private GameStateService _gameStateSystem;
+        private GameStateService _gameStateService;
 
-        public void Construct(GameStateService gameStateSystem)
+        public void Construct(GameStateService gameStateService)
         {
-            _gameStateSystem = gameStateSystem;
+            _gameStateService = gameStateService;
         }
 
         public void Initialize()
@@ -22,7 +22,7 @@ namespace TandC.GeometryAstro.Services
 
         public void Update()
         {
-            if (_gameStateSystem.WorkerSceneInitialized)
+            if (_gameStateService.WorkerSceneInitialized)
             {
                 if (Input.GetKeyUp(KeyCode.Escape))
                 {
@@ -30,7 +30,7 @@ namespace TandC.GeometryAstro.Services
                 }
             }
 
-            if (_gameStateSystem.GameStarted)
+            if (_gameStateService.GameStarted)
             {
             }
         }

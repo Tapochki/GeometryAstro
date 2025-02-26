@@ -13,8 +13,8 @@ namespace TandC.GeometryAstro.Services
 
         private Transform _soundContainer;
 
-        private LoadObjectsService _loadObjectsSystem;
-        private DataService _dataSystem;
+        private LoadObjectsService _loadObjectsService;
+        private DataService _dataService;
 
         public float MusicVolume { get; private set; }
         public float SoundVolume { get; private set; }
@@ -25,15 +25,15 @@ namespace TandC.GeometryAstro.Services
 
         public void SetSoundVolume(float value) => SoundVolume = value;
 
-        public void Construct(LoadObjectsService loadObjectsSystem, DataService dataSystem)
+        public void Construct(LoadObjectsService loadObjectsService, DataService dataService)
         {
-            _loadObjectsSystem = loadObjectsSystem;
-            _dataSystem = dataSystem;
+            _loadObjectsService = loadObjectsService;
+            _dataService = dataService;
         }
 
         public void Initialize()
         {
-            SoundData = _loadObjectsSystem.GetObjectByPath<SoundData>("Data/SoundData");
+            SoundData = _loadObjectsService.GetObjectByPath<SoundData>("Data/SoundData");
 
             _soundSources = new List<SoundSource>();
             _soundPlayQueue = new List<SoundPlayQueue>();
@@ -42,7 +42,7 @@ namespace TandC.GeometryAstro.Services
             _soundContainer.gameObject.AddComponent<AudioListener>();
             DontDestroyOnLoad(_soundContainer);
 
-            _dataSystem.OnCacheLoadedEvent += CachedDataLoadedEventHandler;
+            _dataService.OnCacheLoadedEvent += CachedDataLoadedEventHandler;
         }
 
         public void Update()
@@ -122,16 +122,16 @@ namespace TandC.GeometryAstro.Services
 
         private void CachedDataLoadedEventHandler()
         {
-            SoundVolume = _dataSystem.AppSettingsData.soundVolume;
-            MusicVolume = _dataSystem.AppSettingsData.musicVolume;
+            SoundVolume = _dataService.AppSettingsData.soundVolume;
+            MusicVolume = _dataService.AppSettingsData.musicVolume;
         }
 
         public void SaveData()
         {
-            _dataSystem.AppSettingsData.soundVolume = SoundVolume;
-            _dataSystem.AppSettingsData.musicVolume = MusicVolume;
+            _dataService.AppSettingsData.soundVolume = SoundVolume;
+            _dataService.AppSettingsData.musicVolume = MusicVolume;
 
-            _dataSystem.SaveCache(CacheType.AppSettingsData);
+            _dataService.SaveCache(CacheType.AppSettingsData);
         }
 
         public void StopSound(Sounds soundType)
@@ -203,15 +203,15 @@ namespace TandC.GeometryAstro.Services
         public Sounds SoundType { get; }
         public SoundParameters SoundParameters { get; }
 
-        private SoundService _soundSystem;
+        private SoundService _soundService;
 
         public SoundSource(Transform parent, AudioClip sound, Sounds soundType, SoundParameters parameters,
-                           SoundService soundSystem)
+                           SoundService soundService)
         {
             Sound = sound;
             SoundType = soundType;
             SoundParameters = parameters;
-            _soundSystem = soundSystem;
+            _soundService = soundService;
 
             SoundSourceObject = new GameObject($"[Sound] - {SoundType} - {Time.time}");
             SoundSourceObject.transform.SetParent(parent);
@@ -219,14 +219,14 @@ namespace TandC.GeometryAstro.Services
             AudioSource.clip = Sound;
             AudioSource.loop = SoundParameters.IsLoop;
 
-            AudioSource.volume = SoundParameters.IsSFX ? _soundSystem.SoundVolume : _soundSystem.MusicVolume;
+            AudioSource.volume = SoundParameters.IsSFX ? _soundService.SoundVolume : _soundService.MusicVolume;
 
             AudioSource.Play();
         }
 
         public void Update()
         {
-            float targetVolume = SoundParameters.Volume * (SoundParameters.IsSFX ? _soundSystem.SoundVolume : _soundSystem.MusicVolume);
+            float targetVolume = SoundParameters.Volume * (SoundParameters.IsSFX ? _soundService.SoundVolume : _soundService.MusicVolume);
 
             AudioSource.volume = targetVolume;
         }

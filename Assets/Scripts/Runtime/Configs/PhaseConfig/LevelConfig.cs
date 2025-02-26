@@ -64,7 +64,6 @@ namespace TandC.GeometryAstro.Data
     public class EnemySpawnData
     {
         public EnemyType enemyType;
-        public SpawnType spawnType;
     }
 
     [Serializable]
@@ -92,7 +91,7 @@ namespace TandC.GeometryAstro.Data
         public WaveEvent[] waveEvents;
 
         [Header("Boss Settings")]
-        public BossData bossInPhase;
+        public BossData[] bossInPhase;
     }
 
     [Serializable]

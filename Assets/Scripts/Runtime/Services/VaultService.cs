@@ -7,19 +7,19 @@ namespace TandC.GeometryAstro.Services
     {
         public event Action<int> OnCoinsAmountChangedEvent;
 
-        private DataService _dataSystem;
-        private GameStateService _gameStateSystem;
+        private DataService _dataService;
+        private GameStateService _gameStateService;
 
         public VaultCoin Coins { get; private set; }
 
-        public void Construct(DataService dataSystem, GameStateService gameStateSystem)
+        public void Construct(DataService dataService, GameStateService gameStateService)
         {
-            _dataSystem = dataSystem;
+            _dataService = dataService;
         }
 
         public void Initialize()
         {
-            Coins = new VaultCoin(_dataSystem, OnCoinsAmountChangedEventHandler);
+            Coins = new VaultCoin(_dataService, OnCoinsAmountChangedEventHandler);
         }
 
         private void OnCoinsAmountChangedEventHandler()
@@ -31,15 +31,15 @@ namespace TandC.GeometryAstro.Services
         {
             private Action _changedVaultAction;
 
-            private DataService _dataSystem;
+            private DataService _dataService;
 
             private int _storedItem;
 
-            public VaultCase(DataService dataSystem, Action changedVaultAction)
+            public VaultCase(DataService dataService, Action changedVaultAction)
             {
-                _dataSystem = dataSystem;
+                _dataService = dataService;
 
-                _storedItem = _dataSystem.PlayerVaultData.coins;
+                _storedItem = _dataService.PlayerVaultData.coins;
                 _changedVaultAction = changedVaultAction;
             }
 
@@ -48,8 +48,8 @@ namespace TandC.GeometryAstro.Services
                 _storedItem += amount;
                 _changedVaultAction?.Invoke();
 
-                _dataSystem.PlayerVaultData.coins = _storedItem;
-                _dataSystem.SaveCache(Settings.CacheType.PlayerValutData);
+                _dataService.PlayerVaultData.coins = _storedItem;
+                _dataService.SaveCache(Settings.CacheType.PlayerValutData);
             }
 
             public void Substruct(int amount)
@@ -57,8 +57,8 @@ namespace TandC.GeometryAstro.Services
                 _storedItem -= amount;
                 _changedVaultAction?.Invoke();
 
-                _dataSystem.PlayerVaultData.coins = _storedItem;
-                _dataSystem.SaveCache(Settings.CacheType.PlayerValutData);
+                _dataService.PlayerVaultData.coins = _storedItem;
+                _dataService.SaveCache(Settings.CacheType.PlayerValutData);
             }
 
             public int Get() => _storedItem;

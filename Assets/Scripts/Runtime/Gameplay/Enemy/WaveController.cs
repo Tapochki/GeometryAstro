@@ -10,14 +10,16 @@ namespace TandC.GeometryAstro.Gameplay
     public class WaveController : IDisposable
     {
         private LevelConfig _levelConfig;
+
         private IEnemySpawner _enemySpawner;
 
         private WaveData _currentWave;
+        private Dictionary<WaveEvent, int> _eventExecutions = new();
+
         private CompositeDisposable _disposables = new();
         private CompositeDisposable _waveDisposables = new();
 
-        private BoolReactiveProperty _isBossActive = new BoolReactiveProperty(false);
-        private Dictionary<WaveEvent, int> _eventExecutions = new Dictionary<WaveEvent, int>();
+        private BoolReactiveProperty _isBossActive = new(false);
 
         public int CurrentWaveIndex { get; private set; }
         public IReadOnlyReactiveProperty<bool> IsBossActive => _isBossActive;
@@ -47,6 +49,7 @@ namespace TandC.GeometryAstro.Gameplay
 
             CurrentWaveIndex = waveId;
             _currentWave = _levelConfig.GetWhaveById(waveId);
+            _enemySpawner.StartWave(_currentWave.enemies);
 
             SpawnBossIfNeeded();
             StartEnemySpawning();
@@ -60,13 +63,34 @@ namespace TandC.GeometryAstro.Gameplay
 
             Observable.Interval(TimeSpan.FromSeconds(_currentWave.spawnInterval))
                 .Where(_ => !_isBossActive.Value)
-                .Subscribe(_ => SpawnRandomEnemy())
+                .Subscribe(_ => TrySpawnEnemy())
                 .AddTo(_waveDisposables);
         }
 
-        private void SpawnRandomEnemy()
+        private void TrySpawnEnemy()
         {
-            var randomEnemy = _currentWave.enemies[UnityEngine.Random.Range(0, _currentWave.enemies.Length)];
+            if (_enemySpawner.ActiveEnemyCount < _currentWave.minEnemies)
+            {
+                int maxSpawnable = _currentWave.minEnemies - _enemySpawner.ActiveEnemyCount;
+                int spawnCount = UnityEngine.Random.Range(4, Math.Min(12, maxSpawnable + 1));
+                SpawnEnemyGroup(spawnCount);
+            }
+            else
+            {
+                SpawnEnemy();
+            }
+        }
+
+        private void SpawnEnemyGroup(int count)
+        {
+            for (int i = 0; i < count; i++)
+            {
+                SpawnEnemy();
+            }
+        }
+
+        private void SpawnEnemy()
+        {
             _enemySpawner.SpawnEnemy();
         }
 
@@ -133,7 +157,6 @@ namespace TandC.GeometryAstro.Gameplay
 
             SetNewWave(CurrentWaveIndex + 1);
         }
-
 
         public void Dispose()
         {

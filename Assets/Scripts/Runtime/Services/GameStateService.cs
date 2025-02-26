@@ -1,10 +1,9 @@
 using System;
 using TandC.GeometryAstro.Settings;
-using UnityEngine;
 
 namespace TandC.GeometryAstro.Services
 {
-    public class GameStateService : MonoBehaviour
+    public class GameStateService
     {
         public event Action<GameStates> OnGameStateWasChangedEvent;
 

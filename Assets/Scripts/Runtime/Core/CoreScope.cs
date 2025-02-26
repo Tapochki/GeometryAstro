@@ -4,7 +4,6 @@ using TandC.GeometryAstro.Gameplay;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
-using static UnityEditor.ObjectChangeEventStream;
 
 namespace TandC.GeometryAstro.Core
 {
@@ -14,8 +13,7 @@ namespace TandC.GeometryAstro.Core
         [SerializeField] Player _player;
         [SerializeField] GameplayInputHandler _inputHandler;
         [SerializeField] GameplayCamera _gameplayCamera;
-
-
+        [SerializeField] EnemySpawner _enemySpawner;
 
         protected override void Configure(IContainerBuilder builder)
         {
@@ -24,6 +22,7 @@ namespace TandC.GeometryAstro.Core
             RegisterEventBus(builder);
             RegisterPlayer(builder);
             RegisterGameplayCamera(builder);
+            EnemyWavesRegister(builder);
             RegisterEntryPoint(builder);
         }
 
@@ -55,6 +54,13 @@ namespace TandC.GeometryAstro.Core
         private void RegisterEntryPoint(IContainerBuilder builder)
         {
             builder.RegisterEntryPoint<CoreFlow>();
+        }
+
+        private void EnemyWavesRegister(IContainerBuilder builder) 
+        {
+            builder.Register<WaveController>(Lifetime.Scoped);
+            builder.Register<EnemySpawner>(Lifetime.Scoped).As<IEnemySpawner>();
+            builder.Register<EnemySpawnPositionService>(Lifetime.Scoped).As<IEnemySpawnPositionService>();
         }
     }
 }

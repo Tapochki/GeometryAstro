@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace TandC.GeometryAstro.Services
 {
-    public class PauseService : MonoBehaviour, IPauseService
+    public class PauseService : IPauseService
     {
         public event Action<bool> OnGameplayPausedEvent;
 

@@ -59,6 +59,11 @@ namespace TandC.GeometryAstro.Gameplay
             {
                 _mainRotateComponent.SetRotation(_inputHandler.MoveDirection);
             }
+
+            if(_mainRotateComponent != null) 
+            {
+                _mainRotateComponent.Update();
+            }
         }
 
         public void TakeDamage(float damage)

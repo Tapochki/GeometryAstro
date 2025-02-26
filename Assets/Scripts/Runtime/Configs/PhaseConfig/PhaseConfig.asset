@@ -12,11 +12,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4f7eadf91e66f84c8123975b60f76c2, type: 3}
   m_Name: PhaseConfig
   m_EditorClassIdentifier: 
-  _gamePhases:
-  - PhaseId: 0
-    waveTime: 100
-    enemySpawnDelay: 0.2
-    enemyInPhase:
+  _levelName: Level 1
+  _description: Level description
+  _levelPreviewImage: {fileID: 0}
+  _gameWaves:
+  - WaveId: 0
+    enemies:
     - enemyType: 0
       spawnType: 0
-      targetType: 0
+    minEnemies: 20
+    spawnInterval: 1
+    waveDuration: 60
+    waveEvents: []
+    bossInPhase: []
+  _baseDifficulty: 1
+  _difficultyMultipliers:
+    easy:
+      healthMultiplier: 0
+      damageMultiplier: 0
+      rewardMultiplier: 0
+      scoreMultiplier: 0
+    normal:
+      healthMultiplier: 1
+      damageMultiplier: 1
+      rewardMultiplier: 1
+      scoreMultiplier: 1
+    hard:
+      healthMultiplier: 2
+      damageMultiplier: 2
+      rewardMultiplier: 2
+      scoreMultiplier: 2
+    nightmare:
+      healthMultiplier: 3
+      damageMultiplier: 3
+      rewardMultiplier: 3
+      scoreMultiplier: 3

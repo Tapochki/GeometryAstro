@@ -7,7 +7,7 @@ using UnityEngine.Purchasing.Extension;
 
 namespace TandC.GeometryAstro.Services
 {
-    public class PurchasingService : MonoBehaviour, IDetailedStoreListener
+    public class PurchasingService : IDetailedStoreListener
     {
         private DataSystem _dataSystem;
         private SoundSystem _soundSystem;
