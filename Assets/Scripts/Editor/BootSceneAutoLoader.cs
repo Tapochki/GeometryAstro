@@ -3,7 +3,7 @@ using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace TandC.GeometryAstro.Editor 
+namespace TandC.GeometryAstro.Editor
 {
     [InitializeOnLoad]
     public static class BootSceneAutoLoader
@@ -30,7 +30,7 @@ namespace TandC.GeometryAstro.Editor
 
         private static void UpdateMenuCheckedState()
         {
-            Menu.SetChecked("Tools/Toggle Test Current Scene",
+            UnityEditor.Menu.SetChecked("Tools/Toggle Test Current Scene",
                           EditorPrefs.GetBool(TEST_CURRENT_KEY, false));
         }
 
