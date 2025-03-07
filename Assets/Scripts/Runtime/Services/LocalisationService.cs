@@ -1,13 +1,15 @@
-﻿using System;
+﻿using Cysharp.Threading.Tasks;
+using System;
 using System.Collections.Generic;
 using System.Xml;
 using TandC.GeometryAstro.Settings;
 using TandC.GeometryAstro.Utilities.Logging;
 using UnityEngine;
+using VContainer;
 
 namespace TandC.GeometryAstro.Services
 {
-    public class LocalisationService
+    public class LocalisationService : ILoadUnit
     {
         public event Action<Languages> OnLanguageWasChangedEvent;
 
@@ -25,9 +27,16 @@ namespace TandC.GeometryAstro.Services
 
         public void SetLanguage(SystemLanguage lang) => CurrentLanguage = lang;
 
+        [Inject]
         public void Construct(DataService dataService)
         {
             _dataService = dataService;
+        }
+
+        public async UniTask Load()
+        {
+            Initialize();
+            await UniTask.CompletedTask;
         }
 
         public void Initialize()
@@ -129,7 +138,8 @@ namespace TandC.GeometryAstro.Services
 
         private void OnCacheLoadedEventHandler()
         {
-            CurrentLanguage = GetSavedLanguage();
+            //CurrentLanguage = GetSavedLanguage();
+            CurrentLanguage = SystemLanguage.Russian;
 
             Log.Default.D($"Loaded language is [{CurrentLanguage}]");
 

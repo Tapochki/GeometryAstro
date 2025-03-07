@@ -15,6 +15,8 @@ namespace TandC.GeometryAstro.Bootstrap
         protected override void Configure(IContainerBuilder builder)
         {
             builder.Register<LoadingService>(Lifetime.Singleton);
+            builder.Register<LocalisationService>(Lifetime.Singleton);
+            builder.Register<SoundService>(Lifetime.Singleton);
             builder.Register<DataService>(Lifetime.Singleton).AsSelf();
             builder.Register<SceneService>(Lifetime.Singleton);
             builder.Register<LoadObjectsService>(Lifetime.Singleton);

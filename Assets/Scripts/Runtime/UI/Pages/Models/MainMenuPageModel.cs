@@ -1,5 +1,5 @@
-
 using Cysharp.Threading.Tasks;
+using System;
 using TandC.GeometryAstro.Services;
 using TandC.GeometryAstro.Utilities;
 using UnityEngine;
@@ -8,48 +8,73 @@ namespace TandC.GeometryAstro.UI
 {
     public class MainMenuPageModel
     {
-        private LoadObjectsService _loadObjectsService;
+        public event Action LanguageChanged;
+
         private SceneService _sceneService;
         private UIService _uiService;
+        private LocalisationService _localisationService;
+        private SoundService _soundService;
 
         private GameObject _selfObject;
+        public GameObject SelfObject
+        {
+            get
+            {
+                if (_selfObject == null)
+                {
+                    _selfObject = _uiService.Canvas.transform.Find("MenuPage").gameObject;
+                }
+
+                return _selfObject;
+            }
+        }
 
         public MainMenuPageModel(
-            LoadObjectsService loadObjectsService,
             SceneService sceneService,
+            LocalisationService localisationService,
+            SoundService soundService,
             UIService uiService)
         {
             _sceneService = sceneService;
-            _loadObjectsService = loadObjectsService;
             _uiService = uiService;
+            _localisationService = localisationService;
+            _soundService = soundService;
+
+            _localisationService.OnLanguageWasChangedEvent += OnLanguageWasChangedEventHandler;
         }
 
-        public GameObject GetSelfObject()
+        private void OnLanguageWasChangedEventHandler(Settings.Languages language)
         {
-            if (_selfObject == null)
-            {
-                _selfObject = SpawnPrefab();
-                return _selfObject;
-            }
-            else
-            {
-                return _selfObject;
-            }
+            LanguageChanged?.Invoke();
         }
 
-        private GameObject SpawnPrefab()
+        public string GetLocalisation(string key)
         {
-            return MonoBehaviour.Instantiate(FindPrefab(), _uiService.Canvas.transform);
-        }
-
-        private GameObject FindPrefab()
-        {
-            return _loadObjectsService.GetObjectByPath<GameObject>("UI/Pages/MainMenuPage");
+            return _localisationService.GetString(key);
         }
 
         public void LoadGameScene()
         {
+            _soundService.PlayClickSound();
             _sceneService.LoadScene(RuntimeConstants.Scenes.Core).Forget();
+        }
+
+        public void OpenShop()
+        {
+            _soundService.PlayClickSound();
+            //_uiService.OpenPage<>();
+        }
+
+        public void OpenLeaderstats()
+        {
+            _soundService.PlayClickSound();
+            //_uiService.OpenPage<>();
+        }
+
+        public void OpenSetting()
+        {
+            _soundService.PlayClickSound();
+            //_uiService.OpenPage<>();
         }
     }
 }

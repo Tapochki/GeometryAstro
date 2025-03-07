@@ -44,7 +44,7 @@ namespace TandC.GeometryAstro.Menu
         {
             var mainMenuPages = new List<IUIPage>
             {
-                new MainMenuPageView(new MainMenuPageModel(_loadObjectsService, _sceneService, _uiService))
+                new MainMenuPageView(new MainMenuPageModel(_sceneService, _localizationService, _soundService, _uiService))
             };
             var mainMenuPopups = new List<IUIPopup>
             {

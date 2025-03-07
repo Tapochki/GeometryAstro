@@ -1,12 +1,14 @@
+using Cysharp.Threading.Tasks;
 using System;
 using System.Collections.Generic;
 using TandC.GeometryAstro.ScriptableObjects;
 using TandC.GeometryAstro.Settings;
 using UnityEngine;
+using VContainer;
 
 namespace TandC.GeometryAstro.Services
 {
-    public class SoundService : MonoBehaviour
+    public class SoundService : ILoadUnit
     {
         private List<SoundSource> _soundSources;
         private List<SoundPlayQueue> _soundPlayQueue;
@@ -25,10 +27,17 @@ namespace TandC.GeometryAstro.Services
 
         public void SetSoundVolume(float value) => SoundVolume = value;
 
+        [Inject]
         public void Construct(LoadObjectsService loadObjectsService, DataService dataService)
         {
             _loadObjectsService = loadObjectsService;
             _dataService = dataService;
+        }
+
+        public async UniTask Load()
+        {
+            Initialize();
+            await UniTask.CompletedTask;
         }
 
         public void Initialize()
@@ -40,7 +49,6 @@ namespace TandC.GeometryAstro.Services
 
             _soundContainer = new GameObject("[Sound Container]").transform;
             _soundContainer.gameObject.AddComponent<AudioListener>();
-            DontDestroyOnLoad(_soundContainer);
 
             _dataService.OnCacheLoadedEvent += CachedDataLoadedEventHandler;
         }
