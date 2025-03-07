@@ -2,7 +2,7 @@ using System;
 using TandC.GeometryAstro.Data;
 using UnityEngine;
 
-namespace TandC.GeometryAstro.Gameplay 
+namespace TandC.GeometryAstro.Gameplay
 {
     public class Bullet : MonoBehaviour
     {
@@ -17,6 +17,7 @@ namespace TandC.GeometryAstro.Gameplay
 
         public void Init(Vector2 startPosition, Vector2 target, Action<Bullet> bulletBackToPoolEvent, BulletData bulletData, float damage)
         {
+            Debug.LogError(startPosition);
             gameObject.transform.position = startPosition;
 
             _moveComponent = new MoveInDirectionComponent(gameObject.GetComponent<Rigidbody2D>());
@@ -28,8 +29,9 @@ namespace TandC.GeometryAstro.Gameplay
             _damage = damage;
         }
 
-        public void Activate() 
+        public void Activate()
         {
+            Debug.LogError(12);
             gameObject.SetActive(true);
         }
 
@@ -39,21 +41,26 @@ namespace TandC.GeometryAstro.Gameplay
             LifeTimer();
         }
 
-        private void LifeTimer() 
+        private void LifeTimer()
         {
             _lifeTimer -= Time.deltaTime;
-            if(_lifeTimer < 0 ) 
+            if (_lifeTimer < 0)
             {
                 Dispose();
             }
         }
 
-        private void Dispose() 
+        public void DiActivate() 
+        {
+            gameObject.SetActive(false);
+        }
+
+        private void Dispose()
         {
             _bulletBackToPoolEvent?.Invoke(this);
         }
 
-        protected virtual void BulletDie() 
+        protected virtual void BulletDie()
         {
             Dispose();
         }
@@ -63,28 +70,8 @@ namespace TandC.GeometryAstro.Gameplay
             if (collision.gameObject.TryGetComponent(out Enemy enemy))
             {
                 enemy.TakeDamage(_damage);
-                BulletDie();
+                //BulletDie();
             }
         }
     }
-
-    public class RocketBullet : Bullet 
-    {
-        protected virtual void BulletDie()
-        {
-            base.BulletDie();
-            //TODO add spawn blow to kill enemy
-        }
-    }
-
-    public class BulletWithHealth : Bullet
-    {
-        protected virtual void BulletDie()
-        {
-            base.BulletDie();
-            //TODO minusHealth before Die
-        }
-    }
 }
-
-

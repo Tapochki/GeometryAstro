@@ -36,7 +36,6 @@ namespace TandC.GeometryAstro.Services
                     path += '/';
                 }
             }
-            Debug.LogError(path);
             return path;
         }
     }

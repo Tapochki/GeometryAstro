@@ -30,6 +30,7 @@ namespace TandC.GeometryAstro.Gameplay
 
         private void RotateOnSpawn(Vector3 target)
         {
+            Debug.LogError(_hasRotated);
             if (!_hasRotated)
             {
                 Vector2 direction = target - _transform.position;
