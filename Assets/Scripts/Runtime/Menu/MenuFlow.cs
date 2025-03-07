@@ -44,14 +44,15 @@ namespace TandC.GeometryAstro.Menu
         {
             var mainMenuPages = new List<IUIPage>
             {
-                new MainMenuPageView(new MainMenuPageModel(_sceneService, _localizationService, _soundService, _uiService))
+                new MainMenuPageView(new MainMenuPageModel(_sceneService, _localizationService, _soundService, _uiService)),
+                new SettingsPageView(new SettingsPageModel(_localizationService, _soundService, _uiService)),
             };
             var mainMenuPopups = new List<IUIPopup>
             {
 
             };
 
-            _uiService.RegisterUI(mainMenuPages, mainMenuPopups);// register and initing
+            _uiService.RegisterUI(mainMenuPages, mainMenuPopups); // register and initing
             _uiService.OpenPage<MainMenuPageView>();
         }
     }
