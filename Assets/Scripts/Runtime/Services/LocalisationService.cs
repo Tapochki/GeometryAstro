@@ -138,8 +138,8 @@ namespace TandC.GeometryAstro.Services
 
         private void OnCacheLoadedEventHandler()
         {
-            //CurrentLanguage = GetSavedLanguage();
-            CurrentLanguage = SystemLanguage.Russian;
+            CurrentLanguage = GetSavedLanguage();
+            //CurrentLanguage = SystemLanguage.Russian;
 
             Log.Default.D($"Loaded language is [{CurrentLanguage}]");
 
