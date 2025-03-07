@@ -31,7 +31,6 @@ namespace TandC.GeometryAstro.Gameplay
 
         public void Activate()
         {
-            Debug.LogError(12);
             gameObject.SetActive(true);
         }
 
@@ -70,7 +69,7 @@ namespace TandC.GeometryAstro.Gameplay
             if (collision.gameObject.TryGetComponent(out Enemy enemy))
             {
                 enemy.TakeDamage(_damage);
-                //BulletDie();
+                BulletDie();
             }
         }
     }

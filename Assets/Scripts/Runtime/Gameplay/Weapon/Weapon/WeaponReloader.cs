@@ -14,8 +14,8 @@ namespace TandC.GeometryAstro.Gameplay
         public WeaponReloader(float reloadTime)
         {
             _reloadTime = reloadTime;
-            CanShoot = true;
-            _isReloading = false;
+            CanShoot = false;
+            _isReloading = true;
         }
 
         public void StartReload()

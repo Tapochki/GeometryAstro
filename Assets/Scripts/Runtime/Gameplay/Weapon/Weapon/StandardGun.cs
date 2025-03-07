@@ -40,7 +40,7 @@ namespace TandC.GeometryAstro.Gameplay
             _data = _config.GetWeaponByType(WeaponType.StandardGun);
             _projectileFactory = new ProjectileFactory(_data.bulletData, _bulletParent);
             _reloader = new WeaponReloader(_data.shootDeley);
-            _enemyDetector = new RaycastEnemyDetector(LayerMask.GetMask("Default"));
+            _enemyDetector = new RaycastEnemyDetector(LayerMask.GetMask("Enemy"));
         }
 
         //private void Initialize()
@@ -55,11 +55,9 @@ namespace TandC.GeometryAstro.Gameplay
         {
             Vector2 origin = _startPosition.position;
             Vector2 direction = _upPosition.position;
-            Debug.LogError("TryShoot");
+
             if (_enemyDetector.HasEnemyInDirection(origin, direction, _data.detectorDistance))
             {
-                Debug.LogError("Shoot");
-
                 Shoot(origin, direction);
                 _reloader.StartReload();
             }

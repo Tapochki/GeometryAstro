@@ -16,10 +16,10 @@ MonoBehaviour:
   - type: 1
     weaponName: Default
     baseDamage: 25
-    shootDeley: 1
+    shootDeley: 0.2
     detectorDistance: 1000
     bulletData:
-      BulletSpeed: 30000
+      BulletSpeed: 200000
       bulletLifeTime: 100
       bulletLife: 1
       BulletObject: {fileID: 5271754677532632859, guid: 9e64d4062dc713c468222ae9ad90a1f5, type: 3}
