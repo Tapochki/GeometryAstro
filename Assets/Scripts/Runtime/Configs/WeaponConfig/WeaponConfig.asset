@@ -26,3 +26,29 @@ MonoBehaviour:
       type: 1
       IsNotCustomise: 0
       CustomisationType: 1
+  - type: 3
+    weaponName: Default
+    baseDamage: 25
+    shootDeley: 0.5
+    detectorDistance: 1000
+    bulletData:
+      BulletSpeed: 200000
+      bulletLifeTime: 100
+      bulletLife: 1
+      BulletObject: {fileID: 5271754677532632859, guid: 1c51f157b5981a644b932ca253a18634, type: 3}
+      type: 3
+      IsNotCustomise: 0
+      CustomisationType: 2
+  - type: 2
+    weaponName: RocketGun
+    baseDamage: 100
+    shootDeley: 5
+    detectorDistance: 1000
+    bulletData:
+      BulletSpeed: 200000
+      bulletLifeTime: 100
+      bulletLife: 1
+      BulletObject: {fileID: 5271754677532632859, guid: d6f2c4ae02fe1cf40b3d32c63b02c45c, type: 3}
+      type: 2
+      IsNotCustomise: 0
+      CustomisationType: 2

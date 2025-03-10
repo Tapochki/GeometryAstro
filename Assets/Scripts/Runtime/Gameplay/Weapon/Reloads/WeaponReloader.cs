@@ -1,10 +1,14 @@
+using UniRx;
 using UnityEngine;
 
 namespace TandC.GeometryAstro.Gameplay 
 {
     public class WeaponReloader : IReloadable
     {
-        public float ReloadProgress => Mathf.Clamp01(_reloadTimer / _reloadTime);
+        public IReadOnlyReactiveProperty<float> ReloadProgress => _reloadProgress;
+
+        private ReactiveProperty<float> _reloadProgress = new ReactiveProperty<float>(0f);
+
         public bool CanShoot { get; private set; }
 
         private float _reloadTimer;
@@ -14,8 +18,9 @@ namespace TandC.GeometryAstro.Gameplay
         public WeaponReloader(float reloadTime)
         {
             _reloadTime = reloadTime;
-            CanShoot = false;
-            _isReloading = true;
+            CanShoot = true;
+            _isReloading = false;
+            _reloadProgress.Value = 1f;
         }
 
         public void StartReload()
@@ -23,6 +28,7 @@ namespace TandC.GeometryAstro.Gameplay
             CanShoot = false;
             _reloadTimer = _reloadTime;
             _isReloading = true;
+            _reloadProgress.Value = 0f;
         }
 
         public void Update()
@@ -30,6 +36,8 @@ namespace TandC.GeometryAstro.Gameplay
             if (!_isReloading) return;
 
             _reloadTimer -= Time.deltaTime;
+
+            _reloadProgress.Value = Mathf.Clamp01(1f - (_reloadTimer / _reloadTime));
 
             if (_reloadTimer <= 0)
             {

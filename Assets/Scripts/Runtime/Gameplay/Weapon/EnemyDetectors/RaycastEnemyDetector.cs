@@ -12,11 +12,17 @@ namespace TandC.GeometryAstro.Gameplay
             _enemyLayer = enemyLayer;
         }
 
-        public bool HasEnemyInDirection(Vector2 origin, Vector2 direction, float maxDistance)
+        public Vector2? GetEnemyPosition(Vector2 origin, Vector2 direction = default, float maxDistance = 100)
         {
             RaycastHit2D hit = Physics2D.Raycast(origin, -(origin - direction), maxDistance, _enemyLayer);
 
-            return hit.collider != null && hit.collider.TryGetComponent(out Enemy _);
+            Debug.DrawRay(origin, -(origin - direction) * maxDistance, Color.red, 0.1f);
+
+            if (hit.collider != null && hit.collider.TryGetComponent(out Enemy enemy))
+            {
+                return enemy.transform.position;
+            }
+            return null;
         }
     }
 }

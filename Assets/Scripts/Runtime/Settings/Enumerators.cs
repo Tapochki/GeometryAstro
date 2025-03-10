@@ -151,7 +151,7 @@ namespace TandC.GeometryAstro.Settings
     {
         Undefined,
         StandardGun,
-        RocketLauncher,
+        RocketGun,
         AutoGun,
         LaserGun,
         Minigun,
