@@ -94,7 +94,7 @@ namespace TandC.GeometryAstro.UI
 
         private void SettingsButtonOnClick()
         {
-            //_model.OpenSetting();
+            _model.OpenSetting();
             // TODO - play ClickSound
         }
 

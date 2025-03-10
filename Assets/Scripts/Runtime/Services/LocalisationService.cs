@@ -25,8 +25,6 @@ namespace TandC.GeometryAstro.Services
 
         public SystemLanguage CurrentLanguage { get; private set; }
 
-        public void SetLanguage(SystemLanguage lang) => CurrentLanguage = lang;
-
         [Inject]
         public void Construct(DataService dataService)
         {

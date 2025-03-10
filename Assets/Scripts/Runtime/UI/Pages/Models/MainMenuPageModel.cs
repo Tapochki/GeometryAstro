@@ -55,26 +55,26 @@ namespace TandC.GeometryAstro.UI
 
         public void LoadGameScene()
         {
-            _soundService.PlayClickSound();
+            //_soundService.PlayClickSound();
             _sceneService.LoadScene(RuntimeConstants.Scenes.Core).Forget();
         }
 
         public void OpenShop()
         {
-            _soundService.PlayClickSound();
+            //_soundService.PlayClickSound();
             //_uiService.OpenPage<>();
         }
 
         public void OpenLeaderstats()
         {
-            _soundService.PlayClickSound();
+            //_soundService.PlayClickSound();
             //_uiService.OpenPage<>();
         }
 
         public void OpenSetting()
         {
-            _soundService.PlayClickSound();
-            //_uiService.OpenPage<>();
+            //_soundService.PlayClickSound();
+            _uiService.OpenPage<SettingsPageView>();
         }
     }
 }

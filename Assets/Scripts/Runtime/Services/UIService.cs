@@ -50,6 +50,8 @@ namespace TandC.GeometryAstro.Utilities
                 CurrentPage.Hide();
             }
 
+            HideAllPages();
+
             foreach (var _page in _pages)
             {
                 if (_page is T)

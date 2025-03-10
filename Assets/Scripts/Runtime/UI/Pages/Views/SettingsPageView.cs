@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace TandC.GeometryAstro.UI
 {
@@ -17,6 +18,27 @@ namespace TandC.GeometryAstro.UI
 
         public void Init()
         {
+            GameObject selfObject = _model.SelfObject;
+            Transform selfTransform = selfObject.transform;
+            Transform panelTransform = selfTransform.Find("Image_Panel");
+
+            Button exitButton = panelTransform.Find("Image_PanelClose/Button_Exit").GetComponent<Button>();
+            Button aboutUsButton = panelTransform.Find("Button_AboutUs").GetComponent<Button>();
+            Button tutorialButton = panelTransform.Find("Button_Tutorial").GetComponent<Button>();
+            Button languageNextButton = panelTransform.Find("Container_Language/Button_Next").GetComponent<Button>();
+            Button languagePreviousButton = panelTransform.Find("Container_Language/Button_Previous").GetComponent<Button>();
+
+            Slider musicSlider = panelTransform.Find("Container_Music/Slider_Value").GetComponent<Slider>();
+            Slider soundsSlider = panelTransform.Find("Container_Sound/Slider_Value").GetComponent<Slider>();
+
+            exitButton.onClick.AddListener(ExitButtonOnClick);
+            aboutUsButton.onClick.AddListener(AboutUsButtonOnClick);
+            tutorialButton.onClick.AddListener(TutorialButtonOnClick);
+            languageNextButton.onClick.AddListener(LanguageNextButtonOnClick);
+            languagePreviousButton.onClick.AddListener(LanguagePreviusButtonOnClick);
+
+            musicSlider.onValueChanged.AddListener(MusicSliderValueChanged);
+            soundsSlider.onValueChanged.AddListener(SoundSliderValueChanged);
         }
 
         private void LanguageChangedHandler()
@@ -28,25 +50,28 @@ namespace TandC.GeometryAstro.UI
         {
             GameObject selfObject = _model.SelfObject;
 
-            //TextMeshProUGUI startButtonTitle = selfObject.transform.
-            //    Find("Container_Buttons/Button_Start/Text_Title").GetComponent<TextMeshProUGUI>();
-            //TextMeshProUGUI shopButtonTitle = selfObject.transform.
-            //    Find("Container_Buttons/Button_Shop/Text_Title").GetComponent<TextMeshProUGUI>();
-            //TextMeshProUGUI leaderboardButtonTitle = selfObject.transform.
-            //    Find("Container_Buttons/Button_Leaderboard/Text_Title").GetComponent<TextMeshProUGUI>();
-            //TextMeshProUGUI infoDescriptionTitle = selfObject.transform.
-            //    Find("Container_Advice/Container_Info/Text_Description").GetComponent<TextMeshProUGUI>();
-            //TextMeshProUGUI infoTitle = selfObject.transform.
-            //    Find("Container_Advice/Container_Info/Text_Title").GetComponent<TextMeshProUGUI>();
-            //TextMeshProUGUI noSignalTitle = selfObject.transform.
-            //    Find("Container_Advice/Container_Info/Container_NoSignal/Text_Title").GetComponent<TextMeshProUGUI>();
+            TextMeshProUGUI pageTitle = selfObject.transform.
+                Find("Text_Title").GetComponent<TextMeshProUGUI>();
+            TextMeshProUGUI aboutUsButtonTitle = selfObject.transform.
+                Find("Image_Panel/Button_AboutUs/Text_Title").GetComponent<TextMeshProUGUI>();
+            TextMeshProUGUI tutorialButtonTitle = selfObject.transform.
+                Find("Image_Panel/Button_Tutorial/Text_Title").GetComponent<TextMeshProUGUI>();
+            TextMeshProUGUI musicTitle = selfObject.transform.
+                Find("Image_Panel/Container_Music/Text_Main").GetComponent<TextMeshProUGUI>();
+            TextMeshProUGUI soundTitle = selfObject.transform.
+                Find("Image_Panel/Container_Sound/Text_Main").GetComponent<TextMeshProUGUI>();
+            TextMeshProUGUI languageTitle = selfObject.transform.
+                Find("Image_Panel/Container_Language/Text_Main").GetComponent<TextMeshProUGUI>();
+            TextMeshProUGUI currentLanguageTitle = selfObject.transform.
+                Find("Image_Panel/Container_Language/Image_CurrentLanguageBackground/Text_Main").GetComponent<TextMeshProUGUI>();
 
-            //startButtonTitle.text = _model.GetLocalisation("KEY_MAIN_MENU_START");
-            //shopButtonTitle.text = _model.GetLocalisation("KEY_MAIN_MENU_SHOP");
-            //leaderboardButtonTitle.text = _model.GetLocalisation("KEY_MAIN_MENU_LEADERBOARD");
-            //infoDescriptionTitle.text = _model.GetLocalisation("KEY_MAIN_MENU_INFO_VALUE_0");
-            //infoTitle.text = _model.GetLocalisation("KEY_MAIN_MENU_INFO_TITLE");
-            //noSignalTitle.text = _model.GetLocalisation("KEY_MAIN_MENU_INFO_NO_SIGNAL");
+            pageTitle.text = _model.GetLocalisation("KEY_SETTINGS_TITLE");
+            aboutUsButtonTitle.text = _model.GetLocalisation("KEY_ABOUT_US_TITLE");
+            tutorialButtonTitle.text = _model.GetLocalisation("KEY_TUTORIAL_TITLE");
+            musicTitle.text = _model.GetLocalisation("KEY_SETTINGS_MUSIC");
+            soundTitle.text = _model.GetLocalisation("KEY_SETTINGS_SOUNDS");
+            languageTitle.text = _model.GetLocalisation("KEY_SETTINGS_LANGUAGE");
+            currentLanguageTitle.text = _model.GetLocalisation("KEY_SETTINGS_SELECTED_LANGUAGE");
         }
 
         public void Dispose()
@@ -61,6 +86,41 @@ namespace TandC.GeometryAstro.UI
         public void Hide()
         {
             _model.SelfObject.SetActive(false);
+        }
+
+        private void ExitButtonOnClick()
+        {
+            _model.OpenMainMenu();
+        }
+
+        private void AboutUsButtonOnClick()
+        {
+            Debug.LogWarning("Not implemented");
+        }
+
+        private void TutorialButtonOnClick()
+        {
+            Debug.LogWarning("Not implemented");
+        }
+
+        private void LanguageNextButtonOnClick()
+        {
+            _model.NextLocalisation();
+        }
+
+        private void LanguagePreviusButtonOnClick()
+        {
+            _model.PreviousLocalisation();
+        }
+
+        private void MusicSliderValueChanged(float value)
+        {
+            Debug.LogWarning("Not implemented");
+        }
+
+        private void SoundSliderValueChanged(float value)
+        {
+            Debug.LogWarning("Not implemented");
         }
     }
 }

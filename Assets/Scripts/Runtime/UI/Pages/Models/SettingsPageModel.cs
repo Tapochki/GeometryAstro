@@ -1,5 +1,8 @@
+using Newtonsoft.Json.Linq;
 using System;
+using System.Linq;
 using TandC.GeometryAstro.Services;
+using TandC.GeometryAstro.Settings;
 using TandC.GeometryAstro.Utilities;
 using UnityEngine;
 
@@ -12,6 +15,10 @@ namespace TandC.GeometryAstro.UI
         private UIService _uiService;
         private LocalisationService _localisationService;
         private SoundService _soundService;
+        private DataService _dataService;
+
+        private Languages[] languageList = (Languages[])Enum.GetValues(typeof(Languages));
+        private int currentLanguageIndex;
 
         private GameObject _selfObject;
         public GameObject SelfObject
@@ -30,13 +37,15 @@ namespace TandC.GeometryAstro.UI
         public SettingsPageModel(
             LocalisationService localisationService,
             SoundService soundService,
-            UIService uiService)
+            UIService uiService,
+            DataService dataService)
         {
             _uiService = uiService;
             _localisationService = localisationService;
             _soundService = soundService;
 
             _localisationService.OnLanguageWasChangedEvent += OnLanguageWasChangedEventHandler;
+            _dataService = dataService;
         }
 
         private void OnLanguageWasChangedEventHandler(Settings.Languages language)
@@ -52,6 +61,28 @@ namespace TandC.GeometryAstro.UI
         public void OpenMainMenu()
         {
             _uiService.OpenPage<MainMenuPageView>();
+        }
+
+        public void ChangeMusicVolume(float value)
+        {
+
+        }
+
+        public void ChangeSoundVolume(float value)
+        {
+
+        }
+
+        public void NextLocalisation()
+        {
+            currentLanguageIndex = (currentLanguageIndex + 1) % languageList.Length;
+            _localisationService.UpdateLocalisation(languageList[currentLanguageIndex]);
+        }
+
+        public void PreviousLocalisation()
+        {
+            currentLanguageIndex = (currentLanguageIndex - 1 + languageList.Length) % languageList.Length;
+            _localisationService.UpdateLocalisation(languageList[currentLanguageIndex]);
         }
     }
 }
