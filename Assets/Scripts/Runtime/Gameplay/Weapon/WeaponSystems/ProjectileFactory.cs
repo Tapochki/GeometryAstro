@@ -7,21 +7,27 @@ namespace TandC.GeometryAstro.Gameplay
     public class ProjectileFactory : IProjectileFactory
     {
         private ObjectPool<BaseBullet> _pool;
-        private readonly Transform _projectileParent;
+        private Transform _projectileParent;
         private readonly BulletData _bulletData;
         private readonly int _startBulletPreloadCount;
 
-        public ProjectileFactory(BulletData bulletData, Transform projectileParent, int startBulletPreloadCount)
+        public ProjectileFactory(BulletData bulletData, int startBulletPreloadCount)
         {
             _bulletData = bulletData;
-            _projectileParent = projectileParent;
             _startBulletPreloadCount = startBulletPreloadCount;
-
+            CreateBulletParent();
             InitializePool();
+        }
+
+        private void CreateBulletParent()
+        {
+            _projectileParent = new GameObject($"[{_bulletData.type}]").transform;
+            _projectileParent.position = Vector3.zero;
         }
 
         private void InitializePool()
         {
+            Debug.LogError("InitializePool");
             _pool = new ObjectPool<BaseBullet>(
                 preloadFunc: () => CreateBullet(),
                 getAction: bullet => bullet.Activate(),
@@ -37,6 +43,7 @@ namespace TandC.GeometryAstro.Gameplay
 
         public void CreateProjectile(Vector2 position, Vector2 direction, float damage)
         {
+            Debug.LogError("CreateProjectile");
             var bullet = _pool.Get();
             bullet.Init(position, direction, b => _pool.Return(b), _bulletData, damage);
         }

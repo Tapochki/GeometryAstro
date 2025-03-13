@@ -21,6 +21,11 @@ namespace TandC.GeometryAstro.Gameplay
             _ammoCount.Subscribe(UpdateAmmoVisual).AddTo(_disposables);
         }
 
+        public void Activate() 
+        {
+            gameObject.SetActive(true);
+        }
+
         private void UpdateAmmoVisual(int count)
         {
             _ammoText.text = $"{count}";

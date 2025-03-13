@@ -8,35 +8,59 @@ using UnityEngine;
 
 namespace TandC.GeometryAstro.Gameplay 
 {
-    public class StandardGun : MonoBehaviour, IWeapon, IDisposable
+    public class StandardGun :IWeapon
     {
         private IProjectileFactory _projectileFactory;
         private IReloadable _reloader;
         private IEnemyDetector _enemyDetector;
         private WeaponData _data;
-        private CompositeDisposable _disposables = new();
+
+        private float _upgradeTimer = 10f;
 
         private List<WeaponShootingPattern> _shootingPatterns = new();
 
-        [SerializeField]
-        private Transform _bulletParent;
-        [SerializeField]
-        private WeaponConfig _config;
         private int _currentLevel = 1;
+
+        public WeaponType WeaponType { get; private set; }
 
         private void Start() 
         {
-            _data = _config.GetWeaponByType(WeaponType.StandardGun);
-            _projectileFactory = new ProjectileFactory(_data.bulletData, _bulletParent, 50);
-            _reloader = new WeaponReloader(_data.shootDeley);
-            _enemyDetector = new RaycastEnemyDetector(LayerMask.GetMask("Enemy"));
+           // _data = _config.GetWeaponByType(WeaponType.StandardGun);
+           // _projectileFactory = new ProjectileFactory(_data.bulletData, _bulletParent, 50);
+            //_reloader = new WeaponReloader(_data.shootDeley);
+            //_enemyDetector = new RaycastEnemyDetector(LayerMask.GetMask("Enemy"));
 
+            RegisterShootingPatterns();
+        }
+
+        public void SetData(WeaponData data)
+        {
+            _data = data;
+        }
+
+        public void SetProjectileFactory(IProjectileFactory projectileFactory)
+        {
+            _projectileFactory = projectileFactory;
+        }
+
+        public void SetReloader(IReloadable reloader)
+        {
+            _reloader = reloader;
+        }
+
+        public void SetEnemyDetector(IEnemyDetector enemyDetector)
+        {
+            _enemyDetector = enemyDetector;
+        }
+
+        public void Initialization()
+        {
             RegisterShootingPatterns();
         }
 
         private void RegisterShootingPatterns()
         {
-            foreach (var pattern in FindObjectsOfType<WeaponShootingPattern>())
+            foreach (var pattern in GameObject.FindObjectsOfType<WeaponShootingPattern>())
             {
                 if (pattern.Type == WeaponType.StandardGun)
                 {
@@ -124,9 +148,17 @@ namespace TandC.GeometryAstro.Gameplay
             }
         }
 
-        private float _upgradeTimer = 10f;
+        public void UpdateWeapon(float deltaTime)
+        {
+           
+        }
 
-        public void Update()
+        public void Upgrade()
+        {
+            if (_currentLevel < 5) _currentLevel++;
+        }
+
+        public void Tick()
         {
             _reloader.Update();
 
@@ -142,18 +174,6 @@ namespace TandC.GeometryAstro.Gameplay
                 Debug.LogError($"Upgrade: CurrentLevel {_currentLevel}");
                 _upgradeTimer = 10f;
             }
-        }
-
-        public void Dispose() => _disposables.Dispose();
-
-        public void UpdateWeapon(float deltaTime)
-        {
-           
-        }
-
-        public void Upgrade()
-        {
-            if (_currentLevel < 5) _currentLevel++;
         }
     }
 }

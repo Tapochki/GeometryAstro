@@ -1,6 +1,8 @@
 ﻿using System;
 using TandC.GeometryAstro.Data;
 using TandC.GeometryAstro.EventBus;
+using TandC.GeometryAstro.Services;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using VContainer;
 
@@ -13,6 +15,7 @@ namespace TandC.GeometryAstro.Gameplay
         private float _moveSpeed;
         private IGameplayInputHandler _inputHandler;
         private EventBusHolder _eventBusHolder;
+        private TickService _tickService;
 
         private PlayerData _playerData;
 
@@ -30,10 +33,12 @@ namespace TandC.GeometryAstro.Gameplay
         private PlayerDieEvent _playerDieEvent;
 
         [Inject]
-        private void Construct(IGameplayInputHandler inputHandler, EventBusHolder eventBusHolder)
+        private void Construct(IGameplayInputHandler inputHandler, EventBusHolder eventBusHolder, TickService tickService)
         {
             _inputHandler = inputHandler;
             _eventBusHolder = eventBusHolder;
+            _tickService = tickService;
+            
         }
 
         public void Init(PlayerData playerData)
@@ -46,9 +51,11 @@ namespace TandC.GeometryAstro.Gameplay
             _moveComponent = new MoveComponent(gameObject.GetComponent<Rigidbody2D>());
             _mainRotateComponent = new PlayerRotateComponent(_bodyTransform);
             _healthComponent = new HealedHealthComponent(_playerData.StartHealth, _onPlayerDieEvent, _onHealthChageEvent);
+
+            _tickService.RegisterFixedUpdate(FixedTick);
         }
 
-        private void FixedUpdate()
+        private void FixedTick()
         {
             _moveComponent.Move(_inputHandler.MoveDirection, _moveSpeed);
             if (_inputHandler.RotationDirection != Vector2.zero)

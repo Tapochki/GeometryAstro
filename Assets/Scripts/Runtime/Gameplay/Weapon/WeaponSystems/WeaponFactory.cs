@@ -1,33 +1,23 @@
-using System;
-using System.Collections.Generic;
-using TandC.GeometryAstro.Data;
 using TandC.GeometryAstro.Settings;
 
 namespace TandC.GeometryAstro.Gameplay 
 {
-    public class WeaponFactory
+    public class WeaponFactory : IWeaponFactory
     {
-        private readonly Dictionary<WeaponType, (IWeaponBuilder<IWeapon> builder, Func<IProjectileFactory> projectileFactory)> _builders = new();
-        private readonly WeaponConfig _weaponConfig;
-
-        public WeaponFactory(WeaponConfig weaponConfig)
+        public WeaponFactory() 
         {
-            _weaponConfig = weaponConfig;
+
         }
 
-        public void RegisterBuilder<T>(WeaponType type, IWeaponBuilder<T> builder, Func<IProjectileFactory> projectileFactory) where T : IWeapon
+        public IWeaponBuilder GetBuilder(WeaponType type)
         {
-           // _builders[type] = (builder, projectileFactory);
-        }
-
-        public IWeapon CreateWeapon(WeaponType type)
-        {
-            if (!_builders.TryGetValue(type, out var entry))
+            return type switch
             {
-                throw new ArgumentException($"No builder registered for weapon type: {type}");
-            }
-
-            return entry.builder.Build(_weaponConfig.GetWeaponByType(type), entry.projectileFactory());
+                WeaponType.AutoGun => new AutomaticGunBuilder(),
+                WeaponType.StandardGun => new StandardGunBuilder(),
+                WeaponType.RocketGun => new RocketGunBuilder(),
+                _ => throw new System.ArgumentException("Unknown weapon type")
+            };
         }
     }
 }

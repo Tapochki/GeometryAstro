@@ -1,12 +1,17 @@
 using TandC.GeometryAstro.Data;
+using UnityEngine;
 
 namespace TandC.GeometryAstro.Gameplay 
 {
-    public interface IWeaponBuilder<T> where T : IWeapon
+    public interface IWeaponBuilder
     {
-        T Build(WeaponData data, IProjectileFactory projectileFactory);
-        void ConfigureReload(IReloadable reloader);
-        void ConfigureDetection(IEnemyDetector detector);
+        IWeaponBuilder SetData();
+        IWeaponBuilder SetConfig(WeaponConfig config);
+        IWeaponBuilder SetProjectileFactory();
+        IWeaponBuilder SetReloader();
+        IWeaponBuilder SetEnemyDetector();
+       // IWeaponBuilder RegisterShootingPatterns();
+        IWeapon Build();
     }
 }
 

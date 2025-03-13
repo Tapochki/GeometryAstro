@@ -1,6 +1,7 @@
 ﻿using TandC.GeometryAstro.Data;
 using TandC.GeometryAstro.EventBus;
 using TandC.GeometryAstro.Gameplay;
+using TandC.GeometryAstro.Services;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
@@ -23,6 +24,8 @@ namespace TandC.GeometryAstro.Core
             RegisterPlayer(builder);
             RegisterGameplayCamera(builder);
             EnemyWavesRegister(builder);
+            RegisterWeaponController(builder);
+            RegisterTickService(builder);
             RegisterEntryPoint(builder);
         }
 
@@ -51,16 +54,26 @@ namespace TandC.GeometryAstro.Core
             builder.RegisterComponent(_gameplayCamera).AsSelf();
         }
 
+        private void EnemyWavesRegister(IContainerBuilder builder)
+        {
+            builder.Register<WaveController>(Lifetime.Scoped);
+            builder.Register<EnemySpawner>(Lifetime.Scoped).As<IEnemySpawner>();
+            builder.Register<EnemySpawnPositionService>(Lifetime.Scoped).As<IEnemySpawnPositionService>();
+        }
+
         private void RegisterEntryPoint(IContainerBuilder builder)
         {
             builder.RegisterEntryPoint<CoreFlow>();
         }
 
-        private void EnemyWavesRegister(IContainerBuilder builder) 
+        private void RegisterWeaponController(IContainerBuilder builder) 
         {
-            builder.Register<WaveController>(Lifetime.Scoped);
-            builder.Register<EnemySpawner>(Lifetime.Scoped).As<IEnemySpawner>();
-            builder.Register<EnemySpawnPositionService>(Lifetime.Scoped).As<IEnemySpawnPositionService>();
+            builder.Register<WeaponController>(Lifetime.Scoped);
+        }
+
+        private void RegisterTickService(IContainerBuilder builder) 
+        {
+            builder.Register<TickService>(Lifetime.Scoped);
         }
     }
 }

@@ -4,7 +4,7 @@ namespace TandC.GeometryAstro.Gameplay
 {
     public interface IWeaponFactory
     {
-        IWeapon CreateWeapon(WeaponType type);
+        public IWeaponBuilder GetBuilder(WeaponType type);
     }
 }
 

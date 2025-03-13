@@ -1,8 +1,15 @@
+using TandC.GeometryAstro.Settings;
+
 namespace TandC.GeometryAstro.Gameplay
 {
     public interface IWeapon
     {
-        void UpdateWeapon(float deltaTime);
-        void Upgrade();
+        public WeaponType WeaponType { get; } 
+        public void SetProjectileFactory(IProjectileFactory projectileFactory);
+        public void SetReloader(IReloadable reloader);
+        public void SetEnemyDetector(IEnemyDetector enemyDetector);
+        public void Initialization();
+        public void Upgrade();
+        public void Tick();
     }
 }

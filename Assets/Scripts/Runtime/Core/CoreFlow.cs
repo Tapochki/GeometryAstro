@@ -3,6 +3,7 @@ using TandC.GeometryAstro.Services;
 using VContainer.Unity;
 using TandC.GeometryAstro.Gameplay;
 using TandC.GeometryAstro.EventBus;
+using UnityEngine;
 
 namespace TandC.GeometryAstro.Core
 {
@@ -19,8 +20,11 @@ namespace TandC.GeometryAstro.Core
         private readonly IEnemySpawner _enemySpawner;
         private readonly IEnemySpawnPositionService _enemySpawnPositionService;
 
+        private WeaponController _weaponController;
+        private TickService _tickService;
+
         public CoreFlow(LoadingService loadingService, DataService dataService, Player player, EventBusHolder eventBusHolder, IGameplayInputHandler gameplayInputHandler, GameplayCamera gameplayCamera,
-            WaveController waveController, IEnemySpawner enemySpawner, IEnemySpawnPositionService enemySpawnPositionService)
+            WaveController waveController, IEnemySpawner enemySpawner, IEnemySpawnPositionService enemySpawnPositionService, TickService tickService, WeaponController weaponController)
         {
             _loadingService = loadingService;
             _dataService = dataService;
@@ -31,18 +35,31 @@ namespace TandC.GeometryAstro.Core
             _waveController = waveController;
             _enemySpawner = enemySpawner;
             _enemySpawnPositionService = enemySpawnPositionService;
+            _weaponController = weaponController;
+            _tickService = tickService;
         }
 
         public async void Start()
         {
-            _player.Init(_dataService.UserData.PlayerData);
+            InitPlayer();
+            InitWeapon();
             InitEnemy();
 
             var fooLoadingUnit = new FooLoadingUnit(3, false);
-
-
-
             await _loadingService.BeginLoading(fooLoadingUnit);
+        }
+
+        private void InitPlayer()
+        {
+            _player.Init(_dataService.UserData.PlayerData);
+        }
+
+        private void InitWeapon() 
+        {
+            _weaponController.Init();
+            _weaponController.RegisterWeapon(Settings.WeaponType.StandardGun);
+            _weaponController.RegisterWeapon(Settings.WeaponType.RocketGun);
+            _weaponController.RegisterWeapon(Settings.WeaponType.AutoGun);
         }
 
         private void InitEnemy() 
