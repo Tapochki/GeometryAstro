@@ -4,7 +4,7 @@ using TandC.GeometryAstro.Settings;
 using UniRx;
 using UnityEngine;
 
-namespace TandC.GeometryAstro.Gameplay 
+namespace TandC.GeometryAstro.Gameplay
 {
     public class AutomaticGun : MonoBehaviour, IWeapon, IDisposable
     {

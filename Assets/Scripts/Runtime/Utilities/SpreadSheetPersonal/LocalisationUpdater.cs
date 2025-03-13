@@ -42,6 +42,14 @@ namespace Studio.Utilities
             };
         }
 
+        private void WtireElement(XmlWriter writer, string key, string language)
+        {
+            writer.WriteStartElement("string");
+            writer.WriteAttributeString("name", key);
+            writer.WriteString(language);
+            writer.WriteEndElement();
+        }
+
         private void SyncLocalisationWithSpreadsheet()
         {
             var spreadsheet = _spreadsheetsInfo[SpreadsheetDataType.Localization];//_dataSystem.GetSpreadsheetByType(SpreadsheetDataType.Localization);
@@ -56,7 +64,14 @@ namespace Studio.Utilities
 
             foreach (var lang in Enum.GetValues(typeof(LanguageTypes)))
             {
-                XmlWriter writer = XmlWriter.Create($"Assets/Resources/Localisation/{lang}.xml");
+                XmlWriterSettings settings = new XmlWriterSettings
+                {
+                    Indent = true,
+                    IndentChars = "    ",
+                    NewLineOnAttributes = false
+                };
+
+                XmlWriter writer = XmlWriter.Create($"Assets/Resources/Localisation/{lang}.xml", settings);
 
                 writer.WriteStartDocument();
                 writer.WriteStartElement("Document");
@@ -65,24 +80,16 @@ namespace Studio.Utilities
                     switch (lang)
                     {
                         case LanguageTypes.Russian:
-                            writer.WriteStartElement("string");
-                            writer.WriteAttributeString("name", element.Key);
-                            writer.WriteString(element.Russian);
-                            writer.WriteEndElement();
+                            WtireElement(writer, element.Key, element.Russian);
                             break;
-
                         case LanguageTypes.Ukrainian:
-                            writer.WriteStartElement("string");
-                            writer.WriteAttributeString("name", element.Key);
-                            writer.WriteString(element.Ukrainian);
-                            writer.WriteEndElement();
+                            WtireElement(writer, element.Key, element.Ukrainian);
                             break;
-
                         case LanguageTypes.English:
-                            writer.WriteStartElement("string");
-                            writer.WriteAttributeString("name", element.Key);
-                            writer.WriteString(element.English);
-                            writer.WriteEndElement();
+                            WtireElement(writer, element.Key, element.English);
+                            break;
+                        case LanguageTypes.German:
+                            WtireElement(writer, element.Key, element.German);
                             break;
                     }
                 }
@@ -96,6 +103,7 @@ namespace Studio.Utilities
             Russian,
             Ukrainian,
             English,
+            German,
         }
 
         internal enum SpreadsheetDataType
@@ -109,6 +117,7 @@ namespace Studio.Utilities
             public string English;
             public string Ukrainian;
             public string Russian;
+            public string German;
         }
     }
 }

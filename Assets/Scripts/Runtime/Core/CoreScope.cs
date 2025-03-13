@@ -1,6 +1,7 @@
 ﻿using TandC.GeometryAstro.Data;
 using TandC.GeometryAstro.EventBus;
 using TandC.GeometryAstro.Gameplay;
+using TandC.GeometryAstro.Utilities;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
@@ -9,11 +10,11 @@ namespace TandC.GeometryAstro.Core
 {
     public sealed class CoreScope : LifetimeScope
     {
-        [SerializeField] GameConfig _gameConfig;
-        [SerializeField] Player _player;
-        [SerializeField] GameplayInputHandler _inputHandler;
-        [SerializeField] GameplayCamera _gameplayCamera;
-        [SerializeField] EnemySpawner _enemySpawner;
+        [SerializeField] private GameConfig _gameConfig;
+        [SerializeField] private Player _player;
+        [SerializeField] private GameplayInputHandler _inputHandler;
+        [SerializeField] private GameplayCamera _gameplayCamera;
+        [SerializeField] private EnemySpawner _enemySpawner;
 
         protected override void Configure(IContainerBuilder builder)
         {
@@ -23,15 +24,23 @@ namespace TandC.GeometryAstro.Core
             RegisterPlayer(builder);
             RegisterGameplayCamera(builder);
             EnemyWavesRegister(builder);
+
+            RegisterUIService(builder);
+
             RegisterEntryPoint(builder);
         }
 
-        private void RegisterConfigs(IContainerBuilder builder) 
+        private void RegisterConfigs(IContainerBuilder builder)
         {
             builder.RegisterInstance(_gameConfig).AsSelf();
         }
 
-        private void RegisterInputHandler(IContainerBuilder builder) 
+        private void RegisterUIService(IContainerBuilder builder)
+        {
+            builder.Register<UIService>(Lifetime.Scoped);
+        }
+
+        private void RegisterInputHandler(IContainerBuilder builder)
         {
             builder.RegisterComponent(_inputHandler).As<IGameplayInputHandler>();
         }
@@ -41,7 +50,7 @@ namespace TandC.GeometryAstro.Core
             builder.Register<EventBusHolder>(Lifetime.Scoped);
         }
 
-        private void RegisterPlayer(IContainerBuilder builder) 
+        private void RegisterPlayer(IContainerBuilder builder)
         {
             builder.RegisterComponent(_player).AsSelf();
         }
@@ -56,7 +65,7 @@ namespace TandC.GeometryAstro.Core
             builder.RegisterEntryPoint<CoreFlow>();
         }
 
-        private void EnemyWavesRegister(IContainerBuilder builder) 
+        private void EnemyWavesRegister(IContainerBuilder builder)
         {
             builder.Register<WaveController>(Lifetime.Scoped);
             builder.Register<EnemySpawner>(Lifetime.Scoped).As<IEnemySpawner>();

@@ -1,55 +1,112 @@
-﻿<?xml version="1.0" encoding="utf-8"?><Document><string name="KEY_MAIN_MENU_START">Старт
-</string><string name="KEY_MAIN_MENU_SHOP">Магазин
-</string><string name="KEY_MAIN_MENU_LEADERBOARD">Рекорди
-</string><string name="KEY_MAIN_MENU_INFO_NO_SIGNAL">Немає сигналу...
-</string><string name="">
-</string><string name="KEY_LEADERBOARD_PLACE">Місце
-</string><string name="KEY_LEADERBOARD_NICKNAME">Ім'я
-</string><string name="KEY_LEADERBOARD_TIME">Час реєстрації
-</string><string name="KEY_LEADERBOARD_SWITCH_TO_LOCAL">Локальные
-</string><string name="KEY_LEADERBOARD_SWITCH_TO_GLOBAL">Глобальні
-</string><string name="KEY_ABOUT_US_TITLE">Про НАС
-</string><string name="KEY_ABOUT_US_LEAD_PROGRAMME">Провідний програміст, геймдизайнер"
-</string><string name="KEY_ABOUT_US_LEAD_ARTIST">Провідний художник, програміст"
-</string><string name="KEY_ABOUT_US_PATREON">Patreon
-</string><string name="KEY_ABOUT_US_INSTAGRAMM">Instagram
-</string><string name="KEY_ABOUT_US_LINK">посилання
-</string><string name="KEY_GAMEOVER_TITLE">Гра завершена
-</string><string name="KEY_GAMEOVER_ENTER_NICKNAME">Введіть ім'я
-</string><string name="KEY_SCORE">Рахунок
-</string><string name="KEY_GAMEOVER_ONE_MORE_CHANCE">Ще один шанс
-</string><string name="KEY_CONTINUE">Продовжити
-</string><string name="KEY_PAUSE_TITLE">Пауза
-</string><string name="KEY_EXIT">Вихід
-</string><string name="KEY_SETTINGS_TITLE">Налаштування
-</string><string name="KEY_SETTINGS_SOUNDS">Звуки
-</string><string name="KEY_SETTINGS_MUSIC">музика
-</string><string name="KEY_SETTINGS_LANGUAGE">Мова
-</string><string name="KEY_SETTINGS_SHOW_FPS">Показати FPS
-</string><string name="KEY_TUTORIAL_TITLE">Керівництво
-</string><string name="KEY_TUTORIAL_PAGE_0">Це ваш персонаж.
-</string><string name="KEY_TUTORIAL_PAGE_1">Це джойстик яким можна керувати вашим персонажем, рухаючи його в просторі і повертаючи."
-</string><string name="KEY_TUTORIAL_PAGE_2">Це здоров'я персонажа якщо воно закінчено ви програєте.
-</string><string name="KEY_TUTORIAL_PAGE_3">Все, що рухається і переслідує вашого персонажа, це ваші вороги, знищувати їх можна різними видами зброї, основна зброя спрацьовує при наведенні гравця на ворога. Після знищення ворога гравцеві нараховують очки і з ворога може випасти предмет."
-</string><string name="KEY_TUTORIAL_PAGE_4">Після знищення ворога падають предмет. Найчастіший предмет це кристал досвіду при підборі якого у гравця буде заповнено смужка досвіду після заповнення якої гравець отримає новий рівень. Так само є інші предмети, але їх дію вам доведеться дізнатися самому."
-</string><string name="KEY_TUTORIAL_PAGE_5">При отриманні нового рівня відкривається вікно, в якому можна вибрати здатність. Здібності бувають 2 видів - це пасивні ті, які з прокачуванням будуть збільшувати параметри гравця і активні, які будуть давати гравцеві нові види озброєння або захисту."
-</string><string name="KEY_TUTORIAL_PAGE_6">Так само один з предметів з яких теж можна отримати здібності це скриня яка падає тільки з босів. З скрині можна отримати від 1 до 5 покращення ваших здібностей.
-</string><string name="KEY_TUTORIAL_PAGE_7">Після того як ви програєте, ви зможете внести свої рекорди в таблицю. Удачі, спробуйте протриматися якнайдовше і набрати очок більше ніж інші гравці!"
-</string><string name="KEY_SETTINGS_SELECTED_LANGUAGE">Україньска
-</string><string name="KEY_MAIN_MENU_INFO_TITLE">А ви знали?
-</string><string name="KEY_MAIN_MENU_INFO_VALUE_0">Червоний кристал дає набагато більше досвіду
-</string><string name="KEY_MAIN_MENU_INFO_VALUE_1">Боси можуть скинути скриню з невеликою кількістю навичок
-</string><string name="KEY_MAIN_MENU_INFO_VALUE_2">If you run out of health, the game is over"
-</string><string name="KEY_MAIN_MENU_INFO_VALUE_3">тест
-</string><string name="KEY_MAIN_MENU_INFO_VALUE_4">тест
-</string><string name="KEY_GAME_LEVEL">Рівень:
-</string><string name="KEY_CONFIRM">Підтвердити
-</string><string name="KEY_TAP_TO_OPEN_CHEST">Натисніть щоб відкрити скриню
-</string><string name="KEY_SUPPORT_US_TITLE">Підтримати нас
-</string><string name="KEY_LEVEL_UP_TITLE">Новий рівень
-</string><string name="KEY_REACHED_LEVEL">Вітаємо! Ви досягли рівня
-</string><string name="KEY_RESET_SKILLS">Оновити здібності
-</string><string name="KEY_WARNING">Увага
-</string><string name="KEY_BACK_TO_GAME_ZONE">Певерніться до ігрової зони
-</string><string name="KEY_LOADING">Завантаження...
-</string><string name="KEY_RELOAD">Перезавантажте</string></Document>
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Document>
+    <string name="KEY_MAIN_MENU_START">Старт
+</string>
+    <string name="KEY_MAIN_MENU_SHOP">Магазин
+</string>
+    <string name="KEY_MAIN_MENU_LEADERBOARD">Рекорди
+</string>
+    <string name="KEY_MAIN_MENU_INFO_NO_SIGNAL">Немає сигналу...
+</string>
+    <string name="">
+</string>
+    <string name="KEY_LEADERBOARD_PLACE">Місце
+</string>
+    <string name="KEY_LEADERBOARD_NICKNAME">Ім'я
+</string>
+    <string name="KEY_LEADERBOARD_TIME">Час реєстрації
+</string>
+    <string name="KEY_LEADERBOARD_SWITCH_TO_LOCAL">Локальные
+</string>
+    <string name="KEY_LEADERBOARD_SWITCH_TO_GLOBAL">Глобальні
+</string>
+    <string name="KEY_ABOUT_US_TITLE">Про НАС
+</string>
+    <string name="KEY_ABOUT_US_LEAD_PROGRAMME">Провідний програміст, геймдизайнер"
+</string>
+    <string name="KEY_ABOUT_US_LEAD_ARTIST">Провідний художник, програміст"
+</string>
+    <string name="KEY_ABOUT_US_PATREON">Patreon
+</string>
+    <string name="KEY_ABOUT_US_INSTAGRAMM">Instagram
+</string>
+    <string name="KEY_ABOUT_US_LINK">посилання
+</string>
+    <string name="KEY_GAMEOVER_TITLE">Гра завершена
+</string>
+    <string name="KEY_GAMEOVER_ENTER_NICKNAME">Введіть ім'я
+</string>
+    <string name="KEY_SCORE">Рахунок
+</string>
+    <string name="KEY_GAMEOVER_ONE_MORE_CHANCE">Ще один шанс
+</string>
+    <string name="KEY_CONTINUE">Продовжити
+</string>
+    <string name="KEY_PAUSE_TITLE">Пауза
+</string>
+    <string name="KEY_EXIT">Вихід
+</string>
+    <string name="KEY_SETTINGS_TITLE">Налаштування
+</string>
+    <string name="KEY_SETTINGS_SOUNDS">Звуки
+</string>
+    <string name="KEY_SETTINGS_MUSIC">музика
+</string>
+    <string name="KEY_SETTINGS_LANGUAGE">Мова
+</string>
+    <string name="KEY_SETTINGS_SHOW_FPS">Показати FPS
+</string>
+    <string name="KEY_TUTORIAL_TITLE">Керівництво
+</string>
+    <string name="KEY_TUTORIAL_PAGE_0">Це ваш персонаж.
+</string>
+    <string name="KEY_TUTORIAL_PAGE_1">Це джойстик яким можна керувати вашим персонажем, рухаючи його в просторі і повертаючи."
+</string>
+    <string name="KEY_TUTORIAL_PAGE_2">Це здоров'я персонажа якщо воно закінчено ви програєте.
+</string>
+    <string name="KEY_TUTORIAL_PAGE_3">Все, що рухається і переслідує вашого персонажа, це ваші вороги, знищувати їх можна різними видами зброї, основна зброя спрацьовує при наведенні гравця на ворога. Після знищення ворога гравцеві нараховують очки і з ворога може випасти предмет."
+</string>
+    <string name="KEY_TUTORIAL_PAGE_4">Після знищення ворога падають предмет. Найчастіший предмет це кристал досвіду при підборі якого у гравця буде заповнено смужка досвіду після заповнення якої гравець отримає новий рівень. Так само є інші предмети, але їх дію вам доведеться дізнатися самому."
+</string>
+    <string name="KEY_TUTORIAL_PAGE_5">При отриманні нового рівня відкривається вікно, в якому можна вибрати здатність. Здібності бувають 2 видів - це пасивні ті, які з прокачуванням будуть збільшувати параметри гравця і активні, які будуть давати гравцеві нові види озброєння або захисту."
+</string>
+    <string name="KEY_TUTORIAL_PAGE_6">Так само один з предметів з яких теж можна отримати здібності це скриня яка падає тільки з босів. З скрині можна отримати від 1 до 5 покращення ваших здібностей.
+</string>
+    <string name="KEY_TUTORIAL_PAGE_7">Після того як ви програєте, ви зможете внести свої рекорди в таблицю. Удачі, спробуйте протриматися якнайдовше і набрати очок більше ніж інші гравці!"
+</string>
+    <string name="KEY_SETTINGS_SELECTED_LANGUAGE">Україньска
+</string>
+    <string name="KEY_MAIN_MENU_INFO_TITLE">А ви знали?
+</string>
+    <string name="KEY_MAIN_MENU_INFO_VALUE_0">Червоний кристал дає набагато більше досвіду
+</string>
+    <string name="KEY_MAIN_MENU_INFO_VALUE_1">Боси можуть скинути скриню з невеликою кількістю навичок
+</string>
+    <string name="KEY_MAIN_MENU_INFO_VALUE_2">If you run out of health, the game is over"
+</string>
+    <string name="KEY_MAIN_MENU_INFO_VALUE_3">тест
+</string>
+    <string name="KEY_MAIN_MENU_INFO_VALUE_4">тест
+</string>
+    <string name="KEY_GAME_LEVEL">Рівень:
+</string>
+    <string name="KEY_CONFIRM">Підтвердити
+</string>
+    <string name="KEY_TAP_TO_OPEN_CHEST">Натисніть щоб відкрити скриню
+</string>
+    <string name="KEY_SUPPORT_US_TITLE">Підтримати нас
+</string>
+    <string name="KEY_LEVEL_UP_TITLE">Новий рівень
+</string>
+    <string name="KEY_REACHED_LEVEL">Вітаємо! Ви досягли рівня
+</string>
+    <string name="KEY_RESET_SKILLS">Оновити здібності
+</string>
+    <string name="KEY_WARNING">Увага
+</string>
+    <string name="KEY_BACK_TO_GAME_ZONE">Певерніться до ігрової зони
+</string>
+    <string name="KEY_LOADING">Завантаження...
+</string>
+    <string name="KEY_RELOAD">Перезавантажте</string>
+</Document>

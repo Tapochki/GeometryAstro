@@ -7,7 +7,7 @@ using VContainer;
 namespace TandC.GeometryAstro.Gameplay
 {
     public class Player : MonoBehaviour
-    {    
+    {
         [SerializeField] private Transform _bodyTransform;
 
         private float _moveSpeed;
@@ -50,20 +50,20 @@ namespace TandC.GeometryAstro.Gameplay
 
         private void FixedUpdate()
         {
-            _moveComponent.Move(_inputHandler.MoveDirection, _moveSpeed);
-            if (_inputHandler.RotationDirection != Vector2.zero)
-            {
-                _mainRotateComponent.SetRotation(_inputHandler.RotationDirection);
-            }
-            else if (_inputHandler.MoveDirection != Vector2.zero)
-            {
-                _mainRotateComponent.SetRotation(_inputHandler.MoveDirection);
-            }
+            //_moveComponent.Move(_inputHandler.MoveDirection, _moveSpeed);
+            //if (_inputHandler.RotationDirection != Vector2.zero)
+            //{
+            //    _mainRotateComponent.SetRotation(_inputHandler.RotationDirection);
+            //}
+            //else if (_inputHandler.MoveDirection != Vector2.zero)
+            //{
+            //    _mainRotateComponent.SetRotation(_inputHandler.MoveDirection);
+            //}
 
-            if(_mainRotateComponent != null) 
-            {
-                _mainRotateComponent.Update();
-            }
+            //if(_mainRotateComponent != null) 
+            //{
+            //    _mainRotateComponent.Update();
+            //}
         }
 
         public void TakeDamage(float damage)
