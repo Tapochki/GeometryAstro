@@ -8,10 +8,10 @@ namespace TandC.GeometryAstro.Gameplay
         protected float _maxHealth;
         protected float _currentHealth;
 
-        protected Action _onDeathEvent;
+        protected Action<bool> _onDeathEvent;
         protected Action _onHealthChageEvent;
 
-        public HealthComponent(float maxHealth, Action onDeathEvent, Action onHealthChageEvent) 
+        public HealthComponent(float maxHealth, Action<bool> onDeathEvent, Action onHealthChageEvent) 
         {
             _maxHealth = _currentHealth = maxHealth;
             _onDeathEvent = onDeathEvent;
@@ -33,13 +33,13 @@ namespace TandC.GeometryAstro.Gameplay
 
         protected virtual void Die()
         {
-            _onDeathEvent?.Invoke();
+            _onDeathEvent?.Invoke(true);
         }
     }
 
     public class HealthWithViewComponent : HealthComponent
     {
-        public HealthWithViewComponent(float maxHealth, Action onDeathEvent, Action<float, float> onHealthChangeEvent) : base(maxHealth, onDeathEvent, null)
+        public HealthWithViewComponent(float maxHealth, Action<bool> onDeathEvent, Action<float, float> onHealthChangeEvent) : base(maxHealth, onDeathEvent, null)
         {
             _onHealthChageEvent = () => onHealthChangeEvent?.Invoke(_currentHealth, _maxHealth);
             _onHealthChageEvent.Invoke();
@@ -48,7 +48,7 @@ namespace TandC.GeometryAstro.Gameplay
 
     public class HealedHealthComponent : HealthWithViewComponent
     {
-        public HealedHealthComponent(float maxHealth, Action onDeathEvent, Action<float, float> onHealthChangeEvent) : base(maxHealth, onDeathEvent, onHealthChangeEvent) { }
+        public HealedHealthComponent(float maxHealth, Action<bool> onDeathEvent, Action<float, float> onHealthChangeEvent) : base(maxHealth, onDeathEvent, onHealthChangeEvent) { }
         public void Heal(float amount)
         {
             _currentHealth = Mathf.Min(_currentHealth + amount, _maxHealth);

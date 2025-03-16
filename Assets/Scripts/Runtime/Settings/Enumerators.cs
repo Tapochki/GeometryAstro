@@ -22,14 +22,14 @@ namespace TandC.GeometryAstro.Settings
         SmallXp,
         MeduimXp,
         BigXp,
-        Ammo,
+        RocketAmmo,
         Medecine,
         FrozenBomb,
         RocketBox,
         Chest,
         Bomb,
         Magnet,
-        SmallMoney
+        Coin
     }
 
     public enum ActiveButtonType
@@ -102,7 +102,7 @@ namespace TandC.GeometryAstro.Settings
     public enum DropItemRareType
     {
         DefaultDrop,
-        OnlyExpirienceDrop,
+        OnlyOneThingDropForTest,
         RareDrop,
         BossDrop,
     }

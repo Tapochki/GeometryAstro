@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b77317c35f1cf0c41a2aba618dfc8fb3, type: 3}
+  m_Name: GameConfig
+  m_EditorClassIdentifier: 
+  _enemyConfig: {fileID: 11400000, guid: 793ab3f4d4ec29a4d86a66ebee610312, type: 2}
+  _itemConfig: {fileID: 11400000, guid: ad85d4143ec458140bcc600b2f3477cb, type: 2}
+  _phaseConfig: {fileID: 11400000, guid: 9fac98022ce0e564d913e1fa4f2580b4, type: 2}
+  _skillConfig: {fileID: 11400000, guid: 0691f6d76309ef64aaafc04d3bedaa0b, type: 2}
+  _weaponConfig: {fileID: 11400000, guid: 8fd911e7d00a4da4e9fcb07dbd8163f7, type: 2}
+  "_\u0441hanceDropItemCofig": {fileID: 11400000, guid: 0cfcb1ef0d547d74eaf7a86a594d7711, type: 2}

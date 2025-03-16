@@ -27,7 +27,6 @@ namespace TandC.GeometryAstro.Gameplay
 
         private void InitializePool()
         {
-            Debug.LogError("InitializePool");
             _pool = new ObjectPool<BaseBullet>(
                 preloadFunc: () => CreateBullet(),
                 getAction: bullet => bullet.Activate(),
@@ -43,7 +42,6 @@ namespace TandC.GeometryAstro.Gameplay
 
         public void CreateProjectile(Vector2 position, Vector2 direction, float damage)
         {
-            Debug.LogError("CreateProjectile");
             var bullet = _pool.Get();
             bullet.Init(position, direction, b => _pool.Return(b), _bulletData, damage);
         }

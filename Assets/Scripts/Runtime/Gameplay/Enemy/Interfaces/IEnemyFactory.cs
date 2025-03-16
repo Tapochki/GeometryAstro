@@ -7,7 +7,7 @@ namespace TandC.GeometryAstro.Gameplay
 {
     public interface IEnemyFactory
     {
-        public Enemy CreateEnemy(EnemyData enemyData, Enemy enemy, Action<Enemy> onDeathEvent, Transform target, Vector2 moveDirection, EnemyBuilderType builderType);
+        public Enemy CreateEnemy(EnemyData enemyData, Enemy enemy, Action<Enemy, bool> onDeathEvent, Transform target, Vector2 moveDirection, EnemyBuilderType builderType);
     }
 }
 

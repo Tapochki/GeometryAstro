@@ -1,12 +1,9 @@
 namespace TandC.GeometryAstro.EventBus
 {
-    public class EventBusHolder
+    public static class EventBusHolder
     {
-        public EventBus EventBus { get; private set; }
+        private static readonly EventBus _eventBus = new EventBus();
 
-        public EventBusHolder() 
-        {
-            EventBus = new EventBus();
-        }
+        public static EventBus EventBus => _eventBus;
     }
 }

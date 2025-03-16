@@ -2,7 +2,6 @@
 using TandC.GeometryAstro.Data;
 using TandC.GeometryAstro.EventBus;
 using TandC.GeometryAstro.Services;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using VContainer;
 
@@ -14,7 +13,6 @@ namespace TandC.GeometryAstro.Gameplay
 
         private float _moveSpeed;
         private IGameplayInputHandler _inputHandler;
-        private EventBusHolder _eventBusHolder;
         private TickService _tickService;
 
         private PlayerData _playerData;
@@ -26,27 +24,27 @@ namespace TandC.GeometryAstro.Gameplay
         public Vector2 PlayerPosition { get => transform.position; }
 
         private Action<float, float> _onHealthChageEvent;
-        private Action _onPlayerDieEvent;
-
-        private PlayerHealthChangeEvent _playerHealthChangeEvent;
+        private Action<bool> _onPlayerDieEvent;
 
         private PlayerDieEvent _playerDieEvent;
 
+        private LevelModel _levelModel;
+
         [Inject]
-        private void Construct(IGameplayInputHandler inputHandler, EventBusHolder eventBusHolder, TickService tickService)
+        private void Construct(IGameplayInputHandler inputHandler, TickService tickService)
         {
             _inputHandler = inputHandler;
-            _eventBusHolder = eventBusHolder;
             _tickService = tickService;
-            
         }
 
         public void Init(PlayerData playerData)
         {
+            _levelModel = new LevelModel();
+            _levelModel.Init();
             _playerData = playerData;
             _moveSpeed = _playerData.StartSpeed;
-            _onHealthChageEvent += (currentHealth, maxHealth) => _eventBusHolder.EventBus.Raise(new PlayerHealthChangeEvent(currentHealth, maxHealth));
-            _onPlayerDieEvent += () => _eventBusHolder.EventBus.Raise(new PlayerDieEvent());
+            _onHealthChageEvent += (currentHealth, maxHealth) => EventBusHolder.EventBus.Raise(new PlayerHealthChangeEvent(currentHealth, maxHealth));
+            _onPlayerDieEvent += (isKilled) => EventBusHolder.EventBus.Raise(new PlayerDieEvent());
 
             _moveComponent = new MoveComponent(gameObject.GetComponent<Rigidbody2D>());
             _mainRotateComponent = new PlayerRotateComponent(_bodyTransform);

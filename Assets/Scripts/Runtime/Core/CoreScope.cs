@@ -1,5 +1,4 @@
 ﻿using TandC.GeometryAstro.Data;
-using TandC.GeometryAstro.EventBus;
 using TandC.GeometryAstro.Gameplay;
 using TandC.GeometryAstro.Services;
 using UnityEngine;
@@ -14,18 +13,17 @@ namespace TandC.GeometryAstro.Core
         [SerializeField] Player _player;
         [SerializeField] GameplayInputHandler _inputHandler;
         [SerializeField] GameplayCamera _gameplayCamera;
-        [SerializeField] EnemySpawner _enemySpawner;
 
         protected override void Configure(IContainerBuilder builder)
         {
             RegisterConfigs(builder);
             RegisterInputHandler(builder);
-            RegisterEventBus(builder);
             RegisterPlayer(builder);
             RegisterGameplayCamera(builder);
-            EnemyWavesRegister(builder);
+            RegisterEnemySystem(builder);
             RegisterWeaponController(builder);
             RegisterTickService(builder);
+            RegisterItemSpawner(builder);
             RegisterEntryPoint(builder);
         }
 
@@ -39,11 +37,6 @@ namespace TandC.GeometryAstro.Core
             builder.RegisterComponent(_inputHandler).As<IGameplayInputHandler>();
         }
 
-        private void RegisterEventBus(IContainerBuilder builder)
-        {
-            builder.Register<EventBusHolder>(Lifetime.Scoped);
-        }
-
         private void RegisterPlayer(IContainerBuilder builder) 
         {
             builder.RegisterComponent(_player).AsSelf();
@@ -54,8 +47,15 @@ namespace TandC.GeometryAstro.Core
             builder.RegisterComponent(_gameplayCamera).AsSelf();
         }
 
-        private void EnemyWavesRegister(IContainerBuilder builder)
+        private void RegisterItemSpawner(IContainerBuilder builder) 
         {
+            Debug.LogError("RegisterEnemySystem");
+            builder.Register<ItemSpawner>(Lifetime.Scoped).As<IItemSpawner>();
+        }
+
+        private void RegisterEnemySystem(IContainerBuilder builder)
+        {
+            Debug.LogError("RegisterEnemySystem");
             builder.Register<WaveController>(Lifetime.Scoped);
             builder.Register<EnemySpawner>(Lifetime.Scoped).As<IEnemySpawner>();
             builder.Register<EnemySpawnPositionService>(Lifetime.Scoped).As<IEnemySpawnPositionService>();

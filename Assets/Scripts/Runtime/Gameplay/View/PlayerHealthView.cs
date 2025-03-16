@@ -10,16 +10,14 @@ namespace TandC.GeometryAstro.Gameplay
         [SerializeField] private Image _healthBar;
         [SerializeField] private TextMeshProUGUI _healthText;
 
-        private EventBusHolder _eventBusHolder;
-
         private void RegisterEvent()
         {
-           // _eventBusHolder.EventBus.Register(this as IEventReceiver<PlayerHealthChangeEvent>);
+           EventBusHolder.EventBus.Register(this as IEventReceiver<PlayerHealthChangeEvent>);
         }
 
         private void UnregisterEvent()
         {
-           // _eventBusHolder.EventBus.Unregister(this as IEventReceiver<PlayerHealthChangeEvent>);
+            EventBusHolder.EventBus.Unregister(this as IEventReceiver<PlayerHealthChangeEvent>);
         }
 
         private void OnEnable()

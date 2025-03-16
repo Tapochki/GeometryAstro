@@ -30,11 +30,8 @@ namespace TandC.GeometryAstro.Data
         public int itemId;
         public int itemValueMin;
         public int itemValueMax;
-        public float weight;
-        public GameObject prefab;
         public Sprite sprite;
         public ItemType type;
-        public bool isForBoss;
 
         [TextArea(5, 10)]
         public string description;

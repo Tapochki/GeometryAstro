@@ -1,6 +1,5 @@
 using System;
 using TandC.GeometryAstro.Data;
-using TandC.GeometryAstro.EventBus;
 using TandC.GeometryAstro.Settings;
 using UnityEngine;
 
@@ -8,11 +7,10 @@ namespace TandC.GeometryAstro.Gameplay
 {
     public class SkillFactory : MonoBehaviour, ISkillFactory
     {
-        private EventBusHolder _eventBusHolder;
 
-        public SkillFactory(EventBusHolder eventBusHolder)
+        public SkillFactory()
         {
-            _eventBusHolder = eventBusHolder;
+            
         }
 
         public Skill CreateSkill(SkillData skillData)
@@ -29,10 +27,10 @@ namespace TandC.GeometryAstro.Gameplay
         {
             return skillData.SkillDescription.type switch
             {
-                SkillType.StandartGun => new StandartGunSkill(skillData, _eventBusHolder),
-                SkillType.Rocket => new RocketLauncherSkill(skillData, _eventBusHolder),
-                SkillType.Dash => new DashSkill(skillData, _eventBusHolder),
-                SkillType.Mask => new MaskSkill(skillData, _eventBusHolder),
+                SkillType.StandartGun => new StandartGunSkill(skillData),
+                SkillType.Rocket => new RocketLauncherSkill(skillData),
+                SkillType.Dash => new DashSkill(skillData),
+                SkillType.Mask => new MaskSkill(skillData),
                 _ => null
             };
         }
@@ -41,9 +39,9 @@ namespace TandC.GeometryAstro.Gameplay
         {
             return skillData.SkillDescription.type switch
             {
-                SkillType.MaxHealthIncrease => new HealthUpgradeSkill(skillData, _eventBusHolder),
-                SkillType.MovementSpeedIncrease => new SpeedUpgradeSkill(skillData, _eventBusHolder),
-                SkillType.Armor => new ArmorUpgradeSkill(skillData, _eventBusHolder),
+                SkillType.MaxHealthIncrease => new HealthUpgradeSkill(skillData),
+                SkillType.MovementSpeedIncrease => new SpeedUpgradeSkill(skillData),
+                SkillType.Armor => new ArmorUpgradeSkill(skillData),
                 _ => null
             };
         }

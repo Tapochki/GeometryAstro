@@ -3,59 +3,72 @@ using UnityEngine;
 
 namespace TandC.GeometryAstro.Gameplay 
 {
-    public class LevelModel : MonoBehaviour
+    public class LevelModel : IEventReceiver<ExpirienceItemReleaseEvent>
     {
         private const float _expirienceMultiplayer = 1.5f; //TODO to config
-
-        [SerializeField]
-        private LevelView _levelView;
 
         private int _currentLevel;
 
         private float _currentXp;
         private float _xpForNextLevel;
 
-        private ISkillService _skillService;
+        public UniqueId Id { get; } = new UniqueId();
 
-        private void Construct(ISkillService skillService)
+        private void RegisterEvent()
         {
-            _skillService = skillService;
+            EventBusHolder.EventBus.Register(this as IEventReceiver<ExpirienceItemReleaseEvent>);
         }
 
-        private void Start() 
+        private void UnregisterEvent()
         {
+            EventBusHolder.EventBus.Unregister(this as IEventReceiver<ExpirienceItemReleaseEvent>);
+        }
+
+        public void OnEvent(ExpirienceItemReleaseEvent @event)
+        {
+            AddExpirience(@event.ExpAmount);
+        }
+
+        public void Init()
+        {
+            InitEvent();
             SetStartLevel();
             SetStartExpirience();
+        }
+
+        private void InitEvent()
+        {
+            RegisterEvent();
+        }
+
+        private void Dispose()
+        {
+            UnregisterEvent();
         }
 
         private void SetStartLevel() 
         {
             _currentLevel = 1;
-            UpdateViewLevel();
+            UpdateView();
         }
 
         private void SetStartExpirience()
         {
             _xpForNextLevel = 0;
             _xpForNextLevel = 100;
-            UpdateViewExpririence();
+            UpdateView();
         }
 
         public void AddExpirience(int addedXp)
         {
             _currentXp += addedXp;
             CheckForNewLevel();
-            UpdateViewExpririence();
+            UpdateView();
         }
 
-        private void UpdateViewExpririence()
+        private void UpdateView() 
         {
-            _levelView.UpdateExpririence(_currentXp, _xpForNextLevel);
-        }
-
-        private void UpdateViewLevel() 
-        {
-            _levelView.UpdateLevel(_currentLevel);
+            EventBusHolder.EventBus.Raise(new ExpirienceChangeEvent(_currentXp, _xpForNextLevel, _currentLevel));
         }
 
         public void CheckForNewLevel() 
@@ -76,9 +89,10 @@ namespace TandC.GeometryAstro.Gameplay
         private void LevelUp() 
         {
             _currentLevel++;
-            UpdateViewLevel();
-            _skillService.StartGenerateSkills();
+            UpdateView();
+            //_skillService.StartGenerateSkills();
         }
+
     }
 }
 
