@@ -15,7 +15,7 @@ namespace TandC.GeometryAstro.Gameplay
 
         public Skill CreateSkill(SkillData skillData)
         {
-            return skillData.useType switch
+            return skillData.UseType switch
             {
                 SkillUseType.Active => CreateActiveSkill(skillData),
                 SkillUseType.Passive => CreatePassiveSkill(skillData),
@@ -25,7 +25,7 @@ namespace TandC.GeometryAstro.Gameplay
 
         private ActiveSkill CreateActiveSkill(SkillData skillData)
         {
-            return skillData.SkillDescription.type switch
+            return skillData.Type switch
             {
                 SkillType.StandartGun => new StandartGunSkill(skillData),
                 SkillType.Rocket => new RocketLauncherSkill(skillData),
@@ -37,7 +37,7 @@ namespace TandC.GeometryAstro.Gameplay
 
         private PassiveSkill CreatePassiveSkill(SkillData skillData)
         {
-            return skillData.SkillDescription.type switch
+            return skillData.Type switch
             {
                 SkillType.MaxHealthIncrease => new HealthUpgradeSkill(skillData),
                 SkillType.MovementSpeedIncrease => new SpeedUpgradeSkill(skillData),

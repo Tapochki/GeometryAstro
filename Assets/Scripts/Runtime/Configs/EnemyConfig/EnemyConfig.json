@@ -1,0 +1,19 @@
+{
+    "_enemies": [
+        {
+            "enemyId": 0,
+            "health": 100.0,
+            "damage": 10,
+            "movementSpeed": 100.0,
+            "BuilderType": 0,
+            "type": 0,
+            "droperType": 1,
+            "mainSprite": {
+                "instanceID": 32970
+            },
+            "enemyAdditionalSprite": {
+                "instanceID": 0
+            }
+        }
+    ]
+}

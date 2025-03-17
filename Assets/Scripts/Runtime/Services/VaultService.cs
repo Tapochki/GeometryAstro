@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace TandC.GeometryAstro.Services
 {
-    public sealed class VaultService : MonoBehaviour
+    public sealed class VaultService
     {
         public event Action<int> OnCoinsAmountChangedEvent;
 

@@ -1,12 +1,13 @@
 using System;
 using System.Collections.Generic;
+using TandC.GeometryAstro.ConfigUtilities;
 using TandC.GeometryAstro.Settings;
 using UnityEngine;
 
 namespace TandC.GeometryAstro.Data
 {
     [CreateAssetMenu(fileName = "EnemyConfig", menuName = "TandC/Game/EnemyConfig", order = 1)]
-    public class EnemyConfig : ScriptableObject
+    public class EnemyConfig : ScriptableObject, IJsonSerializable
     {
         [SerializeField] private List<EnemyData> _enemies;
 

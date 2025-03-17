@@ -12,4 +12,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea6e55bb71d32ea43807e03b7c8b95f1, type: 3}
   m_Name: SkillConfig
   m_EditorClassIdentifier: 
-  _skillData: []
+  _skillData:
+  - SkillDescription:
+      id: 0
+      name: 
+      skillDescription: 
+      skillIcon: {fileID: 21300000, guid: a62c6f4c57737574b87e498d2cfa6f1b, type: 3}
+      type: 0
+    useType: 0
+    UpgradeList:
+    - SkillDescription:
+        id: 0
+        name: 
+        skillDescription: 
+        skillIcon: {fileID: 0}
+        type: 0
+      Value: 0
+  StartSkills: 
+  StartAvailableSkills: 
+  StartTestAvailableSkills: 

@@ -80,7 +80,7 @@ namespace TandC.GeometryAstro.Gameplay
 
         private void InitializeStartSkills()
         {
-            foreach(SkillType skillType in _skillConfig.StartSkills) 
+            foreach(SkillType skillType in _skillConfig.GetStartAvailableSkills()) 
             {
                 ApplyNewSkill(skillType);
             }
@@ -124,7 +124,7 @@ namespace TandC.GeometryAstro.Gameplay
         {
             PreparationSkillData skillPreparation = new PreparationSkillData();
             Skill skill = GetExistingSkill(tempSkillForUpgrade);
-            skillPreparation.SkillDescription = skill.GetUpgradeData();
+            skillPreparation.SkillUpgradeInfo = skill.GetUpgradeData();
             skillPreparation.ActivateSkillAction = ApplyUpgradeSkill;
             return skillPreparation;
         }
@@ -136,7 +136,7 @@ namespace TandC.GeometryAstro.Gameplay
             SkillType skillType = tempAvailableSkillTypes[UnityEngine.Random.Range(0, tempAvailableSkillTypes.Count)];
             tempAvailableSkillTypes.Remove(skillType);
 
-            skillPreparation.SkillDescription = GetNewSkillData(skillType).SkillDescription;
+            skillPreparation.SkillUpgradeInfo = GetNewSkillData(skillType).Upgrades[1];
             skillPreparation.ActivateSkillAction = ApplyNewSkill;
             return skillPreparation;
         }
@@ -176,7 +176,7 @@ namespace TandC.GeometryAstro.Gameplay
         public class PreparationSkillData
         {
             public Action<SkillType> ActivateSkillAction;
-            public SkillDescription SkillDescription;
+            public SkillUpgrade SkillUpgradeInfo;
         }
     }
 }

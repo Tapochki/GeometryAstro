@@ -1,0 +1,58 @@
+{
+    "_weaponData": [
+        {
+            "type": 1,
+            "weaponName": "Default",
+            "baseDamage": 25.0,
+            "shootDeley": 0.20000000298023225,
+            "detectorDistance": 1000.0,
+            "bulletData": {
+                "BulletSpeed": 200000,
+                "bulletLifeTime": 100.0,
+                "bulletLife": 1,
+                "BulletObject": {
+                    "instanceID": 32978
+                },
+                "type": 1,
+                "IsNotCustomise": false,
+                "CustomisationType": 1
+            }
+        },
+        {
+            "type": 3,
+            "weaponName": "Default",
+            "baseDamage": 25.0,
+            "shootDeley": 0.5,
+            "detectorDistance": 1000.0,
+            "bulletData": {
+                "BulletSpeed": 200000,
+                "bulletLifeTime": 100.0,
+                "bulletLife": 1,
+                "BulletObject": {
+                    "instanceID": 32980
+                },
+                "type": 3,
+                "IsNotCustomise": false,
+                "CustomisationType": 2
+            }
+        },
+        {
+            "type": 2,
+            "weaponName": "RocketGun",
+            "baseDamage": 100.0,
+            "shootDeley": 5.0,
+            "detectorDistance": 1000.0,
+            "bulletData": {
+                "BulletSpeed": 200000,
+                "bulletLifeTime": 100.0,
+                "bulletLife": 1,
+                "BulletObject": {
+                    "instanceID": 32982
+                },
+                "type": 2,
+                "IsNotCustomise": false,
+                "CustomisationType": 2
+            }
+        }
+    ]
+}

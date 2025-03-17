@@ -16,18 +16,12 @@ MonoBehaviour:
   - itemId: 0
     itemValueMin: 10
     itemValueMax: 100
-    weight: 100
-    prefab: {fileID: 0}
     sprite: {fileID: 21300000, guid: 85024921523293b4b94bdf2de612c5f8, type: 3}
     type: 0
-    isForBoss: 0
     description: 
   - itemId: 0
     itemValueMin: 100
     itemValueMax: 20
-    weight: 10
-    prefab: {fileID: 0}
     sprite: {fileID: 21300000, guid: 15bd7ab1f1fc6064b8be2af484d5fb23, type: 3}
     type: 4
-    isForBoss: 0
     description: 

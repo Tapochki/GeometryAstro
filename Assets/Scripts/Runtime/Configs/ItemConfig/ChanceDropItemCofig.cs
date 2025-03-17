@@ -1,12 +1,13 @@
 using System;
 using System.Collections.Generic;
+using TandC.GeometryAstro.ConfigUtilities;
 using TandC.GeometryAstro.Settings;
 using UnityEngine;
 
 namespace TandC.GeometryAstro.Data
 {
     [CreateAssetMenu(fileName = "ChanceDropItemCofig", menuName = "TandC/Game/ChanceDropItemCofig", order = 1)]
-    public class ChanceDropItemCofig : ScriptableObject
+    public class ChanceDropItemCofig : ScriptableObject, IJsonSerializable
     {
         [SerializeField] private List<DropData> _dropData;
 

@@ -1,12 +1,13 @@
 using System;
 using System.Collections.Generic;
+using TandC.GeometryAstro.ConfigUtilities;
 using TandC.GeometryAstro.Settings;
 using UnityEngine;
 
 namespace TandC.GeometryAstro.Data
 {
     [CreateAssetMenu(fileName = "LevelConfig", menuName = "TandC/Game/LevelConfig", order = 1)]
-    public class LevelConfig : ScriptableObject
+    public class LevelConfig : ScriptableObject, IJsonSerializable
     {
         [Header("Basic Info")]
         [SerializeField] private string _levelName = "Level 1";

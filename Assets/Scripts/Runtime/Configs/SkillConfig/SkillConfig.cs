@@ -1,73 +1,75 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using TandC.GeometryAstro.ConfigUtilities;
 using TandC.GeometryAstro.Settings;
-using UnityEditor;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
 namespace TandC.GeometryAstro.Data
 {
+
     [CreateAssetMenu(fileName = "SkillConfig", menuName = "TandC/Game/SkillConfig", order = 1)]
-    public class SkillConfig : ScriptableObject
+    public class SkillConfig : ScriptableObject, IJsonSerializable
     {
-        [SerializeField] private List<SkillData> _skillData;
+        [SerializeField] private bool _useTestSkills;
+        [SerializeField] private List<ActiveSkill> _activeSkills;
+        [SerializeField] private List<PassiveSkill> _passiveSkills;
+        [SerializeField] private List<PassiveSkill> _additionSkills;
 
-        public List<SkillType> StartSkills;
+        [SerializeField] private List<SkillType> _startAvailableSkills;
+        [SerializeField] private List<SkillType> _startAvailableTestSkills;
 
-        public List<SkillType> StartAvailableSkills;
-
-        public List<SkillType> StartTestAvailableSkills;
-
-        public SkillData GetSkillByType(SkillType skillType)
+        public SkillData GetSkillByType(SkillType type)
         {
-            foreach (var item in _skillData)
-            {
-                if (item.SkillDescription.type == skillType)
-                {
-                    return item;
-                }
-            }
-
-            return null;
+            return _activeSkills.FirstOrDefault(skill => skill.Type == type) as SkillData ??
+                   _passiveSkills.FirstOrDefault(skill => skill.Type == type);
         }
 
-        public void SetUpgradeDescription() 
+        public List<SkillType> GetStartAvailableSkills()
         {
-            foreach(var item in _skillData) 
-            {
-                foreach(var skillUpgrade in item.UpgradeList) 
-                {
-                    skillUpgrade.SkillDescription = item.SkillDescription;
-                }
-            }
+            return _useTestSkills ? _startAvailableSkills : _startAvailableTestSkills;
         }
     }
 
     [Serializable]
-    public class SkillDescription 
+    public abstract class SkillData
     {
-        public uint id;
-        public string name;
-        [TextArea(5, 10)]
-        public string skillDescription;
-        public Sprite skillIcon;
-        public SkillType type;
+        public string SkillName;
+        public Sprite SkillIcon;
+        public SkillType Type;
+        public SkillUseType UseType;
+        public int MaxLevel => Upgrades?.Count ?? 0;
+        public List<SkillUpgrade> Upgrades;
     }
 
     [Serializable]
-    public class SkillData
+    public class ActiveSkill : SkillData
     {
-        public SkillDescription SkillDescription;
-        public int MaxLevel => UpgradeList.Count;       
-        public SkillUseType useType;
-        public string description;
-        public List<SkillUpgradeData> UpgradeList;
+        public SkillEvolution Evolution;
+        public SkillType ExclusionType;
     }
 
     [Serializable]
-    public class SkillUpgradeData 
+    public class PassiveSkill : SkillData
     {
-        public SkillDescription SkillDescription;
+        
+    }
+
+    [Serializable]
+    public class SkillEvolution
+    {
+        public Sprite EvolutionIcon;
+        public SkillType EvolutionSkillType;
+        public string EvolutionName;
+        public string EvolutionDescription;
+    }
+
+    [Serializable]
+    public class SkillUpgrade
+    {
+        public string Name;
+        public int Level;
+        public string Description;
         public float Value;
     }
 }

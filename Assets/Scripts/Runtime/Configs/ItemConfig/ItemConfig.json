@@ -1,0 +1,24 @@
+{
+    "_itemData": [
+        {
+            "itemId": 0,
+            "itemValueMin": 10,
+            "itemValueMax": 100,
+            "sprite": {
+                "instanceID": 32972
+            },
+            "type": 0,
+            "description": ""
+        },
+        {
+            "itemId": 0,
+            "itemValueMin": 100,
+            "itemValueMax": 20,
+            "sprite": {
+                "instanceID": 32974
+            },
+            "type": 4,
+            "description": ""
+        }
+    ]
+}

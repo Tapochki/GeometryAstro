@@ -23,15 +23,15 @@ namespace TandC.GeometryAstro.Gameplay
             UpgradeLevel();
         }
 
-        public SkillDescription GetUpgradeData()
+        public SkillUpgrade GetUpgradeData()
         {
-            SkillDescription skillDescription = _skillData.UpgradeList[SkillLevel].SkillDescription;
+            SkillUpgrade skillDescription = _skillData.Upgrades[SkillLevel];
             return skillDescription;
         }
 
         public SkillType GetSkillType()
         {
-            return _skillData.SkillDescription.type;
+            return _skillData.Type;
         }
 
         private void UpgradeLevel()
@@ -49,7 +49,6 @@ namespace TandC.GeometryAstro.Gameplay
     {
         public ActiveSkill(SkillData skillData) : base(skillData) { }
 
-        //For future evolution
         public void CheckEvolution() { }
 
         public void Evolution() { }

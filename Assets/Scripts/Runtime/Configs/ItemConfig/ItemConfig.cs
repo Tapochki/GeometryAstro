@@ -1,12 +1,13 @@
 using System;
 using System.Collections.Generic;
+using TandC.GeometryAstro.ConfigUtilities;
 using TandC.GeometryAstro.Settings;
 using UnityEngine;
 
 namespace TandC.GeometryAstro.Data
 {
     [CreateAssetMenu(fileName = "ItemConfig", menuName = "TandC/Game/ItemConfig", order = 1)]
-    public class ItemConfig : ScriptableObject
+    public class ItemConfig : ScriptableObject, IJsonSerializable
     {
         [SerializeField] private List<ItemData> _itemData;
 
