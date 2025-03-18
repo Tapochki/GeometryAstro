@@ -12,9 +12,9 @@ namespace TandC.GeometryAstro.Data
     public class SkillConfig : ScriptableObject, IJsonSerializable
     {
         [SerializeField] private bool _useTestSkills;
-        [SerializeField] private List<ActiveSkill> _activeSkills;
-        [SerializeField] private List<PassiveSkill> _passiveSkills;
-        [SerializeField] private List<PassiveSkill> _additionSkills;
+        [SerializeField] private List<ActiveSkillData> _activeSkills;
+        [SerializeField] private List<PassiveSkillData> _passiveSkills;
+        [SerializeField] private List<PassiveSkillData> _additionSkills;
 
         [SerializeField] private List<SkillType> _startAvailableSkills;
         [SerializeField] private List<SkillType> _startAvailableTestSkills;
@@ -29,6 +29,11 @@ namespace TandC.GeometryAstro.Data
         {
             return _useTestSkills ? _startAvailableSkills : _startAvailableTestSkills;
         }
+
+        public List<PassiveSkillData> GetInfinitySkills()
+        {
+            return _additionSkills;
+        }
     }
 
     [Serializable]
@@ -38,19 +43,19 @@ namespace TandC.GeometryAstro.Data
         public Sprite SkillIcon;
         public SkillType Type;
         public SkillUseType UseType;
-        public int MaxLevel => Upgrades?.Count ?? 0;
-        public List<SkillUpgrade> Upgrades;
+        public int MaxLevel => UpgradesInfo?.Count ?? 0;
+        public List<SkillUpgradeInfo> UpgradesInfo;
     }
 
     [Serializable]
-    public class ActiveSkill : SkillData
+    public class ActiveSkillData : SkillData
     {
         public SkillEvolution Evolution;
         public SkillType ExclusionType;
     }
 
     [Serializable]
-    public class PassiveSkill : SkillData
+    public class PassiveSkillData : SkillData
     {
         
     }
@@ -60,16 +65,20 @@ namespace TandC.GeometryAstro.Data
     {
         public Sprite EvolutionIcon;
         public SkillType EvolutionSkillType;
-        public string EvolutionName;
-        public string EvolutionDescription;
+        public SkillUpgradeInfo EvolutionInfo;
     }
 
     [Serializable]
-    public class SkillUpgrade
+    public class SkillUpgradeInfo
     {
         public string Name;
         public int Level;
         public string Description;
         public float Value;
+
+        public string GetFormattedDescription()
+        {
+            return Description.Replace("%Value%", $"<b>{Value}</b>");
+        }
     }
 }

@@ -193,6 +193,15 @@ namespace TandC.GeometryAstro.Settings
         PickUpRadiusIncrease,
     }
 
+    public enum SkillActivationType 
+    {
+        None,
+        NewSkill,
+        Evolution,
+        UpgradeActive,
+        UpgradePassive
+    }
+
     public enum GameStates
     {
         Unknown,

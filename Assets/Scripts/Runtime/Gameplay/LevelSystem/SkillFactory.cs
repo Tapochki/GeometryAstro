@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace TandC.GeometryAstro.Gameplay
 {
-    public class SkillFactory : MonoBehaviour, ISkillFactory
+    public class SkillFactory : MonoBehaviour// ISkillFactory
     {
 
         public SkillFactory()
@@ -13,38 +13,38 @@ namespace TandC.GeometryAstro.Gameplay
             
         }
 
-        public Skill CreateSkill(SkillData skillData)
-        {
-            return skillData.UseType switch
-            {
-                SkillUseType.Active => CreateActiveSkill(skillData),
-                SkillUseType.Passive => CreatePassiveSkill(skillData),
-                _ => throw new ArgumentException()
-            };
-        }
+        //public Skill CreateSkill(SkillData skillData)
+        //{
+        //    return skillData.UseType switch
+        //    {
+        //        SkillUseType.NewActive => CreateActiveSkill(skillData),
+        //        SkillUseType.Evolution => CreatePassiveSkill(skillData),
+        //        _ => throw new ArgumentException()
+        //    };
+        //}
 
-        private ActiveSkill CreateActiveSkill(SkillData skillData)
-        {
-            return skillData.Type switch
-            {
-                SkillType.StandartGun => new StandartGunSkill(skillData),
-                SkillType.Rocket => new RocketLauncherSkill(skillData),
-                SkillType.Dash => new DashSkill(skillData),
-                SkillType.Mask => new MaskSkill(skillData),
-                _ => null
-            };
-        }
+        //private ActiveSkill CreateActiveSkill(SkillData skillData)
+        //{
+        //    return skillData.Type switch
+        //    {
+        //        SkillType.StandartGun => new StandartGunSkill(skillData),
+        //        SkillType.Rocket => new RocketLauncherSkill(skillData),
+        //        SkillType.Dash => new DashSkill(skillData),
+        //        SkillType.Mask => new MaskSkill(skillData),
+        //        _ => null
+        //    };
+        //}
 
-        private PassiveSkill CreatePassiveSkill(SkillData skillData)
-        {
-            return skillData.Type switch
-            {
-                SkillType.MaxHealthIncrease => new HealthUpgradeSkill(skillData),
-                SkillType.MovementSpeedIncrease => new SpeedUpgradeSkill(skillData),
-                SkillType.Armor => new ArmorUpgradeSkill(skillData),
-                _ => null
-            };
-        }
+        //private PassiveSkill CreatePassiveSkill(SkillData skillData)
+        //{
+        //    return skillData.Type switch
+        //    {
+        //        SkillType.MaxHealthIncrease => new HealthUpgradeSkill(skillData),
+        //        SkillType.MovementSpeedIncrease => new SpeedUpgradeSkill(skillData),
+        //        SkillType.Armor => new ArmorUpgradeSkill(skillData),
+        //        _ => null
+        //    };
+        //}
     }
 }
 

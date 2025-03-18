@@ -844,7 +844,7 @@ MonoBehaviour:
   m_text: Skill Reset
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0e1acd0cc3a858047b186ece2d77369d, type: 2}
-  m_sharedMaterial: {fileID: 0}
+  m_sharedMaterial: {fileID: -4716294874590588997, guid: 0e1acd0cc3a858047b186ece2d77369d, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -969,7 +969,7 @@ MonoBehaviour:
   m_text: You reached level N
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0e1acd0cc3a858047b186ece2d77369d, type: 2}
-  m_sharedMaterial: {fileID: 0}
+  m_sharedMaterial: {fileID: -4716294874590588997, guid: 0e1acd0cc3a858047b186ece2d77369d, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1281,7 +1281,7 @@ MonoBehaviour:
   m_text: Continue
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0e1acd0cc3a858047b186ece2d77369d, type: 2}
-  m_sharedMaterial: {fileID: 0}
+  m_sharedMaterial: {fileID: -4716294874590588997, guid: 0e1acd0cc3a858047b186ece2d77369d, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1887,7 +1887,7 @@ MonoBehaviour:
   m_text: 999999999
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0e1acd0cc3a858047b186ece2d77369d, type: 2}
-  m_sharedMaterial: {fileID: 0}
+  m_sharedMaterial: {fileID: -4716294874590588997, guid: 0e1acd0cc3a858047b186ece2d77369d, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -4377,7 +4377,7 @@ MonoBehaviour:
   m_text: 999999999
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0e1acd0cc3a858047b186ece2d77369d, type: 2}
-  m_sharedMaterial: {fileID: 0}
+  m_sharedMaterial: {fileID: -4716294874590588997, guid: 0e1acd0cc3a858047b186ece2d77369d, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -6229,7 +6229,7 @@ MonoBehaviour:
   m_text: Confirm
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0e1acd0cc3a858047b186ece2d77369d, type: 2}
-  m_sharedMaterial: {fileID: 0}
+  m_sharedMaterial: {fileID: -4716294874590588997, guid: 0e1acd0cc3a858047b186ece2d77369d, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -6782,7 +6782,7 @@ MonoBehaviour:
   m_text: LEVEL UP!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0e1acd0cc3a858047b186ece2d77369d, type: 2}
-  m_sharedMaterial: {fileID: 0}
+  m_sharedMaterial: {fileID: -4716294874590588997, guid: 0e1acd0cc3a858047b186ece2d77369d, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -7306,7 +7306,7 @@ MonoBehaviour:
   m_text: 999999999
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0e1acd0cc3a858047b186ece2d77369d, type: 2}
-  m_sharedMaterial: {fileID: 0}
+  m_sharedMaterial: {fileID: -4716294874590588997, guid: 0e1acd0cc3a858047b186ece2d77369d, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -8662,7 +8662,7 @@ MonoBehaviour:
   m_text: Game Over
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0e1acd0cc3a858047b186ece2d77369d, type: 2}
-  m_sharedMaterial: {fileID: 0}
+  m_sharedMaterial: {fileID: -4716294874590588997, guid: 0e1acd0cc3a858047b186ece2d77369d, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -12482,7 +12482,7 @@ MonoBehaviour:
   m_text: Game Over
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0e1acd0cc3a858047b186ece2d77369d, type: 2}
-  m_sharedMaterial: {fileID: 0}
+  m_sharedMaterial: {fileID: -4716294874590588997, guid: 0e1acd0cc3a858047b186ece2d77369d, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -12827,7 +12827,7 @@ MonoBehaviour:
   m_text: LEVEL UP!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0e1acd0cc3a858047b186ece2d77369d, type: 2}
-  m_sharedMaterial: {fileID: 0}
+  m_sharedMaterial: {fileID: -4716294874590588997, guid: 0e1acd0cc3a858047b186ece2d77369d, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -14053,7 +14053,7 @@ MonoBehaviour:
   m_text: Skill Reset
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0e1acd0cc3a858047b186ece2d77369d, type: 2}
-  m_sharedMaterial: {fileID: 0}
+  m_sharedMaterial: {fileID: -4716294874590588997, guid: 0e1acd0cc3a858047b186ece2d77369d, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -14298,7 +14298,7 @@ MonoBehaviour:
   m_text: 999999999
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0e1acd0cc3a858047b186ece2d77369d, type: 2}
-  m_sharedMaterial: {fileID: 0}
+  m_sharedMaterial: {fileID: -4716294874590588997, guid: 0e1acd0cc3a858047b186ece2d77369d, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -15486,7 +15486,7 @@ MonoBehaviour:
   m_text: Confirm
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0e1acd0cc3a858047b186ece2d77369d, type: 2}
-  m_sharedMaterial: {fileID: 0}
+  m_sharedMaterial: {fileID: -4716294874590588997, guid: 0e1acd0cc3a858047b186ece2d77369d, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -16076,7 +16076,7 @@ MonoBehaviour:
   m_text: You reached level N
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0e1acd0cc3a858047b186ece2d77369d, type: 2}
-  m_sharedMaterial: {fileID: 0}
+  m_sharedMaterial: {fileID: -4716294874590588997, guid: 0e1acd0cc3a858047b186ece2d77369d, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -16260,7 +16260,7 @@ MonoBehaviour:
 '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0e1acd0cc3a858047b186ece2d77369d, type: 2}
-  m_sharedMaterial: {fileID: 0}
+  m_sharedMaterial: {fileID: -4716294874590588997, guid: 0e1acd0cc3a858047b186ece2d77369d, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -18368,7 +18368,7 @@ MonoBehaviour:
   m_text: One more chance
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0e1acd0cc3a858047b186ece2d77369d, type: 2}
-  m_sharedMaterial: {fileID: 0}
+  m_sharedMaterial: {fileID: -4716294874590588997, guid: 0e1acd0cc3a858047b186ece2d77369d, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -18592,7 +18592,7 @@ MonoBehaviour:
 '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0e1acd0cc3a858047b186ece2d77369d, type: 2}
-  m_sharedMaterial: {fileID: 0}
+  m_sharedMaterial: {fileID: -4716294874590588997, guid: 0e1acd0cc3a858047b186ece2d77369d, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -19820,7 +19820,7 @@ MonoBehaviour:
   m_text: Continue
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0e1acd0cc3a858047b186ece2d77369d, type: 2}
-  m_sharedMaterial: {fileID: 0}
+  m_sharedMaterial: {fileID: -4716294874590588997, guid: 0e1acd0cc3a858047b186ece2d77369d, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -20835,7 +20835,7 @@ MonoBehaviour:
   m_text: One more chance
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0e1acd0cc3a858047b186ece2d77369d, type: 2}
-  m_sharedMaterial: {fileID: 0}
+  m_sharedMaterial: {fileID: -4716294874590588997, guid: 0e1acd0cc3a858047b186ece2d77369d, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
