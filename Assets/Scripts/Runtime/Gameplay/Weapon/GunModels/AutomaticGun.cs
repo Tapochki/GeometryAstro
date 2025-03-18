@@ -2,7 +2,7 @@ using TandC.GeometryAstro.Data;
 using TandC.GeometryAstro.Settings;
 using UnityEngine;
 
-namespace TandC.GeometryAstro.Gameplay 
+namespace TandC.GeometryAstro.Gameplay
 {
     public class AutomaticGun : IWeapon
     {

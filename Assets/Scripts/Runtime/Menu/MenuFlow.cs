@@ -32,7 +32,7 @@ namespace TandC.GeometryAstro.Menu
         {
             await LoadAssetsAsync();
 
-            RegisterMainMenuPages();
+            RegisterUI();
         }
 
         private async Task LoadAssetsAsync()
@@ -40,7 +40,7 @@ namespace TandC.GeometryAstro.Menu
             await _loadingService.BeginLoading(_uiService);
         }
 
-        private void RegisterMainMenuPages()
+        private void RegisterUI()
         {
             var mainMenuPages = new List<IUIPage>
             {

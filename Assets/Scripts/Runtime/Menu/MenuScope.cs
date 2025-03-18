@@ -9,7 +9,6 @@ namespace TandC.GeometryAstro.Menu
     {
         protected override void Awake()
         {
-            DontDestroyOnLoad(this);
             base.Awake();
         }
 
