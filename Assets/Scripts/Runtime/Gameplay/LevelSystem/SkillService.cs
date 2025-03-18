@@ -114,17 +114,19 @@ namespace TandC.GeometryAstro.Gameplay
                     }
                 }
             }
-
-            if(isChest) 
+            if(skillPreparationData.Count < skillGenerationCount) 
             {
-                TryGetNewSkill(out var infinitAdditionSkill);
-                skillPreparationData.Add(infinitAdditionSkill);
-            }
-            else 
-            {
-                List<PreparationSkillData> additionalInfinitSKills = GetInfititySkill(skillGenerationCount - skillPreparationData.Count);
-                if(additionalInfinitSKills != null)
-                    skillPreparationData.AddRange(additionalInfinitSKills);
+                if (isChest)
+                {
+                    TryGetNewSkill(out var infinitAdditionSkill);
+                    skillPreparationData.Add(infinitAdditionSkill);
+                }
+                else
+                {
+                    List<PreparationSkillData> additionalInfinitSKills = GetInfititySkill(skillGenerationCount - skillPreparationData.Count);
+                    if (additionalInfinitSKills != null)
+                        skillPreparationData.AddRange(additionalInfinitSKills);
+                }
             }
 
             return skillPreparationData;
@@ -145,7 +147,6 @@ namespace TandC.GeometryAstro.Gameplay
 
         private List<PreparationSkillData> GetInfititySkill(int requiredCount) 
         {
-            if(requiredCount <= 0) return null;
             List<PreparationSkillData> resultList = new List<PreparationSkillData>();
 
             int takeCount = Math.Min(requiredCount, _infinitySkills.Count);
