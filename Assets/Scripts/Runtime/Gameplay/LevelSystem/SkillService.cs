@@ -39,7 +39,7 @@ namespace TandC.GeometryAstro.Gameplay
 
         private void Start()
         {
-            
+            Initialize();
         }
 
         private void Initialize()
@@ -82,7 +82,7 @@ namespace TandC.GeometryAstro.Gameplay
 
             hasUpgrade = TryGetUpgrade(out var upgradeSkill);
             if (hasUpgrade)
-            {
+            { 
                 skillPreparationData.Add(upgradeSkill);
             }
 
@@ -90,18 +90,18 @@ namespace TandC.GeometryAstro.Gameplay
             {
                 if (!hasUpgrade && !canCreateNewSkill)
                 {
-
                     break;
-                }
+                } 
 
                 if (hasUpgrade && canCreateNewSkill)
                 {
                     if (UnityEngine.Random.value < 0.5f)
                     {
-                        TryGetUpgrade(out var additionalUpgrade);
+                        hasUpgrade = TryGetUpgrade(out var additionalUpgrade);
                         if (additionalUpgrade != null)
                         {
                             skillPreparationData.Add(additionalUpgrade);
+                            continue;
                         }
                     }
                     else
@@ -110,7 +110,26 @@ namespace TandC.GeometryAstro.Gameplay
                         if (newSkill != null)
                         {
                             skillPreparationData.Add(newSkill);
+                            continue;
                         }
+                    }
+                }
+                if(hasUpgrade && !canCreateNewSkill) 
+                {
+                    hasUpgrade = TryGetUpgrade(out var additionalUpgrade);
+                    if (additionalUpgrade != null)
+                    {
+                        skillPreparationData.Add(additionalUpgrade);
+                        continue;
+                    }
+                }
+                if (!hasUpgrade && canCreateNewSkill)
+                {
+                    canCreateNewSkill = TryGetNewSkill(out var newSkill);
+                    if (newSkill != null)
+                    {
+                        skillPreparationData.Add(newSkill);
+                        continue;
                     }
                 }
             }
@@ -269,7 +288,7 @@ namespace TandC.GeometryAstro.Gameplay
         {
             evolutionSkill = null;
             var availableEvolutions = _activeSkills
-                .Where(s => s.CanEvolve() && _passiveSkills.Any(p => p.SkillData.Type == s.SkillData.Evolution.EvolutionSkillType && p.IsMaxLevel()))
+                .Where(activeSkill => activeSkill.CanEvolve() && _passiveSkills.Any(passiveSkill => passiveSkill.SkillData.Type == activeSkill.SkillData.Evolution.EvolutionSkillType && passiveSkill.IsMaxLevel()))
                 .ToList();
 
             if (availableEvolutions.Count > 0)
