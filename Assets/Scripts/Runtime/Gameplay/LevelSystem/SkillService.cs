@@ -137,7 +137,7 @@ namespace TandC.GeometryAstro.Gameplay
             {
                 if (isChest)
                 {
-                    TryGetNewSkill(out var infinitAdditionSkill);
+                    AddOnlyGoldInfinitSkill(out var infinitAdditionSkill);
                     skillPreparationData.Add(infinitAdditionSkill);
                 }
                 else
