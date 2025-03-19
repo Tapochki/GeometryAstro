@@ -10,10 +10,10 @@ namespace TandC.GeometryAstro.Core
 {
     public sealed class CoreScope : LifetimeScope
     {
-        [SerializeField] GameConfig _gameConfig;
-        [SerializeField] Player _player;
-        [SerializeField] GameplayInputHandler _inputHandler;
-        [SerializeField] GameplayCamera _gameplayCamera;
+        [SerializeField] private GameConfig _gameConfig;
+        [SerializeField] private Player _player;
+        [SerializeField] private GameplayInputHandler _inputHandler;
+        [SerializeField] private GameplayCamera _gameplayCamera;
 
         protected override void Configure(IContainerBuilder builder)
         {
@@ -26,7 +26,13 @@ namespace TandC.GeometryAstro.Core
             RegisterUIService(builder);
             RegisterTickService(builder);
             RegisterItemSpawner(builder);
+            RegisterSkillService(builder);
             RegisterEntryPoint(builder);
+        }
+
+        private void RegisterSkillService(IContainerBuilder builder)
+        {
+            builder.Register<SkillService>(Lifetime.Scoped);
         }
 
         private void RegisterUIService(IContainerBuilder builder)
@@ -34,17 +40,17 @@ namespace TandC.GeometryAstro.Core
             builder.Register<UIService>(Lifetime.Scoped);
         }
 
-        private void RegisterConfigs(IContainerBuilder builder) 
+        private void RegisterConfigs(IContainerBuilder builder)
         {
             builder.RegisterInstance(_gameConfig).AsSelf();
         }
 
-        private void RegisterInputHandler(IContainerBuilder builder) 
+        private void RegisterInputHandler(IContainerBuilder builder)
         {
             builder.RegisterComponent(_inputHandler).As<IGameplayInputHandler>();
         }
 
-        private void RegisterPlayer(IContainerBuilder builder) 
+        private void RegisterPlayer(IContainerBuilder builder)
         {
             builder.RegisterComponent(_player).AsSelf();
         }
@@ -54,7 +60,7 @@ namespace TandC.GeometryAstro.Core
             builder.RegisterComponent(_gameplayCamera).AsSelf();
         }
 
-        private void RegisterItemSpawner(IContainerBuilder builder) 
+        private void RegisterItemSpawner(IContainerBuilder builder)
         {
             Debug.LogError("RegisterEnemySystem");
             builder.Register<ItemSpawner>(Lifetime.Scoped).As<IItemSpawner>();
@@ -73,12 +79,12 @@ namespace TandC.GeometryAstro.Core
             builder.RegisterEntryPoint<CoreFlow>();
         }
 
-        private void RegisterWeaponController(IContainerBuilder builder) 
+        private void RegisterWeaponController(IContainerBuilder builder)
         {
             builder.Register<WeaponController>(Lifetime.Scoped);
         }
 
-        private void RegisterTickService(IContainerBuilder builder) 
+        private void RegisterTickService(IContainerBuilder builder)
         {
             builder.Register<TickService>(Lifetime.Scoped);
         }

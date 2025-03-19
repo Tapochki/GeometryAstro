@@ -1,11 +1,11 @@
-﻿using TandC.GeometryAstro.Bootstrap.Units;
-using TandC.GeometryAstro.Services;
-using VContainer.Unity;
-using TandC.GeometryAstro.Gameplay;
-using TandC.GeometryAstro.Utilities;
+﻿using Cysharp.Threading.Tasks;
 using System.Collections.Generic;
+using TandC.GeometryAstro.Bootstrap.Units;
+using TandC.GeometryAstro.Gameplay;
+using TandC.GeometryAstro.Services;
 using TandC.GeometryAstro.UI;
-using Cysharp.Threading.Tasks;
+using TandC.GeometryAstro.Utilities;
+using VContainer.Unity;
 
 namespace TandC.GeometryAstro.Core
 {
@@ -32,9 +32,26 @@ namespace TandC.GeometryAstro.Core
         private readonly UIService _uiService;
         private readonly SceneService _sceneService;
 
-        public CoreFlow(LoadingService loadingService, DataService dataService, Player player, IGameplayInputHandler gameplayInputHandler, GameplayCamera gameplayCamera,
-            WaveController waveController, IEnemySpawner enemySpawner, IEnemySpawnPositionService enemySpawnPositionService, TickService tickService, WeaponController weaponController, IItemSpawner itemSpawner,
-            LoadObjectsService loadObjectsService, LocalisationService localizationService, SoundService soundService, UIService uiService, SceneService sceneService)
+        private readonly SkillService _skillService;
+
+        public CoreFlow(
+            LoadingService loadingService,
+            DataService dataService,
+            Player player,
+            IGameplayInputHandler gameplayInputHandler,
+            GameplayCamera gameplayCamera,
+            WaveController waveController,
+            IEnemySpawner enemySpawner,
+            IEnemySpawnPositionService enemySpawnPositionService,
+            TickService tickService,
+            WeaponController weaponController,
+            IItemSpawner itemSpawner,
+            LoadObjectsService loadObjectsService,
+            LocalisationService localizationService,
+            SoundService soundService,
+            UIService uiService,
+            SceneService sceneService,
+            SkillService skillService)
         {
             _loadingService = loadingService;
             _dataService = dataService;
@@ -52,17 +69,18 @@ namespace TandC.GeometryAstro.Core
             _soundService = soundService;
             _uiService = uiService;
             _sceneService = sceneService;
+            _skillService = skillService;
         }
 
         public async void Start()
         {
-            
             InitPlayer();
             InitItemSpawner();
             InitWeapon();
             InitEnemy();
 
             var fooLoadingUnit = new FooLoadingUnit(3, false);
+            _skillService.Initialize();
             await _loadingService.BeginLoading(_uiService);
             await _loadingService.BeginLoading(fooLoadingUnit);
 
@@ -81,11 +99,13 @@ namespace TandC.GeometryAstro.Core
 
         private void RegisterUI()
         {
+            // TODO -- СДЕЛАТЬ ЕБАНУЮ СТРУКТУРУ СКАЗАЛ ДАНИЛА
             var corePages = new List<IUIPage>
             {
                 new GamePageView(new GamePageModel(_soundService, _uiService)),
                 new SettingsPageView(new SettingsPageModel(_localizationService, _soundService, _uiService, _dataService)),
                 new PausePageView(new PausePageModel(_sceneService, _localizationService, _soundService, this, _uiService)),
+                new LevelUpPageView(new LevelUpPageModel(_localizationService, _soundService, _uiService, _skillService)),
             };
             var corePopups = new List<IUIPopup>
             {
@@ -97,12 +117,12 @@ namespace TandC.GeometryAstro.Core
             _uiService.OpenPage<GamePageView>();
         }
 
-        private void InitItemSpawner() 
+        private void InitItemSpawner()
         {
             _itemSpawner.Init();
         }
 
-        private void InitWeapon() 
+        private void InitWeapon()
         {
             _weaponController.Init();
             _weaponController.RegisterWeapon(Settings.WeaponType.StandardGun);
@@ -110,7 +130,7 @@ namespace TandC.GeometryAstro.Core
             _weaponController.RegisterWeapon(Settings.WeaponType.AutoGun);
         }
 
-        private void InitEnemy() 
+        private void InitEnemy()
         {
             _enemySpawner.Init();
             _enemySpawnPositionService.Init();

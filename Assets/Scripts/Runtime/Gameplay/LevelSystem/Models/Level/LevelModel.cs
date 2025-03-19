@@ -1,7 +1,6 @@
 using TandC.GeometryAstro.EventBus;
-using UnityEngine;
 
-namespace TandC.GeometryAstro.Gameplay 
+namespace TandC.GeometryAstro.Gameplay
 {
     public class LevelModel : IEventReceiver<ExpirienceItemReleaseEvent>
     {
@@ -16,12 +15,12 @@ namespace TandC.GeometryAstro.Gameplay
 
         private void RegisterEvent()
         {
-            EventBusHolder.EventBus.Register(this as IEventReceiver<ExpirienceItemReleaseEvent>);
+            EventBusHolder.EventBus.Register(this);
         }
 
         private void UnregisterEvent()
         {
-            EventBusHolder.EventBus.Unregister(this as IEventReceiver<ExpirienceItemReleaseEvent>);
+            EventBusHolder.EventBus.Unregister(this);
         }
 
         public void OnEvent(ExpirienceItemReleaseEvent @event)
@@ -46,7 +45,7 @@ namespace TandC.GeometryAstro.Gameplay
             UnregisterEvent();
         }
 
-        private void SetStartLevel() 
+        private void SetStartLevel()
         {
             _currentLevel = 1;
             UpdateView();
@@ -66,12 +65,12 @@ namespace TandC.GeometryAstro.Gameplay
             UpdateView();
         }
 
-        private void UpdateView() 
+        private void UpdateView()
         {
             EventBusHolder.EventBus.Raise(new ExpirienceChangeEvent(_currentXp, _xpForNextLevel, _currentLevel));
         }
 
-        public void CheckForNewLevel() 
+        public void CheckForNewLevel()
         {
             if (_currentXp >= _xpForNextLevel)
             {
@@ -81,15 +80,16 @@ namespace TandC.GeometryAstro.Gameplay
             }
         }
 
-        private void MuliplyExpirienceForNewLevel() 
+        private void MuliplyExpirienceForNewLevel()
         {
             _xpForNextLevel *= _expirienceMultiplayer;
         }
 
-        private void LevelUp() 
+        private void LevelUp()
         {
             _currentLevel++;
             UpdateView();
+            EventBusHolder.EventBus.Raise(new PlayerLevelUpEvent(_currentLevel));
             //_skillService.StartGenerateSkills();
         }
 
