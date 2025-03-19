@@ -16,7 +16,7 @@ namespace TandC.GeometryAstro.Services
         {
             StartTick();
             StartFixedTick();
-            StartLateTick();
+          //  StartLateTick();
         }
 
         private void StartTick() 

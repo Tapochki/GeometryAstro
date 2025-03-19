@@ -113,9 +113,9 @@ namespace TandC.GeometryAstro.Data
         [Tooltip("If the value is counted as a percentage.")]
         public bool IsPercentageValue;
 
-        public string GetFormattedDescription()
+        public string GetFormattedDescription(string description)
         {
-            return Description.Replace("%Value%", $"<b>{Value}{(IsPercentageValue ? "%" : "")}</b>");
+            return description.Replace("%Value%", $"<b>{Value}</b>");
         }
     }
 }

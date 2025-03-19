@@ -62,13 +62,11 @@ namespace TandC.GeometryAstro.Core
 
         private void RegisterItemSpawner(IContainerBuilder builder)
         {
-            Debug.LogError("RegisterEnemySystem");
             builder.Register<ItemSpawner>(Lifetime.Scoped).As<IItemSpawner>();
         }
 
         private void RegisterEnemySystem(IContainerBuilder builder)
         {
-            Debug.LogError("RegisterEnemySystem");
             builder.Register<WaveController>(Lifetime.Scoped);
             builder.Register<EnemySpawner>(Lifetime.Scoped).As<IEnemySpawner>();
             builder.Register<EnemySpawnPositionService>(Lifetime.Scoped).As<IEnemySpawnPositionService>();
