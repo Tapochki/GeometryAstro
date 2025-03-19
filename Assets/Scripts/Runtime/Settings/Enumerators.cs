@@ -168,29 +168,117 @@ namespace TandC.GeometryAstro.Settings
 
     public enum SkillType
     {
-        StandartGun,
-        MaxHealthIncrease,
-        MovementSpeedIncrease,
-        Shield,
-        Armor,
-        BlowMina,
-        BulletSpeed,
-        RecoverTimerDecrease,
-        DamageIncrease,
-        Drone,
-        CriticalChanceIncrease,
-        CriticalDamageMultilpier,
-        AutoGun,
-        Dash,
-        Mask,
-        Rocket,
-        HealthRestore,
-        XpMultiplierIncrese,
-        LaserGun,
-        Minigun,
-        EnergyGun,
-        LightningGun,
-        PickUpRadiusIncrease,
+        //Passive Skills
+        None = 0,
+        Damage = 1,
+        Health = 2,
+        Armor = 3,
+        SpeedMoving = 4,
+        ReviveCount = 5,
+        CriticalDamage = 6,
+        CriticalChance = 7,
+        CurseProvocation = 8,
+        ÑurseReinforcment = 9,
+        BulletsSize = 10,
+        Duplicator = 11,
+        HealtRestoreSpeed = 12,
+        ReloadTimer = 13,
+        PickUpRadius = 14,
+        ReceivingExpirience = 15,
+        ReceivingCoins = 16,
+        // Active Skills
+        //Guns Skills
+        StandartGun = 17,
+        AutoGun = 18,
+        RocketGun = 19,
+        LaserDestroyerGun = 20,
+        MachineGun = 21,
+        EnergyGun = 22,
+        SawGun = 23,
+        AuraGun = 24,
+        NeedleGun = 25,
+        SelfDirectedGun = 26,
+        MineSpawnerGun = 27,
+
+        // Possible weapons  Skills
+        RifleGun = 28,
+        FlamethrowerGun = 29,
+        PushWaveGun = 30,
+        ChainLightningGun = 31,
+        IceRayGun = 32,
+
+        //Drones Skills
+        DronCaster = 33,
+        Drone = 34,
+        //Abilities Skills
+        Dash = 35,
+        Shield = 36,
+        Cloaking = 37,
+        //Possible Abilities Skills
+        EnergyReleaser = 38,
+        Overload = 39,
+        ActiveShield = 40,
+
+        //Inifinit Skills
+        CoinInfitin = 41,
+        ScoreInfinit = 42,
+    }
+
+    public enum ModificatorType 
+    {
+        None = 0,
+        Damage = 1,
+        Health = 2,
+        Armor = 3,
+        SpeedMoving = 4,
+        ReviveCount = 5,
+        CriticalDamage = 6,
+        CriticalChance = 7,
+        CurseProvocation = 8,
+        ÑurseReinforcment = 9,
+        BulletsSize = 10,
+        Duplicator = 11,
+        HealtRestoreSpeed = 12,
+        ReloadTimer = 13,
+        PickUpRadius = 14,
+        ReceivingExpirience = 15,
+        ReceivingCoins = 16
+    }
+
+    public enum ActiveSkillType 
+    {
+        None = 0,
+        //Guns
+        StandartGun = 1,
+        AutoGun = 2,
+        RocketGun = 3,
+        LaserDestroyerGun = 4,
+        MachineGun = 5,
+        EnergyGun = 6,
+        SawGun = 7,
+        AuraGun = 8,
+        NeedleGun = 9,
+        SelfDirectedGun = 10,
+        MineSpawnerGun = 11,
+
+        // Possible weapons 
+        RifleGun = 12,
+        FlamethrowerGun = 13,
+        PushWaveGun = 14,
+        ChainLightningGun = 15,
+        IceRayGun = 16,
+
+        //Drones
+        DronCaster = 17,
+        Drone = 18,
+        //Abilities
+        Dash = 19,
+        Shield = 20,
+        Cloaking = 21,
+        //Possible Abilities
+        EnergyReleaser = 22,
+        Overload = 23,
+        ActiveShield = 24
     }
 
     public enum SkillActivationType 
@@ -199,7 +287,8 @@ namespace TandC.GeometryAstro.Settings
         NewSkill,
         Evolution,
         UpgradeActive,
-        UpgradePassive
+        UpgradePassive,
+        InfinitSkill
     }
 
     public enum GameStates

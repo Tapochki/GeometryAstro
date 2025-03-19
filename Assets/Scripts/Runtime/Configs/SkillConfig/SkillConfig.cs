@@ -19,6 +19,18 @@ namespace TandC.GeometryAstro.Data
         [SerializeField] private List<SkillType> _startAvailableSkills;
         [SerializeField] private List<SkillType> _startAvailableTestSkills;
 
+        private void OnEnable()
+        {
+            _startAvailableSkills = GetSkillTypesFromSkills(_activeSkills.Cast<SkillData>().ToList())
+                .Union(GetSkillTypesFromSkills(_passiveSkills.Cast<SkillData>().ToList()))
+                .ToList();
+        }
+
+        private List<SkillType> GetSkillTypesFromSkills(List<SkillData> skills)
+        {
+            return skills.Select(skill => skill.Type).ToList();
+        }
+
         public SkillData GetSkillByType(SkillType type)
         {
             return _activeSkills.FirstOrDefault(skill => skill.Type == type) as SkillData ??
@@ -27,7 +39,7 @@ namespace TandC.GeometryAstro.Data
 
         public List<SkillType> GetStartAvailableSkills()
         {
-            return _useTestSkills ? _startAvailableSkills : _startAvailableTestSkills;
+            return _useTestSkills ? _startAvailableTestSkills : _startAvailableSkills;
         }
 
         public List<PassiveSkillData> GetInfinitySkills()
@@ -50,21 +62,23 @@ namespace TandC.GeometryAstro.Data
     [Serializable]
     public class ActiveSkillData : SkillData
     {
-        public SkillEvolution Evolution;
+        public ActiveSkillType ActiveSkillUpgradeType;
         public SkillType ExclusionType;
+        public SkillEvolution Evolution;
+
     }
 
     [Serializable]
     public class PassiveSkillData : SkillData
     {
-        
+        public ModificatorType ModificatorUpgradeType;
     }
 
     [Serializable]
     public class SkillEvolution
     {
         public Sprite EvolutionIcon;
-        public SkillType EvolutionSkillType;
+        public SkillType TypeForEvolution;
         public SkillUpgradeInfo EvolutionInfo;
     }
 

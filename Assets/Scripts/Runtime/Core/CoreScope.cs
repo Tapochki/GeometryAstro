@@ -1,6 +1,7 @@
 ﻿using TandC.GeometryAstro.Data;
 using TandC.GeometryAstro.Gameplay;
 using TandC.GeometryAstro.Services;
+using TandC.GeometryAstro.Utilities;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
@@ -22,9 +23,15 @@ namespace TandC.GeometryAstro.Core
             RegisterGameplayCamera(builder);
             RegisterEnemySystem(builder);
             RegisterWeaponController(builder);
+            RegisterUIService(builder);
             RegisterTickService(builder);
             RegisterItemSpawner(builder);
             RegisterEntryPoint(builder);
+        }
+
+        private void RegisterUIService(IContainerBuilder builder)
+        {
+            builder.Register<UIService>(Lifetime.Scoped);
         }
 
         private void RegisterConfigs(IContainerBuilder builder) 

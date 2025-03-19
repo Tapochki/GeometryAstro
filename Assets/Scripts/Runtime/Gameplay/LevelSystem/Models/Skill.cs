@@ -13,6 +13,7 @@ namespace TandC.GeometryAstro.Gameplay
 
         public Skill(T skillData)
         {
+            SkillLevel = 0;
             SkillData = skillData;
         }
 
@@ -32,35 +33,15 @@ namespace TandC.GeometryAstro.Gameplay
             return SkillData.Type;
         }
 
-        public void UpgradeLevel()
+        private void UpgradeLevel()
         {
             SkillLevel++;
         }
 
         public bool IsMaxLevel()
         {
-            return SkillLevel <= SkillData.MaxLevel;
+            return SkillLevel >= SkillData.MaxLevel;
         }
-    }
-
-    public class ActiveSkill : Skill<ActiveSkillData>
-    {
-        public ActiveSkill(ActiveSkillData skillData) : base(skillData) { }
-
-        public bool CanEvolve()
-        {
-            return SkillData.Evolution != null && IsMaxLevel();
-        }
-
-        public void Evolution() 
-        {
-
-        }
-    }
-
-    public class PassiveSkill : Skill<PassiveSkillData>
-    {
-        public PassiveSkill(PassiveSkillData skillData) : base(skillData) { }
     }
 }
 

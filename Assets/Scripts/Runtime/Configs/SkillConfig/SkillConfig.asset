@@ -12,22 +12,302 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea6e55bb71d32ea43807e03b7c8b95f1, type: 3}
   m_Name: SkillConfig
   m_EditorClassIdentifier: 
-  _skillData:
-  - SkillDescription:
-      id: 0
-      name: 
-      skillDescription: 
-      skillIcon: {fileID: 21300000, guid: a62c6f4c57737574b87e498d2cfa6f1b, type: 3}
-      type: 0
-    useType: 0
-    UpgradeList:
-    - SkillDescription:
-        id: 0
-        name: 
-        skillDescription: 
-        skillIcon: {fileID: 0}
-        type: 0
-      Value: 0
-  StartSkills: 
-  StartAvailableSkills: 
-  StartTestAvailableSkills: 
+  _useTestSkills: 0
+  _activeSkills:
+  - SkillName: StandartGun
+    SkillIcon: {fileID: 0}
+    Type: 0
+    UseType: 0
+    UpgradesInfo:
+    - Name: StandartGunUpgrade1
+      Level: 1
+      Description: StandartGunUpgrade1
+      Value: 1
+    - Name: StandartGunUpgrade2
+      Level: 2
+      Description: StandartGunUpgrade2
+      Value: 2
+    - Name: StandartGunUpgrade3
+      Level: 3
+      Description: StandartGunUpgrade3
+      Value: 3
+    - Name: StandartGunUpgrade4
+      Level: 4
+      Description: StandartGunUpgrade4
+      Value: 4
+    Evolution:
+      EvolutionIcon: {fileID: 0}
+      TypeForEvolution: 4
+      EvolutionInfo:
+        Name: EvolutionStandartGun
+        Level: 0
+        Description: EvolutionStandartGun
+        Value: 1
+    ExclusionType: 0
+  - SkillName: AutoGun
+    SkillIcon: {fileID: 0}
+    Type: 12
+    UseType: 0
+    UpgradesInfo:
+    - Name: AutoGunUpgrade1
+      Level: 1
+      Description: AutoGunUpgrade1
+      Value: 1
+    - Name: AutoGunUpgrade2
+      Level: 2
+      Description: AutoGunUpgrade2
+      Value: 2
+    - Name: AutoGunUpgrade3
+      Level: 3
+      Description: AutoGunUpgrade3
+      Value: 3
+    - Name: AutoGunUpgrade4
+      Level: 4
+      Description: AutoGunUpgrade4
+      Value: 4
+    Evolution:
+      EvolutionIcon: {fileID: 0}
+      TypeForEvolution: 22
+      EvolutionInfo:
+        Name: EvolutionAutoGun
+        Level: 1
+        Description: EvolutionAutoGun
+        Value: 1
+    ExclusionType: 12
+  - SkillName: RocketGun
+    SkillIcon: {fileID: 0}
+    Type: 15
+    UseType: 0
+    UpgradesInfo:
+    - Name: RocketGunUpgrade1
+      Level: 1
+      Description: RocketGunUpgrade1
+      Value: 1
+    - Name: RocketGunUpgrade2
+      Level: 2
+      Description: RocketGunUpgrade2
+      Value: 2
+    - Name: RocketGunUpgrade3
+      Level: 3
+      Description: RocketGunUpgrade3
+      Value: 3
+    - Name: RocketGunUpgrade4
+      Level: 4
+      Description: RocketGunUpgrade4
+      Value: 4
+    Evolution:
+      EvolutionIcon: {fileID: 0}
+      TypeForEvolution: 22
+      EvolutionInfo:
+        Name: RocketGunGun
+        Level: 1
+        Description: RocketGunGun
+        Value: 1
+    ExclusionType: 4
+  - SkillName: laserGun
+    SkillIcon: {fileID: 0}
+    Type: 18
+    UseType: 0
+    UpgradesInfo:
+    - Name: laserGunUpgrade1
+      Level: 1
+      Description: laserGunUpgrade1
+      Value: 1
+    - Name: laserGunUpgrade2
+      Level: 2
+      Description: laserGunUpgrade2
+      Value: 2
+    - Name: laserGunUpgrade3
+      Level: 3
+      Description: laserGunUpgrade3
+      Value: 3
+    - Name: laserGunUpgrade4
+      Level: 4
+      Description: laserGunUpgrade4
+      Value: 4
+    Evolution:
+      EvolutionIcon: {fileID: 0}
+      TypeForEvolution: 22
+      EvolutionInfo:
+        Name: laserGunGun
+        Level: 1
+        Description: laserGunGun
+        Value: 1
+    ExclusionType: 4
+  - SkillName: MiniGun
+    SkillIcon: {fileID: 0}
+    Type: 19
+    UseType: 0
+    UpgradesInfo:
+    - Name: MiniGunUpgrade1
+      Level: 1
+      Description: MiniGunUpgrade1
+      Value: 1
+    - Name: MiniGunUpgrade2
+      Level: 2
+      Description: MiniGunUpgrade2
+      Value: 2
+    - Name: MiniGunUpgrade3
+      Level: 3
+      Description: MiniGunUpgrade3
+      Value: 3
+    - Name: MiniGunUpgrade4
+      Level: 4
+      Description: MiniGunUpgrade4
+      Value: 4
+    Evolution:
+      EvolutionIcon: {fileID: 0}
+      TypeForEvolution: 22
+      EvolutionInfo:
+        Name: laserGunGun
+        Level: 1
+        Description: laserGunGun
+        Value: 1
+    ExclusionType: 4
+  _passiveSkills:
+  - SkillName: Armor
+    SkillIcon: {fileID: 0}
+    Type: 4
+    UseType: 1
+    UpgradesInfo:
+    - Name: ArmorUpgrade1
+      Level: 1
+      Description: ArmorUpgrade1
+      Value: 1
+    - Name: ArmorUpgrade2
+      Level: 2
+      Description: ArmorUpgrade2
+      Value: 2
+    - Name: ArmorUpgrade3
+      Level: 3
+      Description: ArmorUpgrade3
+      Value: 3
+    - Name: ArmorUpgrade4
+      Level: 4
+      Description: ArmorUpgrade4
+      Value: 4
+    - Name: ArmorUpgrade5
+      Level: 5
+      Description: ArmorUpgrade5
+      Value: 5
+  - SkillName: MaxHealth
+    SkillIcon: {fileID: 0}
+    Type: 1
+    UseType: 1
+    UpgradesInfo:
+    - Name: MaxHealthUpgrade1
+      Level: 1
+      Description: MaxHealthUpgrade1
+      Value: 1
+    - Name: MaxHealthUpgrade2
+      Level: 2
+      Description: MaxHealthUpgrade2
+      Value: 2
+    - Name: MaxHealthUpgrade3
+      Level: 3
+      Description: MaxHealthUpgrade3
+      Value: 3
+    - Name: MaxHealthUpgrade4
+      Level: 4
+      Description: MaxHealthUpgrade4
+      Value: 4
+    - Name: MaxHealthUpgrade5
+      Level: 5
+      Description: MaxHealthUpgrade5
+      Value: 5
+  - SkillName: Speed
+    SkillIcon: {fileID: 0}
+    Type: 2
+    UseType: 1
+    UpgradesInfo:
+    - Name: SpeedUpgrade1
+      Level: 1
+      Description: SpeedUpgrade1
+      Value: 1
+    - Name: SpeedUpgrade2
+      Level: 2
+      Description: SpeedUpgrade2
+      Value: 2
+    - Name: SpeedUpgrade3
+      Level: 3
+      Description: SpeedUpgrade3
+      Value: 3
+    - Name: SpeedUpgrade4
+      Level: 4
+      Description: SpeedUpgrade4
+      Value: 4
+    - Name: SpeedUpgrade5
+      Level: 5
+      Description: SpeedUpgrade5
+      Value: 5
+  - SkillName: Damage
+    SkillIcon: {fileID: 0}
+    Type: 8
+    UseType: 1
+    UpgradesInfo:
+    - Name: DamageUpgrade1
+      Level: 1
+      Description: DamageUpgrade1
+      Value: 1
+    - Name: DamageUpgrade2
+      Level: 2
+      Description: DamageUpgrade2
+      Value: 2
+    - Name: DamageUpgrade3
+      Level: 3
+      Description: DamageUpgrade3
+      Value: 3
+    - Name: DamageUpgrade4
+      Level: 4
+      Description: DamageUpgrade4
+      Value: 4
+    - Name: DamageUpgrade5
+      Level: 5
+      Description: DamageUpgrade5
+      Value: 5
+  - SkillName: EXP
+    SkillIcon: {fileID: 0}
+    Type: 17
+    UseType: 1
+    UpgradesInfo:
+    - Name: EXPUpgrade1
+      Level: 1
+      Description: EXPUpgrade1
+      Value: 1
+    - Name: EXPUpgrade2
+      Level: 2
+      Description: EXPUpgrade2
+      Value: 2
+    - Name: EXPUpgrade3
+      Level: 3
+      Description: EXPUpgrade3
+      Value: 3
+    - Name: EXPUpgrade4
+      Level: 4
+      Description: EXPUpgrade4
+      Value: 4
+    - Name: EXPUpgrade5
+      Level: 5
+      Description: EXPUpgrade5
+      Value: 5
+  _additionSkills:
+  - SkillName: Coin
+    SkillIcon: {fileID: 0}
+    Type: 23
+    UseType: 1
+    UpgradesInfo:
+    - Name: Coin
+      Level: 1
+      Description: Coin
+      Value: 11
+  - SkillName: Score
+    SkillIcon: {fileID: 0}
+    Type: 24
+    UseType: 1
+    UpgradesInfo:
+    - Name: Score
+      Level: 1
+      Description: Score
+      Value: 11
+  _startAvailableSkills: 000000000c0000000f00000012000000130000000400000001000000020000000800000011000000
+  _startAvailableTestSkills: 

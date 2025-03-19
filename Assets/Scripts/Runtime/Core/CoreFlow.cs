@@ -2,6 +2,10 @@
 using TandC.GeometryAstro.Services;
 using VContainer.Unity;
 using TandC.GeometryAstro.Gameplay;
+using TandC.GeometryAstro.Utilities;
+using System.Collections.Generic;
+using TandC.GeometryAstro.UI;
+using Cysharp.Threading.Tasks;
 
 namespace TandC.GeometryAstro.Core
 {
@@ -22,8 +26,15 @@ namespace TandC.GeometryAstro.Core
         private WeaponController _weaponController;
         private TickService _tickService;
 
+        private readonly LoadObjectsService _loadObjectsService;
+        private readonly LocalisationService _localizationService;
+        private readonly SoundService _soundService;
+        private readonly UIService _uiService;
+        private readonly SceneService _sceneService;
+
         public CoreFlow(LoadingService loadingService, DataService dataService, Player player, IGameplayInputHandler gameplayInputHandler, GameplayCamera gameplayCamera,
-            WaveController waveController, IEnemySpawner enemySpawner, IEnemySpawnPositionService enemySpawnPositionService, TickService tickService, WeaponController weaponController, IItemSpawner itemSpawner)
+            WaveController waveController, IEnemySpawner enemySpawner, IEnemySpawnPositionService enemySpawnPositionService, TickService tickService, WeaponController weaponController, IItemSpawner itemSpawner,
+            LoadObjectsService loadObjectsService, LocalisationService localizationService, SoundService soundService, UIService uiService, SceneService sceneService)
         {
             _loadingService = loadingService;
             _dataService = dataService;
@@ -36,24 +47,56 @@ namespace TandC.GeometryAstro.Core
             _weaponController = weaponController;
             _tickService = tickService;
             _itemSpawner = itemSpawner;
+            _loadObjectsService = loadObjectsService;
+            _localizationService = localizationService;
+            _soundService = soundService;
+            _uiService = uiService;
+            _sceneService = sceneService;
         }
 
         public async void Start()
         {
+            
             InitPlayer();
             InitItemSpawner();
             InitWeapon();
             InitEnemy();
 
             var fooLoadingUnit = new FooLoadingUnit(3, false);
+            await _loadingService.BeginLoading(_uiService);
             await _loadingService.BeginLoading(fooLoadingUnit);
+
+            RegisterUI();
         }
 
         private void InitPlayer()
         {
             _player.Init(_dataService.UserData.PlayerData);
         }
-        
+
+        public void LoadMenu()
+        {
+            _sceneService.LoadScene(RuntimeConstants.Scenes.Menu).Forget();
+        }
+
+        private void RegisterUI()
+        {
+            var corePages = new List<IUIPage>
+            {
+                new GamePageView(new GamePageModel(_soundService, _uiService)),
+                new SettingsPageView(new SettingsPageModel(_localizationService, _soundService, _uiService, _dataService)),
+                new PausePageView(new PausePageModel(_sceneService, _localizationService, _soundService, this, _uiService)),
+            };
+            var corePopups = new List<IUIPopup>
+            {
+
+            };
+
+            _uiService.RegisterUI(corePages, corePopups);
+            UnityEngine.Debug.LogWarning("OPEN GAMEPLAY SCENE ON START");
+            _uiService.OpenPage<GamePageView>();
+        }
+
         private void InitItemSpawner() 
         {
             _itemSpawner.Init();
