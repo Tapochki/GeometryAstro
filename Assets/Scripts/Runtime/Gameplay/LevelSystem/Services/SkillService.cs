@@ -264,13 +264,13 @@ namespace TandC.GeometryAstro.Gameplay
         {
             evolutionSkill = null;
             var availableEvolutions = _activeSkills
-                .Where(activeSkill => activeSkill.CanEvolve() && _passiveSkills.Any(passiveSkill => passiveSkill.SkillData.Type == activeSkill.SkillData.Evolution.TypeForEvolution && passiveSkill.IsMaxLevel()))
+                .Where(activeSkill => activeSkill.CanEvolve() && _passiveSkills.Any(passiveSkill => passiveSkill.SkillData.Type == activeSkill.SkillData.EvolutionData.TypeForEvolution && passiveSkill.IsMaxLevel()))
                 .ToList();
 
             if (availableEvolutions.Count > 0)
             {
                 ActiveSkillData data = availableEvolutions[UnityEngine.Random.Range(0, availableEvolutions.Count)].SkillData;
-                evolutionSkill = CreatePreparationSkill(SkillActivationType.Evolution, data.Type, data.Evolution.EvolutionIcon, data.Evolution.EvolutionInfo);
+                evolutionSkill = CreatePreparationSkill(SkillActivationType.Evolution, data.Type, data.EvolutionData.EvolutionIcon, data.EvolutionData.EvolutionInfo);
                 return true;
             }
             return false;
