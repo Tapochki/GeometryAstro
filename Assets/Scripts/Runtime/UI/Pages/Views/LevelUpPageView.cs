@@ -28,10 +28,10 @@ namespace TandC.GeometryAstro.UI
         {
             GameObject selfObject = _model.SelfObject;
             Transform selfTransform = selfObject.transform;
-            Transform containerSkills = selfTransform.Find("Image_Background");
-            Transform containerButtons = selfTransform.Find("Container_Buttons");
+            Transform container = selfTransform.Find("Image_Background");
+            Transform containerButtons = container.Find("Container_Buttons");
 
-            _skillContainer = containerSkills.Find("Container_Skills");
+            _skillContainer = container.Find("Container_Skills");
 
             Button skillResetButton = containerButtons.Find("Button_ResetSkill").GetComponent<Button>();
             _confirmButton = containerButtons.Find("Button_Confirm").GetComponent<Button>();
@@ -115,16 +115,16 @@ namespace TandC.GeometryAstro.UI
         private void ShowSkillList()
         {
             var template = _skillContainer.Find("Template").gameObject;
+            template.SetActive(false);
             var skillList = _model.GetSkills();
             InternalTools.ShuffleList(skillList);
-
             for (int i = 0; i < skillList.Count; i++)
             {
                 var skillData = skillList[i];
                 var info = skillData.SkillUpgradeInfo;
 
                 SkillItem skillItem = new SkillItem(
-                    template,
+                    MonoBehaviour.Instantiate(template, _skillContainer),
                     skillData.SkillUpgradeInfo.Level == 1,
                     false,
                     skillData,

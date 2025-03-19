@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UniRx;
 
-namespace TandC.GeometryAstro.Services 
+namespace TandC.GeometryAstro.Services
 {
     public class TickService : IDisposable
     {
@@ -16,24 +16,24 @@ namespace TandC.GeometryAstro.Services
         {
             StartTick();
             StartFixedTick();
-            StartLateTick();
+            //StartLateTick();
         }
 
-        private void StartTick() 
+        private void StartTick()
         {
             Observable.EveryUpdate()
                 .Subscribe(_ => Tick())
                 .AddTo(_disposables);
         }
 
-        private void StartFixedTick() 
+        private void StartFixedTick()
         {
             Observable.EveryFixedUpdate()
                 .Subscribe(_ => FixedTick())
                 .AddTo(_disposables);
         }
 
-        private void StartLateTick() 
+        private void StartLateTick()
         {
             Observable.EveryLateUpdate()
                 .Subscribe(_ => LateTick())
@@ -61,19 +61,28 @@ namespace TandC.GeometryAstro.Services
         private void Tick()
         {
             var actions = _updateActions.ToArray();
-            foreach (var action in actions) action?.Invoke();
+            foreach (var action in actions)
+            {
+                action?.Invoke();
+            }
         }
 
         private void FixedTick()
         {
             var actions = _fixedUpdateActions.ToArray();
-            foreach (var action in actions) action?.Invoke();
+            foreach (var action in actions)
+            {
+                action?.Invoke();
+            }
         }
 
         private void LateTick()
         {
             var actions = _lateUpdateActions.ToArray();
-            foreach (var action in actions) action?.Invoke();
+            foreach (var action in actions)
+            {
+                action?.Invoke();
+            }
         }
 
         public void Dispose()

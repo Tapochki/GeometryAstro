@@ -30,6 +30,7 @@ namespace TandC.GeometryAstro.UI.Elements
             var info = SkillData.SkillUpgradeInfo;
 
             _selfObject = prefab;
+            _selfObject.SetActive(true); // COSTILE
             _selectButton = _selfObject.GetComponent<Button>();
             _buttonConfirmSelection = _selectButton.transform.Find("Button_Confirm").GetComponent<Button>();
             _buttonConfirmSelection.gameObject.SetActive(false);
