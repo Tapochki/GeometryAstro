@@ -28,17 +28,13 @@ namespace TandC.GeometryAstro.EventBus
 
     public readonly struct PlayerDieEvent : IEvent { }
 
-    public readonly struct HealthSkillUpgradeEvent : IEvent { }
+    public readonly struct PlayerLevelUpEvent : IEvent
+    {
+        public readonly int CurrentLevel;
 
-    public readonly struct SpeedSkillUpgradeEvent : IEvent { }
-
-    public readonly struct ArmorSkillUpgradeEvent : IEvent { }
-
-    public readonly struct RocketLaunherSkillEvent : IEvent { }
-
-    public readonly struct MaskSkillEvent : IEvent { }
-
-    public readonly struct DashSkillEvent : IEvent { }
-
-    public readonly struct StandartGunSkillEvent: IEvent { }
+        public PlayerLevelUpEvent(int currentLevel)
+        {
+            CurrentLevel = currentLevel;
+        }
+    }
 }

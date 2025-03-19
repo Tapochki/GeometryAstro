@@ -1,7 +1,9 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
+using TandC.GeometryAstro.Data;
+using TandC.GeometryAstro.Gameplay;
 using TandC.GeometryAstro.Services;
+using TandC.GeometryAstro.UI.Elements;
 using TandC.GeometryAstro.Utilities;
 using UnityEngine;
 
@@ -14,8 +16,12 @@ namespace TandC.GeometryAstro.UI
         private UIService _uiService;
         private LocalisationService _localisationService;
         private SoundService _soundService;
+        private SkillService _skillService;
 
         private GameObject _selfObject;
+
+        public List<SkillItem> _currentSkillsList;
+        private SkillItem _currentSelectedSkill;
 
         public GameObject SelfObject
         {
@@ -33,11 +39,15 @@ namespace TandC.GeometryAstro.UI
         public LevelUpPageModel(
             LocalisationService localisationService,
             SoundService soundService,
-            UIService uiService)
+            UIService uiService,
+            SkillService skillService)
         {
             _uiService = uiService;
             _localisationService = localisationService;
             _soundService = soundService;
+            _skillService = skillService;
+
+            _currentSkillsList = new List<SkillItem>();
 
             _localisationService.OnLanguageWasChangedEvent += OnLanguageWasChangedEventHandler;
         }
@@ -52,6 +62,36 @@ namespace TandC.GeometryAstro.UI
             return _localisationService.GetString(key);
         }
 
+        private void ResetSkillsData()
+        {
+            _currentSkillsList.Clear();
+            _currentSelectedSkill = null;
+        }
+
+        public void FillSkillList(SkillItem skill)
+        {
+            _currentSkillsList.Add(skill);
+        }
+
+        public void SelecSkill(SkillItem skill)
+        {
+            _currentSelectedSkill = skill;
+        }
+
+        public List<PreparationSkillData> GetSkills()
+        {
+            ResetSkillsData();
+            return _skillService.GetUpgradeOptions(false);
+        }
+
+        public string GetFormatedDescription(SkillUpgradeInfo info)
+        {
+            var newDescrtiption = "";
+            newDescrtiption = GetLocalisation(info.Description);
+            newDescrtiption = info.GetFormattedDescription(newDescrtiption);
+            return newDescrtiption;
+        }
+
         public void SkillReset()
         {
             //_soundService.PlayClickSound();
@@ -62,6 +102,7 @@ namespace TandC.GeometryAstro.UI
         {
             //_soundService.PlayClickSound();
             _uiService.OpenPage<GamePageView>();
+            _currentSelectedSkill.SkillData.ApplySkill();
         }
     }
 }

@@ -90,9 +90,9 @@ namespace TandC.GeometryAstro.Data
         public string Description;
         public float Value;
 
-        public string GetFormattedDescription()
+        public string GetFormattedDescription(string description)
         {
-            return Description.Replace("%Value%", $"<b>{Value}</b>");
+            return description.Replace("%Value%", $"<b>{Value}</b>");
         }
     }
 }

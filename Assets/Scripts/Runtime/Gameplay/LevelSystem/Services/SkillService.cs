@@ -3,15 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using TandC.GeometryAstro.Data;
 using TandC.GeometryAstro.Settings;
-using Unity.Android.Gradle.Manifest;
 using UnityEngine;
+using VContainer;
 
-namespace TandC.GeometryAstro.Gameplay 
+namespace TandC.GeometryAstro.Gameplay
 {
-    public class SkillService : MonoBehaviour
+    public class SkillService
     {
         private const int MIN_SKILLS_GENERATE_COUNT = 3;
-
         private const int CHEST_MIN_SKILLS = 1;
         private const int CHEST_MAX_SKILLS = 5;
         [SerializeField]
@@ -28,18 +27,14 @@ namespace TandC.GeometryAstro.Gameplay
         private List<ActiveSkill> _activeSkills = new();
         private List<PassiveSkill> _passiveSkills = new();
 
+
+        [Inject]
         public void Construct(GameConfig gameConfig)
         {
             _skillConfig = gameConfig.SkillConfig;
-
         }
 
-        private void Start()
-        {
-            Initialize();
-        }
-
-        private void Initialize()
+        public void Initialize()
         {
             _startAvailableSkills = _skillConfig.GetStartAvailableSkills();
             _infinitySkills = _skillConfig.GetInfinitySkills();
@@ -141,7 +136,9 @@ namespace TandC.GeometryAstro.Gameplay
                 {
                     List<PreparationSkillData> additionalInfinitSKills = GetInfititySkill(skillGenerationCount - skillPreparationData.Count);
                     if (additionalInfinitSKills != null)
+                    {
                         skillPreparationData.AddRange(additionalInfinitSKills);
+                    }
                 }
             }
 
@@ -178,14 +175,18 @@ namespace TandC.GeometryAstro.Gameplay
             if (checkActiveFirst)
             {
                 if (TryGetActiveUpgrade(out upgradedSkill))
+                {
                     return true;
+                }
 
                 return TryGetPassiveUpgrade(out upgradedSkill);
             }
             else
             {
                 if (TryGetPassiveUpgrade(out upgradedSkill))
+                {
                     return true;
+                }
 
                 return TryGetActiveUpgrade(out upgradedSkill);
             }
@@ -231,7 +232,7 @@ namespace TandC.GeometryAstro.Gameplay
             return false;
         }
 
-        bool IsSkillActive(SkillType type) => _skillConfig.GetSkillByType(type).UseType == SkillUseType.Active;
+        private bool IsSkillActive(SkillType type) => _skillConfig.GetSkillByType(type).UseType == SkillUseType.Active;
 
         private bool TryGetNewSkill(out PreparationSkillData newSkill)
         {
@@ -315,7 +316,7 @@ namespace TandC.GeometryAstro.Gameplay
             }
 
         }
-#region Test
+        #region Test
         private void ShowCurrentActiveSkills()
         {
             string activeSkillsInfo = "Active Skills:\n";
@@ -342,7 +343,7 @@ namespace TandC.GeometryAstro.Gameplay
             Debug.LogError(passiveSkillsInfo);
         }
         #endregion
-#region Apply Skills
+        #region Apply Skills
         private void HandleNewSkill(SkillType skillType)
         {
             var skillData = _skillConfig.GetSkillByType(skillType);
@@ -369,7 +370,7 @@ namespace TandC.GeometryAstro.Gameplay
             _activeSkills.Add(newActiveSkill);
         }
 
-        private void HandleNewPassiveSKill(PassiveSkillData passiveSkillData) 
+        private void HandleNewPassiveSKill(PassiveSkillData passiveSkillData)
         {
             var newPassiveSkill = new PassiveSkill(passiveSkillData, passiveSkillData.ModificatorUpgradeType);
             _passiveSkills.Add(newPassiveSkill);
@@ -407,15 +408,22 @@ namespace TandC.GeometryAstro.Gameplay
                 skillToEvolve.Evolve();
             }
         }
-#endregion
-        
+        #endregion
+
     }
     public class PreparationSkillData
     {
         public Action<SkillType, SkillActivationType> ActivateSkillAction;
+
         public SkillActivationType SkillActivationType;
-        public Sprite SkillSprite;
         public SkillType SkillType;
+
+        public Sprite SkillSprite;
         public SkillUpgradeInfo SkillUpgradeInfo;
+
+        public void ApplySkill()
+        {
+            ActivateSkillAction?.Invoke(SkillType, SkillActivationType);
+        }
     }
 }
