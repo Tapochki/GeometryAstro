@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using TandC.GeometryAstro.Data;
 using TandC.GeometryAstro.Settings;
-using Unity.Android.Gradle.Manifest;
 using UnityEngine;
 
 namespace TandC.GeometryAstro.Gameplay 

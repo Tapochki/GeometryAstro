@@ -65,7 +65,6 @@ namespace TandC.GeometryAstro.Data
         public ActiveSkillType ActiveSkillUpgradeType;
         public SkillType ExclusionType;
         public SkillEvolution Evolution;
-
     }
 
     [Serializable]

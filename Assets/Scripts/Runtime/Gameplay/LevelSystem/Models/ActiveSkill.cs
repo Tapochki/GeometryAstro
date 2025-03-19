@@ -18,7 +18,7 @@ namespace TandC.GeometryAstro.Gameplay
 
         public bool CanEvolve()
         {
-            return SkillData.Evolution != null && IsMaxLevel() && !_hasAlreadyEvolved;
+            return SkillData.Evolution.TypeForEvolution != SkillType.None && IsMaxLevel() && !_hasAlreadyEvolved;
         }
 
         public void Evolve() 
