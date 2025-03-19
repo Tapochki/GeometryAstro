@@ -242,7 +242,9 @@ namespace TandC.GeometryAstro.Settings
         ReloadTimer = 13,
         PickUpRadius = 14,
         ReceivingExpirience = 15,
-        ReceivingCoins = 16
+        ReceivingCoins = 16,
+        //Possible Passive Skill
+        Luck = 17
     }
 
     public enum ActiveSkillType 

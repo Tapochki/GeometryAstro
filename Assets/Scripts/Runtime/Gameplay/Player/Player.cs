@@ -55,20 +55,20 @@ namespace TandC.GeometryAstro.Gameplay
 
         private void FixedTick()
         {
-            //_moveComponent.Move(_inputHandler.MoveDirection, _moveSpeed);
-            //if (_inputHandler.RotationDirection != Vector2.zero)
-            //{
-            //    _mainRotateComponent.SetRotation(_inputHandler.RotationDirection);
-            //}
-            //else if (_inputHandler.MoveDirection != Vector2.zero)
-            //{
-            //    _mainRotateComponent.SetRotation(_inputHandler.MoveDirection);
-            //}
+            _moveComponent.Move(_inputHandler.MoveDirection, _moveSpeed);
+            if (_inputHandler.RotationDirection != Vector2.zero)
+            {
+                _mainRotateComponent.SetRotation(_inputHandler.RotationDirection);
+            }
+            else if (_inputHandler.MoveDirection != Vector2.zero)
+            {
+                _mainRotateComponent.SetRotation(_inputHandler.MoveDirection);
+            }
 
-            //if(_mainRotateComponent != null) 
-            //{
-            //    _mainRotateComponent.Update();
-            //}
+            if (_mainRotateComponent != null)
+            {
+                _mainRotateComponent.Update();
+            }
         }
 
         public void TakeDamage(float damage)
