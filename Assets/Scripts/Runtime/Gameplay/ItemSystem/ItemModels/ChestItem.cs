@@ -1,7 +1,7 @@
 using TandC.GeometryAstro.EventBus;
 using UnityEngine;
 
-namespace TandC.GeometryAstro.Gameplay 
+namespace TandC.GeometryAstro.Gameplay
 {
     public class ChestItem : ItemModel
     {
@@ -14,7 +14,7 @@ namespace TandC.GeometryAstro.Gameplay
 
         public override void ReleseItem()
         {
-            EventBusHolder.EventBus.Raise(new ChestItemReleaseEvent(ChestItemCount));
+            EventBusHolder.EventBus.Raise(new ChestItemReleaseEvent());
         }
     }
 }

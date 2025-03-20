@@ -107,6 +107,7 @@ namespace TandC.GeometryAstro.Core
                 new SettingsPageView(new SettingsPageModel(_localizationService, _soundService, _uiService, _dataService)),
                 new PausePageView(new PausePageModel(_sceneService, _localizationService, _soundService, this, _uiService)),
                 new LevelUpPageView(new LevelUpPageModel(_localizationService, _soundService, _uiService, _skillService)),
+                new ChestPageView(new ChestPageModel(_localizationService, _soundService, _uiService, _skillService)),
             };
             var corePopups = new List<IUIPopup>
             {
