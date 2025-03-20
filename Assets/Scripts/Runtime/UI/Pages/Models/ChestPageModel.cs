@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using TandC.GeometryAstro.Services;
 using TandC.GeometryAstro.Utilities;
 using UnityEngine;
@@ -55,6 +53,11 @@ namespace TandC.GeometryAstro.UI
         {
             //_soundService.PlayClickSound();
             _uiService.OpenPage<GamePageView>();
+        }
+
+        public void Dispose()
+        {
+            _localisationService.OnLanguageWasChangedEvent -= OnLanguageWasChangedEventHandler;
         }
     }
 }

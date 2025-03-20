@@ -104,5 +104,10 @@ namespace TandC.GeometryAstro.UI
             _uiService.OpenPage<GamePageView>();
             _currentSelectedSkill.SkillData.ApplySkill();
         }
+
+        public void Dispose()
+        {
+            _localisationService.OnLanguageWasChangedEvent -= OnLanguageWasChangedEventHandler;
+        }
     }
 }

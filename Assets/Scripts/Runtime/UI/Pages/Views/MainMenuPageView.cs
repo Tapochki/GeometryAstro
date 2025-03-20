@@ -43,6 +43,7 @@ namespace TandC.GeometryAstro.UI
         public void Dispose()
         {
             _model.LanguageChanged -= LanguageChangedHandler;
+            _model.Dispose();
         }
 
         private void UpdateText()

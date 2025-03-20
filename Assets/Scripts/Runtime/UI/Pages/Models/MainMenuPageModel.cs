@@ -76,5 +76,10 @@ namespace TandC.GeometryAstro.UI
             //_soundService.PlayClickSound();
             _uiService.OpenPage<SettingsPageView>();
         }
+
+        public void Dispose()
+        {
+
+        }
     }
 }

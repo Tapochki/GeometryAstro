@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -28,6 +26,7 @@ namespace TandC.GeometryAstro.UI
 
         public void Dispose()
         {
+            _model.Dispose();
         }
 
         public void Show(object data = null)

@@ -109,5 +109,19 @@ namespace TandC.GeometryAstro.Utilities
                 }
             }
         }
+
+        public void Dispose()
+        {
+            foreach (var _page in _pages)
+            {
+                Debug.Log(_page);
+                _page.Dispose();
+            }
+
+            foreach (var _popup in _popups)
+            {
+                _popup.Dispose();
+            }
+        }
     }
 }
