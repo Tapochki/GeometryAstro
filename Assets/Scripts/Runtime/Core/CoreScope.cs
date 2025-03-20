@@ -19,6 +19,7 @@ namespace TandC.GeometryAstro.Core
         {
             RegisterConfigs(builder);
             RegisterInputHandler(builder);
+            RegisterModificatorContainer(builder);
             RegisterPlayer(builder);
             RegisterGameplayCamera(builder);
             RegisterEnemySystem(builder);
@@ -63,6 +64,11 @@ namespace TandC.GeometryAstro.Core
         private void RegisterItemSpawner(IContainerBuilder builder)
         {
             builder.Register<ItemSpawner>(Lifetime.Scoped).As<IItemSpawner>();
+        }
+
+        private void RegisterModificatorContainer(IContainerBuilder builder)
+        {
+            builder.Register<ModificatorContainer>(Lifetime.Scoped);
         }
 
         private void RegisterEnemySystem(IContainerBuilder builder)

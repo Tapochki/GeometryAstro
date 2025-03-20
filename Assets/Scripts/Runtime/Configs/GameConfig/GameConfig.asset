@@ -18,3 +18,4 @@ MonoBehaviour:
   _skillConfig: {fileID: 11400000, guid: 0691f6d76309ef64aaafc04d3bedaa0b, type: 2}
   _weaponConfig: {fileID: 11400000, guid: 8fd911e7d00a4da4e9fcb07dbd8163f7, type: 2}
   "_\u0441hanceDropItemCofig": {fileID: 11400000, guid: 0cfcb1ef0d547d74eaf7a86a594d7711, type: 2}
+  _startPlayerParams: {fileID: 11400000, guid: ac2aaec2de5419442a261e2db962e9c2, type: 2}

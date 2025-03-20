@@ -7,6 +7,8 @@ namespace TandC.GeometryAstro.Menu
 {
     public class MenuScope : LifetimeScope
     {
+
+
         protected override void Awake()
         {
             base.Awake();

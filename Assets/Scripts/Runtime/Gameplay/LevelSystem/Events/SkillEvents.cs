@@ -15,10 +15,12 @@ namespace TandC.GeometryAstro.EventBus
     public readonly struct PassiveSkillUpgradeEvent : IEvent
     {
         public readonly ModificatorType PassiveSkillType;
+        public readonly float UpgradeValue;
 
-        public PassiveSkillUpgradeEvent(ModificatorType passiveSkillType)
+        public PassiveSkillUpgradeEvent(ModificatorType passiveSkillType, float upgradeValue)
         {
             PassiveSkillType = passiveSkillType;
+            UpgradeValue = upgradeValue;
         }
     }
 

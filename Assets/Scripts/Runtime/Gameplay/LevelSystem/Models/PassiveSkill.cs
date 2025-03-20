@@ -16,7 +16,7 @@ namespace TandC.GeometryAstro.Gameplay
 
         public override void ApplySkillEffect()
         {
-            EventBusHolder.EventBus.Raise(new PassiveSkillUpgradeEvent(_upgradablePassiveSkillType));
+            EventBusHolder.EventBus.Raise(new PassiveSkillUpgradeEvent(_upgradablePassiveSkillType, SkillData.UpgradesInfo[SkillLevel].Value));
             base.ApplySkillEffect();
         }
     }

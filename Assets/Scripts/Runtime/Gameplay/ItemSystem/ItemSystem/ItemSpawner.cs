@@ -77,11 +77,15 @@ namespace TandC.GeometryAstro.Gameplay
             _itemPool = new ObjectPool<ItemView>(Preload, GetItem, BackItemToPool, ITEM_PRELOAD_COUNT);
         }
 
-        public void DropRandomItem(DropItemRareType type, Vector2 spawnPosition) 
+        private ItemView Preload() => MonoBehaviour.Instantiate(_itemViewPrefab, _itemParent);
+
+        public void DropRandomItem(DropItemRareType type, Vector2 spawnPosition)
         {
             ItemType itemType = _dropConfig.GetDropDataByType(type).GetRandomItemType();
             DropItem(itemType, spawnPosition);
         }
+
+        private void GetItem(ItemView item) { }
 
         private void DropItem(ItemType itemType, Vector2 spawnPosition) 
         {           
@@ -97,10 +101,6 @@ namespace TandC.GeometryAstro.Gameplay
         {
             _itemPool.Return(itemView);
         }
-
-        private ItemView Preload() => MonoBehaviour.Instantiate(_itemViewPrefab, _itemParent);
-
-        private void GetItem(ItemView item) { }
 
         private void BackItemToPool(ItemView item) 
         {

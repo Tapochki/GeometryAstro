@@ -1721,7 +1721,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -284, y: 0}
+  m_AnchoredPosition: {x: -283.99994, y: 0}
   m_SizeDelta: {x: -586, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &239742598
@@ -15965,7 +15965,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 37.22915, y: -32}
+  m_AnchoredPosition: {x: 37.229156, y: -32}
   m_SizeDelta: {x: 74.4583, y: 64}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2083958612
@@ -16149,6 +16149,7 @@ MonoBehaviour:
     TypeName: TandC.GeometryAstro.Bootstrap.BootstrapScope
   autoRun: 1
   autoInjectGameObjects: []
+  _menuConfig: {fileID: 11400000, guid: 946e6759dfd6118489798c5558c1ccc9, type: 2}
 --- !u!1 &2093244299
 GameObject:
   m_ObjectHideFlags: 0

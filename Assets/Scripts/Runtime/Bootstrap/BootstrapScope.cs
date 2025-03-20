@@ -1,4 +1,6 @@
+using TandC.GeometryAstro.Data;
 using TandC.GeometryAstro.Services;
+using UnityEngine;
 using VContainer;
 using VContainer.Unity;
 
@@ -6,6 +8,8 @@ namespace TandC.GeometryAstro.Bootstrap
 {
     public sealed class BootstrapScope : LifetimeScope
     {
+        [SerializeField] private MenuConfig _menuConfig;
+
         protected override void Awake()
         {
             DontDestroyOnLoad(this);
@@ -14,6 +18,7 @@ namespace TandC.GeometryAstro.Bootstrap
 
         protected override void Configure(IContainerBuilder builder)
         {
+            RegisterConfigs(builder);
             builder.Register<LoadingService>(Lifetime.Singleton);
             builder.Register<LocalisationService>(Lifetime.Singleton);
             builder.Register<SoundService>(Lifetime.Singleton);
@@ -22,6 +27,12 @@ namespace TandC.GeometryAstro.Bootstrap
             builder.Register<LoadObjectsService>(Lifetime.Singleton);
 
             builder.RegisterEntryPoint<BootstrapFlow>();
+        }
+
+
+        private void RegisterConfigs(IContainerBuilder builder)
+        {
+            builder.RegisterInstance(_menuConfig).AsSelf();
         }
     }
 }

@@ -13,7 +13,7 @@ namespace TandC.GeometryAstro.Gameplay
         private Transform _target;
         private IMove _moveComponent;
         private IRotation _rotationComponent;
-        private HealthComponent _healthComponent;
+        private IHealth _healthComponent;
         private AttackComponent _attackComponent;
         private Action<Enemy, bool> _onDeathEvent;
 
@@ -45,8 +45,7 @@ namespace TandC.GeometryAstro.Gameplay
         {
             _healthComponent = new HealthComponent(
                 EnemyData.health,
-                ProccesingEnemyDeath,
-                null);
+                ProccesingEnemyDeath);
         }
 
         public void ProccesingEnemyDeath(bool isKilled = true)

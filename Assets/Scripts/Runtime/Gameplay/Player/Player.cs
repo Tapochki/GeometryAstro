@@ -11,7 +11,7 @@ namespace TandC.GeometryAstro.Gameplay
     {
         [SerializeField] private Transform _bodyTransform;
 
-        private float _moveSpeed;
+        private IReadableModificator _moveSpeed;
         private IGameplayInputHandler _inputHandler;
         private TickService _tickService;
 
@@ -19,7 +19,7 @@ namespace TandC.GeometryAstro.Gameplay
 
         private IMove _moveComponent;
         private IRotation _mainRotateComponent;
-        private HealthComponent _healthComponent;
+        private IHealth _healthComponent;
 
         public Vector2 PlayerPosition { get => transform.position; }
 
@@ -30,11 +30,14 @@ namespace TandC.GeometryAstro.Gameplay
 
         private LevelModel _levelModel;
 
+        private ModificatorContainer _modificatorContainer;
+
         [Inject]
-        private void Construct(IGameplayInputHandler inputHandler, TickService tickService)
+        private void Construct(IGameplayInputHandler inputHandler, ModificatorContainer modificatorContainer, TickService tickService)
         {
             _inputHandler = inputHandler;
             _tickService = tickService;
+            _modificatorContainer = modificatorContainer;
         }
 
         public void Init(PlayerData playerData)
@@ -42,20 +45,25 @@ namespace TandC.GeometryAstro.Gameplay
             _levelModel = new LevelModel();
             _levelModel.Init();
             _playerData = playerData;
-            _moveSpeed = _playerData.StartSpeed;
+            _moveSpeed = _modificatorContainer.GetModificator(Settings.ModificatorType.SpeedMoving);
+
             _onHealthChageEvent += (currentHealth, maxHealth) => EventBusHolder.EventBus.Raise(new PlayerHealthChangeEvent(currentHealth, maxHealth));
             _onPlayerDieEvent += (isKilled) => EventBusHolder.EventBus.Raise(new PlayerDieEvent());
 
             _moveComponent = new MoveComponent(gameObject.GetComponent<Rigidbody2D>());
             _mainRotateComponent = new PlayerRotateComponent(_bodyTransform);
-            _healthComponent = new HealedHealthComponent(_playerData.StartHealth, _onPlayerDieEvent, _onHealthChageEvent);
+            Debug.LogError(_modificatorContainer);
+            _healthComponent = new ModifiableHealth(new HealthWithView
+                (new HealthComponent(_modificatorContainer.GetModificator(Settings.ModificatorType.MaxHealth).Value, _onPlayerDieEvent), _onHealthChageEvent),
+                _modificatorContainer.GetModificator(Settings.ModificatorType.MaxHealth),
+                _modificatorContainer.GetModificator(Settings.ModificatorType.Armor));
 
             _tickService.RegisterFixedUpdate(FixedTick);
         }
 
         private void FixedTick()
         {
-            _moveComponent.Move(_inputHandler.MoveDirection, _moveSpeed);
+            _moveComponent.Move(_inputHandler.MoveDirection, _moveSpeed.Value);
             if (_inputHandler.RotationDirection != Vector2.zero)
             {
                 _mainRotateComponent.SetRotation(_inputHandler.RotationDirection);
@@ -74,6 +82,11 @@ namespace TandC.GeometryAstro.Gameplay
         public void TakeDamage(float damage)
         {
             _healthComponent.TakeDamage(damage);
+        }
+
+        public void Heal(float damage) 
+        {
+
         }
     }
 }

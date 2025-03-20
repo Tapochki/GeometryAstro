@@ -18,8 +18,6 @@ namespace TandC.GeometryAstro.Data
         {
             PlayerData = new PlayerData()
             {
-                StartHealth = 100f,
-                StartSpeed = 500f,
                 ModelId = 0
             };
         }
@@ -28,8 +26,6 @@ namespace TandC.GeometryAstro.Data
     [Serializable]
     public class PlayerData
     {
-        public float StartHealth;
-        public float StartSpeed;
         public int ModelId;
     }
 }

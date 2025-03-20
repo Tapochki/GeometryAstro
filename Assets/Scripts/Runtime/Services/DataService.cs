@@ -7,6 +7,7 @@ using TandC.GeometryAstro.Settings;
 using TandC.GeometryAstro.Utilities;
 using TandC.GeometryAstro.Utilities.Logging;
 using UnityEngine;
+using VContainer;
 
 namespace TandC.GeometryAstro.Services
 {
@@ -22,6 +23,15 @@ namespace TandC.GeometryAstro.Services
         public AppSettingsData AppSettingsData { get; private set; }
         public PurchaseData PurchaseData { get; private set; }
         public UserData UserData { get; private set; }
+        public ModificatorUpgradeData ModificatorUpgrade { get; private set; }
+
+        private ModificatorUpgradeConfig _modificatorConfig;
+
+        [Inject]
+        private void Construct(MenuConfig menuConfig)
+        {
+            _modificatorConfig = menuConfig.ModificatorConfig;
+        }
 
         public async UniTask Load()
         {
@@ -87,6 +97,10 @@ namespace TandC.GeometryAstro.Services
                     WriteTextToFile(_cacheDataPathes[type], InternalTools.SerializeData(UserData));
                     break;
 
+                case CacheType.UpgradeData:
+                    WriteTextToFile(_cacheDataPathes[type], InternalTools.SerializeData(ModificatorUpgrade));
+                    break;
+
                 default:
                     Log.Default.W($"[{type}] is not implemented");
                     break;
@@ -131,6 +145,18 @@ namespace TandC.GeometryAstro.Services
             UserData = new UserData();
         }
 
+        private void SetDefaultUpgradeData() 
+        {
+            ModificatorUpgrade = new ModificatorUpgradeData();
+            ModificatorUpgrade.UpgradeModificatorsData = new List<UpgradeData>();
+            foreach (var data in _modificatorConfig.StartModificatorsData)
+            {
+                ModificatorUpgrade.UpgradeModificatorsData.Add(
+                    new UpgradeData() { IncreamentData = data.IncreamentData, CurrentLevel = 0 }
+                    );
+            }
+        }
+
         private void LoadCachedData(CacheType type)
         {
             switch (type)
@@ -163,6 +189,13 @@ namespace TandC.GeometryAstro.Services
                     }
                     break;
 
+                case CacheType.UpgradeData:
+                    if (CheckIfPathExist(type, SetDefaultUpgradeData))
+                    {
+                        ModificatorUpgrade = InternalTools.DeserializeData<ModificatorUpgradeData>(File.ReadAllText(_cacheDataPathes[type]));
+                    }
+                    break;
+
                 default:
                     {
                         Log.Default.W($"[{type}] is not implemented");
@@ -189,7 +222,8 @@ namespace TandC.GeometryAstro.Services
                 { CacheType.AppSettingsData, Application.persistentDataPath + AppConstants.LOCAL_APP_DATA_FILE_PATH },
                 { CacheType.PurchaseData, Application.persistentDataPath + AppConstants.LOCAL_PURCHASE_DATA_FILE_PATH },
                 { CacheType.PlayerValutData, Application.persistentDataPath + AppConstants.LOCAL_PLAYER_VAULT_DATA_FILE_PATH },
-                { CacheType.UserData,  Application.persistentDataPath + AppConstants.LOCAL_PLAYER_DATA_FILE_PATH}
+                { CacheType.UserData,  Application.persistentDataPath + AppConstants.LOCAL_PLAYER_DATA_FILE_PATH},
+                { CacheType.UpgradeData,  Application.persistentDataPath + AppConstants.LOCAL_UPGRADE_DATA_FILE_PATH}
             };
         }
 
@@ -214,6 +248,10 @@ namespace TandC.GeometryAstro.Services
 
                 case CacheType.UserData:
                     SetDefaultUserData();
+                    break;
+
+                case CacheType.UpgradeData:
+                    SetDefaultUpgradeData();
                     break;
 
                 default:

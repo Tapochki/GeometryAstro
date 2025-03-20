@@ -108,7 +108,7 @@ namespace TandC.GeometryAstro.Data
         public int Level;
         [Tooltip("Skill Key Upgrade Description. Example KEY_[SkillName]_UPGRADE_DESCRIPTION_LEVEL_[levelValue]")]
         public string Description;
-        [Tooltip("Skill value is used for passive and also replaced in the text if there is %Value% in the text."), Min(0)]
+        [Tooltip("Skill value is used for passive and also replaced in the text if there is %Value% in the text.")]
         public float Value;
         [Tooltip("If the value is counted as a percentage.")]
         public bool IsPercentageValue;

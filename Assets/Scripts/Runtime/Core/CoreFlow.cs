@@ -23,8 +23,10 @@ namespace TandC.GeometryAstro.Core
 
         private readonly IItemSpawner _itemSpawner;
 
-        private WeaponController _weaponController;
-        private TickService _tickService;
+        private readonly WeaponController _weaponController;
+        private readonly TickService _tickService;
+
+        private readonly ModificatorContainer _modificatorContainer;
 
         private readonly LoadObjectsService _loadObjectsService;
         private readonly LocalisationService _localizationService;
@@ -51,7 +53,8 @@ namespace TandC.GeometryAstro.Core
             SoundService soundService,
             UIService uiService,
             SceneService sceneService,
-            SkillService skillService)
+            SkillService skillService,
+            ModificatorContainer modificatorContainer)
         {
             _loadingService = loadingService;
             _dataService = dataService;
@@ -70,10 +73,12 @@ namespace TandC.GeometryAstro.Core
             _uiService = uiService;
             _sceneService = sceneService;
             _skillService = skillService;
+            _modificatorContainer = modificatorContainer;
         }
 
         public async void Start()
         {
+            _modificatorContainer.Init();
             InitPlayer();
             InitItemSpawner();
             InitWeapon();

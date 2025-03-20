@@ -171,7 +171,7 @@ namespace TandC.GeometryAstro.Settings
         //Passive Skills
         None = 0,
         Damage = 1,
-        Health = 2,
+        MaxHealth = 2,
         Armor = 3,
         SpeedMoving = 4,
         ReviveCount = 5,
@@ -181,54 +181,55 @@ namespace TandC.GeometryAstro.Settings
         ÑurseReinforcment = 9,
         BulletsSize = 10,
         Duplicator = 11,
-        HealtRestoreSpeed = 12,
+        HealtRestoreCount = 12,
         ReloadTimer = 13,
         PickUpRadius = 14,
-        ReceivingExpirience = 15,
-        ReceivingCoins = 16,
+        ReceivedExperience = 15,
+        ReceivedCoins = 16,
+        Luck = 17,
         // Active Skills
         //Guns Skills
-        StandartGun = 17,
-        AutoGun = 18,
-        RocketGun = 19,
-        LaserDestroyerGun = 20,
-        MachineGun = 21,
-        EnergyGun = 22,
-        SawGun = 23,
-        AuraGun = 24,
-        NeedleGun = 25,
-        SelfDirectedGun = 26,
-        MineSpawnerGun = 27,
+        StandartGun = 18,
+        AutoGun = 19,
+        RocketGun = 20,
+        LaserDestroyerGun = 21,
+        MachineGun = 22,
+        EnergyGun = 23,
+        SawGun = 24,
+        AuraGun = 25,
+        NeedleGun = 26,
+        SelfDirectedGun = 27,
+        MineSpawnerGun = 28,
 
         // Possible weapons  Skills
-        RifleGun = 28,
-        FlamethrowerGun = 29,
-        PushWaveGun = 30,
-        ChainLightningGun = 31,
-        IceRayGun = 32,
+        RifleGun = 29,
+        FlamethrowerGun = 30,
+        PushWaveGun = 31,
+        ChainLightningGun = 32,
+        IceRayGun = 33,
 
         //Drones Skills
-        DronCaster = 33,
-        Drone = 34,
+        DronCaster = 34,
+        Drone = 35,
         //Abilities Skills
-        Dash = 35,
-        Shield = 36,
-        Cloaking = 37,
+        Dash = 36,
+        Shield = 37,
+        Cloaking = 38,
         //Possible Abilities Skills
-        EnergyReleaser = 38,
-        Overload = 39,
-        ActiveShield = 40,
+        EnergyReleaser = 39,
+        Overload = 40,
+        ActiveShield = 41,
 
         //Inifinit Skills
-        CoinInfitin = 41,
-        ScoreInfinit = 42,
+        CoinInfinite = 42,
+        ScoreInfinite = 43,
     }
 
     public enum ModificatorType 
     {
         None = 0,
         Damage = 1,
-        Health = 2,
+        MaxHealth = 2,
         Armor = 3,
         SpeedMoving = 4,
         ReviveCount = 5,
@@ -238,10 +239,10 @@ namespace TandC.GeometryAstro.Settings
         ÑurseReinforcment = 9,
         BulletsSize = 10,
         Duplicator = 11,
-        HealtRestoreSpeed = 12,
+        HealtRestoreCount = 12,
         ReloadTimer = 13,
         PickUpRadius = 14,
-        ReceivingExpirience = 15,
+        ReceivedExperience = 15,
         ReceivingCoins = 16,
         //Possible Passive Skill
         Luck = 17
@@ -313,7 +314,8 @@ namespace TandC.GeometryAstro.Settings
         AppSettingsData,
         PurchaseData,
         PlayerValutData,
-        UserData
+        UserData,
+        UpgradeData
     }
 
     public enum PurchasingType
