@@ -20,7 +20,7 @@ namespace TandC.GeometryAstro.UI
 
         private GameObject _selfObject;
 
-        public List<SkillItem> _currentSkillsList;
+        public List<SkillItem> CurrentSkillsList { get; private set; }
         private SkillItem _currentSelectedSkill;
 
         public GameObject SelfObject
@@ -47,7 +47,7 @@ namespace TandC.GeometryAstro.UI
             _soundService = soundService;
             _skillService = skillService;
 
-            _currentSkillsList = new List<SkillItem>();
+            CurrentSkillsList = new List<SkillItem>();
 
             _localisationService.OnLanguageWasChangedEvent += OnLanguageWasChangedEventHandler;
         }
@@ -62,15 +62,9 @@ namespace TandC.GeometryAstro.UI
             return _localisationService.GetString(key);
         }
 
-        private void ResetSkillsData()
-        {
-            _currentSkillsList.Clear();
-            _currentSelectedSkill = null;
-        }
-
         public void FillSkillList(SkillItem skill)
         {
-            _currentSkillsList.Add(skill);
+            CurrentSkillsList.Add(skill);
         }
 
         public void SelecSkill(SkillItem skill)
@@ -80,7 +74,7 @@ namespace TandC.GeometryAstro.UI
 
         public List<PreparationSkillData> GetSkills()
         {
-            ResetSkillsData();
+            _currentSelectedSkill = null;
             return _skillService.GetUpgradeOptions(false);
         }
 

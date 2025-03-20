@@ -21,8 +21,6 @@ namespace TandC.GeometryAstro.UI
 
         private Animator _animator;
 
-        private GameObject _template;
-
         public UniqueId Id { get; } = new UniqueId();
 
         public ChestPageView(ChestPageModel model)
@@ -48,12 +46,10 @@ namespace TandC.GeometryAstro.UI
             _coinsObject = selfTransform.Find("Container_Coins").gameObject;
             _flashLight = selfTransform.Find("Flashlight").gameObject;
 
-            _template = _skillContainer.Find("Template").gameObject;
-            _template.SetActive(false);
-
             confirmButton.onClick.AddListener(ConfirmButtonOnClick);
             flashlightButton.onClick.AddListener(FlashlightButtonOnClick);
 
+            PrepareSkillList();
             UpdateText();
         }
 
@@ -132,9 +128,35 @@ namespace TandC.GeometryAstro.UI
             }, 1.0f);
         }
 
+        private void PrepareSkillList()
+        {
+            for (int i = 1; i <= 5; i++)
+            {
+                SkillItem skillItem = new SkillItem(
+                    _skillContainer.Find($"Template_{i}").gameObject,
+                    false
+                );
+
+                _model.FillSkillList(skillItem);
+            }
+        }
+
+        private void DeselectAll()
+        {
+            foreach (var skill in _model.CurrentSkillsList)
+            {
+                skill.Deselect();
+            }
+        }
+
         private void ShowSkillList()
         {
-            ClearSkillsInView();
+            DeselectAll();
+
+            foreach (var item in _model.CurrentSkillsList)
+            {
+                item.Hide();
+            }
 
             var skillList = _model.GetSkills();
             InternalTools.ShuffleList(skillList);
@@ -143,29 +165,10 @@ namespace TandC.GeometryAstro.UI
                 var skillData = skillList[i];
                 var info = skillData.SkillUpgradeInfo;
 
-                SkillItem skillItem = new SkillItem(
-                    MonoBehaviour.Instantiate(_template, _skillContainer),
+                _model.CurrentSkillsList[i].UpdateData(
                     skillData.SkillUpgradeInfo.Level == 1,
-                    true,
                     skillData,
-                    new object[] { _model.GetLocalisation(info.Name), _model.GetFormatedDescription(info) }
-                );
-
-                _model.FillSkillList(skillItem);
-            }
-        }
-
-        private void ClearSkillsInView()
-        {
-            for (int i = 0; i < _skillContainer.childCount; i++)
-            {
-                GameObject child = _skillContainer.GetChild(i).gameObject;
-                if (child.Equals(_template))
-                {
-                    continue;
-                }
-
-                MonoBehaviour.Destroy(child);
+                    new object[] { _model.GetLocalisation(info.Name), _model.GetFormatedDescription(info) });
             }
         }
     }

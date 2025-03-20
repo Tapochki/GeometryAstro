@@ -17,8 +17,6 @@ namespace TandC.GeometryAstro.UI
         private Button _confirmButton;
         private Button _resetSkillsButton;
 
-        private GameObject _template;
-
         public UniqueId Id { get; } = new UniqueId();
 
         public LevelUpPageView(LevelUpPageModel model)
@@ -37,14 +35,13 @@ namespace TandC.GeometryAstro.UI
 
             _skillContainer = container.Find("Container_Skills");
 
-            _template = _skillContainer.Find("Template").gameObject;
-            _template.SetActive(false);
-
             _resetSkillsButton = containerButtons.Find("Button_ResetSkill").GetComponent<Button>();
             _confirmButton = containerButtons.Find("Button_Confirm").GetComponent<Button>();
 
             _resetSkillsButton.onClick.AddListener(SkillReset);
             _confirmButton.onClick.AddListener(Confirm);
+
+            PrepareSkillList();
 
             UpdateText();
         }
@@ -133,24 +130,14 @@ namespace TandC.GeometryAstro.UI
             // TODO - play ClickSound
         }
 
-        private void ShowSkillList()
+        private void PrepareSkillList()
         {
-            ClearSkillsInView();
-
-            var skillList = _model.GetSkills();
-            InternalTools.ShuffleList(skillList);
-            for (int i = 0; i < skillList.Count; i++)
+            for (int i = 1; i <= 5; i++)
             {
-                var skillData = skillList[i];
-                var info = skillData.SkillUpgradeInfo;
-
                 SkillItem skillItem = new SkillItem(
-                    MonoBehaviour.Instantiate(_template, _skillContainer),
-                    skillData.SkillUpgradeInfo.Level == 1,
-                    false,
-                    skillData,
-                    new object[] { _model.GetLocalisation(info.Name), _model.GetFormatedDescription(info) }
-                    );
+                    _skillContainer.Find($"Template_{i}").gameObject,
+                    false
+                );
 
                 skillItem.ItemConfirmSelectionEvent += (PreparationSkillData) =>
                 {
@@ -160,30 +147,43 @@ namespace TandC.GeometryAstro.UI
 
                 skillItem.ItemSelectionChangedEvent += (PreparationSkillData) =>
                 {
-                    Debug.Log(skillItem.SkillData.SkillType);
                     _model.SelecSkill(skillItem);
                     _confirmButton.interactable = true;
-                    foreach (var skill in _model._currentSkillsList)
-                    {
-                        skill.Deselect();
-                    }
+                    DeselectAll();
                 };
 
                 _model.FillSkillList(skillItem);
             }
         }
 
-        private void ClearSkillsInView()
+        private void DeselectAll()
         {
-            for (int i = 0; i < _skillContainer.childCount; i++)
+            foreach (var skill in _model.CurrentSkillsList)
             {
-                GameObject child = _skillContainer.GetChild(i).gameObject;
-                if (child.Equals(_template))
-                {
-                    continue;
-                }
+                skill.Deselect();
+            }
+        }
 
-                MonoBehaviour.Destroy(child);
+        private void ShowSkillList()
+        {
+            DeselectAll();
+
+            foreach (var item in _model.CurrentSkillsList)
+            {
+                item.Hide();
+            }
+
+            var skillList = _model.GetSkills();
+            InternalTools.ShuffleList(skillList);
+            for (int i = 0; i < skillList.Count; i++)
+            {
+                var skillData = skillList[i];
+                var info = skillData.SkillUpgradeInfo;
+
+                _model.CurrentSkillsList[i].UpdateData(
+                    skillData.SkillUpgradeInfo.Level == 1,
+                    skillData,
+                    new object[] { _model.GetLocalisation(info.Name), _model.GetFormatedDescription(info) });
             }
         }
     }

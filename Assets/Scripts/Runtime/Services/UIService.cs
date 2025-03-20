@@ -114,7 +114,6 @@ namespace TandC.GeometryAstro.Utilities
         {
             foreach (var _page in _pages)
             {
-                Debug.Log(_page);
                 _page.Dispose();
             }
 

@@ -1,6 +1,5 @@
 using System;
 using TandC.GeometryAstro.Gameplay;
-using TandC.GeometryAstro.Settings;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -19,29 +18,16 @@ namespace TandC.GeometryAstro.UI.Elements
         private Button _selectButton;
         private Button _buttonConfirmSelection;
 
-        private SkillType _skillType;
-
         private Color SELECTION_COLOR = new Color(0.0f, 0.4f, 0.6f, 1f);
         private Color DESELECTION_COLOR = new Color(0.0f, 0.32f, 0.32f, 1f);
 
-        public SkillItem(GameObject prefab, bool isNew, bool isChestSkill, PreparationSkillData preparationSkillData, object[] texts)
+        public SkillItem(GameObject prefab, bool isChestSkill)
         {
-            SkillData = preparationSkillData;
-            var info = SkillData.SkillUpgradeInfo;
-
             _selfObject = prefab;
-            _selfObject.SetActive(true); // COSTILE
+            _selfObject.SetActive(false);
             _selectButton = _selfObject.GetComponent<Button>();
             _buttonConfirmSelection = _selectButton.transform.Find("Button_Confirm").GetComponent<Button>();
             _buttonConfirmSelection.gameObject.SetActive(false);
-
-            _selfObject.transform.Find("Image_IconBackground/Image_Icon").GetComponent<Image>().sprite = SkillData.SkillSprite;
-
-            _selfObject.transform.Find("Text_SkillDescription").GetComponent<TextMeshProUGUI>().text = (string)texts[0];
-            _selfObject.transform.Find("Text_SkillName").GetComponent<TextMeshProUGUI>().text = (string)texts[1];
-            _selfObject.transform.Find("Text_NewMark").gameObject.SetActive(isNew);
-
-            _skillType = SkillData.SkillType;
 
             SetSelection(false);
 
@@ -53,6 +39,23 @@ namespace TandC.GeometryAstro.UI.Elements
                 _selectButton.interactable = false;
             }
 
+            Deselect();
+        }
+
+        public void UpdateData(bool isNew, PreparationSkillData preparationSkillData, object[] texts)
+        {
+            _selfObject.SetActive(true);
+            SkillData = preparationSkillData;
+            var info = SkillData.SkillUpgradeInfo;
+
+            _selfObject.transform.Find("Image_IconBackground/Image_Icon").GetComponent<Image>().sprite = SkillData.SkillSprite;
+
+            _selfObject.transform.Find("Text_SkillDescription").GetComponent<TextMeshProUGUI>().text = (string)texts[0];
+            _selfObject.transform.Find("Text_SkillName").GetComponent<TextMeshProUGUI>().text = (string)texts[1];
+            _selfObject.transform.Find("Text_NewMark").gameObject.SetActive(isNew);
+
+            _buttonConfirmSelection.gameObject.SetActive(false);
+            SetSelection(false);
             Deselect();
         }
 
@@ -86,9 +89,11 @@ namespace TandC.GeometryAstro.UI.Elements
             ItemConfirmSelectionEvent?.Invoke(SkillData);
         }
 
-        public void Dispose()
+        public void Hide()
         {
-            MonoBehaviour.Destroy(_selfObject);
+            _selfObject.SetActive(false);
         }
+
+        public bool IsActive() => _selectButton.IsActive();
     }
 }
