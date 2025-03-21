@@ -11,8 +11,11 @@ namespace TandC.GeometryAstro.Gameplay
         private readonly BulletData _bulletData;
         private readonly int _startBulletPreloadCount;
 
-        public ProjectileFactory(BulletData bulletData, int startBulletPreloadCount)
+        private IReadableModificator _damageModificator;
+
+        public ProjectileFactory(BulletData bulletData, int startBulletPreloadCount, IReadableModificator damageModificator)
         {
+            _damageModificator = damageModificator;
             _bulletData = bulletData;
             _startBulletPreloadCount = startBulletPreloadCount;
             CreateBulletParent();
@@ -43,7 +46,7 @@ namespace TandC.GeometryAstro.Gameplay
         public void CreateProjectile(Vector2 position, Vector2 direction, float damage)
         {
             var bullet = _pool.Get();
-            bullet.Init(position, direction, b => _pool.Return(b), _bulletData, damage);
+            bullet.Init(position, direction, b => _pool.Return(b), _bulletData, damage * _damageModificator.Value);
         }
     }
 }

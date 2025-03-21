@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using TandC.GeometryAstro.Data;
@@ -15,6 +14,8 @@ namespace TandC.GeometryAstro.Gameplay
         private IEnemyDetector _enemyDetector;
         private WeaponData _data;
 
+        private IReadableModificator _baseDamageModificator;
+
         private float _upgradeTimer = 10f;
 
         private List<WeaponShootingPattern> _shootingPatterns = new();
@@ -22,16 +23,6 @@ namespace TandC.GeometryAstro.Gameplay
         private int _currentLevel = 1;
 
         public WeaponType WeaponType { get; private set; }
-
-        private void Start() 
-        {
-           // _data = _config.GetWeaponByType(WeaponType.StandardGun);
-           // _projectileFactory = new ProjectileFactory(_data.bulletData, _bulletParent, 50);
-            //_reloader = new WeaponReloader(_data.shootDeley);
-            //_enemyDetector = new RaycastEnemyDetector(LayerMask.GetMask("Enemy"));
-
-            RegisterShootingPatterns();
-        }
 
         public void SetData(WeaponData data)
         {
@@ -171,7 +162,6 @@ namespace TandC.GeometryAstro.Gameplay
             if (_upgradeTimer <= 0f)
             {
                 Upgrade();
-                Debug.LogError($"Upgrade: CurrentLevel {_currentLevel}");
                 _upgradeTimer = 10f;
             }
         }

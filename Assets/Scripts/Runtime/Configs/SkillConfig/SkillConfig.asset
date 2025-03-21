@@ -13,365 +13,836 @@ MonoBehaviour:
   m_Name: SkillConfig
   m_EditorClassIdentifier: 
   _useTestSkills: 0
-  _activeSkills:
-  - SkillName: StandartGun
-    SkillIcon: {fileID: 0}
-    Type: 0
-    UseType: 0
-    UpgradesInfo:
-    - Name: StandartGunUpgrade1
-      Level: 1
-      Description: StandartGunUpgrade1
-      Value: 1
-      IsPercentageValue: 0
-    - Name: StandartGunUpgrade2
-      Level: 2
-      Description: StandartGunUpgrade2
-      Value: 2
-      IsPercentageValue: 0
-    - Name: StandartGunUpgrade3
-      Level: 3
-      Description: StandartGunUpgrade3
-      Value: 3
-      IsPercentageValue: 0
-    - Name: StandartGunUpgrade4
-      Level: 4
-      Description: StandartGunUpgrade4
-      Value: 4
-      IsPercentageValue: 0
-    ActiveSkillUpgradeType: 0
-    ExclusionSkillType: 0
-    EvolutionData:
-      EvolutionIcon: {fileID: 0}
-      TypeForEvolution: 0
-      EvolutionInfo:
-        Name: 
-        Level: 0
-        Description: 
-        Value: 0
-        IsPercentageValue: 0
-  - SkillName: AutoGun
-    SkillIcon: {fileID: 0}
-    Type: 12
-    UseType: 0
-    UpgradesInfo:
-    - Name: AutoGunUpgrade1
-      Level: 1
-      Description: AutoGunUpgrade1
-      Value: 1
-      IsPercentageValue: 0
-    - Name: AutoGunUpgrade2
-      Level: 2
-      Description: AutoGunUpgrade2
-      Value: 2
-      IsPercentageValue: 0
-    - Name: AutoGunUpgrade3
-      Level: 3
-      Description: AutoGunUpgrade3
-      Value: 3
-      IsPercentageValue: 0
-    - Name: AutoGunUpgrade4
-      Level: 4
-      Description: AutoGunUpgrade4
-      Value: 4
-      IsPercentageValue: 0
-    ActiveSkillUpgradeType: 0
-    ExclusionSkillType: 0
-    EvolutionData:
-      EvolutionIcon: {fileID: 0}
-      TypeForEvolution: 0
-      EvolutionInfo:
-        Name: 
-        Level: 0
-        Description: 
-        Value: 0
-        IsPercentageValue: 0
-  - SkillName: RocketGun
-    SkillIcon: {fileID: 0}
-    Type: 15
-    UseType: 0
-    UpgradesInfo:
-    - Name: RocketGunUpgrade1
-      Level: 1
-      Description: RocketGunUpgrade1
-      Value: 1
-      IsPercentageValue: 0
-    - Name: RocketGunUpgrade2
-      Level: 2
-      Description: RocketGunUpgrade2
-      Value: 2
-      IsPercentageValue: 0
-    - Name: RocketGunUpgrade3
-      Level: 3
-      Description: RocketGunUpgrade3
-      Value: 3
-      IsPercentageValue: 0
-    - Name: RocketGunUpgrade4
-      Level: 4
-      Description: RocketGunUpgrade4
-      Value: 4
-      IsPercentageValue: 0
-    ActiveSkillUpgradeType: 0
-    ExclusionSkillType: 0
-    EvolutionData:
-      EvolutionIcon: {fileID: 0}
-      TypeForEvolution: 0
-      EvolutionInfo:
-        Name: 
-        Level: 0
-        Description: 
-        Value: 0
-        IsPercentageValue: 0
-  - SkillName: laserGun
-    SkillIcon: {fileID: 0}
-    Type: 18
-    UseType: 0
-    UpgradesInfo:
-    - Name: laserGunUpgrade1
-      Level: 1
-      Description: laserGunUpgrade1
-      Value: 1
-      IsPercentageValue: 0
-    - Name: laserGunUpgrade2
-      Level: 2
-      Description: laserGunUpgrade2
-      Value: 2
-      IsPercentageValue: 0
-    - Name: laserGunUpgrade3
-      Level: 3
-      Description: laserGunUpgrade3
-      Value: 3
-      IsPercentageValue: 0
-    - Name: laserGunUpgrade4
-      Level: 4
-      Description: laserGunUpgrade4
-      Value: 4
-      IsPercentageValue: 0
-    ActiveSkillUpgradeType: 0
-    ExclusionSkillType: 0
-    EvolutionData:
-      EvolutionIcon: {fileID: 0}
-      TypeForEvolution: 0
-      EvolutionInfo:
-        Name: 
-        Level: 0
-        Description: 
-        Value: 0
-        IsPercentageValue: 0
-  - SkillName: MiniGun
-    SkillIcon: {fileID: 0}
-    Type: 19
-    UseType: 0
-    UpgradesInfo:
-    - Name: MiniGunUpgrade1
-      Level: 1
-      Description: MiniGunUpgrade1
-      Value: 1
-      IsPercentageValue: 0
-    - Name: MiniGunUpgrade2
-      Level: 2
-      Description: MiniGunUpgrade2
-      Value: 2
-      IsPercentageValue: 0
-    - Name: MiniGunUpgrade3
-      Level: 3
-      Description: MiniGunUpgrade3
-      Value: 3
-      IsPercentageValue: 0
-    - Name: MiniGunUpgrade4
-      Level: 4
-      Description: MiniGunUpgrade4
-      Value: 4
-      IsPercentageValue: 0
-    ActiveSkillUpgradeType: 0
-    ExclusionSkillType: 0
-    EvolutionData:
-      EvolutionIcon: {fileID: 0}
-      TypeForEvolution: 0
-      EvolutionInfo:
-        Name: 
-        Level: 0
-        Description: 
-        Value: 0
-        IsPercentageValue: 0
+  _activeSkills: []
   _passiveSkills:
-  - SkillName: Armor
-    SkillIcon: {fileID: 0}
-    Type: 4
-    UseType: 1
-    UpgradesInfo:
-    - Name: ArmorUpgrade1
-      Level: 1
-      Description: ArmorUpgrade1
-      Value: 1
-      IsPercentageValue: 0
-    - Name: ArmorUpgrade2
-      Level: 2
-      Description: ArmorUpgrade2
-      Value: 2
-      IsPercentageValue: 0
-    - Name: ArmorUpgrade3
-      Level: 3
-      Description: ArmorUpgrade3
-      Value: 3
-      IsPercentageValue: 0
-    - Name: ArmorUpgrade4
-      Level: 4
-      Description: ArmorUpgrade4
-      Value: 4
-      IsPercentageValue: 0
-    - Name: ArmorUpgrade5
-      Level: 5
-      Description: ArmorUpgrade5
-      Value: 5
-      IsPercentageValue: 0
-    ModificatorUpgradeType: 0
-  - SkillName: MaxHealth
-    SkillIcon: {fileID: 0}
+  - SkillName: Damage
+    SkillIcon: {fileID: 21300000, guid: e7d87d2e18de961448b01cc53d0852e9, type: 3}
     Type: 1
     UseType: 1
     UpgradesInfo:
-    - Name: MaxHealthUpgrade1
+    - Name: Damage New
       Level: 1
-      Description: MaxHealthUpgrade1
-      Value: 1
+      Description: Damage  new
+      Value: 10
       IsPercentageValue: 0
-    - Name: MaxHealthUpgrade2
+    - Name: Damage Level 2
       Level: 2
-      Description: MaxHealthUpgrade2
-      Value: 2
+      Description: Damage Increase
+      Value: 10
       IsPercentageValue: 0
-    - Name: MaxHealthUpgrade3
+    - Name: Damage Level 3
       Level: 3
-      Description: MaxHealthUpgrade3
-      Value: 3
+      Description: Damage Increase
+      Value: 10
       IsPercentageValue: 0
-    - Name: MaxHealthUpgrade4
+    - Name: Damage Level 4
       Level: 4
-      Description: MaxHealthUpgrade4
-      Value: 4
+      Description: Damage Increase
+      Value: 10
       IsPercentageValue: 0
-    - Name: MaxHealthUpgrade5
+    - Name: Damage Level 5
       Level: 5
-      Description: MaxHealthUpgrade5
-      Value: 5
+      Description: Damage Increase
+      Value: 10
       IsPercentageValue: 0
-    ModificatorUpgradeType: 0
-  - SkillName: Speed
-    SkillIcon: {fileID: 0}
+    - Name: Damage Level 6
+      Level: 6
+      Description: Damage Increase
+      Value: 10
+      IsPercentageValue: 0
+    - Name: Damage Level 7
+      Level: 7
+      Description: Damage Increase
+      Value: 10
+      IsPercentageValue: 0
+    - Name: Damage Level 8
+      Level: 8
+      Description: Damage Increase
+      Value: 10
+      IsPercentageValue: 0
+    - Name: Damage Level 9
+      Level: 9
+      Description: Damage Increase
+      Value: 10
+      IsPercentageValue: 0
+    - Name: Damage Level 10
+      Level: 10
+      Description: Damage Increase
+      Value: 10
+      IsPercentageValue: 0
+    ModificatorUpgradeType: 1
+  - SkillName: MaxHealth
+    SkillIcon: {fileID: 21300000, guid: 92b92c8df3f18d4498490a29e8c5642f, type: 3}
     Type: 2
     UseType: 1
     UpgradesInfo:
-    - Name: SpeedUpgrade1
+    - Name: MaxHealth New
       Level: 1
-      Description: SpeedUpgrade1
+      Description: Max Health New
+      Value: 25
+      IsPercentageValue: 0
+    - Name: MaxHealth Level 2
+      Level: 2
+      Description: Max Health Increase
+      Value: 25
+      IsPercentageValue: 0
+    - Name: MaxHealth Level 3
+      Level: 3
+      Description: Max Health Increase
+      Value: 25
+      IsPercentageValue: 0
+    - Name: MaxHealth Level 4
+      Level: 4
+      Description: Max Health Increase
+      Value: 25
+      IsPercentageValue: 0
+    - Name: MaxHealth Level 5
+      Level: 5
+      Description: Max Health Increase
+      Value: 25
+      IsPercentageValue: 0
+    - Name: MaxHealth Level 6
+      Level: 6
+      Description: Max Health Increase
+      Value: 25
+      IsPercentageValue: 0
+    - Name: MaxHealth Level 7
+      Level: 7
+      Description: Max Health Increase
+      Value: 25
+      IsPercentageValue: 0
+    - Name: MaxHealth Level 8
+      Level: 8
+      Description: Max Health Increase
+      Value: 25
+      IsPercentageValue: 0
+    - Name: MaxHealth Level 9
+      Level: 9
+      Description: Max Health Increase
+      Value: 25
+      IsPercentageValue: 0
+    - Name: MaxHealth Level 10
+      Level: 10
+      Description: Max Health Increase
+      Value: 25
+      IsPercentageValue: 0
+    ModificatorUpgradeType: 2
+  - SkillName: Armor
+    SkillIcon: {fileID: 21300000, guid: 6db0794b57f7e9a409d3f65fa006386f, type: 3}
+    Type: 3
+    UseType: 1
+    UpgradesInfo:
+    - Name: Armor New
+      Level: 1
+      Description: Armor new
+      Value: 3
+      IsPercentageValue: 1
+    - Name: Armor Level 2
+      Level: 2
+      Description: Armor Increase
+      Value: 3
+      IsPercentageValue: 1
+    - Name: Armor Level 3
+      Level: 3
+      Description: Armor Increase
+      Value: 3
+      IsPercentageValue: 1
+    - Name: Armor Level 4
+      Level: 4
+      Description: ArmorIncrease
+      Value: 3
+      IsPercentageValue: 1
+    - Name: Armor Level 5
+      Level: 5
+      Description: Armor Increase
+      Value: 3
+      IsPercentageValue: 1
+    - Name: Armor Level 6
+      Level: 6
+      Description: Armor Increase
+      Value: 3
+      IsPercentageValue: 1
+    - Name: Armor Level 7
+      Level: 7
+      Description: Armor Increase
+      Value: 3
+      IsPercentageValue: 1
+    - Name: Armor Level 8
+      Level: 8
+      Description: Armor Increase
+      Value: 3
+      IsPercentageValue: 1
+    - Name: Armor Level 9
+      Level: 9
+      Description: Armor Increase
+      Value: 3
+      IsPercentageValue: 1
+    - Name: Armor Level 10
+      Level: 10
+      Description: Armor Increase
+      Value: 3
+      IsPercentageValue: 1
+    ModificatorUpgradeType: 3
+  - SkillName: Speed
+    SkillIcon: {fileID: 21300000, guid: 375fa44e98b3b4e43b6736913fed1f4c, type: 3}
+    Type: 4
+    UseType: 1
+    UpgradesInfo:
+    - Name: Speed New
+      Level: 1
+      Description: Speed New
+      Value: 10
+      IsPercentageValue: 1
+    - Name: Speed 2
+      Level: 2
+      Description: Speed
+      Value: 10
+      IsPercentageValue: 1
+    - Name: Speed 3
+      Level: 3
+      Description: Speed
+      Value: 10
+      IsPercentageValue: 1
+    - Name: Speed 4
+      Level: 4
+      Description: Speed
+      Value: 10
+      IsPercentageValue: 1
+    - Name: Speed 5
+      Level: 5
+      Description: Speed
+      Value: 10
+      IsPercentageValue: 1
+    - Name: Speed 6
+      Level: 6
+      Description: Speed
+      Value: 10
+      IsPercentageValue: 1
+    - Name: Speed 7
+      Level: 7
+      Description: Speed
+      Value: 10
+      IsPercentageValue: 1
+    - Name: Speed 8
+      Level: 8
+      Description: Speed
+      Value: 10
+      IsPercentageValue: 1
+    - Name: Speed 9
+      Level: 9
+      Description: Speed
+      Value: 10
+      IsPercentageValue: 1
+    - Name: Speed 10
+      Level: 10
+      Description: Speed
+      Value: 10
+      IsPercentageValue: 1
+    ModificatorUpgradeType: 4
+  - SkillName: ReviveCount
+    SkillIcon: {fileID: 21300000, guid: c999327a25f4ed04482e6b4949000614, type: 3}
+    Type: 5
+    UseType: 1
+    UpgradesInfo:
+    - Name: Revive New
+      Level: 1
+      Description: Revive New
       Value: 1
       IsPercentageValue: 0
-    - Name: SpeedUpgrade2
+    ModificatorUpgradeType: 5
+  - SkillName: Reloader
+    SkillIcon: {fileID: 21300000, guid: bd239fc7bc743454cb6a4a01de9d328b, type: 3}
+    Type: 13
+    UseType: 1
+    UpgradesInfo:
+    - Name: Fast Reloader New
+      Level: 1
+      Description: Fast Reload new
+      Value: -3
+      IsPercentageValue: 0
+    - Name: Fast Reloader 2
       Level: 2
-      Description: SpeedUpgrade2
-      Value: 2
+      Description: Fast Reload
+      Value: -3
       IsPercentageValue: 0
-    - Name: SpeedUpgrade3
+    - Name: Fast Reloader 3
       Level: 3
-      Description: SpeedUpgrade3
-      Value: 3
+      Description: Fast Reload
+      Value: -3
       IsPercentageValue: 0
-    - Name: SpeedUpgrade4
+    - Name: Fast Reloader 4
       Level: 4
-      Description: SpeedUpgrade4
-      Value: 4
+      Description: Fast Reload
+      Value: -3
       IsPercentageValue: 0
-    - Name: SpeedUpgrade5
+    - Name: Fast Reloader 5
       Level: 5
-      Description: SpeedUpgrade5
-      Value: 5
+      Description: Fast Reload
+      Value: -3
       IsPercentageValue: 0
-    ModificatorUpgradeType: 0
-  - SkillName: Damage
-    SkillIcon: {fileID: 0}
+    - Name: Fast Reloader 6
+      Level: 6
+      Description: Fast Reload
+      Value: -3
+      IsPercentageValue: 0
+    - Name: Fast Reloader 7
+      Level: 7
+      Description: Fast Reload
+      Value: 25
+      IsPercentageValue: 0
+    - Name: Fast Reloader 8
+      Level: 8
+      Description: Fast Reload
+      Value: -3
+      IsPercentageValue: 0
+    - Name: Fast Reloader 9
+      Level: 9
+      Description: Fast Reload
+      Value: -3
+      IsPercentageValue: 0
+    - Name: Fast Reloader 10
+      Level: 10
+      Description: Fast Reload
+      Value: -3
+      IsPercentageValue: 0
+    ModificatorUpgradeType: 13
+  - SkillName: Regeneration
+    SkillIcon: {fileID: 21300000, guid: 5baa6ee19365cf145bfe86a8577f855b, type: 3}
+    Type: 12
+    UseType: 1
+    UpgradesInfo:
+    - Name: Regeneration New
+      Level: 1
+      Description: Regeneration new
+      Value: 0.1
+      IsPercentageValue: 0
+    - Name: Regeneration 2
+      Level: 2
+      Description: Regeneration
+      Value: 0.1
+      IsPercentageValue: 0
+    - Name: Regeneration 3
+      Level: 3
+      Description: Regeneration
+      Value: 0.1
+      IsPercentageValue: 0
+    - Name: Regeneration 4
+      Level: 4
+      Description: Regeneration
+      Value: 0.1
+      IsPercentageValue: 0
+    - Name: Regeneration 5
+      Level: 5
+      Description: Regeneration
+      Value: 0.1
+      IsPercentageValue: 0
+    - Name: Regeneration 6
+      Level: 6
+      Description: Regeneration
+      Value: 0.1
+      IsPercentageValue: 0
+    - Name: Regeneration 7
+      Level: 7
+      Description: Regeneration
+      Value: 0.1
+      IsPercentageValue: 0
+    - Name: Regeneration 8
+      Level: 8
+      Description: Regeneration
+      Value: 0.1
+      IsPercentageValue: 0
+    - Name: Regeneration 9
+      Level: 9
+      Description: Regeneration
+      Value: 0.1
+      IsPercentageValue: 0
+    - Name: Regeneration 10
+      Level: 10
+      Description: Regeneration
+      Value: 0.1
+      IsPercentageValue: 0
+    ModificatorUpgradeType: 12
+  - SkillName: Magnet
+    SkillIcon: {fileID: 21300000, guid: 405c29e796ce8c34c95ef7e0b10e445e, type: 3}
+    Type: 14
+    UseType: 1
+    UpgradesInfo:
+    - Name: Magnet New
+      Level: 1
+      Description: Magnet new
+      Value: 20
+      IsPercentageValue: 1
+    - Name: Magnet 2
+      Level: 2
+      Description: Magnet
+      Value: 20
+      IsPercentageValue: 1
+    - Name: Magnet 3
+      Level: 3
+      Description: Magnet
+      Value: 20
+      IsPercentageValue: 1
+    - Name: Magnet 4
+      Level: 4
+      Description: Magnet
+      Value: 20
+      IsPercentageValue: 1
+    - Name: Magnet 5
+      Level: 5
+      Description: Magnet
+      Value: 20
+      IsPercentageValue: 1
+    - Name: Magnet 6
+      Level: 6
+      Description: Magnet
+      Value: 20
+      IsPercentageValue: 1
+    - Name: Magnet 7
+      Level: 7
+      Description: Magnet
+      Value: 20
+      IsPercentageValue: 1
+    - Name: Magnet 8
+      Level: 8
+      Description: Magnet
+      Value: 20
+      IsPercentageValue: 1
+    - Name: Magnet 9
+      Level: 9
+      Description: Magnet
+      Value: 20
+      IsPercentageValue: 1
+    - Name: Magnet 10
+      Level: 10
+      Description: Magnet
+      Value: 20
+      IsPercentageValue: 1
+    ModificatorUpgradeType: 14
+  - SkillName: Critical Damage
+    SkillIcon: {fileID: 21300000, guid: 26999ab674c817941b813c2b2aa70393, type: 3}
+    Type: 6
+    UseType: 1
+    UpgradesInfo:
+    - Name: 'Critical Damage New '
+      Level: 1
+      Description: 'Critical Damage New '
+      Value: 0.25
+      IsPercentageValue: 1
+    - Name: Critical Damage 2
+      Level: 2
+      Description: Critical Damage
+      Value: 0.25
+      IsPercentageValue: 1
+    - Name: Critical Damage 3
+      Level: 3
+      Description: Critical Damage
+      Value: 0.25
+      IsPercentageValue: 1
+    - Name: Critical Damage 4
+      Level: 4
+      Description: Critical Damage
+      Value: 0.25
+      IsPercentageValue: 1
+    - Name: Critical Damage 5
+      Level: 5
+      Description: Critical Damage
+      Value: 0.25
+      IsPercentageValue: 1
+    - Name: Critical Damage 6
+      Level: 6
+      Description: Critical Damage
+      Value: 0.25
+      IsPercentageValue: 1
+    - Name: Critical Damage 7
+      Level: 7
+      Description: Critical Damage
+      Value: 0.25
+      IsPercentageValue: 1
+    - Name: Critical Damage 8
+      Level: 8
+      Description: Critical Damage
+      Value: 0.25
+      IsPercentageValue: 1
+    - Name: Critical Damage 9
+      Level: 9
+      Description: Critical Damage
+      Value: 0.25
+      IsPercentageValue: 1
+    - Name: Critical Damage 10
+      Level: 10
+      Description: Critical Damage
+      Value: 0.25
+      IsPercentageValue: 1
+    ModificatorUpgradeType: 6
+  - SkillName: Critical Chance
+    SkillIcon: {fileID: 21300000, guid: 14aac5af2708b4742a8a39e4fd625720, type: 3}
+    Type: 7
+    UseType: 1
+    UpgradesInfo:
+    - Name: 'Critical Chance New '
+      Level: 1
+      Description: 'Critical Chance New '
+      Value: 2
+      IsPercentageValue: 1
+    - Name: Critical Chance 2
+      Level: 2
+      Description: Critical Chance
+      Value: 2
+      IsPercentageValue: 1
+    - Name: Critical Chance 3
+      Level: 3
+      Description: Critical Chance
+      Value: 2
+      IsPercentageValue: 1
+    - Name: Critical Chance 4
+      Level: 4
+      Description: Critical Chance
+      Value: 2
+      IsPercentageValue: 1
+    - Name: Critical Chance 5
+      Level: 5
+      Description: Critical Chance
+      Value: 2
+      IsPercentageValue: 1
+    - Name: Critical Chance 6
+      Level: 6
+      Description: Critical Chance
+      Value: 2
+      IsPercentageValue: 1
+    - Name: Critical Chance 7
+      Level: 7
+      Description: Critical Chance
+      Value: 2
+      IsPercentageValue: 1
+    - Name: Critical Chance 8
+      Level: 8
+      Description: Critical Chance
+      Value: 2
+      IsPercentageValue: 1
+    - Name: Critical Chance 9
+      Level: 9
+      Description: Critical Chance
+      Value: 2
+      IsPercentageValue: 1
+    - Name: Critical Chance 10
+      Level: 10
+      Description: Critical Chance
+      Value: 2
+      IsPercentageValue: 1
+    ModificatorUpgradeType: 7
+  - SkillName: Curse Provocation
+    SkillIcon: {fileID: 21300000, guid: 14aac5af2708b4742a8a39e4fd625720, type: 3}
     Type: 8
     UseType: 1
     UpgradesInfo:
-    - Name: DamageUpgrade1
+    - Name: 'Curse Provocation New '
       Level: 1
-      Description: DamageUpgrade1
-      Value: 1
-      IsPercentageValue: 0
-    - Name: DamageUpgrade2
+      Description: 'Curse Provocation New '
+      Value: 0.1
+      IsPercentageValue: 1
+    - Name: Curse Provocation 2
       Level: 2
-      Description: DamageUpgrade2
-      Value: 2
-      IsPercentageValue: 0
-    - Name: DamageUpgrade3
+      Description: Curse Provocation
+      Value: 0.1
+      IsPercentageValue: 1
+    - Name: Curse Provocation 3
       Level: 3
-      Description: DamageUpgrade3
-      Value: 3
-      IsPercentageValue: 0
-    - Name: DamageUpgrade4
+      Description: Curse Provocation
+      Value: 0.1
+      IsPercentageValue: 1
+    - Name: Curse Provocation 4
       Level: 4
-      Description: DamageUpgrade4
-      Value: 4
-      IsPercentageValue: 0
-    - Name: DamageUpgrade5
+      Description: Curse Provocation
+      Value: 0.1
+      IsPercentageValue: 1
+    - Name: Curse Provocation 5
       Level: 5
-      Description: DamageUpgrade5
-      Value: 5
-      IsPercentageValue: 0
-    ModificatorUpgradeType: 0
-  - SkillName: EXP
-    SkillIcon: {fileID: 0}
-    Type: 17
+      Description: Curse Provocation
+      Value: 0.1
+      IsPercentageValue: 1
+    - Name: Curse Provocation 6
+      Level: 6
+      Description: Curse Provocation
+      Value: 0.1
+      IsPercentageValue: 1
+    - Name: Curse Provocation 7
+      Level: 7
+      Description: Curse Provocation
+      Value: 0.1
+      IsPercentageValue: 1
+    - Name: Curse Provocation 8
+      Level: 8
+      Description: Curse Provocation
+      Value: 0.1
+      IsPercentageValue: 1
+    - Name: Curse Provocation 9
+      Level: 9
+      Description: Curse Provocation
+      Value: 0.1
+      IsPercentageValue: 1
+    - Name: Curse Provocation 10
+      Level: 10
+      Description: Curse Provocation
+      Value: 0.1
+      IsPercentageValue: 1
+    ModificatorUpgradeType: 8
+  - SkillName: "\u0421urseReinforcement"
+    SkillIcon: {fileID: 21300000, guid: 48b510ccc135fda46bee76d9558c7125, type: 3}
+    Type: 9
     UseType: 1
     UpgradesInfo:
-    - Name: EXPUpgrade1
+    - Name: "\u0421urseReinforcement New "
       Level: 1
-      Description: KEY_EXP_UPGRADE_DESCRIPTION_1
+      Description: "\u0421urseReinforcement New "
+      Value: 0.1
+      IsPercentageValue: 1
+    - Name: "\u0421urseReinforcement 2"
+      Level: 2
+      Description: "\u0421urseReinforcement"
+      Value: 0.1
+      IsPercentageValue: 1
+    - Name: "\u0421urseReinforcement 3"
+      Level: 3
+      Description: "\u0421urseReinforcement"
+      Value: 0.1
+      IsPercentageValue: 1
+    - Name: "\u0421urseReinforcement 4"
+      Level: 4
+      Description: "\u0421urseReinforcement"
+      Value: 0.1
+      IsPercentageValue: 1
+    - Name: "\u0421urseReinforcement 5"
+      Level: 5
+      Description: "\u0421urseReinforcement"
+      Value: 0.1
+      IsPercentageValue: 1
+    - Name: "\u0421urseReinforcement 6"
+      Level: 6
+      Description: "\u0421urseReinforcement"
+      Value: 0.1
+      IsPercentageValue: 1
+    - Name: "\u0421urseReinforcement 7"
+      Level: 7
+      Description: "\u0421urseReinforcement"
+      Value: 0.1
+      IsPercentageValue: 1
+    - Name: "\u0421urseReinforcement 8"
+      Level: 8
+      Description: "\u0421urseReinforcement"
+      Value: 0.1
+      IsPercentageValue: 1
+    - Name: "\u0421urseReinforcement 9"
+      Level: 9
+      Description: "\u0421urseReinforcement"
+      Value: 0.1
+      IsPercentageValue: 1
+    - Name: "\u0421urseReinforcement 10"
+      Level: 10
+      Description: "\u0421urseReinforcement"
+      Value: 0.1
+      IsPercentageValue: 1
+    ModificatorUpgradeType: 9
+  - SkillName: Duplicator
+    SkillIcon: {fileID: 21300000, guid: a62c6f4c57737574b87e498d2cfa6f1b, type: 3}
+    Type: 11
+    UseType: 1
+    UpgradesInfo:
+    - Name: 'Duplicator New '
+      Level: 1
+      Description: 'Duplicator New '
       Value: 1
       IsPercentageValue: 0
-    - Name: EXPUpgrade2
+    ModificatorUpgradeType: 11
+  - SkillName: BulletsSize
+    SkillIcon: {fileID: 21300000, guid: 48b510ccc135fda46bee76d9558c7125, type: 3}
+    Type: 10
+    UseType: 1
+    UpgradesInfo:
+    - Name: 'BulletsSize New '
+      Level: 1
+      Description: 'BulletsSize New '
+      Value: 0.1
+      IsPercentageValue: 1
+    - Name: BulletsSize 2
       Level: 2
-      Description: EXPUpgrade2
-      Value: 2
-      IsPercentageValue: 0
-    - Name: EXPUpgrade3
+      Description: BulletsSize
+      Value: 0.1
+      IsPercentageValue: 1
+    - Name: BulletsSize 3
       Level: 3
-      Description: EXPUpgrade3
-      Value: 3
-      IsPercentageValue: 0
-    - Name: EXPUpgrade4
+      Description: BulletsSize
+      Value: 0.1
+      IsPercentageValue: 1
+    - Name: BulletsSize 4
       Level: 4
-      Description: EXPUpgrade4
-      Value: 4
-      IsPercentageValue: 0
-    - Name: EXPUpgrade5
+      Description: BulletsSize
+      Value: 0.1
+      IsPercentageValue: 1
+    - Name: BulletsSize 5
       Level: 5
-      Description: EXPUpgrade5
-      Value: 5
-      IsPercentageValue: 0
-    ModificatorUpgradeType: 0
+      Description: BulletsSize
+      Value: 0.1
+      IsPercentageValue: 1
+    - Name: BulletsSize 6
+      Level: 6
+      Description: BulletsSize
+      Value: 0.1
+      IsPercentageValue: 1
+    - Name: BulletsSize 7
+      Level: 7
+      Description: BulletsSize
+      Value: 0.1
+      IsPercentageValue: 1
+    - Name: BulletsSize 8
+      Level: 8
+      Description: BulletsSize
+      Value: 0.1
+      IsPercentageValue: 1
+    - Name: BulletsSize 9
+      Level: 9
+      Description: BulletsSize
+      Value: 0.1
+      IsPercentageValue: 1
+    - Name: BulletsSize 10
+      Level: 10
+      Description: BulletsSize
+      Value: 0.1
+      IsPercentageValue: 1
+    ModificatorUpgradeType: 10
+  - SkillName: Receiving Experience
+    SkillIcon: {fileID: 21300000, guid: e584b432052af3046be1c71bc54e4d54, type: 3}
+    Type: 15
+    UseType: 1
+    UpgradesInfo:
+    - Name: 'Receiving Experience New '
+      Level: 1
+      Description: 'Receiving Experience New '
+      Value: 0.25
+      IsPercentageValue: 1
+    - Name: Receiving Experience 2
+      Level: 2
+      Description: Receiving Experience
+      Value: 0.25
+      IsPercentageValue: 1
+    - Name: Receiving Experience 3
+      Level: 3
+      Description: Receiving Experience
+      Value: 0.25
+      IsPercentageValue: 1
+    - Name: Receiving Experience 4
+      Level: 4
+      Description: Receiving Experience
+      Value: 0.25
+      IsPercentageValue: 1
+    - Name: Receiving Experience 5
+      Level: 5
+      Description: Receiving Experience
+      Value: 0.25
+      IsPercentageValue: 1
+    - Name: Receiving Experience 6
+      Level: 6
+      Description: Receiving Experience
+      Value: 0.25
+      IsPercentageValue: 1
+    - Name: Receiving Experience 7
+      Level: 7
+      Description: Receiving Experience
+      Value: 0.25
+      IsPercentageValue: 1
+    - Name: Receiving Experience 8
+      Level: 8
+      Description: Receiving Experience
+      Value: 0.25
+      IsPercentageValue: 1
+    - Name: Receiving Experience 9
+      Level: 9
+      Description: Receiving Experience
+      Value: 0.25
+      IsPercentageValue: 1
+    - Name: Receiving Experience 10
+      Level: 10
+      Description: Receiving Experience
+      Value: 0.25
+      IsPercentageValue: 1
+    ModificatorUpgradeType: 15
+  - SkillName: Receiving Coins
+    SkillIcon: {fileID: 21300000, guid: 8c1b27e5c99daa442bd7b8179c044aba, type: 3}
+    Type: 16
+    UseType: 1
+    UpgradesInfo:
+    - Name: 'Receiving Coins New '
+      Level: 1
+      Description: 'Receiving Coins New '
+      Value: 0.25
+      IsPercentageValue: 1
+    - Name: Receiving Coins 2
+      Level: 2
+      Description: Receiving Coins
+      Value: 0.25
+      IsPercentageValue: 1
+    - Name: Receiving Coins 3
+      Level: 3
+      Description: Receiving Coins
+      Value: 0.25
+      IsPercentageValue: 1
+    - Name: Receiving Coins 4
+      Level: 4
+      Description: Receiving Coins
+      Value: 0.25
+      IsPercentageValue: 1
+    - Name: Receiving Coins 5
+      Level: 5
+      Description: Receiving Coins
+      Value: 0.25
+      IsPercentageValue: 1
+    - Name: Receiving Coins 6
+      Level: 6
+      Description: Receiving Coins
+      Value: 0.25
+      IsPercentageValue: 1
+    - Name: Receiving Coins 7
+      Level: 7
+      Description: Receiving Coins
+      Value: 0.25
+      IsPercentageValue: 1
+    - Name: Receiving Coins 8
+      Level: 8
+      Description: Receiving Coins
+      Value: 0.25
+      IsPercentageValue: 1
+    - Name: Receiving Coins 9
+      Level: 9
+      Description: Receiving Coins
+      Value: 0.25
+      IsPercentageValue: 1
+    - Name: Receiving Coins 10
+      Level: 10
+      Description: Receiving Coins
+      Value: 0.25
+      IsPercentageValue: 1
+    ModificatorUpgradeType: 16
   _additionSkills:
-  - SkillName: Coin
-    SkillIcon: {fileID: 0}
-    Type: 23
+  - SkillName: Score Infinite
+    SkillIcon: {fileID: 21300000, guid: 8c1b27e5c99daa442bd7b8179c044aba, type: 3}
+    Type: 42
     UseType: 1
     UpgradesInfo:
-    - Name: Coin
+    - Name: Score Infinite
       Level: 1
-      Description: Coin
-      Value: 11
+      Description: Score Infinite
+      Value: 100
       IsPercentageValue: 0
     ModificatorUpgradeType: 0
-  - SkillName: Score
-    SkillIcon: {fileID: 0}
-    Type: 24
+  - SkillName: Score Infinite
+    SkillIcon: {fileID: 21300000, guid: 8c1b27e5c99daa442bd7b8179c044aba, type: 3}
+    Type: 43
     UseType: 1
     UpgradesInfo:
-    - Name: Score
+    - Name: Score Infinite
       Level: 1
-      Description: Score
-      Value: 11
+      Description: Score Infinite
+      Value: 100
       IsPercentageValue: 0
     ModificatorUpgradeType: 0
-  _startAvailableSkills: 000000000c0000000f00000012000000130000000400000001000000020000000800000011000000
+  _startAvailableSkills: 0100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d0000000d0000000e0000000f00000010000000
   _startAvailableTestSkills: 

@@ -5,26 +5,28 @@ namespace TandC.GeometryAstro.Gameplay
     public class HealthRegenerator
     {
         private IHealth _health;
-        private float _regenAmount;
-        private float _regenCooldown;
+        private IReadableModificator _regenModificator;
         private float _timeSinceLastRegen;
 
-        public HealthRegenerator(IHealth health, float regenAmount, float regenCooldown)
+        public HealthRegenerator(IHealth health, IReadableModificator regenModificator)
         {
             _health = health;
-            _regenAmount = regenAmount;
-            _regenCooldown = regenCooldown;
+            _regenModificator = regenModificator;
+            _timeSinceLastRegen = 1f;
         }
 
         public void Tick()
         {
-            if (_health.CurrentHealth > 0)
+            if(_regenModificator.Value > 0) 
             {
-                _timeSinceLastRegen += Time.deltaTime;
-                if (_timeSinceLastRegen >= _regenCooldown)
+                if (_health.CurrentHealth > 0)
                 {
-                    _health.Heal(_regenAmount);
-                    _timeSinceLastRegen = 0;
+                    _timeSinceLastRegen -= Time.deltaTime;
+                    if (_timeSinceLastRegen <= 0)
+                    {
+                        _health.Heal(_regenModificator.Value);
+                        _timeSinceLastRegen = 1f;
+                    }
                 }
             }
         }

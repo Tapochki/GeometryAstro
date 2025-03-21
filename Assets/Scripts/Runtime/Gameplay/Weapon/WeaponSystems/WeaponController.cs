@@ -4,7 +4,6 @@ using TandC.GeometryAstro.Data;
 using TandC.GeometryAstro.Gameplay;
 using TandC.GeometryAstro.Services;
 using TandC.GeometryAstro.Settings;
-using UnityEngine;
 using VContainer;
 
 public class WeaponController
@@ -13,12 +12,14 @@ public class WeaponController
     private IWeaponFactory _weaponFactory;
     private WeaponConfig _config;
     private TickService _tickService;
+    private ModificatorContainer _modificatorContainer;
 
     [Inject]
-    private void Construct(GameConfig config, TickService tickService) 
+    private void Construct(GameConfig config, TickService tickService, ModificatorContainer modificatorContainer) 
     {
         _config = config.WeaponConfig;
         _tickService = tickService;
+        _modificatorContainer = modificatorContainer;
     }
 
     public WeaponController() 
@@ -36,8 +37,8 @@ public class WeaponController
     {
         return _weaponFactory.GetBuilder(type)
             .SetConfig(_config)
-            .SetProjectileFactory()
-            .SetReloader()
+            .SetProjectileFactory(_modificatorContainer.GetModificator(ModificatorType.Damage))
+            .SetReloader(_modificatorContainer.GetModificator(ModificatorType.ReloadTimer))
             .SetEnemyDetector()
             .Build();
     }

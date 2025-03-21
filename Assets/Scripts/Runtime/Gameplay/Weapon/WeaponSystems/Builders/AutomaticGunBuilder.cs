@@ -14,15 +14,15 @@ namespace TandC.GeometryAstro.Gameplay
             return this;
         }
 
-        public override IWeaponBuilder SetProjectileFactory()
+        public override IWeaponBuilder SetProjectileFactory(IReadableModificator damageModificator)
         {
-            _weapon.SetProjectileFactory(new ProjectileFactory(_config.GetWeaponByType(_weaponType).bulletData, _startBulletPreloadCount));
+            _weapon.SetProjectileFactory(new ProjectileFactory(_config.GetWeaponByType(_weaponType).bulletData, _startBulletPreloadCount, damageModificator));
             return this;
         }
 
-        public override IWeaponBuilder SetReloader()
+        public override IWeaponBuilder SetReloader(IReadableModificator reloadModificator)
         {
-            _weapon.SetReloader(new WeaponReloader(_config.GetWeaponByType(_weaponType).shootDeley));
+            _weapon.SetReloader(new WeaponReloader(_config.GetWeaponByType(_weaponType).shootDeley, reloadModificator));
             return this;
         }
 

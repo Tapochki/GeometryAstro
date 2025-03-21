@@ -20,8 +20,8 @@ namespace TandC.GeometryAstro.Gameplay
         }
 
         public abstract IWeaponBuilder SetData();
-        public abstract IWeaponBuilder SetProjectileFactory();
-        public abstract IWeaponBuilder SetReloader();
+        public abstract IWeaponBuilder SetProjectileFactory(IReadableModificator damageModificator);
+        public abstract IWeaponBuilder SetReloader(IReadableModificator reloadModificator);
         public abstract IWeaponBuilder SetEnemyDetector();
 
         public IWeapon Build()

@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StartParams:
   - Type: 1
-    StartValue: 0
-    IsPercentageValue: 0
+    StartValue: 1
+    IsPercentageValue: 1
   - Type: 2
     StartValue: 100
     IsPercentageValue: 0
@@ -24,7 +24,7 @@ MonoBehaviour:
     IsPercentageValue: 0
   - Type: 4
     StartValue: 500
-    IsPercentageValue: 0
+    IsPercentageValue: 1
   - Type: 5
     StartValue: 0
     IsPercentageValue: 0
@@ -50,11 +50,11 @@ MonoBehaviour:
     StartValue: 0
     IsPercentageValue: 0
   - Type: 13
-    StartValue: 0
-    IsPercentageValue: 0
+    StartValue: 1
+    IsPercentageValue: 1
   - Type: 14
     StartValue: 18
-    IsPercentageValue: 0
+    IsPercentageValue: 1
   - Type: 15
     StartValue: 1
     IsPercentageValue: 0

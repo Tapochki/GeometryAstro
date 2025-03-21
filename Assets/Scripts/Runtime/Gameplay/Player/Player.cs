@@ -32,6 +32,10 @@ namespace TandC.GeometryAstro.Gameplay
 
         private ModificatorContainer _modificatorContainer;
 
+        private HealthRegenerator _healthRegenerator;
+
+        private ItemPickUper _itemPickuper;
+
         [Inject]
         private void Construct(IGameplayInputHandler inputHandler, ModificatorContainer modificatorContainer, TickService tickService)
         {
@@ -52,12 +56,16 @@ namespace TandC.GeometryAstro.Gameplay
 
             _moveComponent = new MoveComponent(gameObject.GetComponent<Rigidbody2D>());
             _mainRotateComponent = new PlayerRotateComponent(_bodyTransform);
-            Debug.LogError(_modificatorContainer);
+
             _healthComponent = new ModifiableHealth(new HealthWithView
                 (new HealthComponent(_modificatorContainer.GetModificator(Settings.ModificatorType.MaxHealth).Value, _onPlayerDieEvent), _onHealthChageEvent),
                 _modificatorContainer.GetModificator(Settings.ModificatorType.MaxHealth),
                 _modificatorContainer.GetModificator(Settings.ModificatorType.Armor));
 
+            _itemPickuper = FindAnyObjectByType<ItemPickUper>();
+            _itemPickuper.SetModificator(_modificatorContainer.GetModificator(Settings.ModificatorType.PickUpRadius));
+
+            _healthRegenerator = new HealthRegenerator(_healthComponent, _modificatorContainer.GetModificator(Settings.ModificatorType.HealtRestoreCount));
             _tickService.RegisterFixedUpdate(FixedTick);
         }
 
@@ -77,6 +85,7 @@ namespace TandC.GeometryAstro.Gameplay
             {
                 _mainRotateComponent.Update();
             }
+            _healthRegenerator.Tick();
         }
 
         public void TakeDamage(float damage)

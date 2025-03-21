@@ -1,192 +1,225 @@
 {
-    "_startModificatorsData": 
-    [
+    "_startModificatorsData": [
         {
-            "Icon": "",
+            "Icon": {
+                "instanceID": 0
+            },
             "ModificatorName": "Damage",
             "ModificatorDescription": "",
             "MaxLevel": 10,
             "IncreamentData": {
-              "Type": "Damage",
-              "IsPercentageValue": true,
-              "IncrementValue": 10.0
+                "Type": 0,
+                "IsPercentageValue": true,
+                "IncrementValue": 10.0
             }
-          },
-          {
-            "Icon": "",
+        },
+        {
+            "Icon": {
+                "instanceID": 0
+            },
             "ModificatorName": "MaxHealth",
             "ModificatorDescription": "",
             "MaxLevel": 10,
             "IncreamentData": {
-              "Type": "MaxHealth",
-              "IsPercentageValue": false,
-              "IncrementValue": 25.0
+                "Type": 0,
+                "IsPercentageValue": false,
+                "IncrementValue": 25.0
             }
-          },
-          {
-            "Icon": "",
+        },
+        {
+            "Icon": {
+                "instanceID": 0
+            },
             "ModificatorName": "Armor",
             "ModificatorDescription": "",
             "MaxLevel": 10,
             "IncreamentData": {
-              "Type": "Armor",
-              "IsPercentageValue": false,
-              "IncrementValue": 3.0
+                "Type": 0,
+                "IsPercentageValue": false,
+                "IncrementValue": 3.0
             }
-          },
-          {
-            "Icon": "",
+        },
+        {
+            "Icon": {
+                "instanceID": 0
+            },
             "ModificatorName": "SpeedMoving",
             "ModificatorDescription": "",
             "MaxLevel": 10,
             "IncreamentData": {
-              "Type": "SpeedMoving",
-              "IsPercentageValue": true,
-              "IncrementValue": 10.0
+                "Type": 0,
+                "IsPercentageValue": true,
+                "IncrementValue": 10.0
             }
-          },
-          {
-            "Icon": "",
+        },
+        {
+            "Icon": {
+                "instanceID": 0
+            },
             "ModificatorName": "ReviveCount",
             "ModificatorDescription": "",
             "MaxLevel": 1,
             "IncreamentData": {
-              "Type": "ReviveCount",
-              "IsPercentageValue": false,
-              "IncrementValue": 1.0
+                "Type": 0,
+                "IsPercentageValue": false,
+                "IncrementValue": 1.0
             }
-          },
-          {
-            "Icon": "",
+        },
+        {
+            "Icon": {
+                "instanceID": 0
+            },
             "ModificatorName": "CriticalDamage",
             "ModificatorDescription": "",
             "MaxLevel": 10,
             "IncreamentData": {
-              "Type": "CriticalDamage",
-              "IsPercentageValue": false,
-              "IncrementValue": 0.25
+                "Type": 0,
+                "IsPercentageValue": true,
+                "IncrementValue": 0.25
             }
-          },
-          {
-            "Icon": "",
+        },
+        {
+            "Icon": {
+                "instanceID": 0
+            },
             "ModificatorName": "CriticalChance",
             "ModificatorDescription": "",
             "MaxLevel": 10,
             "IncreamentData": {
-              "Type": "CriticalChance",
-              "IsPercentageValue": false,
-              "IncrementValue": 2.0
+                "Type": 0,
+                "IsPercentageValue": true,
+                "IncrementValue": 2.0
             }
-          },
-          {
-            "Icon": "",
+        },
+        {
+            "Icon": {
+                "instanceID": 0
+            },
             "ModificatorName": "CurseProvocation",
             "ModificatorDescription": "",
             "MaxLevel": 10,
             "IncreamentData": {
-              "Type": "CurseProvocation",
-              "IsPercentageValue": false,
-              "IncrementValue": 0.1
+                "Type": 0,
+                "IsPercentageValue": true,
+                "IncrementValue": 0.10000000149011612
             }
-          },
-          {
-            "Icon": "",
+        },
+        {
+            "Icon": {
+                "instanceID": 0
+            },
             "ModificatorName": "СurseReinforcment",
             "ModificatorDescription": "",
             "MaxLevel": 10,
             "IncreamentData": {
-              "Type": "СurseReinforcment",
-              "IsPercentageValue": false,
-              "IncrementValue": 0.1
+                "Type": 0,
+                "IsPercentageValue": true,
+                "IncrementValue": 0.10000000149011612
             }
-          },
-          {
-            "Icon": "",
+        },
+        {
+            "Icon": {
+                "instanceID": 0
+            },
             "ModificatorName": "BulletsSize",
             "ModificatorDescription": "",
             "MaxLevel": 10,
             "IncreamentData": {
-              "Type": "BulletsSize",
-              "IsPercentageValue": false,
-              "IncrementValue": 0.1
+                "Type": 0,
+                "IsPercentageValue": true,
+                "IncrementValue": 0.10000000149011612
             }
-          },
-          {
-            "Icon": "",
+        },
+        {
+            "Icon": {
+                "instanceID": 0
+            },
             "ModificatorName": "Duplicator",
             "ModificatorDescription": "",
             "MaxLevel": 1,
             "IncreamentData": {
-              "Type": "Duplicator",
-              "IsPercentageValue": false,
-              "IncrementValue": 1.0
+                "Type": 0,
+                "IsPercentageValue": false,
+                "IncrementValue": 1.0
             }
-          },
-          {
-            "Icon": "",
+        },
+        {
+            "Icon": {
+                "instanceID": 0
+            },
             "ModificatorName": "HealtRestoreCount",
             "ModificatorDescription": "",
             "MaxLevel": 10,
             "IncreamentData": {
-              "Type": "HealtRestoreCount",
-              "IsPercentageValue": false,
-              "IncrementValue": 0.1
+                "Type": 0,
+                "IsPercentageValue": true,
+                "IncrementValue": 0.10000000149011612
             }
-          },
-          {
-            "Icon": "",
+        },
+        {
+            "Icon": {
+                "instanceID": 0
+            },
             "ModificatorName": "ReloadTimer",
             "ModificatorDescription": "",
             "MaxLevel": 10,
             "IncreamentData": {
-              "Type": "ReloadTimer",
-              "IsPercentageValue": true,
-              "IncrementValue": -3.0
+                "Type": 0,
+                "IsPercentageValue": true,
+                "IncrementValue": -3.0
             }
-          },
-          {
-            "Icon": "",
+        },
+        {
+            "Icon": {
+                "instanceID": 0
+            },
             "ModificatorName": "PickUpRadius",
             "ModificatorDescription": "",
             "MaxLevel": 10,
             "IncreamentData": {
-              "Type": "PickUpRadius",
-              "IsPercentageValue": true,
-              "IncrementValue": 20.0
+                "Type": 0,
+                "IsPercentageValue": true,
+                "IncrementValue": 20.0
             }
-          },
-          {
-            "Icon": "",
+        },
+        {
+            "Icon": {
+                "instanceID": 0
+            },
             "ModificatorName": "ReceivedExperience",
             "ModificatorDescription": "",
             "MaxLevel": 10,
             "IncreamentData": {
-              "Type": "ReceivedExperience",
-              "IsPercentageValue": true,
-              "IncrementValue": 0.25
+                "Type": 0,
+                "IsPercentageValue": true,
+                "IncrementValue": 0.25
             }
-          },
-          {
-            "Icon": "",
+        },
+        {
+            "Icon": {
+                "instanceID": 0
+            },
             "ModificatorName": "ReceivingCoins",
             "ModificatorDescription": "",
             "MaxLevel": 10,
             "IncreamentData": {
-              "Type": "ReceivingCoins",
-              "IsPercentageValue": true,
-              "IncrementValue": 0.25
+                "Type": 0,
+                "IsPercentageValue": true,
+                "IncrementValue": 0.25
             }
-          },
-          {
-            "Icon": "",
+        },
+        {
+            "Icon": {
+                "instanceID": 0
+            },
             "ModificatorName": "Luck",
             "ModificatorDescription": "",
             "MaxLevel": 5,
             "IncreamentData": {
-              "Type": "Luck",
-              "IsPercentageValue": true,
-              "IncrementValue": 20.0
+                "Type": 0,
+                "IsPercentageValue": true,
+                "IncrementValue": 20.0
             }
-          }
+        }
     ]
 }

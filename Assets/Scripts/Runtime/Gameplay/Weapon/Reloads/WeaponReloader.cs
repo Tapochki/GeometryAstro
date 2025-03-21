@@ -6,6 +6,7 @@ namespace TandC.GeometryAstro.Gameplay
     public class WeaponReloader : IReloadable
     {
         public IReadOnlyReactiveProperty<float> ReloadProgress => _reloadProgress;
+        private IReadableModificator _reloadModificator;
 
         private ReactiveProperty<float> _reloadProgress = new ReactiveProperty<float>(0f);
 
@@ -15,8 +16,9 @@ namespace TandC.GeometryAstro.Gameplay
         private float _reloadTime;
         private bool _isReloading;
 
-        public WeaponReloader(float reloadTime)
+        public WeaponReloader(float reloadTime, IReadableModificator ReloadModificator)
         {
+            _reloadModificator = ReloadModificator;
             _reloadTime = reloadTime;
             CanShoot = true;
             _isReloading = false;
@@ -26,7 +28,7 @@ namespace TandC.GeometryAstro.Gameplay
         public void StartReload()
         {
             CanShoot = false;
-            _reloadTimer = _reloadTime;
+            _reloadTimer = _reloadTime * (1 - _reloadModificator.Value);
             _isReloading = true;
             _reloadProgress.Value = 0f;
         }

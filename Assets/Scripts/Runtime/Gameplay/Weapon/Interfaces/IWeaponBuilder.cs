@@ -1,5 +1,4 @@
 using TandC.GeometryAstro.Data;
-using UnityEngine;
 
 namespace TandC.GeometryAstro.Gameplay 
 {
@@ -7,8 +6,8 @@ namespace TandC.GeometryAstro.Gameplay
     {
         IWeaponBuilder SetData();
         IWeaponBuilder SetConfig(WeaponConfig config);
-        IWeaponBuilder SetProjectileFactory();
-        IWeaponBuilder SetReloader();
+        IWeaponBuilder SetProjectileFactory(IReadableModificator damageModificator);
+        IWeaponBuilder SetReloader(IReadableModificator reloadModificator);
         IWeaponBuilder SetEnemyDetector();
        // IWeaponBuilder RegisterShootingPatterns();
         IWeapon Build();

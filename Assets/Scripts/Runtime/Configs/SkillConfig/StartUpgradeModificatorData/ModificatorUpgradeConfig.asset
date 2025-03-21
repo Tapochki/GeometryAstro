@@ -59,7 +59,7 @@ MonoBehaviour:
     MaxLevel: 10
     IncreamentData:
       Type: 0
-      IsPercentageValue: 0
+      IsPercentageValue: 1
       IncrementValue: 0.25
   - Icon: {fileID: 0}
     ModificatorName: CriticalChance
@@ -67,7 +67,7 @@ MonoBehaviour:
     MaxLevel: 10
     IncreamentData:
       Type: 0
-      IsPercentageValue: 0
+      IsPercentageValue: 1
       IncrementValue: 2
   - Icon: {fileID: 0}
     ModificatorName: CurseProvocation
@@ -75,7 +75,7 @@ MonoBehaviour:
     MaxLevel: 10
     IncreamentData:
       Type: 0
-      IsPercentageValue: 0
+      IsPercentageValue: 1
       IncrementValue: 0.1
   - Icon: {fileID: 0}
     ModificatorName: "\u0421urseReinforcment"
@@ -83,7 +83,7 @@ MonoBehaviour:
     MaxLevel: 10
     IncreamentData:
       Type: 0
-      IsPercentageValue: 0
+      IsPercentageValue: 1
       IncrementValue: 0.1
   - Icon: {fileID: 0}
     ModificatorName: BulletsSize
@@ -91,7 +91,7 @@ MonoBehaviour:
     MaxLevel: 10
     IncreamentData:
       Type: 0
-      IsPercentageValue: 0
+      IsPercentageValue: 1
       IncrementValue: 0.1
   - Icon: {fileID: 0}
     ModificatorName: Duplicator
@@ -107,7 +107,7 @@ MonoBehaviour:
     MaxLevel: 10
     IncreamentData:
       Type: 0
-      IsPercentageValue: 0
+      IsPercentageValue: 1
       IncrementValue: 0.1
   - Icon: {fileID: 0}
     ModificatorName: ReloadTimer
