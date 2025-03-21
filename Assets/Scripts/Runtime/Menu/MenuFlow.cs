@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using TandC.GeometryAstro.Services;
@@ -7,7 +8,7 @@ using VContainer.Unity;
 
 namespace TandC.GeometryAstro.Menu
 {
-    public class MenuFlow : IStartable
+    public class MenuFlow : IStartable, IDisposable
     {
         private readonly LoadingService _loadingService;
         private readonly LoadObjectsService _loadObjectsService;
@@ -54,6 +55,11 @@ namespace TandC.GeometryAstro.Menu
 
             _uiService.RegisterUI(mainMenuPages, mainMenuPopups); // register and initing
             _uiService.OpenPage<MainMenuPageView>();
+        }
+
+        public void Dispose()
+        {
+            _uiService.Dispose();
         }
     }
 }

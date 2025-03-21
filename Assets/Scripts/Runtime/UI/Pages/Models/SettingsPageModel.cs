@@ -1,6 +1,4 @@
-using Newtonsoft.Json.Linq;
 using System;
-using System.Linq;
 using TandC.GeometryAstro.Services;
 using TandC.GeometryAstro.Settings;
 using TandC.GeometryAstro.Utilities;
@@ -83,6 +81,11 @@ namespace TandC.GeometryAstro.UI
         {
             currentLanguageIndex = (currentLanguageIndex - 1 + languageList.Length) % languageList.Length;
             _localisationService.UpdateLocalisation(languageList[currentLanguageIndex]);
+        }
+
+        public void Dispose()
+        {
+            _localisationService.OnLanguageWasChangedEvent -= OnLanguageWasChangedEventHandler;
         }
     }
 }

@@ -2,7 +2,7 @@ using System;
 using TandC.GeometryAstro.Data;
 using UnityEngine;
 
-namespace TandC.GeometryAstro.Gameplay 
+namespace TandC.GeometryAstro.Gameplay
 {
     public class Enemy : MonoBehaviour
     {
@@ -22,13 +22,19 @@ namespace TandC.GeometryAstro.Gameplay
         private void Update()
         {
             if (_moveComponent != null)
+            {
                 _moveComponent.Move(_target.position, EnemyData.movementSpeed);
+            }
 
             if (_rotationComponent != null)
+            {
                 _rotationComponent.Update();
+            }
 
-            if (_attackComponent !=null)
+            if (_attackComponent != null)
+            {
                 _attackComponent.Update();
+            }
         }
 
         public void Initialize(EnemyData data, Transform target, Action<Enemy, bool> onDeathEvent)

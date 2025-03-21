@@ -1,7 +1,7 @@
 
-namespace TandC.GeometryAstro.EventBus 
+namespace TandC.GeometryAstro.EventBus
 {
-    public readonly struct BombItemReleaseEvent : IEvent 
+    public readonly struct BombItemReleaseEvent : IEvent
     {
         public readonly int BombDamage;
 
@@ -11,17 +11,9 @@ namespace TandC.GeometryAstro.EventBus
         }
     }
 
-    public readonly struct ChestItemReleaseEvent : IEvent 
-    {
-        public readonly int ChestItemCount;
+    public readonly struct ChestItemReleaseEvent : IEvent { }
 
-        public ChestItemReleaseEvent(int chestItemCount)
-        {
-            ChestItemCount = chestItemCount;
-        }
-    }
-
-    public readonly struct CointItemReleaseEvent : IEvent 
+    public readonly struct CointItemReleaseEvent : IEvent
     {
         public readonly int CoinAmount;
 
@@ -31,7 +23,7 @@ namespace TandC.GeometryAstro.EventBus
         }
     }
 
-    public readonly struct ExpirienceItemReleaseEvent : IEvent 
+    public readonly struct ExpirienceItemReleaseEvent : IEvent
     {
         public readonly int ExpAmount;
 
@@ -41,7 +33,7 @@ namespace TandC.GeometryAstro.EventBus
         }
     }
 
-    public readonly struct FrozeBombItemReleaseEvent : IEvent 
+    public readonly struct FrozeBombItemReleaseEvent : IEvent
     {
         public readonly float FreezeTime;
 
@@ -51,11 +43,11 @@ namespace TandC.GeometryAstro.EventBus
         }
     }
 
-    public readonly struct MagnetItemReleaseEvent : IEvent 
+    public readonly struct MagnetItemReleaseEvent : IEvent
     {
     }
 
-    public readonly struct MedecineItemReleaseEvent : IEvent 
+    public readonly struct MedecineItemReleaseEvent : IEvent
     {
         public readonly int HealAmount;
 
@@ -65,7 +57,7 @@ namespace TandC.GeometryAstro.EventBus
         }
     }
 
-    public readonly struct RocketAmmoItemReleaseEvent : IEvent 
+    public readonly struct RocketAmmoItemReleaseEvent : IEvent
     {
         public readonly int AmmoCount;
 

@@ -1,7 +1,4 @@
-using Cysharp.Threading.Tasks;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using TandC.GeometryAstro.Core;
 using TandC.GeometryAstro.Services;
 using TandC.GeometryAstro.Utilities;
@@ -81,6 +78,11 @@ namespace TandC.GeometryAstro.UI
             // TODO - unpause game
             //_soundService.PlayClickSound();
             _uiService.OpenPage<GamePageView>();
+        }
+
+        public void Dispose()
+        {
+            _localisationService.OnLanguageWasChangedEvent -= OnLanguageWasChangedEventHandler;
         }
     }
 }

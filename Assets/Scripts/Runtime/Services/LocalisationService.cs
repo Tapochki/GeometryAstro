@@ -107,7 +107,7 @@ namespace TandC.GeometryAstro.Services
             }
             else
             {
-                Log.Default.ThrowException($"Unknown string: [{searchString}] in object [{context}]");
+                //Log.Default.ThrowException($"Unknown string: [{searchString}] in object [{context}]");
                 return "^" + searchString;
             }
         }

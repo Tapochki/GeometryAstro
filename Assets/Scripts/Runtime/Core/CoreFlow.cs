@@ -1,4 +1,5 @@
 ﻿using Cysharp.Threading.Tasks;
+using System;
 using System.Collections.Generic;
 using TandC.GeometryAstro.Bootstrap.Units;
 using TandC.GeometryAstro.Gameplay;
@@ -9,7 +10,7 @@ using VContainer.Unity;
 
 namespace TandC.GeometryAstro.Core
 {
-    public class CoreFlow : IStartable
+    public class CoreFlow : IStartable, IDisposable
     {
         private readonly LoadingService _loadingService;
         private readonly DataService _dataService;
@@ -84,7 +85,7 @@ namespace TandC.GeometryAstro.Core
             InitWeapon();
             InitEnemy();
 
-            var fooLoadingUnit = new FooLoadingUnit(3, false);
+            var fooLoadingUnit = new FooLoadingUnit(0, false);
             _skillService.Initialize();
             await _loadingService.BeginLoading(_uiService);
             await _loadingService.BeginLoading(fooLoadingUnit);
@@ -111,6 +112,7 @@ namespace TandC.GeometryAstro.Core
                 new SettingsPageView(new SettingsPageModel(_localizationService, _soundService, _uiService, _dataService)),
                 new PausePageView(new PausePageModel(_sceneService, _localizationService, _soundService, this, _uiService)),
                 new LevelUpPageView(new LevelUpPageModel(_localizationService, _soundService, _uiService, _skillService)),
+                new ChestPageView(new ChestPageModel(_localizationService, _soundService, _uiService, _skillService)),
             };
             var corePopups = new List<IUIPopup>
             {
@@ -140,6 +142,11 @@ namespace TandC.GeometryAstro.Core
             _enemySpawner.Init();
             _enemySpawnPositionService.Init();
             _waveController.Init();
+        }
+
+        public void Dispose()
+        {
+            _uiService.Dispose();
         }
     }
 }
