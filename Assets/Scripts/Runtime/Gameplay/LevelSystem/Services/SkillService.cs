@@ -64,7 +64,7 @@ namespace TandC.GeometryAstro.Gameplay
             List<PreparationSkillData> skillPreparationData = new List<PreparationSkillData>();
             int skillGenerationCount = isChest ? GetChestSkillCount() : GetLevelUpSkillCount();
             InitializeSkillPools();
-            bool canCreateNewSkill = true;
+            bool canCreateNewSkill = !isChest; // in chest we cannot add new skill
             bool hasUpgrade = true;
 
             if (TryGetEvolution(out var evolutionSkill))
