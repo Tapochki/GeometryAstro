@@ -11,9 +11,12 @@ namespace TandC.GeometryAstro.Gameplay
         private Player _player;
         protected EnemyData _enemyData;
 
-        public AttackComponent(EnemyData enemyData) 
+        private float _damageModificator;
+
+        public AttackComponent(EnemyData enemyData, float damageModificator) 
         {
             _enemyData = enemyData;
+            _damageModificator = damageModificator;
         }
 
         public void Update()
@@ -36,7 +39,8 @@ namespace TandC.GeometryAstro.Gameplay
 
         private void ExecuteDamage() 
         {
-            _player.TakeDamage(_enemyData.damage);
+            Debug.LogError($" damage {_enemyData.damage} _damageModificator {_damageModificator} sum {_enemyData.damage * _damageModificator}");
+            _player.TakeDamage(_enemyData.damage * _damageModificator);
         }
 
         public void SubscribePlayer(Player player)

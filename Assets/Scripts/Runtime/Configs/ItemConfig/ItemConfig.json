@@ -5,19 +5,29 @@
             "itemValueMin": 10,
             "itemValueMax": 100,
             "sprite": {
-                "instanceID": 32972
+                "instanceID": 33202
             },
             "type": 0,
             "description": ""
         },
         {
-            "itemId": 0,
-            "itemValueMin": 100,
-            "itemValueMax": 20,
+            "itemId": 2,
+            "itemValueMin": 30,
+            "itemValueMax": 80,
             "sprite": {
-                "instanceID": 32974
+                "instanceID": 33364
             },
             "type": 4,
+            "description": ""
+        },
+        {
+            "itemId": 3,
+            "itemValueMin": 30,
+            "itemValueMax": 50,
+            "sprite": {
+                "instanceID": 33216
+            },
+            "type": 10,
             "description": ""
         }
     ]

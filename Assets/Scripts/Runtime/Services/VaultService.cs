@@ -1,20 +1,27 @@
+using Cysharp.Threading.Tasks;
 using System;
-using UnityEngine;
+using VContainer;
 
 namespace TandC.GeometryAstro.Services
 {
-    public sealed class VaultService
+    public sealed class VaultService: ILoadUnit
     {
         public event Action<int> OnCoinsAmountChangedEvent;
 
         private DataService _dataService;
-        private GameStateService _gameStateService;
 
         public VaultCoin Coins { get; private set; }
 
-        public void Construct(DataService dataService, GameStateService gameStateService)
+        [Inject]
+        public void Construct(DataService dataService)
         {
             _dataService = dataService;
+        }
+
+        public async UniTask Load()
+        {
+            Initialize();
+            await UniTask.CompletedTask;
         }
 
         public void Initialize()

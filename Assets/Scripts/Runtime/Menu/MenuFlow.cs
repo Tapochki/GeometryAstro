@@ -18,7 +18,14 @@ namespace TandC.GeometryAstro.Menu
         private readonly UIService _uiService;
         private readonly SceneService _sceneService;
 
-        public MenuFlow(SceneService sceneService, LoadingService loadingService, LoadObjectsService loadObjectsService, DataService dataService, LocalisationService localizationService, SoundService soundService, UIService uiService)
+        public MenuFlow(SceneService sceneService,
+            LoadingService loadingService,
+            LoadObjectsService loadObjectsService, 
+            DataService dataService, 
+            LocalisationService localizationService, 
+            SoundService soundService, 
+            UIService uiService, 
+            VaultService vaultService)
         {
             _sceneService = sceneService;
             _loadingService = loadingService;

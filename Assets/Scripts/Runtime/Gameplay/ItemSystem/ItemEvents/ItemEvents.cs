@@ -33,11 +33,11 @@ namespace TandC.GeometryAstro.EventBus
         }
     }
 
-    public readonly struct FrozeBombItemReleaseEvent : IEvent
+    public readonly struct FrozeBombReleaseEvent : IEvent
     {
         public readonly float FreezeTime;
 
-        public FrozeBombItemReleaseEvent(float freezeTime)
+        public FrozeBombReleaseEvent(float freezeTime)
         {
             FreezeTime = freezeTime;
         }

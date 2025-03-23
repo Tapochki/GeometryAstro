@@ -14,7 +14,7 @@ namespace TandC.GeometryAstro.Gameplay
 
         public override void ReleseItem() 
         {
-            EventBusHolder.EventBus.Raise(new FrozeBombItemReleaseEvent(FreezeTime));
+            EventBusHolder.EventBus.Raise(new FrozeBombReleaseEvent(FreezeTime));
         }
     }
 }

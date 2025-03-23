@@ -19,9 +19,15 @@ MonoBehaviour:
     sprite: {fileID: 21300000, guid: 85024921523293b4b94bdf2de612c5f8, type: 3}
     type: 0
     description: 
-  - itemId: 0
-    itemValueMin: 100
-    itemValueMax: 20
+  - itemId: 2
+    itemValueMin: 30
+    itemValueMax: 80
     sprite: {fileID: 21300000, guid: 15bd7ab1f1fc6064b8be2af484d5fb23, type: 3}
     type: 4
+    description: 
+  - itemId: 3
+    itemValueMin: 30
+    itemValueMax: 50
+    sprite: {fileID: 21300000, guid: faaa4dbb74f51fc43880d58d6cc90d1f, type: 3}
+    type: 10
     description: 

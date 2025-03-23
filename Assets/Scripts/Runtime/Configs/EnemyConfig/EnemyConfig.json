@@ -5,11 +5,12 @@
             "health": 100.0,
             "damage": 10,
             "movementSpeed": 100.0,
+            "Score": 20,
             "BuilderType": 0,
             "type": 0,
             "droperType": 1,
             "mainSprite": {
-                "instanceID": 32970
+                "instanceID": 33362
             },
             "enemyAdditionalSprite": {
                 "instanceID": 0

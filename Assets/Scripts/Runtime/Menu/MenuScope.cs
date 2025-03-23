@@ -7,8 +7,6 @@ namespace TandC.GeometryAstro.Menu
 {
     public class MenuScope : LifetimeScope
     {
-
-
         protected override void Awake()
         {
             base.Awake();
@@ -17,7 +15,6 @@ namespace TandC.GeometryAstro.Menu
         protected override void Configure(IContainerBuilder builder)
         {
             RegisterUIService(builder);
-
             RegisterEntryPoint(builder);
         }
 
@@ -31,5 +28,4 @@ namespace TandC.GeometryAstro.Menu
             builder.RegisterEntryPoint<MenuFlow>();
         }
     }
-
 }

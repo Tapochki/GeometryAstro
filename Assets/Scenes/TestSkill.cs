@@ -8,11 +8,20 @@ public class TestSkill : MonoBehaviour
     private ModificatorType _selectedType;
 
     [SerializeField]
-    private float Value;
+    private float SkillValue;
+
+    [SerializeField]
+    private int HealthRestoreValue;
+
+    [SerializeField]
+    private int ExpAddValue;
+
+    [SerializeField]
+    private float FreezeTime;
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.U)) 
+        if (Input.GetKeyDown(KeyCode.U))
         {
             TestUpgradeSkill();
         }
@@ -20,17 +29,44 @@ public class TestSkill : MonoBehaviour
         {
             Heal();
         }
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            FreezeAll();
+        }
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            OpenChest();
+        }
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            AddEXP();
+        }
+    }
+
+    private void FreezeAll()
+    {
+        EventBusHolder.EventBus.Raise(new FrozeBombReleaseEvent(FreezeTime));
+    }
+
+    private void OpenChest()
+    {
+        EventBusHolder.EventBus.Raise(new ChestItemReleaseEvent());
+    }
+
+    private void AddEXP() 
+    {
+        EventBusHolder.EventBus.Raise(new ExpirienceItemReleaseEvent(ExpAddValue));
     }
 
     private void Heal()
     {
-        EventBusHolder.EventBus.Raise(new PlayerHealReleaseEvent(100));
+        EventBusHolder.EventBus.Raise(new PlayerHealReleaseEvent(HealthRestoreValue));
     }
 
     [ContextMenu("Test Upgrade Skill")]
     private void TestUpgradeSkill() 
     {
-        Debug.LogError($"TestUpgradeSkill Type {_selectedType} on Value {Value}"); ;
-        EventBusHolder.EventBus.Raise(new PassiveSkillUpgradeEvent(_selectedType, Value));
+        Debug.LogError($"TestUpgradeSkill Type {_selectedType} on Value {SkillValue}"); ;
+        EventBusHolder.EventBus.Raise(new PassiveSkillUpgradeEvent(_selectedType, SkillValue));
     }
 }

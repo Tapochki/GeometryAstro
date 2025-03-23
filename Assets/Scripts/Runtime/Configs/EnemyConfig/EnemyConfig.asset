@@ -17,6 +17,7 @@ MonoBehaviour:
     health: 100
     damage: 10
     movementSpeed: 100
+    Score: 20
     BuilderType: 0
     type: 0
     droperType: 1

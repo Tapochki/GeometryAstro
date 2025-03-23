@@ -40,22 +40,22 @@ namespace TandC.GeometryAstro.Data
             return null;
         }
 
-        public float GetHealthMultiplier(DifficultyLevel difficulty)
+        public float GetHealthMultiplier(DifficultyLevel difficulty = DifficultyLevel.Normal)
         {
             return _difficultyMultipliers.GetMultiplierForDifficulty(difficulty).healthMultiplier;
         }
 
-        public float GetDamageMultiplier(DifficultyLevel difficulty)
+        public float GetSpeedMultiplier(DifficultyLevel difficulty = DifficultyLevel.Normal )
+        {
+            return _difficultyMultipliers.GetMultiplierForDifficulty(difficulty).speedMultiplier;
+        }
+
+        public float GetDamageMultiplier(DifficultyLevel difficulty = DifficultyLevel.Normal)
         {
             return _difficultyMultipliers.GetMultiplierForDifficulty(difficulty).damageMultiplier;
         }
 
-        public float GetRewardMultiplier(DifficultyLevel difficulty)
-        {
-            return _difficultyMultipliers.GetMultiplierForDifficulty(difficulty).rewardMultiplier;
-        }
-
-        public float GetScoreMultiplier(DifficultyLevel difficulty)
+        public float GetScoreMultiplier(DifficultyLevel difficulty = DifficultyLevel.Normal)
         {
             return _difficultyMultipliers.GetMultiplierForDifficulty(difficulty).scoreMultiplier;
         }
@@ -136,7 +136,7 @@ namespace TandC.GeometryAstro.Data
     {
         [Range(0.5f, 3f)] public float healthMultiplier;
         [Range(0.5f, 3f)] public float damageMultiplier;
-        [Range(0.5f, 3f)] public float rewardMultiplier;
+        [Range(0.5f, 3f)] public float speedMultiplier;
         [Range(0.5f, 3f)] public float scoreMultiplier;
     }
 }

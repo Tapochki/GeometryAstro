@@ -19,6 +19,8 @@ namespace TandC.GeometryAstro.Core
         {
             RegisterConfigs(builder);
             RegisterPauseService(builder);
+            RegisterScoreContainer(builder);
+            RegisterVaultCointainer(builder);
             RegisterInputHandler(builder);
             RegisterModificatorContainer(builder);
             RegisterPlayer(builder);
@@ -76,6 +78,16 @@ namespace TandC.GeometryAstro.Core
         private void RegisterModificatorContainer(IContainerBuilder builder)
         {
             builder.Register<ModificatorContainer>(Lifetime.Scoped);
+        }
+
+        private void RegisterScoreContainer(IContainerBuilder builder) 
+        {
+            builder.Register<ScoreContainer>(Lifetime.Scoped);
+        }
+
+        private void RegisterVaultCointainer(IContainerBuilder builder) 
+        {
+            builder.Register<MoneyVaultContainer>(Lifetime.Scoped);
         }
 
         private void RegisterEnemySystem(IContainerBuilder builder)

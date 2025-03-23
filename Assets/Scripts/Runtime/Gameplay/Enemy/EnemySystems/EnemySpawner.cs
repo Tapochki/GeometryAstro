@@ -19,6 +19,11 @@ namespace TandC.GeometryAstro.Gameplay
 
         private IItemSpawner _itemSpawner;
 
+        private LevelConfig _levelConfig;
+
+        private IReadableModificator _curseStrenghtModificator;
+        private IReadableModificator _curseSpeedModificator;
+
         private Enemy _enemyPrefab;
         private GameObject _enemyParent;
 
@@ -29,10 +34,16 @@ namespace TandC.GeometryAstro.Gameplay
         private IEnemySpawnPositionService _enemySpawnPositionService;
         private ObjectPool<Enemy> _enemyPool;
 
-        private List<ITickable> _activeEnemyList;
+        private EnemyFreezeProcessor _enemyFreezeProcessor;
+
+        private List<IEnemy> _activeEnemyList;
         private List<EnemySpawnData> _currentWaveEnemies;
 
+        private ScoreContainer _scoreContainer;
+
         public int ActiveEnemyCount => _activeEnemyList.Count;
+
+        private ModificatorContainer _modificatorContainer;
 
         [Inject]
         private void Construct(
@@ -40,15 +51,20 @@ namespace TandC.GeometryAstro.Gameplay
             IEnemySpawnPositionService enemySpawnPositionService,
             IItemSpawner itemSpawner,
             GameConfig gameConfig,
+            ScoreContainer scoreContainer,
             Player player,
-            TickService tickService)
+            TickService tickService,
+            ModificatorContainer modificatorContainer)
         {
             _loadObjectsService = loadObjectsService;
             _player = player;
+            _scoreContainer = scoreContainer;
             _enemySpawnPositionService = enemySpawnPositionService;
             _enemiesConfig = gameConfig.EnemyConfig;
+            _levelConfig = gameConfig.LevelsConfig;
             _itemSpawner = itemSpawner;
             _tickService = tickService;
+            _modificatorContainer = modificatorContainer;
         }
 
         public void Init()
@@ -56,9 +72,22 @@ namespace TandC.GeometryAstro.Gameplay
             CreateEnemyParent();
             LoadEnemyPrefab();
             InitLists();
+            InitFreezeProcessor();
             InitializePool();
+            InitModificators();
 
             _tickService.RegisterUpdate(Tick);
+        }
+
+        private void InitModificators() 
+        {
+            _curseSpeedModificator = _modificatorContainer.GetModificator(ModificatorType.CurseSpeed);
+            _curseStrenghtModificator = _modificatorContainer.GetModificator(ModificatorType.CurseStrength);
+        }
+
+        private void InitFreezeProcessor()
+        {
+            _enemyFreezeProcessor = new EnemyFreezeProcessor(FreezeAllEnemy);
         }
 
         private void CreateEnemyParent() 
@@ -77,7 +106,7 @@ namespace TandC.GeometryAstro.Gameplay
 
         private void InitLists() 
         {
-            _activeEnemyList = new List<ITickable>();
+            _activeEnemyList = new List<IEnemy>();
             _enemyFactory = new EnemyFactory();
             _currentWaveEnemies = new List<EnemySpawnData>();
         }
@@ -119,8 +148,8 @@ namespace TandC.GeometryAstro.Gameplay
             if(spawnPoint != null) 
             {
                 var enemy = _enemyPool.Get();
-                _activeEnemyList.Add(enemy);
                 SetupEnemy(enemy, enemyData, spawnPoint.position);
+                _activeEnemyList.Add(enemy);
             }
         }
 
@@ -163,9 +192,32 @@ namespace TandC.GeometryAstro.Gameplay
                 onDeathEvent: (enemy, isKilled) => HandleEnemyDeath(enemy, isKilled),
                 target: _player.transform,
                 moveDirection: direction,
-                builderType: data.BuilderType
+                builderType: data.BuilderType,
+                CalculateHealthModificator(),
+                CalculateSpeedModificator(),
+                CalculateDamageModificator()
             );
             enemy.transform.position = spawnPosition;
+        }
+
+        private float CalculateHealthModificator() 
+        {
+            return _levelConfig.GetHealthMultiplier() + _curseStrenghtModificator.Value - 1;
+        }
+
+        private float CalculateDamageModificator() 
+        {
+            return _levelConfig.GetDamageMultiplier() + _curseStrenghtModificator.Value - 1;
+        }
+
+        private float CalculateSpeedModificator() 
+        {
+            return _levelConfig.GetSpeedMultiplier() + _curseSpeedModificator.Value - 1;
+        }
+
+        private float CalculateScoreModificator()
+        {
+            return _levelConfig.GetScoreMultiplier() + _curseSpeedModificator.Value + _curseStrenghtModificator.Value - 1;
         }
 
         private void HandleEnemyDeath(Enemy enemy, bool isKilled)
@@ -181,14 +233,24 @@ namespace TandC.GeometryAstro.Gameplay
         {
             for (int i = _activeEnemyList.Count - 1; i >= 0; i--)
             {
-                ITickable enemy = _activeEnemyList[i];
+                IEnemy enemy = _activeEnemyList[i];
                 enemy.Tick();
             }
         }
 
         private void ProccesDropItemFromEnemy(Enemy enemy)
         {
+            _scoreContainer.AddScore(enemy.EnemyData.Score, CalculateScoreModificator());
             _itemSpawner.DropRandomItem(enemy.EnemyData.droperType, enemy.transform.position);
+        }
+
+        private void FreezeAllEnemy(float timer) 
+        {
+            for (int i = _activeEnemyList.Count - 1; i >= 0; i--)
+            {
+                IEnemy enemy = _activeEnemyList[i];
+                enemy.Freeze();
+            }
         }
 
         public void SpawnBoss(EnemySpawnData bossData, Action onBossDefeated)

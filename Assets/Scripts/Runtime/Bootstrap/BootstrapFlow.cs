@@ -13,6 +13,7 @@ namespace TandC.GeometryAstro.Bootstrap
         private readonly LoadObjectsService _loadObjectService;
         private readonly LocalisationService _localisationService;
         private readonly SoundService _soundService;
+        private readonly VaultService _vaultService;
 
         public BootstrapFlow(
             LoadingService loadingService,
@@ -20,7 +21,8 @@ namespace TandC.GeometryAstro.Bootstrap
             DataService dataService,
             LoadObjectsService loadObjectService,
             SoundService soundService,
-            LocalisationService localisationService)
+            LocalisationService localisationService,
+            VaultService vaultService)
         {
             _loadingService = loadingService;
             _sceneService = sceneService;
@@ -28,14 +30,17 @@ namespace TandC.GeometryAstro.Bootstrap
             _dataService = dataService;
             _loadObjectService = loadObjectService;
             _localisationService = localisationService;
+            _vaultService = vaultService;
         }
 
         public async void Start()
         {
             var fooLoadingUnit = new FooLoadingUnit();
+
             await _loadingService.BeginLoading(fooLoadingUnit);
             await _loadingService.BeginLoading(_localisationService);
             await _loadingService.BeginLoading(_dataService);
+            await _loadingService.BeginLoading(_vaultService);
 
             _sceneService.LoadScene(RuntimeConstants.Scenes.Loading).Forget();
         }

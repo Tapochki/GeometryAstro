@@ -49,7 +49,7 @@
             "IncreamentData": {
                 "Type": 0,
                 "IsPercentageValue": true,
-                "IncrementValue": 10.0
+                "IncrementValue": 5.0
             }
         },
         {

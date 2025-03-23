@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace TandC.GeometryAstro.Gameplay
 {
-    public class Enemy : MonoBehaviour, IEnemyDamageable, ITickable
+    public class Enemy : MonoBehaviour, IEnemyDamageable, IEnemy
     {
         [Header("References")]
         [SerializeField] private SpriteRenderer _modelViewRenderer;
@@ -16,41 +16,45 @@ namespace TandC.GeometryAstro.Gameplay
         private IHealth _healthComponent;
         private AttackComponent _attackComponent;
         private Action<Enemy, bool> _onDeathEvent;
+        private FreezeComponent _freezeComponent;
 
         public EnemyData EnemyData { get; private set; }
 
+        private float _speedModificator;
+
         public void Tick()
         {
-            if (_moveComponent != null)
+            if(_freezeComponent.IsFreeze) 
             {
-                _moveComponent.Move(_target.position, EnemyData.movementSpeed);
+                _freezeComponent.Tick();
+                return;
             }
-
-            if (_rotationComponent != null)
-            {
-                _rotationComponent.Update();
-            }
-
-            if (_attackComponent != null)
-            {
-                _attackComponent.Update();
-            }
+            _moveComponent.Move(_target.position, EnemyData.movementSpeed * _speedModificator);
+            _rotationComponent.Update();
+            _attackComponent.Update();
         }
 
-        public void Initialize(EnemyData data, Transform target, Action<Enemy, bool> onDeathEvent)
+        private void Awake() 
+        {
+            _freezeComponent = new FreezeComponent(gameObject.transform.Find("FreezEnemyVFX").gameObject);
+        }
+
+        public void Initialize(EnemyData data, Transform target, Action<Enemy, bool> onDeathEvent, float healthModificator, float speedModificator)
         {
             EnemyData = data;
             _target = target;
             _onDeathEvent = onDeathEvent;
 
+            _speedModificator = speedModificator;
+
             _modelViewRenderer.sprite = data.mainSprite;
-            SetupHealthComponent();
+            SetupHealthComponent(healthModificator);
         }
 
-        public void SetupHealthComponent()
+        public void SetupHealthComponent(float healthModificator)
         {
             _healthComponent = new BaseHealthComponent(
-                EnemyData.health,
+                EnemyData.health * healthModificator,
                 ProccesingEnemyDeath);
         }
 
@@ -92,6 +96,11 @@ namespace TandC.GeometryAstro.Gameplay
             {
                 _attackComponent.UnSubscribePlayer();
             }
+        }
+
+        public void Freeze(float freezeTimer = 3f)
+        {
+            _freezeComponent.Freeze(freezeTimer);
         }
     }
 }

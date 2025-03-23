@@ -32,6 +32,7 @@ namespace TandC.GeometryAstro.Data
         public float health;
         public int damage;
         public float movementSpeed;
+        public int Score;
         public EnemyBuilderType BuilderType;
         public EnemyType type;
         public DropItemRareType droperType;

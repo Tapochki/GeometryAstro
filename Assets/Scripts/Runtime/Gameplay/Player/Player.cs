@@ -60,7 +60,7 @@ namespace TandC.GeometryAstro.Gameplay
         private void InitLevelModel()
         {
             _levelModel = new LevelModel();
-            _levelModel.Init();
+            _levelModel.Init(_modificatorContainer.GetModificator(Settings.ModificatorType.ReceivedExperience));
         }
 
         private void InitPlayerMoveComponent() 

@@ -17,6 +17,10 @@ MonoBehaviour:
     itemsWithChance:
     - itemType: 0
       weight: 100
+    - itemType: 10
+      weight: 25
+    - itemType: 4
+      weight: 1
   - dropType: 0
     itemsWithChance:
     - itemType: 0

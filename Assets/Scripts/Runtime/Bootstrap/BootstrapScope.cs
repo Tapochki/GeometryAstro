@@ -25,6 +25,7 @@ namespace TandC.GeometryAstro.Bootstrap
             builder.Register<DataService>(Lifetime.Singleton).AsSelf();
             builder.Register<SceneService>(Lifetime.Singleton);
             builder.Register<LoadObjectsService>(Lifetime.Singleton);
+            builder.Register<VaultService>(Lifetime.Singleton);
 
             builder.RegisterEntryPoint<BootstrapFlow>();
         }

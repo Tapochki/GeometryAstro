@@ -110,7 +110,7 @@ namespace TandC.GeometryAstro.Data
                 {
                     IncreamentData = new IncreamentModificatorData
                     {
-                        Type = ModificatorType.CurseProvocation,
+                        Type = ModificatorType.CurseStrength,
                         IncrementValue = 0.1f,
                         IsPercentageValue = false
                     },
@@ -120,7 +120,7 @@ namespace TandC.GeometryAstro.Data
                 {
                     IncreamentData = new IncreamentModificatorData
                     {
-                        Type = ModificatorType.ÑurseReinforcment,
+                        Type = ModificatorType.CurseSpeed,
                         IncrementValue = 0.1f,
                         IsPercentageValue = false
                     },

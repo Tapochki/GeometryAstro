@@ -40,6 +40,9 @@ namespace TandC.GeometryAstro.Core
 
         private readonly IPauseService _pauseService;
 
+        private ScoreContainer _scoreContainer;
+        private MoneyVaultContainer _moneyVaultContainer;
+
 
         public CoreFlow(
             LoadingService loadingService,
@@ -61,7 +64,9 @@ namespace TandC.GeometryAstro.Core
             SceneService sceneService,
             SkillService skillService,
             ModificatorContainer modificatorContainer,
-            IPauseService pauseService)
+            IPauseService pauseService,
+            ScoreContainer scoreContainer,
+            MoneyVaultContainer moneyVaultContainer)
         {
             _loadingService = loadingService;
             _dataService = dataService;
@@ -83,6 +88,8 @@ namespace TandC.GeometryAstro.Core
             _skillService = skillService;
             _modificatorContainer = modificatorContainer;
             _pauseService = pauseService;
+            _scoreContainer = scoreContainer;
+            _moneyVaultContainer = moneyVaultContainer;
         }
 
         public async void Start()
@@ -93,6 +100,9 @@ namespace TandC.GeometryAstro.Core
             InitWeapon();
             InitEnemy();
 
+            InitVaultCointainer();
+            InitScoreContainer();
+
             var fooLoadingUnit = new FooLoadingUnit(0, false);
             _skillService.Initialize();
             await _loadingService.BeginLoading(_uiService);
@@ -101,6 +111,16 @@ namespace TandC.GeometryAstro.Core
             RegisterUI();
 
             _pauseService.Init();
+        }
+
+        private void InitVaultCointainer() 
+        {
+            _moneyVaultContainer.Init(_modificatorContainer.GetModificator(Settings.ModificatorType.ReceivingCoins));
+        }
+
+        private void InitScoreContainer() 
+        {
+            _scoreContainer.Init();
         }
 
         private void InitPlayer()

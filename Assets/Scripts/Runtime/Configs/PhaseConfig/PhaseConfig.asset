@@ -19,7 +19,6 @@ MonoBehaviour:
   - WaveId: 0
     enemies:
     - enemyType: 0
-      spawnType: 0
     minEnemies: 20
     spawnInterval: 1
     waveDuration: 60
@@ -30,20 +29,20 @@ MonoBehaviour:
     easy:
       healthMultiplier: 0
       damageMultiplier: 0
-      rewardMultiplier: 0
+      speedMultiplier: 0
       scoreMultiplier: 0
     normal:
       healthMultiplier: 1
       damageMultiplier: 1
-      rewardMultiplier: 1
+      speedMultiplier: 1
       scoreMultiplier: 1
     hard:
       healthMultiplier: 2
       damageMultiplier: 2
-      rewardMultiplier: 2
+      speedMultiplier: 0
       scoreMultiplier: 2
     nightmare:
       healthMultiplier: 3
       damageMultiplier: 3
-      rewardMultiplier: 3
+      speedMultiplier: 0
       scoreMultiplier: 3

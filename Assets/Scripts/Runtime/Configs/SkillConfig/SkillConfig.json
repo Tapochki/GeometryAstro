@@ -5,7 +5,7 @@
         {
             "SkillName": "Damage",
             "SkillIcon": {
-                "instanceID": 102520
+                "instanceID": 33366
             },
             "Type": 1,
             "UseType": 1,
@@ -86,7 +86,7 @@
         {
             "SkillName": "MaxHealth",
             "SkillIcon": {
-                "instanceID": 35610
+                "instanceID": 33368
             },
             "Type": 2,
             "UseType": 1,
@@ -167,7 +167,7 @@
         {
             "SkillName": "Armor",
             "SkillIcon": {
-                "instanceID": 102606
+                "instanceID": 33370
             },
             "Type": 3,
             "UseType": 1,
@@ -248,7 +248,7 @@
         {
             "SkillName": "Speed",
             "SkillIcon": {
-                "instanceID": 35614
+                "instanceID": 33372
             },
             "Type": 4,
             "UseType": 1,
@@ -257,70 +257,70 @@
                     "Name": "Speed New",
                     "Level": 1,
                     "Description": "Speed New",
-                    "Value": 10.0,
+                    "Value": 5.0,
                     "IsPercentageValue": true
                 },
                 {
                     "Name": "Speed 2",
                     "Level": 2,
                     "Description": "Speed",
-                    "Value": 10.0,
+                    "Value": 5.0,
                     "IsPercentageValue": true
                 },
                 {
                     "Name": "Speed 3",
                     "Level": 3,
                     "Description": "Speed",
-                    "Value": 10.0,
+                    "Value": 5.0,
                     "IsPercentageValue": true
                 },
                 {
                     "Name": "Speed 4",
                     "Level": 4,
                     "Description": "Speed",
-                    "Value": 10.0,
+                    "Value": 5.0,
                     "IsPercentageValue": true
                 },
                 {
                     "Name": "Speed 5",
                     "Level": 5,
                     "Description": "Speed",
-                    "Value": 10.0,
+                    "Value": 5.0,
                     "IsPercentageValue": true
                 },
                 {
                     "Name": "Speed 6",
                     "Level": 6,
                     "Description": "Speed",
-                    "Value": 10.0,
+                    "Value": 5.0,
                     "IsPercentageValue": true
                 },
                 {
                     "Name": "Speed 7",
                     "Level": 7,
                     "Description": "Speed",
-                    "Value": 10.0,
+                    "Value": 5.0,
                     "IsPercentageValue": true
                 },
                 {
                     "Name": "Speed 8",
                     "Level": 8,
                     "Description": "Speed",
-                    "Value": 10.0,
+                    "Value": 5.0,
                     "IsPercentageValue": true
                 },
                 {
                     "Name": "Speed 9",
                     "Level": 9,
                     "Description": "Speed",
-                    "Value": 10.0,
+                    "Value": 5.0,
                     "IsPercentageValue": true
                 },
                 {
                     "Name": "Speed 10",
                     "Level": 10,
                     "Description": "Speed",
-                    "Value": 10.0,
+                    "Value": 5.0,
                     "IsPercentageValue": true
                 }
             ],
@@ -329,7 +329,7 @@
         {
             "SkillName": "ReviveCount",
             "SkillIcon": {
-                "instanceID": 102568
+                "instanceID": 33374
             },
             "Type": 5,
             "UseType": 1,
@@ -347,7 +347,7 @@
         {
             "SkillName": "Reloader",
             "SkillIcon": {
-                "instanceID": 102608
+                "instanceID": 33376
             },
             "Type": 13,
             "UseType": 1,
@@ -428,7 +428,7 @@
         {
             "SkillName": "Regeneration",
             "SkillIcon": {
-                "instanceID": 102570
+                "instanceID": 33378
             },
             "Type": 12,
             "UseType": 1,
@@ -509,7 +509,7 @@
         {
             "SkillName": "Magnet",
             "SkillIcon": {
-                "instanceID": 35626
+                "instanceID": 33380
             },
             "Type": 14,
             "UseType": 1,
@@ -590,7 +590,7 @@
         {
             "SkillName": "Critical Damage",
             "SkillIcon": {
-                "instanceID": 102542
+                "instanceID": 33382
             },
             "Type": 6,
             "UseType": 1,
@@ -671,7 +671,7 @@
         {
             "SkillName": "Critical Chance",
             "SkillIcon": {
-                "instanceID": 35618
+                "instanceID": 33384
             },
             "Type": 7,
             "UseType": 1,
@@ -752,7 +752,7 @@
         {
             "SkillName": "Curse Provocation",
             "SkillIcon": {
-                "instanceID": 35618
+                "instanceID": 33384
             },
             "Type": 8,
             "UseType": 1,
@@ -833,7 +833,7 @@
         {
             "SkillName": "СurseReinforcement",
             "SkillIcon": {
-                "instanceID": 102546
+                "instanceID": 33386
             },
             "Type": 9,
             "UseType": 1,
@@ -914,7 +914,7 @@
         {
             "SkillName": "Duplicator",
             "SkillIcon": {
-                "instanceID": 102556
+                "instanceID": 33388
             },
             "Type": 11,
             "UseType": 1,
@@ -932,7 +932,7 @@
         {
             "SkillName": "BulletsSize",
             "SkillIcon": {
-                "instanceID": 102546
+                "instanceID": 33386
             },
             "Type": 10,
             "UseType": 1,
@@ -1013,7 +1013,7 @@
         {
             "SkillName": "Receiving Experience",
             "SkillIcon": {
-                "instanceID": 102610
+                "instanceID": 33390
             },
             "Type": 15,
             "UseType": 1,
@@ -1094,7 +1094,7 @@
         {
             "SkillName": "Receiving Coins",
             "SkillIcon": {
-                "instanceID": 35622
+                "instanceID": 33392
             },
             "Type": 16,
             "UseType": 1,
@@ -1177,7 +1177,7 @@
         {
             "SkillName": "Score Infinite",
             "SkillIcon": {
-                "instanceID": 35622
+                "instanceID": 33392
             },
             "Type": 42,
             "UseType": 1,
@@ -1195,7 +1195,7 @@
         {
             "SkillName": "Score Infinite",
             "SkillIcon": {
-                "instanceID": 35622
+                "instanceID": 33392
             },
             "Type": 43,
             "UseType": 1,
@@ -1217,16 +1217,15 @@
         3,
         4,
         5,
+        13,
+        12,
+        14,
         6,
         7,
         8,
         9,
-        10,
         11,
-        12,
-        13,
-        13,
-        14,
+        10,
         15,
         16
     ],
