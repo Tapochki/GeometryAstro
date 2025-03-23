@@ -2,31 +2,31 @@ using System;
 
 namespace TandC.GeometryAstro.Gameplay 
 {
-    public class HealthWithView : IHealth
+    public class HealthWithView : BaseHealthComponent
     {
-        private IHealth _baseHealth;
-        public Action<float, float> OnHealthChangeEvent { get; protected set; }
+        public Action<int, float> OnHealthChangeEvent { get; protected set; }
 
-        public float MaxHealth => _baseHealth.MaxHealth;
-        public float CurrentHealth => _baseHealth.CurrentHealth;
-
-        public HealthWithView(IHealth baseHealth, Action<float, float> onHealthChangeEvent)
+        public HealthWithView(float maxHealth, Action<bool> onDeathEvent, Action<int, float> onHealthChangeEvent): base(maxHealth, onDeathEvent)
         {
-            _baseHealth = baseHealth;
             OnHealthChangeEvent = onHealthChangeEvent;
-            OnHealthChangeEvent?.Invoke(CurrentHealth, MaxHealth);
+            HealthViewUpdate();
         }
 
-        public void TakeDamage(float amount)
+        public override void TakeDamage(float amount)
         {
-            _baseHealth.TakeDamage(amount);
-            OnHealthChangeEvent?.Invoke(CurrentHealth, MaxHealth);
+            base.TakeDamage(amount);
+            HealthViewUpdate();
         }
 
-        public void Heal(float amount)
+        public override void Heal(float amount)
         {
-            _baseHealth.Heal(amount);
-            OnHealthChangeEvent?.Invoke(CurrentHealth, MaxHealth);
+            base.Heal(amount);
+            HealthViewUpdate();
+        }
+
+        private void HealthViewUpdate() 
+        {
+            OnHealthChangeEvent?.Invoke((int)_currentHealth, _maxHealth);
         }
     }
 }

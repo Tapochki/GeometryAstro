@@ -6,6 +6,7 @@ using TandC.GeometryAstro.Data;
 using TandC.GeometryAstro.Services;
 using VContainer;
 using System.Linq;
+using UnityEngine;
 
 namespace TandC.GeometryAstro.Gameplay 
 {
@@ -16,6 +17,8 @@ namespace TandC.GeometryAstro.Gameplay
         private StartPlayerParams _startPlayerParamConfig;
         private DataService _dataService;
 
+        public UniqueId Id { get; } = new UniqueId();
+
         [Inject]
         private void Construct(GameConfig gameConfig, DataService dataService) 
         {
@@ -23,7 +26,16 @@ namespace TandC.GeometryAstro.Gameplay
             _dataService = dataService;
         }
 
-        public UniqueId Id => throw new NotImplementedException();
+        private void RegisterEvent()
+        {
+            EventBusHolder.EventBus.Register(this as IEventReceiver<PassiveSkillUpgradeEvent>);
+        }
+
+        private void UnregisterEvent()
+        {
+            EventBusHolder.EventBus.Unregister(this as IEventReceiver<PassiveSkillUpgradeEvent>);
+        }
+
 
         public void Init()
         {
@@ -34,6 +46,7 @@ namespace TandC.GeometryAstro.Gameplay
 
                 _modificators[param.Type] = new Modificator(param.StartValue, upgradeValue, param.IsPercentageValue);
             }
+            RegisterEvent();
         }
 
         public void OnEvent(PassiveSkillUpgradeEvent @event)
@@ -52,6 +65,11 @@ namespace TandC.GeometryAstro.Gameplay
         public IReadableModificator GetModificator(ModificatorType type)
         {
             return _modificators.TryGetValue(type, out var modificator) ? modificator as IReadableModificator : null;
+        }
+
+        private void Dispose() 
+        {
+            UnregisterEvent();
         }
     }
 

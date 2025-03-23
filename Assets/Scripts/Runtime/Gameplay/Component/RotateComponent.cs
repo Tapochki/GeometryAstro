@@ -4,23 +4,22 @@ namespace TandC.GeometryAstro.Gameplay
 {
     public interface IRotation 
     {
-        public void SetRotation(Vector2 targetDirection);
+        public void SetRotation(Vector3 targetDirection);
         public void Update();
     }
 
     public class OnTargetRotateComponte : IRotation
     {
         private Transform _transform;
-        private bool _hasRotated;
 
-        public OnTargetRotateComponte(Transform transform, Vector3 target)
+        public OnTargetRotateComponte(Transform transform)
         {
             _transform = transform;
-            RotateOnSpawn(target);
-        }
-        public void SetRotation(Vector2 targetDirection)
-        {
 
+        }
+        public void SetRotation(Vector3 targetDirection)
+        {
+            RotateOnSpawn(targetDirection);
         }
 
         public void Update()
@@ -30,20 +29,16 @@ namespace TandC.GeometryAstro.Gameplay
 
         private void RotateOnSpawn(Vector3 target)
         {
-            if (!_hasRotated)
-            {
-                Vector2 direction = target - _transform.position;
-                float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90;
-                _transform.localEulerAngles = new Vector3(0, 0, angle);
-                _hasRotated = true;
-            }
+            Vector2 direction = target - _transform.position;
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90;
+            _transform.eulerAngles = new Vector3(0, 0, angle);
         }
 
     }
 
     public class NoRotationComponent : IRotation
     {
-        public void SetRotation(Vector2 targetDirection)
+        public void SetRotation(Vector3 targetDirection)
         {
 
         }
@@ -68,7 +63,7 @@ namespace TandC.GeometryAstro.Gameplay
             _lastRotation = _mainTransform.rotation;
         }
 
-        public void SetRotation(Vector2 direction)
+        public void SetRotation(Vector3 direction)
         {
             _direction = direction;
         }

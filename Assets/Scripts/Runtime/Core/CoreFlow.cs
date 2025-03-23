@@ -133,8 +133,8 @@ namespace TandC.GeometryAstro.Core
         {
             _weaponController.Init();
             _weaponController.RegisterWeapon(Settings.WeaponType.StandardGun);
-            _weaponController.RegisterWeapon(Settings.WeaponType.RocketGun);
-            _weaponController.RegisterWeapon(Settings.WeaponType.AutoGun);
+            //_weaponController.RegisterWeapon(Settings.WeaponType.RocketGun);
+            //_weaponController.RegisterWeapon(Settings.WeaponType.AutoGun);
         }
 
         private void InitEnemy()

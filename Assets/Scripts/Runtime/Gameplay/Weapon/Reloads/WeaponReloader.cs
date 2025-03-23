@@ -28,7 +28,7 @@ namespace TandC.GeometryAstro.Gameplay
         public void StartReload()
         {
             CanShoot = false;
-            _reloadTimer = _reloadTime * (1 - _reloadModificator.Value);
+            _reloadTimer = _reloadTime * _reloadModificator.Value;
             _isReloading = true;
             _reloadProgress.Value = 0f;
         }

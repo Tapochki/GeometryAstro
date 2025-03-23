@@ -44,7 +44,7 @@ MonoBehaviour:
     IncreamentData:
       Type: 0
       IsPercentageValue: 1
-      IncrementValue: 10
+      IncrementValue: 5
   - Icon: {fileID: 0}
     ModificatorName: ReviveCount
     ModificatorDescription: 

@@ -23,7 +23,7 @@ namespace TandC.GeometryAstro.Gameplay
 
         public Vector2 PlayerPosition { get => transform.position; }
 
-        private Action<float, float> _onHealthChageEvent;
+        private Action<int, float> _onHealthChageEvent;
         private Action<bool> _onPlayerDieEvent;
 
         private PlayerDieEvent _playerDieEvent;
@@ -57,10 +57,10 @@ namespace TandC.GeometryAstro.Gameplay
             _moveComponent = new MoveComponent(gameObject.GetComponent<Rigidbody2D>());
             _mainRotateComponent = new PlayerRotateComponent(_bodyTransform);
 
-            _healthComponent = new ModifiableHealth(new HealthWithView
-                (new HealthComponent(_modificatorContainer.GetModificator(Settings.ModificatorType.MaxHealth).Value, _onPlayerDieEvent), _onHealthChageEvent),
+            _healthComponent = new ModifiableHealth(_modificatorContainer.GetModificator(Settings.ModificatorType.MaxHealth).Value, _onPlayerDieEvent, 
+                _onHealthChageEvent,
                 _modificatorContainer.GetModificator(Settings.ModificatorType.MaxHealth),
-                _modificatorContainer.GetModificator(Settings.ModificatorType.Armor));
+                _modificatorContainer.GetModificator(Settings.ModificatorType.Armor));           
 
             _itemPickuper = FindAnyObjectByType<ItemPickUper>();
             _itemPickuper.SetModificator(_modificatorContainer.GetModificator(Settings.ModificatorType.PickUpRadius));
@@ -71,6 +71,7 @@ namespace TandC.GeometryAstro.Gameplay
 
         private void FixedTick()
         {
+            Debug.LogError(_moveSpeed.Value);
             _moveComponent.Move(_inputHandler.MoveDirection, _moveSpeed.Value);
             if (_inputHandler.RotationDirection != Vector2.zero)
             {

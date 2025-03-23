@@ -90,7 +90,7 @@ namespace TandC.GeometryAstro.Data
                 {
                     IncreamentData = new IncreamentModificatorData
                     {
-                        Type = ModificatorType.CriticalDamage,
+                        Type = ModificatorType.CriticalDamageMultiplier,
                         IncrementValue = 0.25f,
                         IsPercentageValue = false
                     },

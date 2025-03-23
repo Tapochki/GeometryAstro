@@ -191,52 +191,52 @@ MonoBehaviour:
     - Name: Speed New
       Level: 1
       Description: Speed New
-      Value: 10
+      Value: 5
       IsPercentageValue: 1
     - Name: Speed 2
       Level: 2
       Description: Speed
-      Value: 10
+      Value: 5
       IsPercentageValue: 1
     - Name: Speed 3
       Level: 3
       Description: Speed
-      Value: 10
+      Value: 5
       IsPercentageValue: 1
     - Name: Speed 4
       Level: 4
       Description: Speed
-      Value: 10
+      Value: 5
       IsPercentageValue: 1
     - Name: Speed 5
       Level: 5
       Description: Speed
-      Value: 10
+      Value: 5
       IsPercentageValue: 1
     - Name: Speed 6
       Level: 6
       Description: Speed
-      Value: 10
+      Value: 5
       IsPercentageValue: 1
     - Name: Speed 7
       Level: 7
       Description: Speed
-      Value: 10
+      Value: 5
       IsPercentageValue: 1
     - Name: Speed 8
       Level: 8
       Description: Speed
-      Value: 10
+      Value: 5
       IsPercentageValue: 1
     - Name: Speed 9
       Level: 9
       Description: Speed
-      Value: 10
+      Value: 5
       IsPercentageValue: 1
     - Name: Speed 10
       Level: 10
       Description: Speed
-      Value: 10
+      Value: 5
       IsPercentageValue: 1
     ModificatorUpgradeType: 4
   - SkillName: ReviveCount
@@ -844,5 +844,5 @@ MonoBehaviour:
       Value: 100
       IsPercentageValue: 0
     ModificatorUpgradeType: 0
-  _startAvailableSkills: 0100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d0000000d0000000e0000000f00000010000000
+  _startAvailableSkills: 01000000020000000300000004000000050000000d0000000c0000000e000000060000000700000008000000090000000b0000000a0000000f00000010000000
   _startAvailableTestSkills: 

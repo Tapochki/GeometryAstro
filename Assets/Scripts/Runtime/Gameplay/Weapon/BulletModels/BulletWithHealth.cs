@@ -8,9 +8,9 @@ namespace TandC.GeometryAstro.Gameplay
     {
         private float _bulletHealth = 2;
 
-        public override void Init(Vector2 startPosition, Vector2 target, Action<BaseBullet> bulletBackToPoolEvent, BulletData bulletData, float damage)
+        public override void Init(Vector3 startPosition, Vector3 target, Action<BaseBullet> bulletBackToPoolEvent, BulletData bulletData, float damageModificatorMultiplier, float criticalChanceModificator, float criticalDamageMultiplier, float bulletSizeMultiplier)
         {
-            base.Init(startPosition, target, bulletBackToPoolEvent, bulletData, damage);
+            base.Init(startPosition, target, bulletBackToPoolEvent, bulletData, damageModificatorMultiplier, criticalChanceModificator, criticalDamageMultiplier, bulletSizeMultiplier);
         }
 
         protected override void BulletHit()

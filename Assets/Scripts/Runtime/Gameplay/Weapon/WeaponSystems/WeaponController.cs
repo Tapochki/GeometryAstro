@@ -37,7 +37,10 @@ public class WeaponController
     {
         return _weaponFactory.GetBuilder(type)
             .SetConfig(_config)
-            .SetProjectileFactory(_modificatorContainer.GetModificator(ModificatorType.Damage))
+            .SetProjectileFactory(_modificatorContainer.GetModificator(ModificatorType.Damage), 
+            _modificatorContainer.GetModificator(ModificatorType.CriticalChance),
+            _modificatorContainer.GetModificator(ModificatorType.CriticalDamageMultiplier),
+            _modificatorContainer.GetModificator(ModificatorType.BulletsSize))
             .SetReloader(_modificatorContainer.GetModificator(ModificatorType.ReloadTimer))
             .SetEnemyDetector()
             .Build();

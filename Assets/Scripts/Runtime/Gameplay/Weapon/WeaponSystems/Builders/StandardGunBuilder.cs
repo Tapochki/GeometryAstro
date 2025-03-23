@@ -13,9 +13,9 @@ public class StandardGunBuilder : WeaponBuilder<StandardGun>
         return this;
     }
 
-    public override IWeaponBuilder SetProjectileFactory(IReadableModificator damageModificator)
+    public override IWeaponBuilder SetProjectileFactory(IReadableModificator damageModificator, IReadableModificator criticalChanceModificator, IReadableModificator criticalDamageMultiplierModificator, IReadableModificator bulletSizeModificator)
     {
-        _weapon.SetProjectileFactory(new ProjectileFactory(_config.GetWeaponByType(_weaponType).bulletData, _startBulletPreloadCount, damageModificator));
+        _weapon.SetProjectileFactory(new ProjectileFactory(_config.GetWeaponByType(_weaponType).bulletData, _startBulletPreloadCount, damageModificator, criticalChanceModificator, criticalDamageMultiplierModificator, bulletSizeModificator));
         return this;
     }
 

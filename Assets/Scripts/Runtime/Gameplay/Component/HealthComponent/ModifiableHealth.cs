@@ -1,41 +1,31 @@
+using System;
 using UnityEngine;
 
 namespace TandC.GeometryAstro.Gameplay 
 {
-    public class ModifiableHealth : IHealth
+    public class ModifiableHealth : HealthWithView
     {
-        private HealthWithView _baseHealth;
-
         private IReadableModificator _armorModificator; 
         private IReadableModificator _maxHealthModificator;
 
-        public float MaxHealth => _baseHealth.MaxHealth + _maxHealthModificator.Value;
-        public float CurrentHealth => _baseHealth.CurrentHealth;
-
-        public ModifiableHealth(HealthWithView baseHealth, IReadableModificator armorModificator, IReadableModificator maxHealthModificator)
+        public ModifiableHealth(float maxHealth, Action<bool> onDeathEvent, Action<int, float> onHealthChangeEvent, IReadableModificator maxHealthModificator, IReadableModificator armorModificator) : base(maxHealth, onDeathEvent, onHealthChangeEvent)
         {
-            _baseHealth = baseHealth;
             _armorModificator = armorModificator;
             _maxHealthModificator = maxHealthModificator;
-
-            _maxHealthModificator.OnValueChanged += UpdateMaxHealth;
+            _maxHealthModificator.OnValueChanged = UpdateMaxHealth;
         }
 
-        public void TakeDamage(float amount)
+        public override void TakeDamage(float amount)
         {
-            float armor = Mathf.Clamp01(_armorModificator.Value);
+            float armor = Mathf.Clamp(_armorModificator.Value, 0, 100) / 100f;
             float reducedDamage = amount * (1 - armor);
-            _baseHealth.TakeDamage(reducedDamage);
+            base.TakeDamage(reducedDamage);
         }
 
-        public void Heal(float amount)
+        private void UpdateMaxHealth(float additionalValue)
         {
-            _baseHealth.Heal(amount);
-        }
-
-        private void UpdateMaxHealth(float newValue)
-        {
-            _baseHealth.OnHealthChangeEvent?.Invoke(CurrentHealth, MaxHealth);
+            _maxHealth += additionalValue;
+            base.Heal(additionalValue);
         }
     }
 }

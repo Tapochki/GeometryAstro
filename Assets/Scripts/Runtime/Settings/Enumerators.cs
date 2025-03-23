@@ -233,7 +233,7 @@ namespace TandC.GeometryAstro.Settings
         Armor = 3,
         SpeedMoving = 4,
         ReviveCount = 5,
-        CriticalDamage = 6,
+        CriticalDamageMultiplier = 6,
         CriticalChance = 7,
         CurseProvocation = 8,
         ÑurseReinforcment = 9,

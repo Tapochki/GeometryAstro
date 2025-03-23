@@ -5,7 +5,7 @@ namespace TandC.GeometryAstro.Gameplay
     public interface IReadableModificator
     {
         float Value { get; }
-        event Action<float> OnValueChanged;
+        Action<float> OnValueChanged { get; set; }
         void SetBaseValue(float baseValue);
     }
 }

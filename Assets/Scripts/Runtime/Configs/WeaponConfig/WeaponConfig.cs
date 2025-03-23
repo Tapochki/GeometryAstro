@@ -30,7 +30,6 @@ namespace TandC.GeometryAstro.Data
     {
         public WeaponType type;
         public string weaponName;
-        public float baseDamage;
         public float shootDeley;
         public float detectorDistance;
         public BulletData bulletData;
@@ -42,6 +41,10 @@ namespace TandC.GeometryAstro.Data
         public int BulletSpeed;
         public float bulletLifeTime;
         public int bulletLife;
+        public float baseDamage;
+        public float BasicCriticalChance;
+        public float BasicCriticalMultiplier;
+        public float BasicBulletSize;
         public GameObject BulletObject;
         public WeaponType type;
         public bool IsNotCustomise;

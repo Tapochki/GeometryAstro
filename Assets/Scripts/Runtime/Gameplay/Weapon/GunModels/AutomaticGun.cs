@@ -69,8 +69,7 @@ namespace TandC.GeometryAstro.Gameplay
         {
             _projectileFactory.CreateProjectile(
                 origin,
-                direction,
-                _data.baseDamage
+                direction
             );
         }
 

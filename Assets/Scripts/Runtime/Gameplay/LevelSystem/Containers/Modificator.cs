@@ -13,7 +13,7 @@ namespace TandC.GeometryAstro.Gameplay
         private float _modifier;
         private bool _isPercentage;
 
-        public event Action<float> OnValueChanged;
+        public Action<float> OnValueChanged { get; set; }
 
         public Modificator(float baseValue, float upgradeValue, bool isPercentage)
         {
@@ -31,7 +31,7 @@ namespace TandC.GeometryAstro.Gameplay
         public void ApplyModifier(float value)
         {
             _modifier += value;
-            OnValueChanged?.Invoke(Value);
+            OnValueChanged?.Invoke(value);
         }
     }
 }

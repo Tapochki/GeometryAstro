@@ -42,9 +42,9 @@ namespace TandC.GeometryAstro.Gameplay
         protected override void ConfigureComponents(Enemy enemy, EnemyData data, Vector2 rotationDirection)
         {
             var move = new MoveInDirectionComponent(enemy.GetComponent<Rigidbody2D>());
-            var rotation = new OnTargetRotateComponte(enemy.transform, rotationDirection);
-            var attack = new AttackComponent(data);
+            var rotation = new OnTargetRotateComponte(enemy.transform);
             rotation.SetRotation(rotationDirection);
+            var attack = new AttackComponent(data);
 
             enemy.ConfigureComponents(move, rotation, attack);
         }

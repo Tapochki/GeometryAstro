@@ -2,10 +2,10 @@ namespace TandC.GeometryAstro.EventBus
 {
     public readonly struct PlayerHealthChangeEvent : IEvent
     {
-        public readonly float CurrentHealth;
+        public readonly int CurrentHealth;
         public readonly float MaxHealth;
 
-        public PlayerHealthChangeEvent(float currentHealt, float maxHealth)
+        public PlayerHealthChangeEvent(int currentHealt, float maxHealth)
         {
             CurrentHealth = currentHealt;
             MaxHealth = maxHealth;

@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace TandC.GeometryAstro.Gameplay
 {
-    public class Enemy : MonoBehaviour
+    public class Enemy : MonoBehaviour, IEnemyDamageable
     {
         [Header("References")]
         [SerializeField] private SpriteRenderer _modelViewRenderer;
@@ -49,7 +49,7 @@ namespace TandC.GeometryAstro.Gameplay
 
         public void SetupHealthComponent()
         {
-            _healthComponent = new HealthComponent(
+            _healthComponent = new BaseHealthComponent(
                 EnemyData.health,
                 ProccesingEnemyDeath);
         }
@@ -66,9 +66,16 @@ namespace TandC.GeometryAstro.Gameplay
             _attackComponent = attackComponent;
         }
 
-        public void TakeDamage(float damage)
+        public void TakeDamage(float damageValue, float criticalChance, float criticalDamageMultiplier)
         {
-            _healthComponent.TakeDamage(damage);
+            bool isCriticalHit = UnityEngine.Random.Range(1f, 100f) <= criticalChance;
+            float finalDamage = isCriticalHit ? damageValue * criticalDamageMultiplier : damageValue;
+            if (isCriticalHit)
+            {
+                //Send damage value to vfx 
+            }
+
+            _healthComponent.TakeDamage(finalDamage);
         }
 
         private void OnCollisionEnter2D(Collision2D collision)

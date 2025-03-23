@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace TandC.GeometryAstro.Gameplay 
+namespace TandC.GeometryAstro.Gameplay
 {
     public class HealthRegenerator
     {
@@ -17,16 +17,13 @@ namespace TandC.GeometryAstro.Gameplay
 
         public void Tick()
         {
-            if(_regenModificator.Value > 0) 
+            if (_regenModificator.Value > 0)
             {
-                if (_health.CurrentHealth > 0)
+                _timeSinceLastRegen -= Time.deltaTime;
+                if (_timeSinceLastRegen <= 0)
                 {
-                    _timeSinceLastRegen -= Time.deltaTime;
-                    if (_timeSinceLastRegen <= 0)
-                    {
-                        _health.Heal(_regenModificator.Value);
-                        _timeSinceLastRegen = 1f;
-                    }
+                    _health.Heal(_regenModificator.Value);
+                    _timeSinceLastRegen = 1f;
                 }
             }
         }

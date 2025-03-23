@@ -14,8 +14,6 @@ namespace TandC.GeometryAstro.Gameplay
         private IEnemyDetector _enemyDetector;
         private WeaponData _data;
 
-        private IReadableModificator _baseDamageModificator;
-
         private float _upgradeTimer = 10f;
 
         private List<WeaponShootingPattern> _shootingPatterns = new();
@@ -128,13 +126,12 @@ namespace TandC.GeometryAstro.Gameplay
         {
             foreach (var pattern in GetActivePatterns())
             {
-                Vector2 origin = pattern.Origin.position;
-                Vector2 direction = pattern.Direction.position;
+                Vector3 origin = pattern.Origin.transform.position;
+                Vector3 direction = pattern.Direction.transform.position;
 
                 _projectileFactory.CreateProjectile(
                     origin,
-                    direction,
-                    _data.baseDamage
+                    direction
                 );
             }
         }

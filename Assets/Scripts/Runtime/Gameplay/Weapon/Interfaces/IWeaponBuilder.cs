@@ -6,7 +6,10 @@ namespace TandC.GeometryAstro.Gameplay
     {
         IWeaponBuilder SetData();
         IWeaponBuilder SetConfig(WeaponConfig config);
-        IWeaponBuilder SetProjectileFactory(IReadableModificator damageModificator);
+        IWeaponBuilder SetProjectileFactory(IReadableModificator damageModificator,
+            IReadableModificator criticalChanceModificator,
+            IReadableModificator criticalDamageMultiplierModificator,
+            IReadableModificator bulletSizeModificator);
         IWeaponBuilder SetReloader(IReadableModificator reloadModificator);
         IWeaponBuilder SetEnemyDetector();
        // IWeaponBuilder RegisterShootingPatterns();

@@ -3,25 +3,25 @@ using UnityEngine;
 
 namespace TandC.GeometryAstro.Gameplay 
 {
-    public class HealthComponent : IHealth
+    public class BaseHealthComponent : IHealth
     {
-        public virtual float MaxHealth { get; protected set; }
-        public virtual float CurrentHealth { get; protected set; }
+        protected float _maxHealth;
+        protected float _currentHealth;
 
         protected Action<bool> _onDeathEvent;
 
-        public HealthComponent(float maxHealth, Action<bool> onDeathEvent) 
+        public BaseHealthComponent(float maxHealth, Action<bool> onDeathEvent) 
         {
-            MaxHealth = CurrentHealth = maxHealth;
+            _currentHealth = _maxHealth = maxHealth;
             _onDeathEvent = onDeathEvent;
         }
 
         public virtual void TakeDamage(float amount)
         {
-            if (CurrentHealth > 0)
+            if (_currentHealth > 0)
             {
-                CurrentHealth -= amount;
-                if (CurrentHealth <= 0)
+                _currentHealth -= amount;
+                if (_currentHealth <= 0)
                 {
                     Die();
                 }
@@ -30,7 +30,7 @@ namespace TandC.GeometryAstro.Gameplay
 
         public virtual void Heal(float amount) 
         {
-            CurrentHealth = Mathf.Min(CurrentHealth + amount, MaxHealth);
+            _currentHealth = Mathf.Min(_currentHealth + amount, _maxHealth);
         }
 
         protected virtual void Die()
