@@ -7749,7 +7749,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32c73819114ce82469b2cbcb547ac4a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _selectedType: 5
+  _selectedType: 11
   SkillValue: 1
   HealthRestoreValue: 50
   ExpAddValue: 50

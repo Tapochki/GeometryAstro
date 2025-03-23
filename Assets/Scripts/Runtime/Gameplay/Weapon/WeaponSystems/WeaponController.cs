@@ -42,6 +42,7 @@ public class WeaponController
             _modificatorContainer.GetModificator(ModificatorType.CriticalDamageMultiplier),
             _modificatorContainer.GetModificator(ModificatorType.BulletsSize))
             .SetReloader(_modificatorContainer.GetModificator(ModificatorType.ReloadTimer))
+            .SetDuplicatorComponent(_modificatorContainer.GetModificator(ModificatorType.Duplicator))
             .SetEnemyDetector()
             .Build();
     }

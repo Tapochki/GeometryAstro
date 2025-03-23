@@ -8,6 +8,7 @@ namespace TandC.GeometryAstro.Gameplay
         public void SetProjectileFactory(IProjectileFactory projectileFactory);
         public void SetReloader(IReloadable reloader);
         public void SetEnemyDetector(IEnemyDetector enemyDetector);
+        public void RegisterDuplicatorComponent(IReadableModificator duplicateModificator);
         public void Initialization();
         public void Upgrade();
         public void Tick();

@@ -19,6 +19,12 @@ public class StandardGunBuilder : WeaponBuilder<StandardGun>
         return this;
     }
 
+    public override IWeaponBuilder SetDuplicatorComponent(IReadableModificator duplicatorModificator)
+    {
+        _weapon.RegisterDuplicatorComponent(duplicatorModificator);
+        return this;
+    }
+
     public override IWeaponBuilder SetReloader(IReadableModificator reloadModificator)
     {
         _weapon.SetReloader(new WeaponReloader(_config.GetWeaponByType(_weaponType).shootDeley, reloadModificator));
