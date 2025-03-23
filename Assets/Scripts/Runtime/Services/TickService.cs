@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UniRx;
+using VContainer;
 
 namespace TandC.GeometryAstro.Services
 {
@@ -12,6 +13,9 @@ namespace TandC.GeometryAstro.Services
         private readonly List<Action> _fixedUpdateActions = new List<Action>();
         private readonly List<Action> _lateUpdateActions = new List<Action>();
 
+        [Inject]
+        private IPauseService _pauseService;
+
         public TickService()
         {
             StartTick();
@@ -21,21 +25,21 @@ namespace TandC.GeometryAstro.Services
 
         private void StartTick()
         {
-            Observable.EveryUpdate()
+            Observable.EveryUpdate().Where(_ => _pauseService != null && !_pauseService.IsPaused)
                 .Subscribe(_ => Tick())
                 .AddTo(_disposables);
         }
 
         private void StartFixedTick()
         {
-            Observable.EveryFixedUpdate()
+            Observable.EveryFixedUpdate().Where(_ => _pauseService != null && !_pauseService.IsPaused)
                 .Subscribe(_ => FixedTick())
                 .AddTo(_disposables);
         }
 
         private void StartLateTick()
         {
-            Observable.EveryLateUpdate()
+            Observable.EveryLateUpdate().Where(_ => _pauseService != null && !_pauseService.IsPaused)
                 .Subscribe(_ => LateTick())
                 .AddTo(_disposables);
         }

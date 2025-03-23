@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace TandC.GeometryAstro.Gameplay
 {
-    public class Enemy : MonoBehaviour, IEnemyDamageable
+    public class Enemy : MonoBehaviour, IEnemyDamageable, ITickable
     {
         [Header("References")]
         [SerializeField] private SpriteRenderer _modelViewRenderer;
@@ -19,7 +19,7 @@ namespace TandC.GeometryAstro.Gameplay
 
         public EnemyData EnemyData { get; private set; }
 
-        private void Update()
+        public void Tick()
         {
             if (_moveComponent != null)
             {

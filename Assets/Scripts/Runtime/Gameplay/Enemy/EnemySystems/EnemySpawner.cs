@@ -6,7 +6,6 @@ using TandC.GeometryAstro.Settings;
 using TandC.GeometryAstro.Utilities;
 using UnityEngine;
 using VContainer;
-using static UnityEngine.EventSystems.EventTrigger;
 
 namespace TandC.GeometryAstro.Gameplay
 {
@@ -15,6 +14,8 @@ namespace TandC.GeometryAstro.Gameplay
         private const int ENEMY_PRELOAD_COUNT = 300;
 
         private int _maximumEnemies = ENEMY_PRELOAD_COUNT;
+
+        private TickService _tickService;
 
         private IItemSpawner _itemSpawner;
 
@@ -28,7 +29,7 @@ namespace TandC.GeometryAstro.Gameplay
         private IEnemySpawnPositionService _enemySpawnPositionService;
         private ObjectPool<Enemy> _enemyPool;
 
-        private List<Enemy> _activeEnemyList;
+        private List<ITickable> _activeEnemyList;
         private List<EnemySpawnData> _currentWaveEnemies;
 
         public int ActiveEnemyCount => _activeEnemyList.Count;
@@ -39,13 +40,15 @@ namespace TandC.GeometryAstro.Gameplay
             IEnemySpawnPositionService enemySpawnPositionService,
             IItemSpawner itemSpawner,
             GameConfig gameConfig,
-            Player player)
+            Player player,
+            TickService tickService)
         {
             _loadObjectsService = loadObjectsService;
             _player = player;
             _enemySpawnPositionService = enemySpawnPositionService;
             _enemiesConfig = gameConfig.EnemyConfig;
             _itemSpawner = itemSpawner;
+            _tickService = tickService;
         }
 
         public void Init()
@@ -54,6 +57,8 @@ namespace TandC.GeometryAstro.Gameplay
             LoadEnemyPrefab();
             InitLists();
             InitializePool();
+
+            _tickService.RegisterUpdate(Tick);
         }
 
         private void CreateEnemyParent() 
@@ -72,7 +77,7 @@ namespace TandC.GeometryAstro.Gameplay
 
         private void InitLists() 
         {
-            _activeEnemyList = new List<Enemy>();
+            _activeEnemyList = new List<ITickable>();
             _enemyFactory = new EnemyFactory();
             _currentWaveEnemies = new List<EnemySpawnData>();
         }
@@ -170,6 +175,15 @@ namespace TandC.GeometryAstro.Gameplay
 
             _activeEnemyList.Remove(enemy);
             _enemyPool.Return(enemy);
+        }
+
+        private void Tick() 
+        {
+            for (int i = _activeEnemyList.Count - 1; i >= 0; i--)
+            {
+                ITickable enemy = _activeEnemyList[i];
+                enemy.Tick();
+            }
         }
 
         private void ProccesDropItemFromEnemy(Enemy enemy)

@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace TandC.GeometryAstro.Gameplay
 {
-    public abstract class BaseBullet : MonoBehaviour
+    public abstract class BaseBullet : MonoBehaviour, ITickable
     {
         protected Action<BaseBullet> _bulletBackToPoolEvent;
         protected IMove _moveComponent;
@@ -64,7 +64,7 @@ namespace TandC.GeometryAstro.Gameplay
         public void Activate() => gameObject.SetActive(true);
         public void Deactivate() => gameObject.SetActive(false);
 
-        protected virtual void Update()
+        public virtual void Tick()
         {
             _moveComponent.Move(Vector2.up, _bulletData.BulletSpeed);
             LifeTimer();

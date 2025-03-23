@@ -13,6 +13,7 @@ namespace TandC.GeometryAstro.Gameplay
         private const int ITEM_PRELOAD_COUNT = 200;
 
         private LoadObjectsService _loadObjectsService;
+        private TickService _tickService;
 
         private ItemView _itemViewPrefab;
         private Transform _itemParent;
@@ -25,15 +26,16 @@ namespace TandC.GeometryAstro.Gameplay
 
         private ObjectPool<ItemView> _itemPool;
 
-        private List<ItemView> _activeItems;
+        private List<ITickable> _activeItems;
 
         [Inject]
-        private void Construct(GameConfig gameConfig, Player player, LoadObjectsService loadObjectsService) 
+        private void Construct(GameConfig gameConfig, Player player, LoadObjectsService loadObjectsService, TickService tickService) 
         {
             _player = player;
             _itemsConfig = gameConfig.ItemConfig;
             _dropConfig = gameConfig.ChanceDropItemCofig;
             _loadObjectsService = loadObjectsService;
+            _tickService = tickService;
         }
 
         public void Init()
@@ -43,11 +45,22 @@ namespace TandC.GeometryAstro.Gameplay
             CreateItemParent();
             InitializeItemFactory();
             InitializePool();
+
+            _tickService.RegisterUpdate(Tick);
+        }
+
+        private void Tick() 
+        {
+            for (int i = _activeItems.Count - 1; i >= 0; i--)
+            {
+                ITickable item = _activeItems[i];
+                item.Tick();
+            }
         }
 
         private void InitLists() 
         {
-            _activeItems = new List<ItemView>();
+            _activeItems = new List<ITickable>();
         }
 
         private void CreateItemParent()

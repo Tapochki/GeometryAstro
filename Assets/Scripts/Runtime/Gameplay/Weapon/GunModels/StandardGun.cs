@@ -149,6 +149,7 @@ namespace TandC.GeometryAstro.Gameplay
         public void Tick()
         {
             _reloader.Update();
+            _projectileFactory.Tick();
 
             if (_reloader.CanShoot)
             {

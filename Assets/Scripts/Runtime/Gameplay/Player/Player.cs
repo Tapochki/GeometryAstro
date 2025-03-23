@@ -71,7 +71,6 @@ namespace TandC.GeometryAstro.Gameplay
 
         private void FixedTick()
         {
-            Debug.LogError(_moveSpeed.Value);
             _moveComponent.Move(_inputHandler.MoveDirection, _moveSpeed.Value);
             if (_inputHandler.RotationDirection != Vector2.zero)
             {

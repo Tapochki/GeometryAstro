@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using TandC.GeometryAstro.Data;
 using TandC.GeometryAstro.Utilities;
 using UnityEngine;
@@ -7,6 +8,7 @@ namespace TandC.GeometryAstro.Gameplay
     public class ProjectileFactory : IProjectileFactory
     {
         private ObjectPool<BaseBullet> _pool;
+        private List<ITickable> _activeBullet;
         private Transform _projectileParent;
         private readonly BulletData _bulletData;
         private readonly int _startBulletPreloadCount;
@@ -18,6 +20,7 @@ namespace TandC.GeometryAstro.Gameplay
 
         public ProjectileFactory(BulletData bulletData, int startBulletPreloadCount, IReadableModificator damageModificator, IReadableModificator criticalChangeModificator, IReadableModificator criticalDamageMultiplier, IReadableModificator bulletSize)
         {
+            _activeBullet = new List<ITickable>();
             _damageModificator = damageModificator;
             _bulletData = bulletData;
             _startBulletPreloadCount = startBulletPreloadCount;
@@ -26,6 +29,15 @@ namespace TandC.GeometryAstro.Gameplay
             _criticalChanceModificator = criticalChangeModificator;
             _criticalDamageMultiplier = criticalDamageMultiplier;
             _bulletSize = bulletSize;
+        }
+
+        public void Tick() 
+        {
+            for (int i = _activeBullet.Count - 1; i >= 0; i--)
+            {
+                ITickable bullet = _activeBullet[i];
+                bullet.Tick();
+            }
         }
 
         private void CreateBulletParent()
@@ -39,7 +51,7 @@ namespace TandC.GeometryAstro.Gameplay
             _pool = new ObjectPool<BaseBullet>(
                 preloadFunc: () => CreateBullet(),
                 getAction: bullet => bullet.Activate(),
-                returnAction: bullet => bullet.Deactivate(),
+                returnAction: bullet => DeactivateBullet(bullet),
                 _startBulletPreloadCount);
         }
 
@@ -49,10 +61,16 @@ namespace TandC.GeometryAstro.Gameplay
             return bulletObj.GetComponent<BaseBullet>();
         }
 
+        private void DeactivateBullet(BaseBullet bullet) 
+        {
+            _activeBullet.Remove(bullet);
+            bullet.Deactivate();
+        }
+
         public void CreateProjectile(Vector3 position, Vector3 direction)
         {
-            Debug.LogError(_bulletSize.Value);
             var bullet = _pool.Get();
+            _activeBullet.Add(bullet);
             bullet.Init(position, direction, b => _pool.Return(b), _bulletData, _damageModificator.Value, _criticalChanceModificator.Value, _criticalDamageMultiplier.Value, _bulletSize.Value);
         }
     }

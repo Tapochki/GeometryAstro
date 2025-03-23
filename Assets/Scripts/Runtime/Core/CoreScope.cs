@@ -18,6 +18,7 @@ namespace TandC.GeometryAstro.Core
         protected override void Configure(IContainerBuilder builder)
         {
             RegisterConfigs(builder);
+            RegisterPauseService(builder);
             RegisterInputHandler(builder);
             RegisterModificatorContainer(builder);
             RegisterPlayer(builder);
@@ -34,6 +35,11 @@ namespace TandC.GeometryAstro.Core
         private void RegisterSkillService(IContainerBuilder builder)
         {
             builder.Register<SkillService>(Lifetime.Scoped);
+        }
+
+        private void RegisterPauseService(IContainerBuilder builder)
+        {
+            builder.Register<PauseService>(Lifetime.Scoped).As<IPauseService>();
         }
 
         private void RegisterUIService(IContainerBuilder builder)

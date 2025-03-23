@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace TandC.GeometryAstro.Gameplay
 {
-    public class ItemView : MonoBehaviour
+    public class ItemView : MonoBehaviour, ITickable
     {
         private Action<ItemView> _onItemCollected;
         private ItemModel _itemModel;
@@ -23,7 +23,7 @@ namespace TandC.GeometryAstro.Gameplay
             _triggerItemDoTweenAnimationComponent = new TriggerItemPickupDoTweenAnimation();
         }
 
-        private void Update()
+        public void Tick()
         {
             MoveToPlayer();
         }
