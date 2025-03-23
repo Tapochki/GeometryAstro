@@ -15,6 +15,7 @@ namespace TandC.GeometryAstro.Core
         private readonly LoadingService _loadingService;
         private readonly DataService _dataService;
         private readonly Player _player;
+        private readonly PlayerDeathProcessor _playerDeathProcessor;
         private readonly IGameplayInputHandler _gameplayInputHandler;
         private readonly GameplayCamera _gameplayCamera;
 
@@ -37,10 +38,14 @@ namespace TandC.GeometryAstro.Core
 
         private readonly SkillService _skillService;
 
+        private readonly IPauseService _pauseService;
+
+
         public CoreFlow(
             LoadingService loadingService,
             DataService dataService,
             Player player,
+            PlayerDeathProcessor playerDeathProcessor,
             IGameplayInputHandler gameplayInputHandler,
             GameplayCamera gameplayCamera,
             WaveController waveController,
@@ -55,11 +60,13 @@ namespace TandC.GeometryAstro.Core
             UIService uiService,
             SceneService sceneService,
             SkillService skillService,
-            ModificatorContainer modificatorContainer)
+            ModificatorContainer modificatorContainer,
+            IPauseService pauseService)
         {
             _loadingService = loadingService;
             _dataService = dataService;
             _player = player;
+            _playerDeathProcessor = playerDeathProcessor;
             _gameplayInputHandler = gameplayInputHandler;
             _gameplayCamera = gameplayCamera;
             _waveController = waveController;
@@ -75,6 +82,7 @@ namespace TandC.GeometryAstro.Core
             _sceneService = sceneService;
             _skillService = skillService;
             _modificatorContainer = modificatorContainer;
+            _pauseService = pauseService;
         }
 
         public async void Start()
@@ -91,10 +99,13 @@ namespace TandC.GeometryAstro.Core
             await _loadingService.BeginLoading(fooLoadingUnit);
 
             RegisterUI();
+
+            _pauseService.Init();
         }
 
         private void InitPlayer()
         {
+            _playerDeathProcessor.Init(_modificatorContainer.GetModificator(Settings.ModificatorType.MaxHealth), _modificatorContainer.GetModificator(Settings.ModificatorType.ReviveCount));
             _player.Init(_dataService.UserData.PlayerData);
         }
 

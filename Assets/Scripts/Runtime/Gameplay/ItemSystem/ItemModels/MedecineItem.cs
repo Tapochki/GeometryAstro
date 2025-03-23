@@ -14,7 +14,7 @@ namespace TandC.GeometryAstro.Gameplay
 
         public override void ReleseItem()
         {
-            EventBusHolder.EventBus.Raise(new MedecineItemReleaseEvent(HealAmount));
+            EventBusHolder.EventBus.Raise(new PlayerHealReleaseEvent(HealAmount));
         }
     }
 }

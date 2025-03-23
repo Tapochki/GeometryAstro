@@ -107,13 +107,12 @@ namespace TandC.GeometryAstro.UI
             _model.SelfObject.SetActive(true);
             ShowSkillList();
 
-            Time.timeScale = 0; // TODO costil
+            _model.PauseGame();
         }
 
         public void Hide()
         {
             _model.SelfObject.SetActive(false);
-            Time.timeScale = 1; // TODO costil
         }
 
         private void SkillReset()

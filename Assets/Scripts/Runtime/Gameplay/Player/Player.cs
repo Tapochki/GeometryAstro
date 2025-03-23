@@ -46,27 +46,51 @@ namespace TandC.GeometryAstro.Gameplay
 
         public void Init(PlayerData playerData)
         {
+            _playerData = playerData;
+
+            InitLevelModel();
+            InitPlayerHealthComponent();
+            InitPlayerMoveComponent();
+            InitRotateComponent();
+            InitPickUpper();
+
+            _tickService.RegisterFixedUpdate(FixedTick);
+        }
+
+        private void InitLevelModel()
+        {
             _levelModel = new LevelModel();
             _levelModel.Init();
-            _playerData = playerData;
-            _moveSpeed = _modificatorContainer.GetModificator(Settings.ModificatorType.SpeedMoving);
+        }
 
+        private void InitPlayerMoveComponent() 
+        {
+            _moveSpeed = _modificatorContainer.GetModificator(Settings.ModificatorType.SpeedMoving);
+            _moveComponent = new MoveComponent(gameObject.GetComponent<Rigidbody2D>());
+        }
+
+        private void InitPlayerHealthComponent()
+        {
             _onHealthChageEvent += (currentHealth, maxHealth) => EventBusHolder.EventBus.Raise(new PlayerHealthChangeEvent(currentHealth, maxHealth));
             _onPlayerDieEvent += (isKilled) => EventBusHolder.EventBus.Raise(new PlayerDieEvent());
 
-            _moveComponent = new MoveComponent(gameObject.GetComponent<Rigidbody2D>());
-            _mainRotateComponent = new PlayerRotateComponent(_bodyTransform);
-
-            _healthComponent = new ModifiableHealth(_modificatorContainer.GetModificator(Settings.ModificatorType.MaxHealth).Value, _onPlayerDieEvent, 
-                _onHealthChageEvent,
+            _healthComponent = new ModifiableHealth(_modificatorContainer.GetModificator(Settings.ModificatorType.MaxHealth).Value, 
+                _onPlayerDieEvent, _onHealthChageEvent,
                 _modificatorContainer.GetModificator(Settings.ModificatorType.MaxHealth),
-                _modificatorContainer.GetModificator(Settings.ModificatorType.Armor));           
-
-            _itemPickuper = FindAnyObjectByType<ItemPickUper>();
-            _itemPickuper.SetModificator(_modificatorContainer.GetModificator(Settings.ModificatorType.PickUpRadius));
+                _modificatorContainer.GetModificator(Settings.ModificatorType.Armor));
 
             _healthRegenerator = new HealthRegenerator(_healthComponent, _modificatorContainer.GetModificator(Settings.ModificatorType.HealtRestoreCount));
-            _tickService.RegisterFixedUpdate(FixedTick);
+        }
+
+        private void InitPickUpper() 
+        {
+            _itemPickuper = FindAnyObjectByType<ItemPickUper>();
+            _itemPickuper.SetModificator(_modificatorContainer.GetModificator(Settings.ModificatorType.PickUpRadius));
+        }
+
+        private void InitRotateComponent() 
+        {
+            _mainRotateComponent = new PlayerRotateComponent(_bodyTransform);
         }
 
         private void FixedTick()
@@ -93,9 +117,16 @@ namespace TandC.GeometryAstro.Gameplay
             _healthComponent.TakeDamage(damage);
         }
 
-        public void Heal(float damage) 
+        public void PlayerEnable()
         {
+            EventBusHolder.EventBus.Raise(new PauseGameEvent(false));
+            gameObject.SetActive(true);
+        }
 
+        public void PlayerDisable() 
+        {
+            EventBusHolder.EventBus.Raise(new PauseGameEvent(true));
+            gameObject.SetActive(false);
         }
     }
 }

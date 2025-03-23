@@ -7,7 +7,7 @@ namespace Studio
     {
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.H))
+            if (Input.GetKeyDown(KeyCode.C))
             {
                 EventBusHolder.EventBus.Raise(new ChestItemReleaseEvent());
             }

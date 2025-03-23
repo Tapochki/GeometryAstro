@@ -68,6 +68,7 @@ namespace TandC.GeometryAstro.UI
 
         public void Show(object data = null)
         {
+            _model.PauseGame();
             _model.SelfObject.SetActive(true);
         }
 

@@ -16,6 +16,15 @@ public class TestSkill : MonoBehaviour
         {
             TestUpgradeSkill();
         }
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            Heal();
+        }
+    }
+
+    private void Heal()
+    {
+        EventBusHolder.EventBus.Raise(new PlayerHealReleaseEvent(100));
     }
 
     [ContextMenu("Test Upgrade Skill")]

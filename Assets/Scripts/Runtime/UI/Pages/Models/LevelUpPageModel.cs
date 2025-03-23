@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using TandC.GeometryAstro.Data;
+using TandC.GeometryAstro.EventBus;
 using TandC.GeometryAstro.Gameplay;
 using TandC.GeometryAstro.Services;
 using TandC.GeometryAstro.UI.Elements;
@@ -92,11 +93,22 @@ namespace TandC.GeometryAstro.UI
             //_uiService.OpenPage<>();
         }
 
+        public void PauseGame()
+        {
+            EventBusHolder.EventBus.Raise(new PauseGameEvent(true));
+        }
+
+        public void ContinueGame()
+        {
+            EventBusHolder.EventBus.Raise(new PauseGameEvent(false));
+        }
+
         public void Confirm()
         {
             //_soundService.PlayClickSound();
             _uiService.OpenPage<GamePageView>();
             _currentSelectedSkill.SkillData.ApplySkill();
+            ContinueGame();
         }
 
         public void Dispose()

@@ -1,4 +1,5 @@
 using System;
+using TandC.GeometryAstro.Gameplay;
 using TandC.GeometryAstro.Services;
 using TandC.GeometryAstro.Utilities;
 using UnityEngine;
@@ -13,6 +14,9 @@ namespace TandC.GeometryAstro.UI
         private UIService _uiService;
         private LocalisationService _localisationService;
         private SoundService _soundService;
+
+        private bool _isReviveAdViewed;
+        private PlayerDeathProcessor _playerDeathProcessor;
 
         private GameObject _selfObject;
         public GameObject SelfObject
@@ -32,12 +36,16 @@ namespace TandC.GeometryAstro.UI
             SceneService sceneService,
             LocalisationService localisationService,
             SoundService soundService,
-            UIService uiService)
+            UIService uiService,
+            PlayerDeathProcessor playerDeathProcessor)
         {
             _sceneService = sceneService;
             _uiService = uiService;
             _localisationService = localisationService;
             _soundService = soundService;
+
+            _isReviveAdViewed = false;
+            _playerDeathProcessor = playerDeathProcessor;
 
             _localisationService.OnLanguageWasChangedEvent += OnLanguageWasChangedEventHandler;
         }
@@ -58,10 +66,23 @@ namespace TandC.GeometryAstro.UI
             //_sceneService.LoadScene(RuntimeConstants.Scenes.Core).Forget();
         }
 
+        public bool IsOneMoreChanceButtonActive() 
+        {
+            return _isReviveAdViewed;
+        }
+
         public void OneMoreChange()
         {
+            AdReviveViewedHandler(); // TODO change it to be called after watching an advertisement.
+
             //_soundService.PlayClickSound();
             //_uiService.OpenPage<>();
+        }
+
+        private void AdReviveViewedHandler() 
+        {
+            _isReviveAdViewed = true;
+            _playerDeathProcessor.StartReviveTimer();
         }
 
         public void Dispose()

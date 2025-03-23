@@ -10,6 +10,8 @@ namespace TandC.GeometryAstro.Gameplay
         [SerializeField] private Image _healthBar;
         [SerializeField] private TextMeshProUGUI _healthText;
 
+        public UniqueId Id { get; } = new UniqueId();
+
         private void RegisterEvent()
         {
            EventBusHolder.EventBus.Register(this as IEventReceiver<PlayerHealthChangeEvent>);
@@ -20,6 +22,12 @@ namespace TandC.GeometryAstro.Gameplay
             EventBusHolder.EventBus.Unregister(this as IEventReceiver<PlayerHealthChangeEvent>);
         }
 
+        public void OnEvent(PlayerHealthChangeEvent @event)
+        {
+            _healthBar.fillAmount = @event.CurrentHealth / @event.MaxHealth;
+            _healthText.text = $"{@event.CurrentHealth}/{@event.MaxHealth}";
+        }
+
         private void OnEnable()
         {
             RegisterEvent();
@@ -28,14 +36,6 @@ namespace TandC.GeometryAstro.Gameplay
         private void OnDisable()
         {
             UnregisterEvent();
-        }
-
-        public UniqueId Id { get; } = new UniqueId();
-
-        public void OnEvent(PlayerHealthChangeEvent @event)
-        {
-            _healthBar.fillAmount = @event.CurrentHealth / @event.MaxHealth;
-            _healthText.text = $"{@event.CurrentHealth}/{@event.MaxHealth}";
         }
     }
 }

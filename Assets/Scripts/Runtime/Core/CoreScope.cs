@@ -60,6 +60,7 @@ namespace TandC.GeometryAstro.Core
         private void RegisterPlayer(IContainerBuilder builder)
         {
             builder.RegisterComponent(_player).AsSelf();
+            builder.Register<PlayerDeathProcessor>(Lifetime.Scoped);
         }
 
         private void RegisterGameplayCamera(IContainerBuilder builder)

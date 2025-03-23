@@ -47,11 +47,11 @@ namespace TandC.GeometryAstro.EventBus
     {
     }
 
-    public readonly struct MedecineItemReleaseEvent : IEvent
+    public readonly struct PlayerHealReleaseEvent : IEvent
     {
         public readonly int HealAmount;
 
-        public MedecineItemReleaseEvent(int healAmount)
+        public PlayerHealReleaseEvent(int healAmount)
         {
             HealAmount = healAmount;
         }

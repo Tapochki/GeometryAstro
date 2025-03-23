@@ -67,6 +67,8 @@ namespace TandC.GeometryAstro.UI
         public void Show(object data = null)
         {
             _model.SelfObject.SetActive(true);
+
+
         }
 
         public void Hide()

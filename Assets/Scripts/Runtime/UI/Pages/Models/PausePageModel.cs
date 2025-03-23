@@ -1,5 +1,6 @@
 using System;
 using TandC.GeometryAstro.Core;
+using TandC.GeometryAstro.EventBus;
 using TandC.GeometryAstro.Services;
 using TandC.GeometryAstro.Utilities;
 using UnityEngine;
@@ -73,11 +74,17 @@ namespace TandC.GeometryAstro.UI
         //    _uiService.OpenPage<SettingsPageView>();
         //}
 
+        public void PauseGame() 
+        {
+            EventBusHolder.EventBus.Raise(new PauseGameEvent(true));
+        }
+
         public void ContinueGame()
         {
             // TODO - unpause game
             //_soundService.PlayClickSound();
             _uiService.OpenPage<GamePageView>();
+            EventBusHolder.EventBus.Raise(new PauseGameEvent(false));
         }
 
         public void Dispose()

@@ -18,9 +18,8 @@ namespace TandC.GeometryAstro.Gameplay
 
         private void OnRadiusUpgradeHandler(float value) 
         {
-
+            _collider.radius = _itemRadiusModificator.Value;
         }
-
     }
 }
 

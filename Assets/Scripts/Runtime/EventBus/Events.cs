@@ -12,6 +12,17 @@ namespace TandC.GeometryAstro.EventBus
         }
     }
 
+    public readonly struct PauseGameEvent : IEvent 
+    {
+        public readonly bool SetPause;
+
+        public PauseGameEvent(bool setPause) 
+        {
+            SetPause = setPause;
+        }
+
+    }
+
     public readonly struct ExpirienceChangeEvent : IEvent
     {
         public readonly float CurrentExpirience;

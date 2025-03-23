@@ -1,8 +1,9 @@
+using TandC.GeometryAstro.EventBus;
 using UnityEngine;
 
 namespace TandC.GeometryAstro.Gameplay
 {
-    public class HealthRegenerator
+    public class HealthRegenerator : IEventReceiver<PlayerHealReleaseEvent>, ITickable
     {
         private IHealth _health;
         private IReadableModificator _regenModificator;
@@ -13,6 +14,35 @@ namespace TandC.GeometryAstro.Gameplay
             _health = health;
             _regenModificator = regenModificator;
             _timeSinceLastRegen = 1f;
+            RegisterEvent();
+        }
+
+        public UniqueId Id { get; } = new UniqueId();
+
+        private void RegisterEvent()
+        {
+            EventBusHolder.EventBus.Register(this as IEventReceiver<PlayerHealReleaseEvent>);
+        }
+
+        private void UnregisterEvent()
+        {
+            EventBusHolder.EventBus.Unregister(this as IEventReceiver<PlayerHealReleaseEvent>);
+        }
+
+        public void OnEvent(PlayerHealReleaseEvent @event)
+        {
+            Debug.LogError("HealthRegenerator heal " + @event.HealAmount);
+            Heal(@event.HealAmount);
+        }
+
+        private void Heal(float amount) 
+        {
+            _health.Heal(amount);
+        }
+
+        public void Dispose() 
+        {
+            UnregisterEvent();
         }
 
         public void Tick()
@@ -22,7 +52,7 @@ namespace TandC.GeometryAstro.Gameplay
                 _timeSinceLastRegen -= Time.deltaTime;
                 if (_timeSinceLastRegen <= 0)
                 {
-                    _health.Heal(_regenModificator.Value);
+                    Heal(_regenModificator.Value);
                     _timeSinceLastRegen = 1f;
                 }
             }

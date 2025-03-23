@@ -115,6 +115,9 @@ namespace TandC.GeometryAstro.Services
 
         private void LateTick()
         {
+            if (_pauseService.IsPaused == true)
+                return;
+
             var actions = _lateUpdateActions.ToArray();
             foreach (var action in actions)
             {
