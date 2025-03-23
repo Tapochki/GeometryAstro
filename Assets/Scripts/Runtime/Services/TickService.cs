@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UniRx;
+using UnityEngine;
 using VContainer;
 
 namespace TandC.GeometryAstro.Services
@@ -25,14 +26,14 @@ namespace TandC.GeometryAstro.Services
 
         private void StartTick()
         {
-            Observable.EveryUpdate().Where(_ => _pauseService != null && !_pauseService.IsPaused)
+            Observable.EveryUpdate().Where(_ => _pauseService?.IsPaused == false)
                 .Subscribe(_ => Tick())
                 .AddTo(_disposables);
         }
 
         private void StartFixedTick()
         {
-            Observable.EveryFixedUpdate().Where(_ => _pauseService != null && !_pauseService.IsPaused)
+            Observable.EveryFixedUpdate().Where(_ => _pauseService?.IsPaused == false)
                 .Subscribe(_ => FixedTick())
                 .AddTo(_disposables);
         }
@@ -60,6 +61,38 @@ namespace TandC.GeometryAstro.Services
         {
             _lateUpdateActions.Add(onLateUpdate);
             return Disposable.Create(() => _lateUpdateActions.Remove(onLateUpdate));
+        }
+
+        public IDisposable RegisterTimer(TimeSpan interval, Action callback, bool checkPause = true)
+        {
+            float timer = 0f;
+            return RegisterUpdate(() =>
+            {
+                if (checkPause && _pauseService?.IsPaused == true) return;
+
+                timer += Time.deltaTime;
+                if (timer >= interval.TotalSeconds)
+                {
+                    timer = 0f;
+                    callback?.Invoke();
+                }
+            });
+        }
+
+        public IDisposable RegisterInterval(TimeSpan interval, Action callback, bool checkPause = true)
+        {
+            float timer = 0f;
+            return RegisterUpdate(() =>
+            {
+                if (checkPause && _pauseService?.IsPaused == true) return;
+
+                timer += Time.deltaTime;
+                while (timer >= interval.TotalSeconds)
+                {
+                    timer -= (float)interval.TotalSeconds;
+                    callback?.Invoke();
+                }
+            });
         }
 
         private void Tick()

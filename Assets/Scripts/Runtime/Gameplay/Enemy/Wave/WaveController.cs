@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using TandC.GeometryAstro.Data;
+using TandC.GeometryAstro.Services;
 using UniRx;
 using UnityEngine;
 using VContainer;
@@ -9,6 +10,7 @@ namespace TandC.GeometryAstro.Gameplay
 {
     public class WaveController : IDisposable
     {
+        private TickService _tickService;
         private LevelConfig _levelConfig;
 
         private IEnemySpawner _enemySpawner;
@@ -25,10 +27,11 @@ namespace TandC.GeometryAstro.Gameplay
         public IReadOnlyReactiveProperty<bool> IsBossActive => _isBossActive;
 
         [Inject]
-        private void Construct(IEnemySpawner enemySpawner, GameConfig gameConfig)
+        private void Construct(IEnemySpawner enemySpawner, GameConfig gameConfig, TickService tickService)
         {
             _enemySpawner = enemySpawner;
             _levelConfig = gameConfig.LevelsConfig;
+            _tickService = tickService;
         }
 
         public void Init()
@@ -55,16 +58,6 @@ namespace TandC.GeometryAstro.Gameplay
             StartEnemySpawning();
             StartWaveTimer();
             ProcessWaveEvents();
-        }
-
-        private void StartEnemySpawning()
-        {
-            if (_currentWave.enemies.Length == 0) return;
-
-            Observable.Interval(TimeSpan.FromSeconds(_currentWave.spawnInterval))
-                .Where(_ => !_isBossActive.Value)
-                .Subscribe(_ => TrySpawnEnemy())
-                .AddTo(_waveDisposables);
         }
 
         private void TrySpawnEnemy()
@@ -94,12 +87,36 @@ namespace TandC.GeometryAstro.Gameplay
             _enemySpawner.SpawnEnemy();
         }
 
+        private IDisposable _waveTimerDisposable;
+
         private void StartWaveTimer()
         {
-            Observable.Timer(TimeSpan.FromSeconds(_currentWave.waveDuration))
-                .Where(_ => !_isBossActive.Value)
-                .Subscribe(_ => CompleteWave())
-                .AddTo(_waveDisposables);
+            _waveTimerDisposable?.Dispose();
+
+            _waveTimerDisposable = _tickService.RegisterTimer(
+                interval: TimeSpan.FromSeconds(_currentWave.waveDuration),
+                callback: CompleteWave,
+                checkPause: true
+            ).AddTo(_waveDisposables);
+        }
+
+        private IDisposable _spawnIntervalDisposable;
+
+        private void StartEnemySpawning()
+        {
+            if (_currentWave.enemies.Length == 0) return;
+
+            _spawnIntervalDisposable?.Dispose();
+
+            _spawnIntervalDisposable = _tickService.RegisterInterval(
+                interval: TimeSpan.FromSeconds(_currentWave.spawnInterval),
+                callback: () =>
+                {
+                    if (!_isBossActive.Value)
+                        TrySpawnEnemy();
+                },
+                checkPause: true
+            ).AddTo(_waveDisposables);
         }
 
         private void ProcessWaveEvents()
@@ -135,10 +152,7 @@ namespace TandC.GeometryAstro.Gameplay
 
         private void SpawnBossIfNeeded()
         {
-            //if (_currentWave.bossInPhase == null) return;
 
-            //_isBossActive.Value = true;
-            //_enemySpawner.SpawnBoss(_currentWave.bossInPhase.boss, OnBossDefeated);
         }
 
         private void OnBossDefeated()
