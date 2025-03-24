@@ -1,5 +1,6 @@
 using System;
 using TandC.GeometryAstro.EventBus;
+using TandC.GeometryAstro.UI;
 using TandC.GeometryAstro.Utilities;
 using UniRx;
 using VContainer;
@@ -8,6 +9,7 @@ namespace TandC.GeometryAstro.Gameplay
 {
     public class PlayerDeathProcessor : IEventReceiver<PlayerDieEvent>
     {
+        private const float FREEZE_TIME_AFTER_REVIVE_TIMER = 3f;
         public UniqueId Id { get; } = new UniqueId();
 
         private Player _player;
@@ -35,6 +37,11 @@ namespace TandC.GeometryAstro.Gameplay
 
         }
 
+        public void Dispose() 
+        {
+            UnregisterEvent();
+        }
+
         private void RegisterEvent()
         {
             EventBusHolder.EventBus.Register(this as IEventReceiver<PlayerDieEvent>);
@@ -55,14 +62,13 @@ namespace TandC.GeometryAstro.Gameplay
             }
             else
             {
-                PlayerDeathProcess(RevivePlayer);
+                PlayerDeathProcess();
             }
         }
-        private void PlayerDeathProcess(Action callback) 
+        private void PlayerDeathProcess() 
         {
-          //  _uIService.OpenPage<GameOverPageView>(new object[] { _isReviveAdViewed, callback });
+            _uIService.OpenPage<GameOverPageView>();
             _player.PlayerDisable();
-            //send GameOverOpen
         }
 
         private CompositeDisposable _reviveDisposables = new CompositeDisposable();
@@ -76,12 +82,13 @@ namespace TandC.GeometryAstro.Gameplay
 
         private void RevivePlayer()
         {
-            //TODO add froze all enemy
             _player.PlayerEnable();
 
             float reviveHealHealth = _maxHealth.Value / 2;
 
             EventBusHolder.EventBus.Raise(new PlayerHealReleaseEvent((int)reviveHealHealth));
+            EventBusHolder.EventBus.Raise(new FrozeBombReleaseEvent(FREEZE_TIME_AFTER_REVIVE_TIMER));
+            
         }
     }
 }

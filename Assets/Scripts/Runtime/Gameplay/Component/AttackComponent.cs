@@ -39,7 +39,6 @@ namespace TandC.GeometryAstro.Gameplay
 
         private void ExecuteDamage() 
         {
-            Debug.LogError($" damage {_enemyData.damage} _damageModificator {_damageModificator} sum {_enemyData.damage * _damageModificator}");
             _player.TakeDamage(_enemyData.damage * _damageModificator);
         }
 

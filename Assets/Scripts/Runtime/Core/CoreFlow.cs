@@ -40,8 +40,10 @@ namespace TandC.GeometryAstro.Core
 
         private readonly IPauseService _pauseService;
 
-        private ScoreContainer _scoreContainer;
-        private MoneyVaultContainer _moneyVaultContainer;
+        private readonly ScoreContainer _scoreContainer;
+        private readonly MoneyVaultContainer _moneyVaultContainer;
+
+        private readonly VaultService _vaultService;
 
 
         public CoreFlow(
@@ -66,7 +68,8 @@ namespace TandC.GeometryAstro.Core
             ModificatorContainer modificatorContainer,
             IPauseService pauseService,
             ScoreContainer scoreContainer,
-            MoneyVaultContainer moneyVaultContainer)
+            MoneyVaultContainer moneyVaultContainer,
+            VaultService vaultService)
         {
             _loadingService = loadingService;
             _dataService = dataService;
@@ -90,6 +93,7 @@ namespace TandC.GeometryAstro.Core
             _pauseService = pauseService;
             _scoreContainer = scoreContainer;
             _moneyVaultContainer = moneyVaultContainer;
+            _vaultService = vaultService;
         }
 
         public async void Start()
@@ -141,6 +145,7 @@ namespace TandC.GeometryAstro.Core
             {
                 new GamePageView(new GamePageModel(_soundService, _uiService)),
                 new SettingsPageView(new SettingsPageModel(_localizationService, _soundService, _uiService, _dataService)),
+                new GameOverPageView(new GameOverPageModel(_sceneService, _localizationService, _soundService, _uiService, _playerDeathProcessor, _moneyVaultContainer, _scoreContainer, _vaultService)),
                 new PausePageView(new PausePageModel(_sceneService, _localizationService, _soundService, this, _uiService)),
                 new LevelUpPageView(new LevelUpPageModel(_localizationService, _soundService, _uiService, _skillService)),
                 new ChestPageView(new ChestPageModel(_localizationService, _soundService, _uiService, _skillService)),

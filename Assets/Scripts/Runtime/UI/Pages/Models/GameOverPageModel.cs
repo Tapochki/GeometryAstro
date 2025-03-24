@@ -18,6 +18,10 @@ namespace TandC.GeometryAstro.UI
 
         private bool _isReviveAdViewed;
         private PlayerDeathProcessor _playerDeathProcessor;
+        private MoneyVaultContainer _moneyVaultContainer;
+        private ScoreContainer _scoreContainer;
+
+        private VaultService _vaultService;
 
         private GameObject _selfObject;
         public GameObject SelfObject
@@ -38,7 +42,10 @@ namespace TandC.GeometryAstro.UI
             LocalisationService localisationService,
             SoundService soundService,
             UIService uiService,
-            PlayerDeathProcessor playerDeathProcessor)
+            PlayerDeathProcessor playerDeathProcessor,
+            MoneyVaultContainer moneyVaultContainer,
+            ScoreContainer scoreContainer,
+            VaultService vaultService)
         {
             _sceneService = sceneService;
             _uiService = uiService;
@@ -46,9 +53,12 @@ namespace TandC.GeometryAstro.UI
             _soundService = soundService;
 
             _isReviveAdViewed = false;
+            _moneyVaultContainer = moneyVaultContainer;
+            _scoreContainer = scoreContainer;
             _playerDeathProcessor = playerDeathProcessor;
 
             _localisationService.OnLanguageWasChangedEvent += OnLanguageWasChangedEventHandler;
+            _vaultService = vaultService;
         }
 
         private void OnLanguageWasChangedEventHandler(Settings.Languages language)
@@ -63,13 +73,13 @@ namespace TandC.GeometryAstro.UI
 
         public void Continue()
         {
-            //_soundService.PlayClickSound();
+            AddGameMoneyToGlobalWallet();
             _sceneService.LoadScene(RuntimeConstants.Scenes.Menu).Forget();
         }
 
         public bool IsOneMoreChanceButtonActive()
         {
-            return _isReviveAdViewed;
+            return !_isReviveAdViewed;
         }
 
         public void OneMoreChance()
@@ -77,7 +87,22 @@ namespace TandC.GeometryAstro.UI
             AdReviveViewedHandler(); // TODO change it to be called after watching an advertisement.
 
             //_soundService.PlayClickSound();
-            //_uiService.OpenPage<>();
+            _uiService.OpenPage<GamePageView>();
+        }
+
+        public int GetCurrentMoneyCount() 
+        {
+            return _moneyVaultContainer.CurrentMoneyCount;
+        }
+
+        public int GetCurrentScoreCount() 
+        {
+            return _scoreContainer.Score;
+        }
+
+        public void AddGameMoneyToGlobalWallet() 
+        {
+            _vaultService.Coins.Add(GetCurrentMoneyCount());
         }
 
         private void AdReviveViewedHandler()

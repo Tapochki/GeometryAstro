@@ -9,6 +9,7 @@ using System.Text;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SocialPlatforms;
 using UnityEngine.UI;
 
 namespace TandC.GeometryAstro.Utilities
@@ -189,10 +190,10 @@ namespace TandC.GeometryAstro.Utilities
                  },
                  finalValue,
                  duration
-             );
+            );
         }
 
-        public static Tweener DOTextInt(this TextMeshProUGUI text, int initialValue, int finalValue, float duration)
+        public static Tweener DOTextInt(this TextMeshProUGUI text, int initialValue, int finalValue, float duration, Ease ease = Ease.Linear, bool setUpdate = true)
         {
             return DOTween.To(
                  () => initialValue,
@@ -204,8 +205,7 @@ namespace TandC.GeometryAstro.Utilities
                      }
                  },
                  finalValue,
-                 duration
-             );
+                 duration).SetEase(Ease.Linear).SetUpdate(setUpdate);
         }
 
         public static bool IsPointerOverUIObject()

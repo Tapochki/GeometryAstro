@@ -31,7 +31,6 @@ namespace TandC.GeometryAstro.Gameplay
 
         public void OnEvent(PlayerHealReleaseEvent @event)
         {
-            Debug.LogError("HealthRegenerator heal " + @event.HealAmount);
             Heal(@event.HealAmount);
         }
 
