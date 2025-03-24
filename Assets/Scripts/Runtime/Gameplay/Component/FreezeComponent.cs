@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace TandC.GeometryAstro.Gameplay 
+namespace TandC.GeometryAstro.Gameplay
 {
     public class FreezeComponent : IFreezeComponent
     {
@@ -10,7 +10,7 @@ namespace TandC.GeometryAstro.Gameplay
 
         private readonly GameObject _freezeVFX;
 
-        public FreezeComponent(GameObject freezeVFX) 
+        public FreezeComponent(GameObject freezeVFX)
         {
             IsFreeze = false;
             _freezeVFX = freezeVFX;
@@ -34,13 +34,13 @@ namespace TandC.GeometryAstro.Gameplay
             SetFreezeObject(IsFreeze);
         }
 
-        private void EndFreeze() 
+        private void EndFreeze()
         {
             IsFreeze = false;
             SetFreezeObject(IsFreeze);
         }
 
-        private void SetFreezeObject(bool isActive) 
+        private void SetFreezeObject(bool isActive)
         {
             _freezeVFX.gameObject.SetActive(isActive);
         }

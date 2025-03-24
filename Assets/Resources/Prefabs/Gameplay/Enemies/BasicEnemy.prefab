@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 294387566186552440}
   - component: {fileID: 7559705392752510068}
   - component: {fileID: 4974342017143899876}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ModelView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -285,7 +285,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4953662319019140615, guid: c65a1f763cb2ad147bc96884342a2755, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4953662319019140615, guid: c65a1f763cb2ad147bc96884342a2755, type: 3}
       propertyPath: m_IsActive
@@ -293,7 +293,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4953662319359027391, guid: c65a1f763cb2ad147bc96884342a2755, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -365,6 +365,10 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 4680851288958423772, guid: 9e0f7edca56abf14a8fada04ad298bf6, type: 3}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -389,7 +393,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1345950679473157435, guid: 03c51be6666e1e6469f1b9df62914da1, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1345950679473157435, guid: 03c51be6666e1e6469f1b9df62914da1, type: 3}
       propertyPath: m_IsActive
