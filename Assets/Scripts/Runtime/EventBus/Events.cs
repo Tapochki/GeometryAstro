@@ -5,10 +5,15 @@ namespace TandC.GeometryAstro.EventBus
         public readonly int CurrentHealth;
         public readonly float MaxHealth;
 
-        public PlayerHealthChangeEvent(int currentHealt, float maxHealth)
+        //public readonly float ChangedValue;
+        //public readonly bool IsSubstruct;
+
+        public PlayerHealthChangeEvent(int currentHealth, float maxHealth/*, float changedValue, bool isSubstruct*/)
         {
-            CurrentHealth = currentHealt;
+            CurrentHealth = currentHealth;
             MaxHealth = maxHealth;
+            //ChangedValue = changedValue;
+            //IsSubstruct = isSubstruct;
         }
     }
 
