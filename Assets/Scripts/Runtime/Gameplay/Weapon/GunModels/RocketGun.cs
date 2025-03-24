@@ -13,9 +13,13 @@ namespace TandC.GeometryAstro.Gameplay
 
         private WeaponShootingPattern _weaponShootingPattern;
 
+        private DuplicatorComponent _duplicatorComponent;
+
         public WeaponType WeaponType { get; private set; }
 
         private int _currentLevel = 1;
+
+        private bool _shootStart;
 
         public void SetData(WeaponData data)
         {
@@ -47,12 +51,17 @@ namespace TandC.GeometryAstro.Gameplay
         {
             RocketInputButton reloadButton = GameObject.FindAnyObjectByType<RocketInputButton>();
 
-            reloadButton.Initialize(_reloader.ReloadProgress, _rocketAmmo.RocketCount, TryShoot);
+            reloadButton.Initialize(_reloader.ReloadProgress, _rocketAmmo.RocketCount, ShootAction);
         }
 
         private void InitRocketAmmo()
         {
             _rocketAmmo = new RocketAmmo(10);
+        }
+
+        public void RegisterDuplicatorComponent(IReadableModificator duplicateModificator)
+        {
+            _duplicatorComponent = new DuplicatorComponent(duplicateModificator, TryShoot, EndShoot);
         }
 
         private void RegisterShootingPatterns()
@@ -72,12 +81,26 @@ namespace TandC.GeometryAstro.Gameplay
             if (_rocketAmmo.TryShoot())
             {
                 Shoot(_weaponShootingPattern.Origin.position, _weaponShootingPattern.Direction.position);
-                _reloader.StartReload();
             }
             else
             {
                 Debug.Log("No Rockets Left!");
             }
+        }
+
+        private void ShootAction() 
+        {
+            if (_shootStart)
+                return;
+
+            _shootStart = true;
+            _duplicatorComponent.Activate();
+        }
+
+        private void EndShoot() 
+        {
+            _shootStart = false;
+            _reloader.StartReload();
         }
 
         private void Shoot(Vector2 origin, Vector2 direction)
@@ -95,6 +118,7 @@ namespace TandC.GeometryAstro.Gameplay
 
         public void Tick()
         {
+            _duplicatorComponent?.Tick();
             _reloader.Update();
         }
     }

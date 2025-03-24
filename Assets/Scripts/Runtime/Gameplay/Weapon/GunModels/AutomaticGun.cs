@@ -17,6 +17,10 @@ namespace TandC.GeometryAstro.Gameplay
 
         public WeaponType WeaponType { get; private set; }
 
+        private DuplicatorComponent _duplicatorComponent;
+
+        private bool _shootStart;
+
         public void SetData(WeaponData data) 
         {
             _data = data;
@@ -43,6 +47,11 @@ namespace TandC.GeometryAstro.Gameplay
             RegisterShootingPatterns();
         }
 
+        public void RegisterDuplicatorComponent(IReadableModificator duplicateModificator)
+        {
+            _duplicatorComponent = new DuplicatorComponent(duplicateModificator, TryShoot, EndShoot);
+        }
+
         private void RegisterShootingPatterns()
         {
             foreach (var pattern in MonoBehaviour.FindObjectsOfType<WeaponShootingPattern>())
@@ -55,14 +64,25 @@ namespace TandC.GeometryAstro.Gameplay
             }
         }
 
+        private void ShootAction() 
+        {
+            _shootStart = true;
+            _duplicatorComponent.Activate();
+        }
+
         private void TryShoot()
         {
             Vector2? target = _enemyDetector.GetEnemyPosition(_weaponShootingPattern.Origin.position, default, _data.detectorDistance);
             if (target.HasValue)
             {
                 Shoot(_weaponShootingPattern.Origin.position, target.Value);
-                _reloader.StartReload();
             }
+        }
+
+        private void EndShoot() 
+        {
+            _shootStart = false;
+            _reloader.StartReload();
         }
 
         private void Shoot(Vector2 origin, Vector2 direction)
@@ -80,10 +100,11 @@ namespace TandC.GeometryAstro.Gameplay
 
         public void Tick()
         {
+            _duplicatorComponent?.Tick();
             _reloader.Update();
-            if (_reloader.CanShoot)
+            if (_reloader.CanShoot && !_shootStart)
             {
-                TryShoot();
+                ShootAction();
             }
         }
     }

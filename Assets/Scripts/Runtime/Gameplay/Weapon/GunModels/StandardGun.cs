@@ -14,6 +14,8 @@ namespace TandC.GeometryAstro.Gameplay
         private IEnemyDetector _enemyDetector;
         private WeaponData _data;
 
+        private DuplicatorComponent _duplicatorComponent;
+
         private float _upgradeTimer = 10f;
 
         private List<WeaponShootingPattern> _shootingPatterns = new();
@@ -21,6 +23,8 @@ namespace TandC.GeometryAstro.Gameplay
         private int _currentLevel = 1;
 
         public WeaponType WeaponType { get; private set; }
+
+        private bool _shootStart;
 
         public void SetData(WeaponData data)
         {
@@ -45,6 +49,11 @@ namespace TandC.GeometryAstro.Gameplay
         public void Initialization()
         {
             RegisterShootingPatterns();
+        }
+
+        public void RegisterDuplicatorComponent(IReadableModificator duplicateModificator) 
+        {
+            _duplicatorComponent = new DuplicatorComponent(duplicateModificator, Shoot, EndShoot);
         }
 
         private void RegisterShootingPatterns()
@@ -117,9 +126,16 @@ namespace TandC.GeometryAstro.Gameplay
 
             if (enemyPosition.HasValue)
             {
-                Shoot();
-                _reloader.StartReload();
+
+                _shootStart = true;
+                _duplicatorComponent.Activate();           
             }
+        }
+
+        private void EndShoot() 
+        {
+            _shootStart = false;
+            _reloader.StartReload();
         }
 
         private void Shoot()
@@ -150,8 +166,9 @@ namespace TandC.GeometryAstro.Gameplay
         {
             _reloader.Update();
             _projectileFactory.Tick();
+            _duplicatorComponent?.Tick();
 
-            if (_reloader.CanShoot)
+            if (_reloader.CanShoot && !_shootStart)
             {
                 TryShoot();
             }
