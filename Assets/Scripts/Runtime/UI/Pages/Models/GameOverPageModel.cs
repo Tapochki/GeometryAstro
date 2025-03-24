@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using System;
 using TandC.GeometryAstro.Gameplay;
 using TandC.GeometryAstro.Services;
@@ -63,15 +64,15 @@ namespace TandC.GeometryAstro.UI
         public void Continue()
         {
             //_soundService.PlayClickSound();
-            //_sceneService.LoadScene(RuntimeConstants.Scenes.Core).Forget();
+            _sceneService.LoadScene(RuntimeConstants.Scenes.Menu).Forget();
         }
 
-        public bool IsOneMoreChanceButtonActive() 
+        public bool IsOneMoreChanceButtonActive()
         {
             return _isReviveAdViewed;
         }
 
-        public void OneMoreChange()
+        public void OneMoreChance()
         {
             AdReviveViewedHandler(); // TODO change it to be called after watching an advertisement.
 
@@ -79,7 +80,7 @@ namespace TandC.GeometryAstro.UI
             //_uiService.OpenPage<>();
         }
 
-        private void AdReviveViewedHandler() 
+        private void AdReviveViewedHandler()
         {
             _isReviveAdViewed = true;
             _playerDeathProcessor.StartReviveTimer();

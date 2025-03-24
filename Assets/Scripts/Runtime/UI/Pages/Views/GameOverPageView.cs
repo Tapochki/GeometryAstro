@@ -20,13 +20,13 @@ namespace TandC.GeometryAstro.UI
         {
             GameObject selfObject = _model.SelfObject;
             Transform selfTransform = selfObject.transform;
-            Transform containerButtons = selfTransform.Find("Container_Buttons");
+            Transform containerButtons = selfTransform.Find("Image_Background");
 
-            Button startButton = containerButtons.Find("Button_Start").GetComponent<Button>();
-            Button shopButton = containerButtons.Find("Button_Shop").GetComponent<Button>();
+            Button continueButton = containerButtons.Find("Button_Continue").GetComponent<Button>();
+            Button oneMoreButton = containerButtons.Find("Button_OneMore ").GetComponent<Button>();
 
-            startButton.onClick.AddListener(StartButtonOnClick);
-            shopButton.onClick.AddListener(ShopButtonOnClick);
+            continueButton.onClick.AddListener(ContinueButtonOnClick);
+            oneMoreButton.onClick.AddListener(OneMoreButtonOnClick);
 
             UpdateText();
         }
@@ -46,29 +46,28 @@ namespace TandC.GeometryAstro.UI
         {
             GameObject selfObject = _model.SelfObject;
 
-            TextMeshProUGUI startButtonTitle = selfObject.transform.
-                Find("Container_Buttons/Button_Start/Text_Title").GetComponent<TextMeshProUGUI>();
-            TextMeshProUGUI shopButtonTitle = selfObject.transform.
-                Find("Container_Buttons/Button_Shop/Text_Title").GetComponent<TextMeshProUGUI>();
-            TextMeshProUGUI leaderboardButtonTitle = selfObject.transform.
-                Find("Container_Buttons/Button_Leaderboard/Text_Title").GetComponent<TextMeshProUGUI>();
-            TextMeshProUGUI infoDescriptionTitle = selfObject.transform.
-                Find("Container_Advice/Container_Info/Text_Description").GetComponent<TextMeshProUGUI>();
-            TextMeshProUGUI infoTitle = selfObject.transform.
-                Find("Container_Advice/Container_Info/Text_Title").GetComponent<TextMeshProUGUI>();
+            TextMeshProUGUI continueButtonTitle = selfObject.transform.
+                Find("Image_Background/Button_Continue/Text_Title").GetComponent<TextMeshProUGUI>();
+            TextMeshProUGUI oneMoreButtonTitle = selfObject.transform.
+                Find("Image_Background/Button_OneMore/Text_Title").GetComponent<TextMeshProUGUI>();
+            TextMeshProUGUI titleTitle = selfObject.transform.
+                Find("Image_Background/Text_Title/Text_Title").GetComponent<TextMeshProUGUI>();
 
-            startButtonTitle.text = _model.GetLocalisation("KEY_MAIN_MENU_START");
-            shopButtonTitle.text = _model.GetLocalisation("KEY_MAIN_MENU_SHOP");
-            leaderboardButtonTitle.text = _model.GetLocalisation("KEY_MAIN_MENU_LEADERBOARD");
-            infoDescriptionTitle.text = _model.GetLocalisation("KEY_MAIN_MENU_INFO_VALUE_0");
-            infoTitle.text = _model.GetLocalisation("KEY_MAIN_MENU_INFO_TITLE");
+            continueButtonTitle.text = _model.GetLocalisation("KEY_CONTINUE");
+            oneMoreButtonTitle.text = _model.GetLocalisation("KEY_GAMEOVER_ONE_MORE_CHANCE");
+            titleTitle.text = _model.GetLocalisation("KEY_GAMEOVER_TITLE");
         }
 
         public void Show(object data = null)
         {
             _model.SelfObject.SetActive(true);
 
+            GameObject selfObject = _model.SelfObject;
 
+            TextMeshProUGUI coinsText = selfObject.transform.
+                Find("Image_Background/Coin_Panel/Text_Main").GetComponent<TextMeshProUGUI>();
+            TextMeshProUGUI recordText = selfObject.transform.
+                Find("Image_Background/Record_Panel/Text_Main").GetComponent<TextMeshProUGUI>();
         }
 
         public void Hide()
@@ -76,25 +75,15 @@ namespace TandC.GeometryAstro.UI
             _model.SelfObject.SetActive(false);
         }
 
-        private void StartButtonOnClick()
+        private void ContinueButtonOnClick()
         {
             // TODO - play ClickSound
+            _model.Continue();
         }
 
-        private void ShopButtonOnClick()
+        private void OneMoreButtonOnClick()
         {
-            //_model.OpenShop();
-            // TODO - play ClickSound
-        }
-
-        private void SettingsButtonOnClick()
-        {
-            // TODO - play ClickSound
-        }
-
-        private void LeaderstatsButtonOnClick()
-        {
-            //_model.OpenLeaderstats();
+            _model.OneMoreChance();
             // TODO - play ClickSound
         }
     }
