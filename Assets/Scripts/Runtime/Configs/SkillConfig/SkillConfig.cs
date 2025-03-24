@@ -52,6 +52,16 @@ namespace TandC.GeometryAstro.Data
         {
             return _additionSkills;
         }
+
+        public void AddToActiveSkill(ActiveSkillData data) 
+        {
+            _activeSkills.Add(data);
+        }
+
+        public void AddToPassiveSkill(PassiveSkillData data) 
+        {
+            _passiveSkills.Add(data);
+        }
     }
 
     [Serializable]
