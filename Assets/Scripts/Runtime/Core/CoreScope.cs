@@ -14,6 +14,7 @@ namespace TandC.GeometryAstro.Core
         [SerializeField] private Player _player;
         [SerializeField] private GameplayInputHandler _inputHandler;
         [SerializeField] private GameplayCamera _gameplayCamera;
+        [SerializeField] private SkillsView _skillView;
 
         protected override void Configure(IContainerBuilder builder)
         {
@@ -28,6 +29,7 @@ namespace TandC.GeometryAstro.Core
             RegisterEnemySystem(builder);
             RegisterWeaponController(builder);
             RegisterUIService(builder);
+            RegisterSkillsView(builder);
             RegisterTickService(builder);
             RegisterItemSpawner(builder);
             RegisterSkillService(builder);
@@ -57,6 +59,11 @@ namespace TandC.GeometryAstro.Core
         private void RegisterInputHandler(IContainerBuilder builder)
         {
             builder.RegisterComponent(_inputHandler).As<IGameplayInputHandler>();
+        }
+
+        private void RegisterSkillsView(IContainerBuilder builder)
+        {
+            builder.RegisterComponent(_skillView);
         }
 
         private void RegisterPlayer(IContainerBuilder builder)

@@ -15,7 +15,7 @@ MonoBehaviour:
   _weaponData:
   - type: 1
     weaponName: Default
-    shootDeley: 0.2
+    shootDeley: 0.5
     detectorDistance: 1000
     bulletData:
       BulletSpeed: 200000

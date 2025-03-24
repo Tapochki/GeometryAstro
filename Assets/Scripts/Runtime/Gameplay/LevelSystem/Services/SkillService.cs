@@ -27,19 +27,36 @@ namespace TandC.GeometryAstro.Gameplay
         private List<ActiveSkill> _activeSkills = new();
         private List<PassiveSkill> _passiveSkills = new();
 
+        private Dictionary<SkillActivationType, Action<SkillType>> _skillHandlers;
+
+        private SkillsView _skillsView;
 
         [Inject]
-        public void Construct(GameConfig gameConfig)
+        public void Construct(GameConfig gameConfig, SkillsView skillsView)
         {
             _skillConfig = gameConfig.SkillConfig;
+            _skillsView = skillsView;
         }
 
         public void Initialize()
         {
+            InitializeSkillActivationHandlers();
             _startAvailableSkills = _skillConfig.GetStartAvailableSkills();
             _infinitySkills = _skillConfig.GetInfinitySkills();
+            _skillsView.Init();
             _activeSkills = new List<ActiveSkill>();
             _passiveSkills = new List<PassiveSkill>();
+        }
+
+        public void InitializeSkillActivationHandlers()
+        {
+            _skillHandlers = new Dictionary<SkillActivationType, Action<SkillType>>{
+                { SkillActivationType.NewSkill, HandleNewSkill },
+                { SkillActivationType.UpgradePassive, HandleUpgradePassive },
+                { SkillActivationType.UpgradeActive, HandleUpgradeActive },
+                { SkillActivationType.Evolution, HandleEvolution },
+                { SkillActivationType.InfinitSkill, HandleInfinitSkill }
+            };
         }
 
         private int GetChestSkillCount()
@@ -147,7 +164,7 @@ namespace TandC.GeometryAstro.Gameplay
 
         private PreparationSkillData AddOnlyGoldInfinitSkill(out PreparationSkillData goldInfinitSkill)
         {
-            SkillData skillDataskillData = _infinitySkills[0]; //Todo нормальное взятие только для зотола 
+            SkillData skillDataskillData = _infinitySkills[0]; //Todo нормальное взятие только для денег 
             goldInfinitSkill = CreatePreparationSkill(SkillActivationType.InfinitSkill, skillDataskillData.Type, skillDataskillData.SkillIcon, skillDataskillData.UpgradesInfo[0]);
             return goldInfinitSkill;
         }
@@ -199,7 +216,7 @@ namespace TandC.GeometryAstro.Gameplay
             {
                 return false;
             }
-            var upgradableSkills = _availableActiveSkills.Where(s => !s.IsMaxLevel()).ToList();
+            var upgradableSkills = GetActiveSkillsNotReachedMaxLevel();
 
             if (upgradableSkills.Count > 0)
             {
@@ -212,6 +229,11 @@ namespace TandC.GeometryAstro.Gameplay
             return false;
         }
 
+        private List<ActiveSkill> GetActiveSkillsNotReachedMaxLevel() 
+        {
+            return _availableActiveSkills.Where(s => !s.IsMaxLevel()).ToList();
+        }
+
         private bool TryGetPassiveUpgrade(out PreparationSkillData upgradedPassiveSkill)
         {
             upgradedPassiveSkill = null;
@@ -219,7 +241,7 @@ namespace TandC.GeometryAstro.Gameplay
             {
                 return false;
             }
-            var upgradableSkills = _availablePassiveSkills.Where(s => !s.IsMaxLevel()).ToList();
+            var upgradableSkills = GetPassiveSkillsNotReachedMaxLevel();
 
             if (upgradableSkills.Count > 0)
             {
@@ -232,22 +254,18 @@ namespace TandC.GeometryAstro.Gameplay
             return false;
         }
 
+        private List<PassiveSkill> GetPassiveSkillsNotReachedMaxLevel()
+        {
+            return _availablePassiveSkills.Where(s => !s.IsMaxLevel()).ToList();
+        }
+
         private bool IsSkillActive(SkillType type) => _skillConfig.GetSkillByType(type).UseType == SkillUseType.Active;
 
         private bool TryGetNewSkill(out PreparationSkillData newSkill)
         {
             newSkill = null;
 
-            bool canTakeActive = _activeSkills.Count < 5;
-            bool canTakePassive = _passiveSkills.Count < 5;
-
-            List<SkillType> availableSkills = _availableSkills
-                .Where(skill =>
-                    !_activeSkills.Any(a => a.GetSkillType() == skill)
-                    && !_passiveSkills.Any(p => p.GetSkillType() == skill)
-                    && (IsSkillActive(skill) ? canTakeActive : canTakePassive)
-                )
-                .ToList();
+            List<SkillType> availableSkills = GetAvailableSkills();
 
             if (availableSkills.Count > 0)
             {
@@ -262,12 +280,28 @@ namespace TandC.GeometryAstro.Gameplay
             return false;
         }
 
+        private List<SkillType> GetAvailableSkills()
+        {
+            bool canTakeActive = IsMaximumActiveSkill();
+            bool canTakePassive = IsMaximumPassiveSkill();
+
+            return _availableSkills
+                .Where(skill => IsSkillAvailable(skill, canTakeActive, canTakePassive))
+                .ToList();
+        }
+
+        private bool IsMaximumActiveSkill() => _activeSkills.Count < 5;
+
+        private bool IsMaximumPassiveSkill() => _passiveSkills.Count < 5;
+
+        private bool IsSkillAvailable(SkillType skill, bool canTakeActive, bool canTakePassive) => !IsSkillAlreadyTaken(skill) && (IsSkillActive(skill) ? canTakeActive : canTakePassive);
+
+        private bool IsSkillAlreadyTaken(SkillType skill) => _activeSkills.Any(a => a.GetSkillType() == skill) || _passiveSkills.Any(p => p.GetSkillType() == skill);
+
         private bool TryGetEvolution(out PreparationSkillData evolutionSkill)
         {
             evolutionSkill = null;
-            var availableEvolutions = _activeSkills
-                .Where(activeSkill => activeSkill.CanEvolve() && _passiveSkills.Any(passiveSkill => passiveSkill.SkillData.Type == activeSkill.SkillData.EvolutionData.TypeForEvolution && passiveSkill.IsMaxLevel()))
-                .ToList();
+            List<ActiveSkill> availableEvolutions = SortSkillWhichCanEvolve();
 
             if (availableEvolutions.Count > 0)
             {
@@ -276,6 +310,29 @@ namespace TandC.GeometryAstro.Gameplay
                 return true;
             }
             return false;
+        }
+
+        private List<ActiveSkill> SortSkillWhichCanEvolve()
+        {
+            return _activeSkills
+                .Where(activeSkill => CanSkillEvolve(activeSkill))
+                .ToList();
+        }
+
+        private bool CanSkillEvolve(ActiveSkill activeSkill)
+        {
+            return activeSkill.CanEvolve() && HasRequiredMaxLevelPassiveSkill(activeSkill);
+        }
+
+        private bool HasRequiredMaxLevelPassiveSkill(ActiveSkill activeSkill)
+        {
+            return _passiveSkills.Any(passiveSkill =>
+                IsRequiredPassiveSkill(passiveSkill, activeSkill) && passiveSkill.IsMaxLevel());
+        }
+
+        private bool IsRequiredPassiveSkill(PassiveSkill passiveSkill, ActiveSkill activeSkill)
+        {
+            return passiveSkill.SkillData.Type == activeSkill.SkillData.EvolutionData.TypeForEvolution;
         }
 
         private PreparationSkillData CreatePreparationSkill(SkillActivationType activationType, SkillType type, Sprite skillIcon, SkillUpgradeInfo skillInfo)
@@ -292,29 +349,14 @@ namespace TandC.GeometryAstro.Gameplay
 
         private void ActivateSkill(SkillType type, SkillActivationType activationType)
         {
-            switch (activationType)
+            if (_skillHandlers.TryGetValue(activationType, out var handler))
             {
-                case SkillActivationType.NewSkill:
-                    HandleNewSkill(type);
-                    break;
-
-                case SkillActivationType.UpgradePassive:
-                    HandleUpgradePassive(type);
-                    break;
-
-                case SkillActivationType.UpgradeActive:
-                    HandleUpgradeActive(type);
-                    break;
-
-                case SkillActivationType.Evolution:
-                    HandleEvolution(type);
-                    break;
-
-                case SkillActivationType.InfinitSkill:
-                    HandleInfinitSkill(type);
-                    break;
+                handler.Invoke(type);
             }
-
+            else
+            {
+                Debug.LogError($"Unknown type of skill activation: {activationType}");
+            }
         }
         #region Test
         private void ShowCurrentActiveSkills()
@@ -352,28 +394,35 @@ namespace TandC.GeometryAstro.Gameplay
             {
                 if (skillData is ActiveSkillData activeSkillData)
                 {
-                    HandleNewActiveSkill(activeSkillData);
+                    HandleNewActiveSkill(activeSkillData, skillType);
                 }
             }
             else if (skillData.UseType == SkillUseType.Passive)
             {
                 if (skillData is PassiveSkillData passiveSkillData)
                 {
-                    HandleNewPassiveSKill(passiveSkillData);
+                    HandleNewPassiveSKill(passiveSkillData, skillType);
                 }
             }
         }
 
-        private void HandleNewActiveSkill(ActiveSkillData activeSkillData)
+        private void HandleNewActiveSkill(ActiveSkillData activeSkillData, SkillType skillType)
         {
             var newActiveSkill = new ActiveSkill(activeSkillData, activeSkillData.ActiveSkillUpgradeType);
             _activeSkills.Add(newActiveSkill);
+            AddSkillItemToView(SkillUseType.Active, skillType, newActiveSkill.SkillData.SkillIcon);
         }
 
-        private void HandleNewPassiveSKill(PassiveSkillData passiveSkillData)
+        private void HandleNewPassiveSKill(PassiveSkillData passiveSkillData, SkillType skillType)
         {
             var newPassiveSkill = new PassiveSkill(passiveSkillData, passiveSkillData.ModificatorUpgradeType);
             _passiveSkills.Add(newPassiveSkill);
+            AddSkillItemToView(SkillUseType.Passive, skillType, newPassiveSkill.SkillData.SkillIcon);
+        }
+
+        private void AddSkillItemToView(SkillUseType skillUseType, SkillType skillType, Sprite sprite) 
+        {
+            _skillsView.AddSkillItem(skillUseType, skillType, sprite);
         }
 
         private void HandleUpgradePassive(SkillType skillType)
@@ -407,6 +456,8 @@ namespace TandC.GeometryAstro.Gameplay
             {
                 skillToEvolve.Evolve();
             }
+
+            _skillsView.UpdateSkillSprite(skillToEvolve.SkillData.UseType, skillType, skillToEvolve.SkillData.EvolutionData.EvolutionIcon);
         }
         #endregion
 
