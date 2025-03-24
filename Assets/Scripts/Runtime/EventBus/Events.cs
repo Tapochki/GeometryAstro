@@ -12,11 +12,11 @@ namespace TandC.GeometryAstro.EventBus
         }
     }
 
-    public readonly struct PauseGameEvent : IEvent 
+    public readonly struct PauseGameEvent : IEvent
     {
         public readonly bool SetPause;
 
-        public PauseGameEvent(bool setPause) 
+        public PauseGameEvent(bool setPause)
         {
             SetPause = setPause;
         }
@@ -38,6 +38,7 @@ namespace TandC.GeometryAstro.EventBus
     }
 
     public readonly struct PlayerDieEvent : IEvent { }
+    public readonly struct TeleportPlayerToTheBoundaryEvent : IEvent { }
 
     public readonly struct PlayerLevelUpEvent : IEvent
     {
