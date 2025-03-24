@@ -31,10 +31,13 @@ namespace TandC.GeometryAstro.Gameplay
         private LevelModel _levelModel;
 
         private ModificatorContainer _modificatorContainer;
+        private PlayerTeleportationComponent _playerTeleportationComponent;
 
         private HealthRegenerator _healthRegenerator;
 
         private ItemPickUper _itemPickuper;
+
+        public bool IsDead { get; private set; }
 
         [Inject]
         private void Construct(IGameplayInputHandler inputHandler, ModificatorContainer modificatorContainer, TickService tickService)
@@ -47,14 +50,20 @@ namespace TandC.GeometryAstro.Gameplay
         public void Init(PlayerData playerData)
         {
             _playerData = playerData;
-
+            IsDead = false;
             InitLevelModel();
             InitPlayerHealthComponent();
             InitPlayerMoveComponent();
             InitRotateComponent();
             InitPickUpper();
+            InitPlayerTeleportationComponent();
 
             _tickService.RegisterFixedUpdate(FixedTick);
+        }
+
+        private void InitPlayerTeleportationComponent()
+        {
+            _playerTeleportationComponent = new PlayerTeleportationComponent(transform, _healthComponent);
         }
 
         private void InitLevelModel()
@@ -63,7 +72,7 @@ namespace TandC.GeometryAstro.Gameplay
             _levelModel.Init(_modificatorContainer.GetModificator(Settings.ModificatorType.ReceivedExperience));
         }
 
-        private void InitPlayerMoveComponent() 
+        private void InitPlayerMoveComponent()
         {
             _moveSpeed = _modificatorContainer.GetModificator(Settings.ModificatorType.SpeedMoving);
             _moveComponent = new MoveComponent(gameObject.GetComponent<Rigidbody2D>());
@@ -74,7 +83,7 @@ namespace TandC.GeometryAstro.Gameplay
             _onHealthChageEvent += (currentHealth, maxHealth) => EventBusHolder.EventBus.Raise(new PlayerHealthChangeEvent(currentHealth, maxHealth));
             _onPlayerDieEvent += (isKilled) => EventBusHolder.EventBus.Raise(new PlayerDieEvent());
 
-            _healthComponent = new ModifiableHealth(_modificatorContainer.GetModificator(Settings.ModificatorType.MaxHealth).Value, 
+            _healthComponent = new ModifiableHealth(_modificatorContainer.GetModificator(Settings.ModificatorType.MaxHealth).Value,
                 _onPlayerDieEvent, _onHealthChageEvent,
                 _modificatorContainer.GetModificator(Settings.ModificatorType.MaxHealth),
                 _modificatorContainer.GetModificator(Settings.ModificatorType.Armor));
@@ -82,13 +91,13 @@ namespace TandC.GeometryAstro.Gameplay
             _healthRegenerator = new HealthRegenerator(_healthComponent, _modificatorContainer.GetModificator(Settings.ModificatorType.HealtRestoreCount));
         }
 
-        private void InitPickUpper() 
+        private void InitPickUpper()
         {
             _itemPickuper = FindAnyObjectByType<ItemPickUper>();
             _itemPickuper.SetModificator(_modificatorContainer.GetModificator(Settings.ModificatorType.PickUpRadius));
         }
 
-        private void InitRotateComponent() 
+        private void InitRotateComponent()
         {
             _mainRotateComponent = new PlayerRotateComponent(_bodyTransform);
         }
@@ -119,14 +128,21 @@ namespace TandC.GeometryAstro.Gameplay
 
         public void PlayerEnable()
         {
+            IsDead = false;
             EventBusHolder.EventBus.Raise(new PauseGameEvent(false));
             gameObject.SetActive(true);
         }
 
-        public void PlayerDisable() 
+        public void PlayerDisable()
         {
+            IsDead = true;
             EventBusHolder.EventBus.Raise(new PauseGameEvent(true));
             gameObject.SetActive(false);
+        }
+
+        private void OnDestroy()
+        {
+            _playerTeleportationComponent.Dispose();
         }
     }
 }

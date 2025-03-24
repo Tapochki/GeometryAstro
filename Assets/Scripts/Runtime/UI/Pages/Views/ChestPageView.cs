@@ -134,7 +134,7 @@ namespace TandC.GeometryAstro.UI
             {
                 SkillItem skillItem = new SkillItem(
                     _skillContainer.Find($"Template_{i}").gameObject,
-                    false
+                    true
                 );
 
                 _model.FillSkillList(skillItem);

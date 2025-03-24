@@ -5,18 +5,23 @@ namespace TandC.GeometryAstro.EventBus
         public readonly int CurrentHealth;
         public readonly float MaxHealth;
 
-        public PlayerHealthChangeEvent(int currentHealt, float maxHealth)
+        //public readonly float ChangedValue;
+        //public readonly bool IsSubstruct;
+
+        public PlayerHealthChangeEvent(int currentHealth, float maxHealth/*, float changedValue, bool isSubstruct*/)
         {
-            CurrentHealth = currentHealt;
+            CurrentHealth = currentHealth;
             MaxHealth = maxHealth;
+            //ChangedValue = changedValue;
+            //IsSubstruct = isSubstruct;
         }
     }
 
-    public readonly struct PauseGameEvent : IEvent 
+    public readonly struct PauseGameEvent : IEvent
     {
         public readonly bool SetPause;
 
-        public PauseGameEvent(bool setPause) 
+        public PauseGameEvent(bool setPause)
         {
             SetPause = setPause;
         }
@@ -38,6 +43,7 @@ namespace TandC.GeometryAstro.EventBus
     }
 
     public readonly struct PlayerDieEvent : IEvent { }
+    public readonly struct TeleportPlayerToTheBoundaryEvent : IEvent { }
 
     public readonly struct PlayerLevelUpEvent : IEvent
     {
