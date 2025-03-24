@@ -23,7 +23,7 @@ namespace TandC.GeometryAstro.Gameplay
 
         public Vector2 PlayerPosition { get => transform.position; }
 
-        private Action<int, float> _onHealthChageEvent;
+        private Action<int, float, float, bool> _onHealthChageEvent;
         private Action<bool> _onPlayerDieEvent;
 
         private PlayerDieEvent _playerDieEvent;
@@ -80,7 +80,7 @@ namespace TandC.GeometryAstro.Gameplay
 
         private void InitPlayerHealthComponent()
         {
-            _onHealthChageEvent += (currentHealth, maxHealth) => EventBusHolder.EventBus.Raise(new PlayerHealthChangeEvent(currentHealth, maxHealth));
+            _onHealthChageEvent += (currentHealth, maxHealth, ChangedValue, isDamageOrHeal) => EventBusHolder.EventBus.Raise(new PlayerHealthChangeEvent(currentHealth, maxHealth, ChangedValue, isDamageOrHeal));
             _onPlayerDieEvent += (isKilled) => EventBusHolder.EventBus.Raise(new PlayerDieEvent());
 
             _healthComponent = new ModifiableHealth(_modificatorContainer.GetModificator(Settings.ModificatorType.MaxHealth).Value,

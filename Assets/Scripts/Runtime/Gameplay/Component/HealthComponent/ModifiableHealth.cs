@@ -8,7 +8,7 @@ namespace TandC.GeometryAstro.Gameplay
         private IReadableModificator _armorModificator; 
         private IReadableModificator _maxHealthModificator;
 
-        public ModifiableHealth(float maxHealth, Action<bool> onDeathEvent, Action<int, float> onHealthChangeEvent, IReadableModificator maxHealthModificator, IReadableModificator armorModificator) : base(maxHealth, onDeathEvent, onHealthChangeEvent)
+        public ModifiableHealth(float maxHealth, Action<bool> onDeathEvent, Action<int, float, float, bool> onHealthChangeEvent, IReadableModificator maxHealthModificator, IReadableModificator armorModificator) : base(maxHealth, onDeathEvent, onHealthChangeEvent)
         {
             _armorModificator = armorModificator;
             _maxHealthModificator = maxHealthModificator;
