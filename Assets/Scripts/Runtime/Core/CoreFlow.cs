@@ -25,7 +25,7 @@ namespace TandC.GeometryAstro.Core
 
         private readonly IItemSpawner _itemSpawner;
 
-        private readonly WeaponController _weaponController;
+        private readonly ActiveSkillController _activeSkillControllerController;
         private readonly TickService _tickService;
 
         private readonly ModificatorContainer _modificatorContainer;
@@ -57,7 +57,7 @@ namespace TandC.GeometryAstro.Core
             IEnemySpawner enemySpawner,
             IEnemySpawnPositionService enemySpawnPositionService,
             TickService tickService,
-            WeaponController weaponController,
+            ActiveSkillController activeSkillController,
             IItemSpawner itemSpawner,
             LoadObjectsService loadObjectsService,
             LocalisationService localizationService,
@@ -80,7 +80,7 @@ namespace TandC.GeometryAstro.Core
             _waveController = waveController;
             _enemySpawner = enemySpawner;
             _enemySpawnPositionService = enemySpawnPositionService;
-            _weaponController = weaponController;
+            _activeSkillControllerController = activeSkillController;
             _tickService = tickService;
             _itemSpawner = itemSpawner;
             _loadObjectsService = loadObjectsService;
@@ -167,10 +167,8 @@ namespace TandC.GeometryAstro.Core
 
         private void InitWeapon()
         {
-            _weaponController.Init();
-            _weaponController.RegisterWeapon(Settings.WeaponType.StandardGun);
-            //_weaponController.RegisterWeapon(Settings.WeaponType.RocketGun);
-            //_weaponController.RegisterWeapon(Settings.WeaponType.AutoGun);
+            _activeSkillControllerController.Init();
+            _activeSkillControllerController.RegisterWeapon(Settings.ActiveSkillType.StandartGun);
         }
 
         private void InitEnemy()

@@ -14,11 +14,11 @@ namespace TandC.GeometryAstro.Data
         [Tooltip("If we use the test start date skills")]
         [SerializeField] private bool _useTestSkills;
         [Tooltip("List of Active Skills (weapons, drones, abilities)")]
-        [SerializeField] private List<ActiveSkillData> _activeSkills;
+        [SerializeField] private List<ActiveSkillUpgradeData> _activeSkills;
         [Tooltip("List of Passive Skills/Modifiers")]
-        [SerializeField] private List<PassiveSkillData> _passiveSkills;
+        [SerializeField] private List<PassiveUpgeadeSkillData> _passiveSkills;
         [Tooltip("Infinite Skill List. These are skils that we will use when all others are improved and there is no place to take new skils.")]
-        [SerializeField] private List<PassiveSkillData> _additionSkills;
+        [SerializeField] private List<PassiveUpgeadeSkillData> _additionSkills;
 
         [Tooltip("Here are all the skills that are available to us from the beginning of the game.")]
         [SerializeField] private List<SkillType> _startAvailableSkills;
@@ -27,19 +27,19 @@ namespace TandC.GeometryAstro.Data
 
         private void OnEnable()
         {
-            _startAvailableSkills = GetSkillTypesFromSkills(_activeSkills.Cast<SkillData>().ToList())
-                .Union(GetSkillTypesFromSkills(_passiveSkills.Cast<SkillData>().ToList()))
+            _startAvailableSkills = GetSkillTypesFromSkills(_activeSkills.Cast<SkillUpgradeData>().ToList())
+                .Union(GetSkillTypesFromSkills(_passiveSkills.Cast<SkillUpgradeData>().ToList()))
                 .ToList();
         }
 
-        private List<SkillType> GetSkillTypesFromSkills(List<SkillData> skills)
+        private List<SkillType> GetSkillTypesFromSkills(List<SkillUpgradeData> skills)
         {
             return skills.Select(skill => skill.Type).ToList();
         }
 
-        public SkillData GetSkillByType(SkillType type)
+        public SkillUpgradeData GetSkillByType(SkillType type)
         {
-            return _activeSkills.FirstOrDefault(skill => skill.Type == type) as SkillData ??
+            return _activeSkills.FirstOrDefault(skill => skill.Type == type) as SkillUpgradeData ??
                    _passiveSkills.FirstOrDefault(skill => skill.Type == type);
         }
 
@@ -48,24 +48,24 @@ namespace TandC.GeometryAstro.Data
             return _useTestSkills ? _startAvailableTestSkills : _startAvailableSkills;
         }
 
-        public List<PassiveSkillData> GetInfinitySkills()
+        public List<PassiveUpgeadeSkillData> GetInfinitySkills()
         {
             return _additionSkills;
         }
 
-        public void AddToActiveSkill(ActiveSkillData data) 
+        public void AddToActiveSkill(ActiveSkillUpgradeData data) 
         {
             _activeSkills.Add(data);
         }
 
-        public void AddToPassiveSkill(PassiveSkillData data) 
+        public void AddToPassiveSkill(PassiveUpgeadeSkillData data) 
         {
             _passiveSkills.Add(data);
         }
     }
 
     [Serializable]
-    public abstract class SkillData
+    public abstract class SkillUpgradeData
     {
         [Tooltip("Skill Name. Will probably be used for the codex")]
         public string SkillName;
@@ -81,7 +81,7 @@ namespace TandC.GeometryAstro.Data
     }
 
     [Serializable]
-    public class ActiveSkillData : SkillData
+    public class ActiveSkillUpgradeData : SkillUpgradeData
     {
         [Tooltip("Type of Active for improvement")]
         public ActiveSkillType ActiveSkillUpgradeType;
@@ -92,7 +92,7 @@ namespace TandC.GeometryAstro.Data
     }
 
     [Serializable]
-    public class PassiveSkillData : SkillData
+    public class PassiveUpgeadeSkillData : SkillUpgradeData
     {
         [Tooltip("Type of Passive Skill/Modifier for improvement")]
         public ModificatorType ModificatorUpgradeType;

@@ -27,7 +27,7 @@ namespace TandC.GeometryAstro.Core
             RegisterPlayer(builder);
             RegisterGameplayCamera(builder);
             RegisterEnemySystem(builder);
-            RegisterWeaponController(builder);
+            RegisterActiveSkillController(builder);
             RegisterUIService(builder);
             RegisterSkillsView(builder);
             RegisterTickService(builder);
@@ -109,9 +109,9 @@ namespace TandC.GeometryAstro.Core
             builder.RegisterEntryPoint<CoreFlow>();
         }
 
-        private void RegisterWeaponController(IContainerBuilder builder)
+        private void RegisterActiveSkillController(IContainerBuilder builder)
         {
-            builder.Register<WeaponController>(Lifetime.Scoped);
+            builder.Register<ActiveSkillController>(Lifetime.Scoped);
         }
 
         private void RegisterTickService(IContainerBuilder builder)

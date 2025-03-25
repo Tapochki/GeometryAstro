@@ -9,7 +9,7 @@ public class SkillConfigWindow : EditorWindow
 {
     private SkillConfig _config;
     private SkillType _selectedType;
-    private SkillData _currentSkill;
+    private SkillUpgradeData _currentSkill;
     private bool _isNewSkill;
 
     private int _copyCount = 1;
@@ -44,7 +44,7 @@ public class SkillConfigWindow : EditorWindow
         if (_isNewSkill)
         {
             EditorGUILayout.HelpBox("This skill does not exist. Fill in the fields to create a new one.", MessageType.Info);
-            _currentSkill = new ActiveSkillData { Type = _selectedType };
+            _currentSkill = new ActiveSkillUpgradeData { Type = _selectedType };
         }
         else
         {
@@ -68,12 +68,12 @@ public class SkillConfigWindow : EditorWindow
         _currentSkill.SkillIcon = (Sprite)EditorGUILayout.ObjectField("Skill Icon", _currentSkill.SkillIcon, typeof(Sprite), false);
         _currentSkill.UseType = (SkillUseType)EditorGUILayout.EnumPopup("Use Type", _currentSkill.UseType);
 
-        if (_currentSkill is ActiveSkillData activeSkill)
+        if (_currentSkill is ActiveSkillUpgradeData activeSkill)
         {
             activeSkill.ActiveSkillUpgradeType = (ActiveSkillType)EditorGUILayout.EnumPopup("Active Upgrade Type", activeSkill.ActiveSkillUpgradeType);
             activeSkill.ExclusionSkillType = (SkillType)EditorGUILayout.EnumPopup("Exclusion Skill Type", activeSkill.ExclusionSkillType);
         }
-        else if (_currentSkill is PassiveSkillData passiveSkill)
+        else if (_currentSkill is PassiveUpgeadeSkillData passiveSkill)
         {
             passiveSkill.ModificatorUpgradeType = (ModificatorType)EditorGUILayout.EnumPopup("Modificator Upgrade Type", passiveSkill.ModificatorUpgradeType);
         }
@@ -168,11 +168,11 @@ public class SkillConfigWindow : EditorWindow
     {
         if (_isNewSkill)
         {
-            if (_currentSkill is ActiveSkillData activeSkill)
+            if (_currentSkill is ActiveSkillUpgradeData activeSkill)
             {
                 _config.AddToActiveSkill(activeSkill);
             }
-            else if (_currentSkill is PassiveSkillData passiveSkill)
+            else if (_currentSkill is PassiveUpgeadeSkillData passiveSkill)
             {
                 _config.AddToPassiveSkill(passiveSkill);
             }

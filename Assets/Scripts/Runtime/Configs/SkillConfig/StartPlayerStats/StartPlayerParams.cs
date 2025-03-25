@@ -10,8 +10,8 @@ namespace TandC.GeometryAstro.Data
     {
         [Tooltip("We store the player's starting parameters.")]
         public List<PlayerParam> StartParams = new List<PlayerParam>();
-        [Tooltip("Player's starting active skills")]
-        public List<ActiveSkillType> StartActiveSkills = new List<ActiveSkillType>();
+        [Tooltip("Player's starting active/passive skills")]
+        public List<SkillType> StartSkills = new List<SkillType>();
 
 #if UNITY_EDITOR
         [ContextMenu("Initialize Default Params")]

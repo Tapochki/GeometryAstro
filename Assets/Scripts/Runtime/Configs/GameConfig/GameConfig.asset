@@ -16,6 +16,6 @@ MonoBehaviour:
   _itemConfig: {fileID: 11400000, guid: ad85d4143ec458140bcc600b2f3477cb, type: 2}
   _phaseConfig: {fileID: 11400000, guid: 9fac98022ce0e564d913e1fa4f2580b4, type: 2}
   _skillConfig: {fileID: 11400000, guid: 0691f6d76309ef64aaafc04d3bedaa0b, type: 2}
-  _weaponConfig: {fileID: 11400000, guid: 8fd911e7d00a4da4e9fcb07dbd8163f7, type: 2}
+  _activeSkillConfig: {fileID: 11400000, guid: 8c0fc13abf0c813478435f2ce7a496d8, type: 2}
   "_\u0441hanceDropItemCofig": {fileID: 11400000, guid: 0cfcb1ef0d547d74eaf7a86a594d7711, type: 2}
   _startPlayerParams: {fileID: 11400000, guid: ac2aaec2de5419442a261e2db962e9c2, type: 2}

@@ -1,0 +1,9 @@
+using TandC.GeometryAstro.Settings;
+
+namespace TandC.GeometryAstro.Gameplay
+{
+    public interface IActiveSkillFactory
+    {
+        public IActiveSkillBuilder GetBuilder(ActiveSkillType type);
+    }
+}

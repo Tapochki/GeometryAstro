@@ -147,18 +147,6 @@ namespace TandC.GeometryAstro.Settings
         ImpulseSaw,
     }
 
-    public enum WeaponType
-    {
-        Undefined,
-        StandardGun,
-        RocketGun,
-        AutoGun,
-        LaserGun,
-        Minigun,
-        EnergyGun,
-        LightningGun,
-    }
-
     public enum SkillUseType
     {
         Active,

@@ -4,7 +4,7 @@ using TandC.GeometryAstro.Settings;
 
 namespace TandC.GeometryAstro.Gameplay
 {
-    public abstract class Skill<T> where T : SkillData
+    public abstract class Skill<T> where T : SkillUpgradeData
     {
         public int SkillLevel { get; private set; }
         public T SkillData { get; private set; }

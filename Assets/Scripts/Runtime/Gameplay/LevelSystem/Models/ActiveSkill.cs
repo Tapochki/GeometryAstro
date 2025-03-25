@@ -4,12 +4,12 @@ using TandC.GeometryAstro.Settings;
 
 namespace TandC.GeometryAstro.Gameplay
 {
-    public class ActiveSkill : Skill<ActiveSkillData>
+    public class ActiveSkill : Skill<ActiveSkillUpgradeData>
     {
         private readonly ActiveSkillType _upgradableActiveSkillType;
         private bool _hasAlreadyEvolved;
 
-        public ActiveSkill(ActiveSkillData skillData, ActiveSkillType upgradableActiveSkillType) : base(skillData) 
+        public ActiveSkill(ActiveSkillUpgradeData skillData, ActiveSkillType upgradableActiveSkillType) : base(skillData) 
         {
             _hasAlreadyEvolved = false;
             _upgradableActiveSkillType = upgradableActiveSkillType;

@@ -14,9 +14,11 @@ namespace TandC.GeometryAstro.Gameplay
         private const int CHEST_MIN_SKILLS = 1;
         private const int CHEST_MAX_SKILLS = 5;
         [SerializeField]
+        private StartPlayerParams _startPlayerParams;
+
         private SkillConfig _skillConfig;
         private List<SkillType> _startAvailableSkills;
-        private List<PassiveSkillData> _infinitySkills;
+        private List<PassiveUpgeadeSkillData> _infinitySkills;
 
         private List<SkillType> _availableSkills;
         private List<ActiveSkill> _availableActiveSkills;
@@ -35,6 +37,7 @@ namespace TandC.GeometryAstro.Gameplay
         public void Construct(GameConfig gameConfig, SkillsView skillsView)
         {
             _skillConfig = gameConfig.SkillConfig;
+            _startPlayerParams = gameConfig.StartPlayerParams;
             _skillsView = skillsView;
         }
 
@@ -74,6 +77,17 @@ namespace TandC.GeometryAstro.Gameplay
             _availableSkills = new List<SkillType>(_startAvailableSkills);
             _availableActiveSkills = new List<ActiveSkill>(_activeSkills);
             _availablePassiveSkills = new List<PassiveSkill>(_passiveSkills);
+        }
+
+        private void InitStartPlayereSkills() 
+        {
+            if (_startPlayerParams.StartSkills.Count == 0)
+                return;
+
+            foreach (SkillType type in _startPlayerParams.StartSkills)
+            {
+                HandleNewSkill(type);
+            }
         }
 
         public List<PreparationSkillData> GetUpgradeOptions(bool isChest)
@@ -164,7 +178,7 @@ namespace TandC.GeometryAstro.Gameplay
 
         private PreparationSkillData AddOnlyGoldInfinitSkill(out PreparationSkillData goldInfinitSkill)
         {
-            SkillData skillDataskillData = _infinitySkills[0]; //Todo нормальное взятие только для денег 
+            SkillUpgradeData skillDataskillData = _infinitySkills[0]; //Todo нормальное взятие только для денег 
             goldInfinitSkill = CreatePreparationSkill(SkillActivationType.InfinitSkill, skillDataskillData.Type, skillDataskillData.SkillIcon, skillDataskillData.UpgradesInfo[0]);
             return goldInfinitSkill;
         }
@@ -177,7 +191,7 @@ namespace TandC.GeometryAstro.Gameplay
 
             for (int i = 0; i < takeCount; i++)
             {
-                SkillData skillDataskillData = _infinitySkills[i];
+                SkillUpgradeData skillDataskillData = _infinitySkills[i];
                 PreparationSkillData infinitSkill = CreatePreparationSkill(SkillActivationType.InfinitSkill, skillDataskillData.Type, skillDataskillData.SkillIcon, skillDataskillData.UpgradesInfo[0]);
                 resultList.Add(infinitSkill);
             }
@@ -271,7 +285,7 @@ namespace TandC.GeometryAstro.Gameplay
             {
                 var selectedType = availableSkills[UnityEngine.Random.Range(0, availableSkills.Count)];
 
-                SkillData newSkillData = _skillConfig.GetSkillByType(selectedType);
+                SkillUpgradeData newSkillData = _skillConfig.GetSkillByType(selectedType);
                 newSkill = CreatePreparationSkill(SkillActivationType.NewSkill, newSkillData.Type, newSkillData.SkillIcon, newSkillData.UpgradesInfo[0]);
 
                 _availableSkills.Remove(selectedType);
@@ -305,7 +319,7 @@ namespace TandC.GeometryAstro.Gameplay
 
             if (availableEvolutions.Count > 0)
             {
-                ActiveSkillData data = availableEvolutions[UnityEngine.Random.Range(0, availableEvolutions.Count)].SkillData;
+                ActiveSkillUpgradeData data = availableEvolutions[UnityEngine.Random.Range(0, availableEvolutions.Count)].SkillData;
                 evolutionSkill = CreatePreparationSkill(SkillActivationType.Evolution, data.Type, data.EvolutionData.EvolutionIcon, data.EvolutionData.EvolutionInfo);
                 return true;
             }
@@ -392,28 +406,28 @@ namespace TandC.GeometryAstro.Gameplay
 
             if (skillData.UseType == SkillUseType.Active)
             {
-                if (skillData is ActiveSkillData activeSkillData)
+                if (skillData is ActiveSkillUpgradeData activeSkillData)
                 {
                     HandleNewActiveSkill(activeSkillData, skillType);
                 }
             }
             else if (skillData.UseType == SkillUseType.Passive)
             {
-                if (skillData is PassiveSkillData passiveSkillData)
+                if (skillData is PassiveUpgeadeSkillData passiveSkillData)
                 {
                     HandleNewPassiveSKill(passiveSkillData, skillType);
                 }
             }
         }
 
-        private void HandleNewActiveSkill(ActiveSkillData activeSkillData, SkillType skillType)
+        private void HandleNewActiveSkill(ActiveSkillUpgradeData activeSkillData, SkillType skillType)
         {
             var newActiveSkill = new ActiveSkill(activeSkillData, activeSkillData.ActiveSkillUpgradeType);
             _activeSkills.Add(newActiveSkill);
             AddSkillItemToView(SkillUseType.Active, skillType, newActiveSkill.SkillData.SkillIcon);
         }
 
-        private void HandleNewPassiveSKill(PassiveSkillData passiveSkillData, SkillType skillType)
+        private void HandleNewPassiveSKill(PassiveUpgeadeSkillData passiveSkillData, SkillType skillType)
         {
             var newPassiveSkill = new PassiveSkill(passiveSkillData, passiveSkillData.ModificatorUpgradeType);
             _passiveSkills.Add(newPassiveSkill);

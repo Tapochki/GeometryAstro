@@ -4,11 +4,11 @@ using TandC.GeometryAstro.Settings;
 
 namespace TandC.GeometryAstro.Gameplay
 {
-    public class PassiveSkill : Skill<PassiveSkillData>
+    public class PassiveSkill : Skill<PassiveUpgeadeSkillData>
     {
         private readonly ModificatorType _upgradablePassiveSkillType;
 
-        public PassiveSkill(PassiveSkillData skillData, ModificatorType upgradablePassiveSkillType) : base(skillData) 
+        public PassiveSkill(PassiveUpgeadeSkillData skillData, ModificatorType upgradablePassiveSkillType) : base(skillData) 
         {
             _upgradablePassiveSkillType = upgradablePassiveSkillType;
             ApplySkillEffect();
