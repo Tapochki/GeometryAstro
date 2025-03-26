@@ -18,7 +18,7 @@ namespace TandC.GeometryAstro.Gameplay
             _bulletHealth -= _damage;
             if (_bulletHealth <= 0)
             {
-                Dispose();
+                BackToPool();
             }
         }
     }

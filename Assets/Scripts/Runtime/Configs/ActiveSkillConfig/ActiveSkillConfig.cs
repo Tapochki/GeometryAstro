@@ -34,6 +34,7 @@ namespace TandC.GeometryAstro.Data
         public float shootDeley;
         public float detectorDistance;
         public BulletData bulletData;
+        public BulletData EvolvedBulletData;
     }
 
     [Serializable]
@@ -48,7 +49,5 @@ namespace TandC.GeometryAstro.Data
         public float BasicBulletSize;
         public GameObject BulletObject;
         public ActiveSkillType type;
-        public bool IsNotCustomise;
-        public CustomisationType CustomisationType;
     }
 }

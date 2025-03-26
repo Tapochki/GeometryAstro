@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace TandC.GeometryAstro.Utilities
@@ -61,6 +62,16 @@ namespace TandC.GeometryAstro.Utilities
             {
                 Return(item);
             }
+        }
+
+        public List<T> GetAllItemInPool() 
+        {
+            return _pool.ToList();
+        }
+
+        public List<T> GetAllActiveItem()
+        {
+            return _active;
         }
 
         public void Dispose()

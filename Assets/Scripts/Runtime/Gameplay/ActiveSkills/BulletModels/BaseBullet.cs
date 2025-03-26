@@ -16,6 +16,8 @@ namespace TandC.GeometryAstro.Gameplay
         protected float _criticalChance;
         protected float _criticalMultiplier;
 
+        public bool IsOld { get; private set; }
+
         private void Awake()
         {
             _moveComponent = new MoveInDirectionComponent(GetComponent<Rigidbody2D>());
@@ -43,7 +45,11 @@ namespace TandC.GeometryAstro.Gameplay
         private void CalculateCriticalChance(float criticalChanceModificator) 
         {
             _criticalChance = _bulletData.BasicCriticalChance + criticalChanceModificator;
+        }
 
+        public void SetOldBulletOld() 
+        {
+            IsOld = true;
         }
 
         private void CalculateCriticalMultiplier(float criticalDamageMultiplier)
@@ -66,7 +72,7 @@ namespace TandC.GeometryAstro.Gameplay
 
         public virtual void Tick()
         {
-            _moveComponent.Move(Vector2.up, _bulletData.BulletSpeed);
+            _moveComponent?.Move(Vector2.up, _bulletData.BulletSpeed);
             LifeTimer();
         }
 
@@ -75,11 +81,11 @@ namespace TandC.GeometryAstro.Gameplay
             _lifeTimer -= Time.deltaTime;
             if (_lifeTimer < 0)
             {
-                Dispose();
+                BackToPool();
             }
         }
 
-        protected virtual void Dispose()
+        protected virtual void BackToPool()
         {
             _bulletBackToPoolEvent?.Invoke(this);
         }
@@ -92,7 +98,15 @@ namespace TandC.GeometryAstro.Gameplay
                 BulletHit();
             }
         }
+        
+        public void Dispose() 
+        {
+            _moveComponent = null;
+            _rotationComponent = null;
 
-        protected virtual void BulletHit() => Dispose();
+            Destroy(gameObject);
+        }
+
+        protected virtual void BulletHit() => BackToPool();
     }
 }

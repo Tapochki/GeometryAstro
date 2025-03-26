@@ -1,11 +1,72 @@
 {
     "_useTestSkills": false,
-    "_activeSkills": [],
+    "_activeSkills": [
+        {
+            "SkillName": "Standart Gun",
+            "SkillIcon": {
+                "instanceID": 33840
+            },
+            "Type": 18,
+            "UseType": 0,
+            "UpgradesInfo": [
+                {
+                    "Name": "Standart Gun new",
+                    "Level": 1,
+                    "Description": "Standart Description",
+                    "Value": 1.0,
+                    "IsPercentageValue": false
+                },
+                {
+                    "Name": "Standart Gun 2",
+                    "Level": 2,
+                    "Description": "Standart Gun 2",
+                    "Value": 1.0,
+                    "IsPercentageValue": false
+                },
+                {
+                    "Name": "Standart Gun 3",
+                    "Level": 3,
+                    "Description": "Standart Gun 3",
+                    "Value": 0.0,
+                    "IsPercentageValue": false
+                },
+                {
+                    "Name": "Standart Gun 4",
+                    "Level": 4,
+                    "Description": "Standart Gun 4",
+                    "Value": 0.0,
+                    "IsPercentageValue": false
+                },
+                {
+                    "Name": "Standart Gun 5",
+                    "Level": 5,
+                    "Description": "Standart Gun 5",
+                    "Value": 0.0,
+                    "IsPercentageValue": false
+                }
+            ],
+            "ActiveSkillUpgradeType": 1,
+            "ExclusionSkillType": 0,
+            "EvolutionData": {
+                "EvolutionIcon": {
+                    "instanceID": 53512
+                },
+                "TypeForEvolution": 11,
+                "EvolutionInfo": {
+                    "Name": "Standart Gun Evolution",
+                    "Level": 1,
+                    "Description": "Standart Gun Evolution",
+                    "Value": 1.0,
+                    "IsPercentageValue": false
+                }
+            }
+        }
+    ],
     "_passiveSkills": [
         {
             "SkillName": "Damage",
             "SkillIcon": {
-                "instanceID": 33366
+                "instanceID": 33822
             },
             "Type": 1,
             "UseType": 1,
@@ -86,7 +147,7 @@
         {
             "SkillName": "MaxHealth",
             "SkillIcon": {
-                "instanceID": 33368
+                "instanceID": 33824
             },
             "Type": 2,
             "UseType": 1,
@@ -167,7 +228,7 @@
         {
             "SkillName": "Armor",
             "SkillIcon": {
-                "instanceID": 33370
+                "instanceID": 33826
             },
             "Type": 3,
             "UseType": 1,
@@ -248,7 +309,7 @@
         {
             "SkillName": "Speed",
             "SkillIcon": {
-                "instanceID": 33372
+                "instanceID": 33828
             },
             "Type": 4,
             "UseType": 1,
@@ -329,7 +390,7 @@
         {
             "SkillName": "ReviveCount",
             "SkillIcon": {
-                "instanceID": 33374
+                "instanceID": 33830
             },
             "Type": 5,
             "UseType": 1,
@@ -347,7 +408,7 @@
         {
             "SkillName": "Reloader",
             "SkillIcon": {
-                "instanceID": 33376
+                "instanceID": 33832
             },
             "Type": 13,
             "UseType": 1,
@@ -428,7 +489,7 @@
         {
             "SkillName": "Regeneration",
             "SkillIcon": {
-                "instanceID": 33378
+                "instanceID": 33834
             },
             "Type": 12,
             "UseType": 1,
@@ -509,7 +570,7 @@
         {
             "SkillName": "Magnet",
             "SkillIcon": {
-                "instanceID": 33380
+                "instanceID": 33836
             },
             "Type": 14,
             "UseType": 1,
@@ -590,7 +651,7 @@
         {
             "SkillName": "Critical Damage",
             "SkillIcon": {
-                "instanceID": 33382
+                "instanceID": 33838
             },
             "Type": 6,
             "UseType": 1,
@@ -671,7 +732,7 @@
         {
             "SkillName": "Critical Chance",
             "SkillIcon": {
-                "instanceID": 33384
+                "instanceID": 33840
             },
             "Type": 7,
             "UseType": 1,
@@ -752,7 +813,7 @@
         {
             "SkillName": "Curse Provocation",
             "SkillIcon": {
-                "instanceID": 33384
+                "instanceID": 33840
             },
             "Type": 8,
             "UseType": 1,
@@ -833,7 +894,7 @@
         {
             "SkillName": "СurseReinforcement",
             "SkillIcon": {
-                "instanceID": 33386
+                "instanceID": 33842
             },
             "Type": 9,
             "UseType": 1,
@@ -914,7 +975,7 @@
         {
             "SkillName": "Duplicator",
             "SkillIcon": {
-                "instanceID": 33388
+                "instanceID": 33844
             },
             "Type": 11,
             "UseType": 1,
@@ -932,7 +993,7 @@
         {
             "SkillName": "BulletsSize",
             "SkillIcon": {
-                "instanceID": 33386
+                "instanceID": 33842
             },
             "Type": 10,
             "UseType": 1,
@@ -1013,7 +1074,7 @@
         {
             "SkillName": "Receiving Experience",
             "SkillIcon": {
-                "instanceID": 33390
+                "instanceID": 33846
             },
             "Type": 15,
             "UseType": 1,
@@ -1094,7 +1155,7 @@
         {
             "SkillName": "Receiving Coins",
             "SkillIcon": {
-                "instanceID": 33392
+                "instanceID": 33848
             },
             "Type": 16,
             "UseType": 1,
@@ -1177,7 +1238,7 @@
         {
             "SkillName": "Score Infinite",
             "SkillIcon": {
-                "instanceID": 33392
+                "instanceID": 33848
             },
             "Type": 42,
             "UseType": 1,
@@ -1195,7 +1256,7 @@
         {
             "SkillName": "Score Infinite",
             "SkillIcon": {
-                "instanceID": 33392
+                "instanceID": 33848
             },
             "Type": 43,
             "UseType": 1,
@@ -1226,8 +1287,7 @@
         9,
         11,
         10,
-        15,
-        16
+        18
     ],
     "_startAvailableTestSkills": []
 }

@@ -9,7 +9,7 @@ namespace TandC.GeometryAstro.Gameplay
         protected override void BulletHit()
         {
             //Instantiate(_explosionPrefab, transform.position, Quaternion.identity);
-            Dispose();
+            BackToPool();
         }
     }
 }

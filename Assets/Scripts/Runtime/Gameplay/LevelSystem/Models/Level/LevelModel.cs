@@ -11,6 +11,8 @@ namespace TandC.GeometryAstro.Gameplay
 
         private IReadableModificator _expModificator;
 
+        private const float _expirienceNextLevelMultiplayer = 1.2f;
+
         public UniqueId Id { get; } = new UniqueId();
 
         private void RegisterEvent()
@@ -62,7 +64,7 @@ namespace TandC.GeometryAstro.Gameplay
 
         public void AddExpirience(int addedXp)
         {
-            _currentXp += addedXp;
+            _currentXp += addedXp * _expModificator.Value;
             CheckForNewLevel();
             UpdateView();
         }
@@ -84,7 +86,7 @@ namespace TandC.GeometryAstro.Gameplay
 
         private void MuliplyExpirienceForNewLevel()
         {
-            _xpForNextLevel *= _expModificator.Value;
+            _xpForNextLevel *= _expirienceNextLevelMultiplayer;
         }
 
         private void LevelUp()

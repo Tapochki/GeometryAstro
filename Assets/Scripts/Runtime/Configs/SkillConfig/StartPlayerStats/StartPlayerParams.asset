@@ -64,4 +64,4 @@ MonoBehaviour:
   - Type: 17
     StartValue: 0
     IsPercentageValue: 0
-  StartActiveSkills: 
+  StartSkills: 12000000

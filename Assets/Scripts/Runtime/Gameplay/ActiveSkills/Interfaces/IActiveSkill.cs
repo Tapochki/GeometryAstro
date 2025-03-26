@@ -11,6 +11,8 @@ namespace TandC.GeometryAstro.Gameplay
         public void SetData(ActiveSkillData data);
 
         public void Initialization();
+
+        public void Evolve();
         public void Upgrade();
         public void Tick();
     }

@@ -12,4 +12,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2719ad06f6f8b744aaf71c4183199d62, type: 3}
   m_Name: ActiveSkillConfig
   m_EditorClassIdentifier: 
-  _activeSkillsData: []
+  _activeSkillsData:
+  - type: 1
+    weaponName: Standart Gun
+    shootDeley: 0.5
+    detectorDistance: 1000
+    bulletData:
+      BulletSpeed: 200000
+      bulletLifeTime: 3
+      bulletLife: 1
+      baseDamage: 40
+      BasicCriticalChance: 10
+      BasicCriticalMultiplier: 1.25
+      BasicBulletSize: 3
+      BulletObject: {fileID: 5271754677532632859, guid: 9e64d4062dc713c468222ae9ad90a1f5, type: 3}
+      type: 1
+    EvolvedBulletData:
+      BulletSpeed: 200000
+      bulletLifeTime: 3
+      bulletLife: 1
+      baseDamage: 50
+      BasicCriticalChance: 15
+      BasicCriticalMultiplier: 1.3
+      BasicBulletSize: 3
+      BulletObject: {fileID: 5271754677532632859, guid: 3a4394fd673b5b244be1247d16c70cb3, type: 3}
+      type: 1

@@ -13,7 +13,48 @@ MonoBehaviour:
   m_Name: SkillConfig
   m_EditorClassIdentifier: 
   _useTestSkills: 0
-  _activeSkills: []
+  _activeSkills:
+  - SkillName: Standart Gun
+    SkillIcon: {fileID: 21300000, guid: 14aac5af2708b4742a8a39e4fd625720, type: 3}
+    Type: 18
+    UseType: 0
+    UpgradesInfo:
+    - Name: Standart Gun new
+      Level: 1
+      Description: Standart Description
+      Value: 1
+      IsPercentageValue: 0
+    - Name: Standart Gun 2
+      Level: 2
+      Description: Standart Gun 2
+      Value: 1
+      IsPercentageValue: 0
+    - Name: Standart Gun 3
+      Level: 3
+      Description: Standart Gun 3
+      Value: 0
+      IsPercentageValue: 0
+    - Name: Standart Gun 4
+      Level: 4
+      Description: Standart Gun 4
+      Value: 0
+      IsPercentageValue: 0
+    - Name: Standart Gun 5
+      Level: 5
+      Description: Standart Gun 5
+      Value: 0
+      IsPercentageValue: 0
+    ActiveSkillUpgradeType: 1
+    ExclusionSkillType: 0
+    EvolutionData:
+      EvolutionIcon: {fileID: 21300000, guid: 1120737f073bad14d8303f5de0cdda1d, type: 3}
+      TypeForEvolution: 11
+      EvolutionInfo:
+        Name: Standart Gun Evolution
+        Level: 1
+        Description: Standart Gun Evolution
+        Value: 1
+        IsPercentageValue: 0
   _passiveSkills:
   - SkillName: Damage
     SkillIcon: {fileID: 21300000, guid: e7d87d2e18de961448b01cc53d0852e9, type: 3}
@@ -844,5 +885,5 @@ MonoBehaviour:
       Value: 100
       IsPercentageValue: 0
     ModificatorUpgradeType: 0
-  _startAvailableSkills: 01000000020000000300000004000000050000000d0000000c0000000e000000060000000700000008000000090000000b0000000a0000000f00000010000000
+  _startAvailableSkills: 1200000001000000020000000300000004000000050000000d0000000c0000000e000000060000000700000008000000090000000b0000000a0000000f00000010000000
   _startAvailableTestSkills: 

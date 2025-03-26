@@ -101,7 +101,7 @@ namespace TandC.GeometryAstro.Core
             _modificatorContainer.Init();
             InitPlayer();
             InitItemSpawner();
-            InitWeapon();
+            InitActiveSkillCointainer();
             InitEnemy();
 
             InitVaultCointainer();
@@ -165,10 +165,9 @@ namespace TandC.GeometryAstro.Core
             _itemSpawner.Init();
         }
 
-        private void InitWeapon()
+        private void InitActiveSkillCointainer()
         {
             _activeSkillControllerController.Init();
-            _activeSkillControllerController.RegisterWeapon(Settings.ActiveSkillType.StandartGun);
         }
 
         private void InitEnemy()

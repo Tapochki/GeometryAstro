@@ -22,7 +22,7 @@ namespace TandC.GeometryAstro.Gameplay
 
         private int _currentLevel = 1;
 
-        public ActiveSkillType SkillType { get; private set; }
+        public ActiveSkillType SkillType { get; } = ActiveSkillType.StandartGun;
 
         private bool _shootStart;
 
@@ -60,7 +60,7 @@ namespace TandC.GeometryAstro.Gameplay
         {
             foreach (var pattern in GameObject.FindObjectsOfType<WeaponShootingPattern>())
             {
-                if (pattern.Type == ActiveSkillType.StandartGun)
+                if (pattern.Type == SkillType)
                 {
                     _shootingPatterns.Add(pattern);
                 }
@@ -152,14 +152,15 @@ namespace TandC.GeometryAstro.Gameplay
             }
         }
 
-        public void UpdateWeapon(float deltaTime)
-        {
-           
-        }
-
         public void Upgrade()
         {
             if (_currentLevel < 5) _currentLevel++;
+        }
+
+        public void Evolve()
+        {
+            _duplicatorComponent.UpgradeDuplicateCount();
+            _projectileFactory.Evolve(_data.EvolvedBulletData, () => Object.Instantiate(_data.EvolvedBulletData.BulletObject).GetComponent<StandartBullet>());
         }
 
         public void Tick()
@@ -171,13 +172,6 @@ namespace TandC.GeometryAstro.Gameplay
             if (_reloader.CanShoot && !_shootStart)
             {
                 TryShoot();
-            }
-
-            _upgradeTimer -= Time.deltaTime;
-            if (_upgradeTimer <= 0f)
-            {
-                Upgrade();
-                _upgradeTimer = 10f;
             }
         }
     }

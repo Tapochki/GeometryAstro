@@ -1,6 +1,8 @@
 namespace TandC.GeometryAstro.Gameplay
 {
-    public class StandartBullet : BaseBullet {}
+    public class StandartBullet : BaseBullet 
+    {
+    }
 }
 
 

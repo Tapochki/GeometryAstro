@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using System;
 using System.Collections.Generic;
 using TandC.GeometryAstro.Data;
@@ -11,10 +12,10 @@ namespace TandC.GeometryAstro.Gameplay
         private ObjectPool<BaseBullet> _pool;
         private List<ITickable> _activeBullet;
         private Transform _projectileParent;
-        private readonly BulletData _bulletData;
+        private BulletData _bulletData;
         private readonly int _startBulletPreloadCount;
 
-        private readonly Func<BaseBullet> _bulletCreator;
+        private Func<BaseBullet> _bulletCreator;
 
         private IReadableModificator _damageModificator;
         private IReadableModificator _criticalChanceModificator;
@@ -34,6 +35,7 @@ namespace TandC.GeometryAstro.Gameplay
             _damageModificator = damageModificator;
             _bulletData = bulletData;
             _startBulletPreloadCount = startBulletPreloadCount;
+            _bulletCreator = bulletCreator;
             CreateBulletParent();
             InitializePool();
             _criticalChanceModificator = criticalChangeModificator;
@@ -68,7 +70,62 @@ namespace TandC.GeometryAstro.Gameplay
         private BaseBullet CreateBullet()
         {
             var bulletObj = _bulletCreator.Invoke();
+            bulletObj.transform.SetParent(_projectileParent);
             return bulletObj.GetComponent<BaseBullet>();
+        }
+
+        public void Evolve(BulletData newEvolveData, Func<BaseBullet> newBulletCreator) 
+        {
+            _bulletCreator = newBulletCreator;
+
+            _bulletData = newEvolveData;
+
+            ClearOldBullets();
+
+            InitializePool();
+        }
+
+        private void ClearOldBullets()
+        {
+            var oldBulletsInPool = _pool.GetAllItemInPool();
+            var activeOldBulletsBullets = _pool.GetAllActiveItem();
+
+            DestroyOldBullets(oldBulletsInPool, activeOldBulletsBullets);
+
+            _pool.Dispose();
+        }
+
+        private void ReturnBulletToPool(BaseBullet bullet) 
+        {
+            if(bullet.IsOld) 
+            {
+                DeleteOldActiveBullet(bullet);
+                return;
+            }
+
+            _pool.Return(bullet);
+        }
+
+        private void DeleteOldActiveBullet(BaseBullet bullet) 
+        {
+            _activeBullet.Remove(bullet);
+            bullet.Dispose();
+        }
+
+        private void DestroyOldBullets(List<BaseBullet> oldBulletsinPool, List<BaseBullet> oldBulletsActive)
+        {
+            foreach (BaseBullet bullet in oldBulletsinPool)
+            {
+                if (bullet != null)
+                    bullet.Dispose();   
+            }
+
+            foreach(BaseBullet bullet in oldBulletsActive) 
+            {
+                bullet.SetOldBulletOld();
+            }
+
+            oldBulletsinPool.Clear();
         }
 
         private void DeactivateBullet(BaseBullet bullet) 
@@ -81,7 +138,7 @@ namespace TandC.GeometryAstro.Gameplay
         {
             var bullet = _pool.Get();
             _activeBullet.Add(bullet);
-            bullet.Init(position, direction, b => _pool.Return(b), _bulletData, _damageModificator.Value, _criticalChanceModificator.Value, _criticalDamageMultiplier.Value, _bulletSize.Value);
+            bullet.Init(position, direction, bullet => ReturnBulletToPool(bullet), _bulletData, _damageModificator.Value, _criticalChanceModificator.Value, _criticalDamageMultiplier.Value, _bulletSize.Value);
         }
     }
 }

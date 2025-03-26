@@ -98,6 +98,11 @@ namespace TandC.GeometryAstro.Gameplay
 
         }
 
+        public void Evolve()
+        {
+            
+        }
+
         public void Tick()
         {
             _duplicatorComponent?.Tick();

@@ -49,6 +49,8 @@ namespace TandC.GeometryAstro.Gameplay
             _skillsView.Init();
             _activeSkills = new List<ActiveSkill>();
             _passiveSkills = new List<PassiveSkill>();
+
+            InitStartPlayereSkills();
         }
 
         public void InitializeSkillActivationHandlers()
