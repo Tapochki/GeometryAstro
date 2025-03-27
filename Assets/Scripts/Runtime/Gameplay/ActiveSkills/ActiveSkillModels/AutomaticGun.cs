@@ -15,7 +15,7 @@ namespace TandC.GeometryAstro.Gameplay
 
         private int _currentLevel = 1;
 
-        public ActiveSkillType SkillType { get; private set; }
+        public ActiveSkillType SkillType { get; } = ActiveSkillType.AutoGun;
 
         private DuplicatorComponent _duplicatorComponent;
 
@@ -24,7 +24,6 @@ namespace TandC.GeometryAstro.Gameplay
         public void SetData(ActiveSkillData data) 
         {
             _data = data;
-            SkillType = _data.type;
         }
 
         public void SetProjectileFactory(IProjectileFactory projectileFactory) 
@@ -56,7 +55,7 @@ namespace TandC.GeometryAstro.Gameplay
         {
             foreach (var pattern in MonoBehaviour.FindObjectsOfType<WeaponShootingPattern>())
             {
-                if (pattern.Type == ActiveSkillType.AutoGun)
+                if (pattern.Type == SkillType)
                 {
                     _weaponShootingPattern = pattern;
                     break;
@@ -72,7 +71,7 @@ namespace TandC.GeometryAstro.Gameplay
 
         private void TryShoot()
         {
-            Vector2? target = _enemyDetector.GetEnemyPosition(_weaponShootingPattern.Origin.position, default, _data.detectorDistance);
+            Vector2? target = _enemyDetector.GetEnemyPosition(_weaponShootingPattern.Origin.position, default, _data.detectorRadius);
             if (target.HasValue)
             {
                 Shoot(_weaponShootingPattern.Origin.position, target.Value);
@@ -93,20 +92,21 @@ namespace TandC.GeometryAstro.Gameplay
             );
         }
 
-        public void Upgrade()
+        public void Upgrade(float Value = 0)
         {
-
+            _duplicatorComponent.UpgradeDuplicateCount();
         }
 
         public void Evolve()
         {
-            
+            _projectileFactory.Evolve(_data.EvolvedBulletData, () => Object.Instantiate(_data.EvolvedBulletData.BulletObject).GetComponent<BulletWithHealth>());
         }
 
         public void Tick()
         {
             _duplicatorComponent?.Tick();
             _reloader.Update();
+            _projectileFactory.Tick();
             if (_reloader.CanShoot && !_shootStart)
             {
                 ShootAction();

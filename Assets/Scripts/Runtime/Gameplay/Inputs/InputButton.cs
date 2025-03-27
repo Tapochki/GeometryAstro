@@ -17,6 +17,7 @@ namespace TandC.GeometryAstro.Gameplay
             IReadOnlyReactiveProperty<float> progress,
             Action onButtonClick)
         {
+            Activate();
             _progress = progress;
 
             _progress.Subscribe(UpdateProgressVisual).AddTo(_disposables);
@@ -26,6 +27,16 @@ namespace TandC.GeometryAstro.Gameplay
             _button.OnClickAsObservable()
                 .Subscribe(_ => onButtonClick?.Invoke())
                 .AddTo(_disposables);
+        }
+
+        public void Activate() 
+        {
+            gameObject.SetActive(true);
+        }
+
+        public void DeActivate() 
+        {
+            gameObject.SetActive(false);
         }
 
         protected virtual void UpdateProgressVisual(float progress)

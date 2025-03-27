@@ -7,8 +7,17 @@ namespace TandC.GeometryAstro.Gameplay
         [SerializeField] private Joystick _moveJoystick;
         [SerializeField] private Joystick _rotationJoystick;
 
+        [SerializeField] private RocketInputButton _rocketButton;
+
         public Vector2 MoveDirection { get; private set; }
         public Vector2 RotationDirection { get; private set; }
+
+        public RocketInputButton RocketButton => _rocketButton;
+
+        public void Init() 
+        {
+            _rocketButton.DeActivate();
+        }
 
         private void FixedUpdate()
         {

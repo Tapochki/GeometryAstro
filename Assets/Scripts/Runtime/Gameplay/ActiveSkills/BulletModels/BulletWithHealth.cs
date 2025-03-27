@@ -6,19 +6,21 @@ namespace TandC.GeometryAstro.Gameplay
 {
     public class BulletWithHealth : BaseBullet
     {
-        private float _bulletHealth = 2;
+        private float _bulletHealth;
 
         public override void Init(Vector3 startPosition, Vector3 target, Action<BaseBullet> bulletBackToPoolEvent, BulletData bulletData, float damageModificatorMultiplier, float criticalChanceModificator, float criticalDamageMultiplier, float bulletSizeMultiplier)
         {
             base.Init(startPosition, target, bulletBackToPoolEvent, bulletData, damageModificatorMultiplier, criticalChanceModificator, criticalDamageMultiplier, bulletSizeMultiplier);
+
+            _bulletHealth = bulletData.bulletLife;
         }
 
         protected override void BulletHit()
         {
-            _bulletHealth -= _damage;
+            _bulletHealth--;
             if (_bulletHealth <= 0)
             {
-                BackToPool();
+                base.BulletHit();
             }
         }
     }

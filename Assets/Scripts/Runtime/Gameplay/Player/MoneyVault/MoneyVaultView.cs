@@ -19,14 +19,9 @@ namespace TandC.GeometryAstro.Gameplay
 
         public void UpdateText(int newMoney)
         {
-            //DOTween.To(() => _currentMoney, x =>
-            //{
-            //    _currentMoney = x;
-            //    _moneyCountText.text = _currentMoney.ToString();
-            //}, newMoney, 0.5f)
-            //.SetEase(Ease.OutQuad);
-
             InternalTools.DOTextInt(_moneyCountText, _currentMoney, newMoney, 0.5f);
+
+            _currentMoney = newMoney;
         }
     }
 }

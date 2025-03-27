@@ -9,19 +9,19 @@ namespace TandC.GeometryAstro.Gameplay
 
         private int _startBulletPreloadCount = 2;
 
+        private readonly RocketInputButton _rocketButton;
+
+        public RocketGunBuilder(RocketInputButton rocketButton)
+        {
+            _rocketButton = rocketButton;
+        }
+
         private void SetProjectileFactory(IReadableModificator damageModificator,
             IReadableModificator criticalChanceModificator,
             IReadableModificator criticalDamageMultiplierModificator,
             IReadableModificator bulletSizeModificator)
         {
-            _weapon.SetProjectileFactory(new ProjectileFactory(
-                _activeSkillData.bulletData, 
-                _startBulletPreloadCount,
-                () => Object.Instantiate(_activeSkillData.bulletData.BulletObject).GetComponent<ExplosiveBullet>(),
-                damageModificator, 
-                criticalChanceModificator, 
-                criticalDamageMultiplierModificator, 
-                bulletSizeModificator));
+            _weapon.SetProjectileFactory(damageModificator, criticalChanceModificator, criticalDamageMultiplierModificator, bulletSizeModificator, _startBulletPreloadCount);
         }
 
         private void SetDuplicatorComponent(IReadableModificator duplicatorModificator)
@@ -31,7 +31,7 @@ namespace TandC.GeometryAstro.Gameplay
 
         private void SetReloader(IReadableModificator reloadModificator)
         {
-            _weapon.SetReloader(new WeaponReloader(_activeSkillData.shootDeley, reloadModificator));
+            _weapon.SetReloader(new WeaponReloader(_activeSkillData.shootDeley, reloadModificator), _rocketButton);
         }
 
         protected override void ConstructWeapon()
@@ -41,6 +41,8 @@ namespace TandC.GeometryAstro.Gameplay
                 _modificatorContainer.GetModificator(ModificatorType.CriticalChance),
                 _modificatorContainer.GetModificator(ModificatorType.CriticalDamageMultiplier),
                 _modificatorContainer.GetModificator(ModificatorType.BulletsSize));
+
+            _weapon.InitRocketAmmo();
 
             SetReloader(_modificatorContainer.GetModificator(ModificatorType.ReloadTimer));
 

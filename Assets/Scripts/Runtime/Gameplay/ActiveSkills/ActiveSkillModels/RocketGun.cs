@@ -15,7 +15,9 @@ namespace TandC.GeometryAstro.Gameplay
 
         private DuplicatorComponent _duplicatorComponent;
 
-        public ActiveSkillType SkillType { get; private set; }
+        private IPassiveUpgradable _explosionRadiusModificatorUpgrade;
+
+        public ActiveSkillType SkillType { get; } = ActiveSkillType.RocketGun;
 
         private int _currentLevel = 1;
 
@@ -24,16 +26,28 @@ namespace TandC.GeometryAstro.Gameplay
         public void SetData(ActiveSkillData data)
         {
             _data = data;
+            InitRadiusModificator();
         }
 
-        public void SetProjectileFactory(IProjectileFactory projectileFactory)
+        public void SetProjectileFactory(IReadableModificator damageModificator,
+            IReadableModificator criticalChanceModificator,
+            IReadableModificator criticalDamageMultiplierModificator,
+            IReadableModificator bulletSizeModificator, int startBulletPreloadCount)
         {
-            _projectileFactory = projectileFactory;
+            _projectileFactory = new ProjectileFactory(
+                _data.bulletData,
+                startBulletPreloadCount,
+                () => Object.Instantiate(_data.bulletData.BulletObject).GetComponent<ExplosiveBullet>().SetExplosiveDamageAreaBullet((IReadableModificator)_explosionRadiusModificatorUpgrade),
+                damageModificator,
+                criticalChanceModificator,
+                criticalDamageMultiplierModificator,
+                bulletSizeModificator);
         }
 
-        public void SetReloader(IReloadable reloader)
+        public void SetReloader(IReloadable reloader, RocketInputButton rocketInputButton)
         {
             _reloader = reloader;
+            rocketInputButton.Initialize(_reloader.ReloadProgress, _rocketAmmo.RocketCount, _rocketAmmo.MaxRocketCount, ShootAction);
         }
 
         public void SetEnemyDetector(IEnemyDetector enemyDetector)
@@ -42,19 +56,15 @@ namespace TandC.GeometryAstro.Gameplay
 
         public void Initialization()
         {
-            InitRocketAmmo();
-            InitRocketButton();
             RegisterShootingPatterns();
         }
 
-        private void InitRocketButton() 
+        private void InitRadiusModificator() 
         {
-            RocketInputButton reloadButton = GameObject.FindAnyObjectByType<RocketInputButton>();
-
-            reloadButton.Initialize(_reloader.ReloadProgress, _rocketAmmo.RocketCount, ShootAction);
+            _explosionRadiusModificatorUpgrade = new Modificator(_data.detectorRadius, 0, true);
         }
 
-        private void InitRocketAmmo()
+        public void InitRocketAmmo()
         {
             _rocketAmmo = new RocketAmmo(10);
         }
@@ -68,7 +78,7 @@ namespace TandC.GeometryAstro.Gameplay
         {
             foreach (var pattern in GameObject.FindObjectsOfType<WeaponShootingPattern>())
             {
-                if (pattern.Type == ActiveSkillType.RocketGun)
+                if (pattern.Type == SkillType)
                 {
                     _weaponShootingPattern = pattern;
                     break;
@@ -111,18 +121,20 @@ namespace TandC.GeometryAstro.Gameplay
             );
         }
 
-        public void Upgrade()
+        public void Upgrade(float Value = 0)
         {
-
+            _rocketAmmo.UpgradeRocketMaxCount((int)(Value));
+            _explosionRadiusModificatorUpgrade.ApplyModifier(Value);
         }
 
         public void Evolve()
         {
-            
+            _projectileFactory.Evolve(_data.EvolvedBulletData, () => Object.Instantiate(_data.EvolvedBulletData.BulletObject).GetComponent<ExplosiveDamageAreaBullet>().SetExplosiveDamageAreaBullet((IReadableModificator)_explosionRadiusModificatorUpgrade));
         }
 
         public void Tick()
         {
+            _projectileFactory.Tick();
             _duplicatorComponent?.Tick();
             _reloader.Update();
         }

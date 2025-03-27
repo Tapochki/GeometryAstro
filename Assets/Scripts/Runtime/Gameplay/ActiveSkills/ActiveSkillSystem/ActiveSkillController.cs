@@ -19,11 +19,12 @@ public class ActiveSkillController: IEventReceiver<ActiveSkillUpgradeEvent>, IEv
     public UniqueId Id { get; } = new UniqueId();
 
     [Inject]
-    private void Construct(GameConfig config, TickService tickService, ModificatorContainer modificatorContainer) 
+    private void Construct(GameConfig config, TickService tickService, ModificatorContainer modificatorContainer, IActiveSkillFactory activeSkillFactory) 
     {
         _config = config.ActiveSkillConfig;
         _tickService = tickService;
         _modificatorContainer = modificatorContainer;
+        _activeSkillFactory = activeSkillFactory;
     }
 
     private void RegisterEvent()
@@ -41,7 +42,6 @@ public class ActiveSkillController: IEventReceiver<ActiveSkillUpgradeEvent>, IEv
     public ActiveSkillController() 
     {
         _activeSkills = new List<IActiveSkill>();
-        _activeSkillFactory = new ActiveSkillFactory();
     }
 
     public void Init()
@@ -86,7 +86,7 @@ public class ActiveSkillController: IEventReceiver<ActiveSkillUpgradeEvent>, IEv
         if (skill == null)
             RegisterWeapon(@event.ActiveSkillType);
         else
-            skill.Upgrade();
+            skill.Upgrade(@event.UpgradeValue);
     }
 
     public void OnEvent(ActiveSkillEvolveEvent @event)

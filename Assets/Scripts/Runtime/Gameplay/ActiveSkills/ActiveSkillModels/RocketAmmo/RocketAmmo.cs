@@ -9,9 +9,13 @@ namespace TandC.GeometryAstro.Gameplay
 
         private ReactiveProperty<int> _rocketCount = new ReactiveProperty<int>(10);
 
+        public IReadOnlyReactiveProperty<int> MaxRocketCount => _maxRocketCount;
+
+        private ReactiveProperty<int> _maxRocketCount = new ReactiveProperty<int>(10);
+
         public RocketAmmo(int startRocketCount) 
         {
-            _rocketCount.Value = startRocketCount;
+            _rocketCount.Value = _maxRocketCount.Value = startRocketCount;
         }
 
         public bool TryShoot()
@@ -26,12 +30,17 @@ namespace TandC.GeometryAstro.Gameplay
 
         public void AddRockets(int amount = 1)
         {
-            _rocketCount.Value += amount;
+            _rocketCount.Value = Mathf.Min(_maxRocketCount.Value, _rocketCount.Value + amount);
         }
 
         public void RemoveRockets(int amount = 1)
         {
             _rocketCount.Value = Mathf.Max(0, _rocketCount.Value - amount);
+        }
+
+        public void UpgradeRocketMaxCount(int amount = 5) 
+        {
+            _maxRocketCount.Value += amount;
         }
     }
 }

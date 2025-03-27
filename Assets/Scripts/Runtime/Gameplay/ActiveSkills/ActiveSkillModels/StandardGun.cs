@@ -122,7 +122,7 @@ namespace TandC.GeometryAstro.Gameplay
             Vector2 origin = detectionPattern.Origin.position;
             Vector2 direction = detectionPattern.Direction.position;
 
-            Vector2? enemyPosition = _enemyDetector.GetEnemyPosition(origin, direction, _data.detectorDistance);
+            Vector2? enemyPosition = _enemyDetector.GetEnemyPosition(origin, direction, _data.detectorRadius);
 
             if (enemyPosition.HasValue)
             {
@@ -152,7 +152,7 @@ namespace TandC.GeometryAstro.Gameplay
             }
         }
 
-        public void Upgrade()
+        public void Upgrade(float Value = 0)
         {
             if (_currentLevel < 5) _currentLevel++;
         }

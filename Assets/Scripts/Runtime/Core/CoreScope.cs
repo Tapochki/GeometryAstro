@@ -111,6 +111,7 @@ namespace TandC.GeometryAstro.Core
 
         private void RegisterActiveSkillController(IContainerBuilder builder)
         {
+            builder.Register<ActiveSkillFactory>(Lifetime.Scoped).As<IActiveSkillFactory>();
             builder.Register<ActiveSkillController>(Lifetime.Scoped);
         }
 

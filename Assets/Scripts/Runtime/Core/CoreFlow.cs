@@ -98,6 +98,7 @@ namespace TandC.GeometryAstro.Core
 
         public async void Start()
         {
+            InitInputHandler();
             _modificatorContainer.Init();
             InitPlayer();
             InitItemSpawner();
@@ -115,6 +116,11 @@ namespace TandC.GeometryAstro.Core
             RegisterUI();
 
             _pauseService.Init();
+        }
+
+        private void InitInputHandler() 
+        {
+            _gameplayInputHandler.Init();
         }
 
         private void InitVaultCointainer() 

@@ -9,26 +9,24 @@ namespace TandC.GeometryAstro.Gameplay
     {
         [SerializeField] private TMP_Text _ammoText;
         private IReadOnlyReactiveProperty<int> _ammoCount;
+        private IReadOnlyReactiveProperty<int> _maxCount;
 
         public void Initialize(
             IReadOnlyReactiveProperty<float> reloadProgress,
             IReadOnlyReactiveProperty<int> ammoCount,
+            IReadOnlyReactiveProperty<int> maxCount,
             Action onButtonClick)
         {
             base.Initialize(reloadProgress, onButtonClick);
             _ammoCount = ammoCount;
-
+            _maxCount = maxCount;
             _ammoCount.Subscribe(UpdateAmmoVisual).AddTo(_disposables);
-        }
-
-        public void Activate() 
-        {
-            gameObject.SetActive(true);
+            _maxCount.Subscribe(UpdateAmmoVisual).AddTo(_disposables);
         }
 
         private void UpdateAmmoVisual(int count)
         {
-            _ammoText.text = $"{count}";
+            _ammoText.text = $"{_ammoCount}/{_maxCount}";
         }
     }
 }

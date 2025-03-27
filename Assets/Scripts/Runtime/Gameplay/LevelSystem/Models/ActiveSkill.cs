@@ -29,7 +29,7 @@ namespace TandC.GeometryAstro.Gameplay
 
         public override void ApplySkillEffect()
         {
-            EventBusHolder.EventBus.Raise(new ActiveSkillUpgradeEvent(_upgradableActiveSkillType));
+            EventBusHolder.EventBus.Raise(new ActiveSkillUpgradeEvent(_upgradableActiveSkillType, SkillData.UpgradesInfo[SkillLevel].Value));
             base.ApplySkillEffect();
         }
     }

@@ -29,10 +29,10 @@ namespace TandC.GeometryAstro.Data
     [Serializable]
     public class ActiveSkillData
     {
+        public string SkillName;
         public ActiveSkillType type;
-        public string weaponName;
         public float shootDeley;
-        public float detectorDistance;
+        public float detectorRadius;
         public BulletData bulletData;
         public BulletData EvolvedBulletData;
     }

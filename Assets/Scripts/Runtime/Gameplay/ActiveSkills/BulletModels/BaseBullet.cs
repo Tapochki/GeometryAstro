@@ -107,6 +107,9 @@ namespace TandC.GeometryAstro.Gameplay
             Destroy(gameObject);
         }
 
-        protected virtual void BulletHit() => BackToPool();
+        protected virtual void BulletHit() 
+        {
+            BackToPool();
+        } 
     }
 }

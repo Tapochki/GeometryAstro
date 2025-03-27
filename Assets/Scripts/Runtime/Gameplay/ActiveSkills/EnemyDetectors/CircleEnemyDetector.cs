@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace TandC.GeometryAstro.Gameplay 
 {
-    public class CircleEnemyDetector : IEnemyDetector
+    public abstract class CircleEnemyDetector : IEnemyDetector
     {
         private readonly LayerMask _enemyLayer;
 
@@ -12,31 +12,30 @@ namespace TandC.GeometryAstro.Gameplay
             _enemyLayer = enemyLayer;
         }
 
-        public Vector2? GetEnemyPosition(Vector2 origin, Vector2 direction = default, float maxDistance = 100)
+        protected Collider2D[] TakeCircleHits(Vector2 origin, float maxDistance = 100) 
         {
-            Collider2D[] hits = Physics2D.OverlapCircleAll(origin, maxDistance, _enemyLayer);
-            Enemy nearestEnemy = null;
-            float minDistance = float.MaxValue;
-
-            foreach (var hit in hits)
-            {
-                if (hit.TryGetComponent(out Enemy enemy))
-                {
-                    float distance = Vector2.Distance(origin, enemy.transform.position);
-                    if (distance < minDistance)
-                    {
-                        minDistance = distance;
-                        nearestEnemy = enemy;
-                    }
-                }
-            }
-            if(nearestEnemy == null) 
-            {
-                return null;
-            }
-
-            return nearestEnemy.transform.position;
+            return Physics2D.OverlapCircleAll(origin, maxDistance, _enemyLayer);
         }
+
+        protected void DrawCircle(Vector2 origin, float radius)
+        {
+            Color color = Color.red;
+            int segments = 30;
+            float angleStep = 360f / segments;
+            Vector2 previousPoint = origin + new Vector2(radius, 0);
+
+            for (int i = 1; i <= segments; i++)
+            {
+                float angle = i * angleStep * Mathf.Deg2Rad;
+                Vector2 newPoint = origin + new Vector2(Mathf.Cos(angle) * radius, Mathf.Sin(angle) * radius);
+
+                Debug.DrawLine(previousPoint, newPoint, color);
+                previousPoint = newPoint;
+            }
+        }
+
+        public abstract Vector2? GetEnemyPosition(Vector2 origin, Vector2 direction = default, float maxDistance = 100);
+
     }
 }
 

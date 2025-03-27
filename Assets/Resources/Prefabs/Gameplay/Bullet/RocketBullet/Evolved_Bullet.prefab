@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 7138253935901533441}
   - component: {fileID: 4221104261401994081}
   - component: {fileID: 4663375850154968638}
-  - component: {fileID: 6028062652817203455}
+  - component: {fileID: 2861981004455085979}
   m_Layer: 0
-  m_Name: RocketBullet_0
+  m_Name: Evolved_Bullet
   m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -109,7 +109,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 7, y: 10.56}
   m_EdgeRadius: 0
---- !u!114 &6028062652817203455
+--- !u!114 &2861981004455085979
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -118,7 +118,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5271754677532632859}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a11c737d20d3574ba4d26497b88ec59, type: 3}
+  m_Script: {fileID: 11500000, guid: 3da62e3a15200a74eb36d3fdcffd38d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &7279978768255673641
@@ -196,7 +196,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: 73e7e76d646561e40a76d4e219532a95, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 616a84b4e84c6c8499cc11b5ed6a4a2f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

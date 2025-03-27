@@ -17,7 +17,7 @@ namespace TandC.GeometryAstro.Gameplay
             _weapon.SetProjectileFactory(new ProjectileFactory(
                 _activeSkillData.bulletData, 
                 _startBulletPreloadCount,
-                () => Object.Instantiate(_activeSkillData.bulletData.BulletObject).GetComponent<BulletWithHealth>(),
+                () => Object.Instantiate(_activeSkillData.bulletData.BulletObject).GetComponent<StandartBullet>(),
                 damageModificator, 
                 criticalChanceModificator, 
                 criticalDamageMultiplierModificator, 
@@ -36,7 +36,7 @@ namespace TandC.GeometryAstro.Gameplay
 
         private void SetEnemyDetector()
         {
-            _weapon.SetEnemyDetector(new CircleEnemyDetector(LayerMask.GetMask("Enemy")));
+            _weapon.SetEnemyDetector(new CircleFirstEnemyDetector(LayerMask.GetMask("Enemy")));
         }
 
         protected override void ConstructWeapon()

@@ -13,7 +13,7 @@ namespace TandC.GeometryAstro.Gameplay
         public void Initialization();
 
         public void Evolve();
-        public void Upgrade();
+        public void Upgrade(float Value = 0);
         public void Tick();
     }
 }

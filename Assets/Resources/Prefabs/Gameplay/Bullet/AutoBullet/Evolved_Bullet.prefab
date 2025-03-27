@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 7138253935901533441}
   - component: {fileID: 1490270484340832640}
   - component: {fileID: 4221104261401994081}
-  - component: {fileID: -83311162287948197}
+  - component: {fileID: 345160844847899657}
   m_Layer: 0
-  m_Name: Bullet_0
+  m_Name: Evolved_Bullet
   m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -100,7 +100,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
---- !u!114 &-83311162287948197
+--- !u!114 &345160844847899657
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -109,7 +109,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5271754677532632859}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae4437ca40d6d4d43b9e340323c411f8, type: 3}
+  m_Script: {fileID: 11500000, guid: 5a33c10af764848418b80fd7800eb2e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &7279978768255673641
@@ -187,7 +187,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: ee72ee357485b4d4db710930d1bb62ca, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e9258e3e8830d774dbbf43ba321d4bd2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -420,8 +420,8 @@ ParticleSystem:
     startColor:
       serializedVersion: 2
       minMaxState: 2
-      minColor: {r: 0.4988875, g: 0.9528302, b: 0.8711585, a: 1}
-      maxColor: {r: 0.015686275, g: 0.9843138, b: 0.8078432, a: 1}
+      minColor: {r: 0.7372549, g: 0.49411768, b: 0.909804, a: 1}
+      maxColor: {r: 0.6117647, g: 0, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}

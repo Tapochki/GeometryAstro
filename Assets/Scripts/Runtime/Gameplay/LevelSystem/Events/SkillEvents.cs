@@ -5,10 +5,12 @@ namespace TandC.GeometryAstro.EventBus
     public readonly struct ActiveSkillUpgradeEvent : IEvent
     {
         public readonly ActiveSkillType ActiveSkillType;
+        public readonly float UpgradeValue;
 
-        public ActiveSkillUpgradeEvent(ActiveSkillType activeSkillType)
+        public ActiveSkillUpgradeEvent(ActiveSkillType activeSkillType, float upgradeValue)
         {
             ActiveSkillType = activeSkillType;
+            UpgradeValue = upgradeValue;
         }
     }
 

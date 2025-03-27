@@ -1,11 +1,14 @@
 using System;
 using TandC.GeometryAstro.Data;
+using UniRx;
 using UnityEngine;
 
 namespace TandC.GeometryAstro.Gameplay
 {
     public class Enemy : MonoBehaviour, IEnemyDamageable, IEnemy
     {
+        private const float _flashDuration = 0.1f;
+
         [Header("References")]
         [SerializeField] private SpriteRenderer _modelViewRenderer;
         [SerializeField] private Rigidbody2D _rigidbody;
@@ -22,6 +25,8 @@ namespace TandC.GeometryAstro.Gameplay
 
         private float _speedModificator;
 
+        private SpriteRenderer _enemySprite;
+
         public void Tick()
         {
             if(_freezeComponent.IsFreeze) 
@@ -36,6 +41,7 @@ namespace TandC.GeometryAstro.Gameplay
 
         private void Awake() 
         {
+            _enemySprite = gameObject.transform.Find("ModelView").GetComponent<SpriteRenderer>();
             _freezeComponent = new FreezeComponent(gameObject.transform.Find("FreezEnemyVFX").gameObject);
         }
 
@@ -79,7 +85,20 @@ namespace TandC.GeometryAstro.Gameplay
                 //Send damage value to vfx 
             }
 
+            FlashSprite();
             _healthComponent.TakeDamage(finalDamage);
+        }
+
+        private void FlashSprite()
+        {
+            var originalColor = _enemySprite.color;
+            var transparentColor = Color.red;
+
+            _enemySprite.color = transparentColor;
+
+            Observable.Timer(System.TimeSpan.FromSeconds(_flashDuration))
+                .Subscribe(_ => _enemySprite.color = originalColor)
+                .AddTo(this);
         }
 
         private void OnCollisionEnter2D(Collision2D collision)

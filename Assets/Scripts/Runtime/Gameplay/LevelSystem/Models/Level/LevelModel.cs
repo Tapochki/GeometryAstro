@@ -11,7 +11,7 @@ namespace TandC.GeometryAstro.Gameplay
 
         private IReadableModificator _expModificator;
 
-        private const float _expirienceNextLevelMultiplayer = 1.2f;
+        private const float _expirienceNextLevelMultiplayer = 1f;
 
         public UniqueId Id { get; } = new UniqueId();
 

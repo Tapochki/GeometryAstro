@@ -55,6 +55,88 @@ MonoBehaviour:
         Description: Standart Gun Evolution
         Value: 1
         IsPercentageValue: 0
+  - SkillName: Auto Gun
+    SkillIcon: {fileID: 21300000, guid: 218562ded58b8b44e86b03d12a2f1bd2, type: 3}
+    Type: 19
+    UseType: 0
+    UpgradesInfo:
+    - Name: Auto Gun New
+      Level: 1
+      Description: Auto Gun New
+      Value: 1
+      IsPercentageValue: 0
+    - Name: Auto Gun 2
+      Level: 2
+      Description: Auto Gun 2
+      Value: 2
+      IsPercentageValue: 0
+    - Name: Auto Gun 3
+      Level: 3
+      Description: Auto Gun 3
+      Value: 3
+      IsPercentageValue: 0
+    - Name: Auto Gun 4
+      Level: 4
+      Description: Auto Gun 4
+      Value: 4
+      IsPercentageValue: 0
+    - Name: Auto Gun 5
+      Level: 5
+      Description: Auto Gun 5
+      Value: 5
+      IsPercentageValue: 0
+    ActiveSkillUpgradeType: 2
+    ExclusionSkillType: 0
+    EvolutionData:
+      EvolutionIcon: {fileID: 21300000, guid: 213abc47d1d5ddc4f925b89e685e6199, type: 3}
+      TypeForEvolution: 2
+      EvolutionInfo:
+        Name: Auto Gun Evolution
+        Level: 0
+        Description: Auto Gun Evolution
+        Value: 0
+        IsPercentageValue: 0
+  - SkillName: Rocket Gun
+    SkillIcon: {fileID: 21300000, guid: a73a44cb9a0a85c4388e37972efb7f06, type: 3}
+    Type: 20
+    UseType: 0
+    UpgradesInfo:
+    - Name: Rocket Gun New
+      Level: 1
+      Description: Rocket Gun New
+      Value: 5
+      IsPercentageValue: 0
+    - Name: Rocket Gun 2
+      Level: 2
+      Description: Rocket Gun 2
+      Value: 5
+      IsPercentageValue: 0
+    - Name: Rocket Gun 3
+      Level: 3
+      Description: Rocket Gun 3
+      Value: 5
+      IsPercentageValue: 0
+    - Name: Rocket Gun 4
+      Level: 4
+      Description: Rocket Gun 4
+      Value: 5
+      IsPercentageValue: 0
+    - Name: Rocket Gun 5
+      Level: 5
+      Description: Rocket Gun 5
+      Value: 5
+      IsPercentageValue: 0
+    ActiveSkillUpgradeType: 3
+    ExclusionSkillType: 20
+    EvolutionData:
+      EvolutionIcon: {fileID: 21300000, guid: 6b757f16474edf2449cfa99e4a9996f4, type: 3}
+      TypeForEvolution: 5
+      EvolutionInfo:
+        Name: Rocket Gun Evolve
+        Level: 0
+        Description: Rocket Gun Evolve
+        Value: 0
+        IsPercentageValue: 0
   _passiveSkills:
   - SkillName: Damage
     SkillIcon: {fileID: 21300000, guid: e7d87d2e18de961448b01cc53d0852e9, type: 3}
@@ -885,5 +967,5 @@ MonoBehaviour:
       Value: 100
       IsPercentageValue: 0
     ModificatorUpgradeType: 0
-  _startAvailableSkills: 1200000001000000020000000300000004000000050000000d0000000c0000000e000000060000000700000008000000090000000b0000000a0000000f00000010000000
+  _startAvailableSkills: 12000000130000001400000001000000020000000300000004000000050000000d0000000c0000000e000000060000000700000008000000090000000b0000000a0000000f00000010000000
   _startAvailableTestSkills: 
