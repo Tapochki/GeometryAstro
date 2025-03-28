@@ -10,6 +10,9 @@ namespace TandC.GeometryAstro.Gameplay
     public class Player : MonoBehaviour
     {
         [SerializeField] private Transform _bodyTransform;
+        [SerializeField] private Transform _skillTransform;
+
+        public Transform SkillTransform { get { return _skillTransform; } }
 
         private IReadableModificator _moveSpeed;
         private IGameplayInputHandler _inputHandler;

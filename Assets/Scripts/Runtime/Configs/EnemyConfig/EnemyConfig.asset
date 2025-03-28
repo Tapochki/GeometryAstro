@@ -16,7 +16,7 @@ MonoBehaviour:
   - enemyId: 0
     health: 100
     damage: 10
-    movementSpeed: 100
+    movementSpeed: 10
     Score: 20
     BuilderType: 0
     type: 0

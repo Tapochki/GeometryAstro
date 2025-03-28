@@ -1,0 +1,109 @@
+{
+    "_activeSkillsData": [
+        {
+            "SkillName": "StandartGun",
+            "type": 1,
+            "shootDeley": 0.5,
+            "detectorRadius": 30.0,
+            "bulletData": {
+                "BulletSpeed": 20000,
+                "bulletLifeTime": 3.0,
+                "bulletLife": 1,
+                "baseDamage": 40.0,
+                "BasicCriticalChance": 10.0,
+                "BasicCriticalMultiplier": 1.25,
+                "BasicBulletSize": 0.4000000059604645,
+                "BulletObject": {
+                    "instanceID": 33834
+                },
+                "type": 1
+            },
+            "EvolvedBulletData": {
+                "BulletSpeed": 200000,
+                "bulletLifeTime": 3.0,
+                "bulletLife": 1,
+                "baseDamage": 50.0,
+                "BasicCriticalChance": 15.0,
+                "BasicCriticalMultiplier": 1.2999999523162842,
+                "BasicBulletSize": 0.4000000059604645,
+                "BulletObject": {
+                    "instanceID": 33836
+                },
+                "type": 1
+            },
+            "_skillPrefab": {
+                "instanceID": 35370
+            }
+        },
+        {
+            "SkillName": "Auto Gun",
+            "type": 2,
+            "shootDeley": 1.0,
+            "detectorRadius": 30.0,
+            "bulletData": {
+                "BulletSpeed": 20000,
+                "bulletLifeTime": 3.0,
+                "bulletLife": 1,
+                "baseDamage": 20.0,
+                "BasicCriticalChance": 10.0,
+                "BasicCriticalMultiplier": 1.25,
+                "BasicBulletSize": 0.5,
+                "BulletObject": {
+                    "instanceID": 33838
+                },
+                "type": 2
+            },
+            "EvolvedBulletData": {
+                "BulletSpeed": 200000,
+                "bulletLifeTime": 5.0,
+                "bulletLife": 5,
+                "baseDamage": 30.0,
+                "BasicCriticalChance": 15.0,
+                "BasicCriticalMultiplier": 1.2999999523162842,
+                "BasicBulletSize": 0.5,
+                "BulletObject": {
+                    "instanceID": 33840
+                },
+                "type": 2
+            },
+            "_skillPrefab": {
+                "instanceID": 35482
+            }
+        },
+        {
+            "SkillName": "RocketGun",
+            "type": 3,
+            "shootDeley": 1.0,
+            "detectorRadius": 10.0,
+            "bulletData": {
+                "BulletSpeed": 10000,
+                "bulletLifeTime": 5.0,
+                "bulletLife": 1,
+                "baseDamage": 300.0,
+                "BasicCriticalChance": 10.0,
+                "BasicCriticalMultiplier": 1.25,
+                "BasicBulletSize": 0.30000001192092898,
+                "BulletObject": {
+                    "instanceID": 33842
+                },
+                "type": 3
+            },
+            "EvolvedBulletData": {
+                "BulletSpeed": 1000,
+                "bulletLifeTime": 5.0,
+                "bulletLife": 5,
+                "baseDamage": 300.0,
+                "BasicCriticalChance": 15.0,
+                "BasicCriticalMultiplier": 1.2999999523162842,
+                "BasicBulletSize": 0.30000001192092898,
+                "BulletObject": {
+                    "instanceID": 33844
+                },
+                "type": 3
+            },
+            "_skillPrefab": {
+                "instanceID": 35506
+            }
+        }
+    ]
+}

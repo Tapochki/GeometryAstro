@@ -11,8 +11,11 @@ namespace TandC.GeometryAstro.Gameplay
 
         private readonly RocketInputButton _rocketButton;
 
-        public RocketGunBuilder(RocketInputButton rocketButton)
+        private Transform _playerTransformSkills;
+
+        public RocketGunBuilder(Transform playerTransformSkills, RocketInputButton rocketButton)
         {
+            _playerTransformSkills = playerTransformSkills;
             _rocketButton = rocketButton;
         }
 
@@ -34,6 +37,11 @@ namespace TandC.GeometryAstro.Gameplay
             _weapon.SetReloader(new WeaponReloader(_activeSkillData.shootDeley, reloadModificator), _rocketButton);
         }
 
+        private void SetSkillPrefab()
+        {
+            _weapon.RegisterShootingPatterns(_playerTransformSkills);
+        }
+
         protected override void ConstructWeapon()
         {
             SetProjectileFactory(
@@ -43,6 +51,8 @@ namespace TandC.GeometryAstro.Gameplay
                 _modificatorContainer.GetModificator(ModificatorType.BulletsSize));
 
             _weapon.InitRocketAmmo();
+
+            SetSkillPrefab();
 
             SetReloader(_modificatorContainer.GetModificator(ModificatorType.ReloadTimer));
 

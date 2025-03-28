@@ -62,7 +62,7 @@ namespace TandC.GeometryAstro.Gameplay
         {
             if (_isMoveToPlayer)
             {
-                _moveComponent.Move(_playerTransform.position, 1000f);
+                _moveComponent.Move(_playerTransform.position, 100f);
             }
         }
 
@@ -71,7 +71,8 @@ namespace TandC.GeometryAstro.Gameplay
             if (collision.gameObject.TryGetComponent(out ItemPickUper pickUper) && !_isPickedByPickaper)
             {
                 _isPickedByPickaper = true;
-                _triggerItemDoTweenAnimationComponent.DoAnimation(gameObject, _playerTransform, StartMoveToPlayer);
+                StartMoveToPlayer();
+               // _triggerItemDoTweenAnimationComponent.DoAnimation(gameObject, _playerTransform, StartMoveToPlayer);
                 return;
             }
 

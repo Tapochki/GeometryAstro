@@ -9,6 +9,14 @@ public class StandardGunBuilder : ActiveSkillBuilder<StandardGun>
     private int _startBulletPreloadCount = 10;
 
 
+    private Transform _playerTransformSkills;
+
+
+    public StandardGunBuilder(Transform playerTransformSkills)
+    {
+        _playerTransformSkills = playerTransformSkills;
+    }
+
     private void SetProjectileFactory(
         IReadableModificator damageModificator, 
         IReadableModificator criticalChanceModificator, 
@@ -40,6 +48,11 @@ public class StandardGunBuilder : ActiveSkillBuilder<StandardGun>
         _weapon.SetEnemyDetector(new RaycastEnemyDetector(LayerMask.GetMask("Enemy")));
     }
 
+    private void SetSkillPrefab() 
+    {
+        _weapon.RegisterShootingPatterns(_playerTransformSkills);
+    }
+
     protected override void ConstructWeapon()
     {
         SetProjectileFactory(
@@ -48,9 +61,11 @@ public class StandardGunBuilder : ActiveSkillBuilder<StandardGun>
             _modificatorContainer.GetModificator(ModificatorType.CriticalDamageMultiplier),
             _modificatorContainer.GetModificator(ModificatorType.BulletsSize));
 
-        SetReloader(_modificatorContainer.GetModificator(ModificatorType.ReloadTimer));
+        SetSkillPrefab();
 
-       SetEnemyDetector();
+        SetReloader(_modificatorContainer.GetModificator(ModificatorType.ReloadTimer));
+    
+        SetEnemyDetector();
 
         SetDuplicatorComponent(_modificatorContainer.GetModificator(ModificatorType.Duplicator));
     }

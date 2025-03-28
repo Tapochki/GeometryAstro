@@ -48,7 +48,7 @@ namespace TandC.GeometryAstro.Gameplay
 
         public void Initialization()
         {
-            RegisterShootingPatterns();
+
         }
 
         public void RegisterDuplicatorComponent(IReadableModificator duplicateModificator) 
@@ -56,9 +56,11 @@ namespace TandC.GeometryAstro.Gameplay
             _duplicatorComponent = new DuplicatorComponent(duplicateModificator, Shoot, EndShoot);
         }
 
-        private void RegisterShootingPatterns()
+        public void RegisterShootingPatterns(Transform skillParent)
         {
-            foreach (var pattern in GameObject.FindObjectsOfType<WeaponShootingPattern>())
+            GameObject skillObject = MonoBehaviour.Instantiate(_data._skillPrefab, skillParent);
+
+            foreach(var pattern in skillObject.GetComponentsInChildren<WeaponShootingPattern>())
             {
                 if (pattern.Type == SkillType)
                 {

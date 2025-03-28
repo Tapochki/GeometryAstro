@@ -56,12 +56,12 @@ namespace TandC.GeometryAstro.Gameplay
 
         public void Initialization()
         {
-            RegisterShootingPatterns();
+
         }
 
         private void InitRadiusModificator() 
         {
-            _explosionRadiusModificatorUpgrade = new Modificator(_data.detectorRadius, 0, true);
+            _explosionRadiusModificatorUpgrade = new Modificator(_data.detectorRadius, 0, false);
         }
 
         public void InitRocketAmmo()
@@ -74,9 +74,11 @@ namespace TandC.GeometryAstro.Gameplay
             _duplicatorComponent = new DuplicatorComponent(duplicateModificator, TryShoot, EndShoot);
         }
 
-        private void RegisterShootingPatterns()
+        public void RegisterShootingPatterns(Transform skillParent)
         {
-            foreach (var pattern in GameObject.FindObjectsOfType<WeaponShootingPattern>())
+            GameObject skillObject = MonoBehaviour.Instantiate(_data._skillPrefab, skillParent);
+
+            foreach (var pattern in skillObject.GetComponentsInChildren<WeaponShootingPattern>())
             {
                 if (pattern.Type == SkillType)
                 {
@@ -124,7 +126,7 @@ namespace TandC.GeometryAstro.Gameplay
         public void Upgrade(float Value = 0)
         {
             _rocketAmmo.UpgradeRocketMaxCount((int)(Value));
-            _explosionRadiusModificatorUpgrade.ApplyModifier(Value);
+            _explosionRadiusModificatorUpgrade.ApplyModifier(Value/2);
         }
 
         public void Evolve()

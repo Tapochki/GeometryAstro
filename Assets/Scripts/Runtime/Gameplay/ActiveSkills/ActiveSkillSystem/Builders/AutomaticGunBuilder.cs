@@ -7,7 +7,14 @@ namespace TandC.GeometryAstro.Gameplay
     {
         protected override ActiveSkillType _activeSkillType => ActiveSkillType.AutoGun;
 
+        private Transform _playerTransformSkills;
+
         private int _startBulletPreloadCount = 5;
+
+        public AutomaticGunBuilder(Transform playerTransformSkills) 
+        {
+            _playerTransformSkills = playerTransformSkills;
+        }
 
         private void SetProjectileFactory(IReadableModificator damageModificator,
             IReadableModificator criticalChanceModificator,
@@ -39,6 +46,11 @@ namespace TandC.GeometryAstro.Gameplay
             _weapon.SetEnemyDetector(new CircleFirstEnemyDetector(LayerMask.GetMask("Enemy")));
         }
 
+        private void SetSkillPrefab()
+        {
+            _weapon.RegisterShootingPatterns(_playerTransformSkills);
+        }
+
         protected override void ConstructWeapon()
         {
             SetProjectileFactory(
@@ -48,6 +60,8 @@ namespace TandC.GeometryAstro.Gameplay
                 _modificatorContainer.GetModificator(ModificatorType.BulletsSize));
 
             SetReloader(_modificatorContainer.GetModificator(ModificatorType.ReloadTimer));
+
+            SetSkillPrefab();
 
             SetDuplicatorComponent(_modificatorContainer.GetModificator(ModificatorType.Duplicator));
 

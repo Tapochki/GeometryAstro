@@ -35,6 +35,7 @@ namespace TandC.GeometryAstro.Data
         public float detectorRadius;
         public BulletData bulletData;
         public BulletData EvolvedBulletData;
+        public GameObject _skillPrefab;
     }
 
     [Serializable]

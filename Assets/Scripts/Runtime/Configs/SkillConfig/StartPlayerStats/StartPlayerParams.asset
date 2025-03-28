@@ -23,7 +23,7 @@ MonoBehaviour:
     StartValue: 0
     IsPercentageValue: 0
   - Type: 4
-    StartValue: 500
+    StartValue: 100
     IsPercentageValue: 1
   - Type: 5
     StartValue: 0
@@ -53,7 +53,7 @@ MonoBehaviour:
     StartValue: 1
     IsPercentageValue: 1
   - Type: 14
-    StartValue: 18
+    StartValue: 5
     IsPercentageValue: 1
   - Type: 15
     StartValue: 1

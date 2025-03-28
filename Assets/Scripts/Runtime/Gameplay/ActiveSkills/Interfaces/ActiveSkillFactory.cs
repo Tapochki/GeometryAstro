@@ -20,9 +20,9 @@ namespace TandC.GeometryAstro.Gameplay
         {
             return type switch
             {
-                ActiveSkillType.AutoGun => new AutomaticGunBuilder(),
-                ActiveSkillType.StandartGun => new StandardGunBuilder(),
-                ActiveSkillType.RocketGun => new RocketGunBuilder(_inputHandler.RocketButton),
+                ActiveSkillType.AutoGun => new AutomaticGunBuilder(_player.SkillTransform),
+                ActiveSkillType.StandartGun => new StandardGunBuilder(_player.SkillTransform),
+                ActiveSkillType.RocketGun => new RocketGunBuilder(_player.SkillTransform, _inputHandler.RocketButton),
                 _ => throw new System.ArgumentException("Unknown weapon type")
             };
         }
