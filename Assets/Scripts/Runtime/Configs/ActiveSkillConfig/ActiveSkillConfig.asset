@@ -16,7 +16,7 @@ MonoBehaviour:
   - SkillName: StandartGun
     type: 1
     shootDeley: 0.5
-    detectorRadius: 30
+    detectorRadius: 60
     bulletData:
       BulletSpeed: 20000
       bulletLifeTime: 3
@@ -24,7 +24,7 @@ MonoBehaviour:
       baseDamage: 40
       BasicCriticalChance: 10
       BasicCriticalMultiplier: 1.25
-      BasicBulletSize: 0.65
+      BasicBulletSize: 0.4
       BulletObject: {fileID: 5271754677532632859, guid: 9e64d4062dc713c468222ae9ad90a1f5, type: 3}
       type: 1
     EvolvedBulletData:
@@ -34,14 +34,14 @@ MonoBehaviour:
       baseDamage: 50
       BasicCriticalChance: 15
       BasicCriticalMultiplier: 1.3
-      BasicBulletSize: 0.65
+      BasicBulletSize: 0.4
       BulletObject: {fileID: 5271754677532632859, guid: 3a4394fd673b5b244be1247d16c70cb3, type: 3}
       type: 1
     _skillPrefab: {fileID: 8102254975589262953, guid: 2a26d0f8d2755db4d9c54d6e0555acbf, type: 3}
   - SkillName: Auto Gun
     type: 2
     shootDeley: 1
-    detectorRadius: 30
+    detectorRadius: 50
     bulletData:
       BulletSpeed: 20000
       bulletLifeTime: 3
@@ -49,7 +49,7 @@ MonoBehaviour:
       baseDamage: 20
       BasicCriticalChance: 10
       BasicCriticalMultiplier: 1.25
-      BasicBulletSize: 0.65
+      BasicBulletSize: 0.4
       BulletObject: {fileID: 5271754677532632859, guid: 1c51f157b5981a644b932ca253a18634, type: 3}
       type: 2
     EvolvedBulletData:
@@ -59,7 +59,7 @@ MonoBehaviour:
       baseDamage: 30
       BasicCriticalChance: 15
       BasicCriticalMultiplier: 1.3
-      BasicBulletSize: 0.65
+      BasicBulletSize: 0.4
       BulletObject: {fileID: 5271754677532632859, guid: cc7003ba6cdbb874481c73ce4c538401, type: 3}
       type: 2
     _skillPrefab: {fileID: 8476205438231959079, guid: f9db27bb718a7fa46aa1cfad75fb25b8, type: 3}
@@ -74,7 +74,7 @@ MonoBehaviour:
       baseDamage: 300
       BasicCriticalChance: 10
       BasicCriticalMultiplier: 1.25
-      BasicBulletSize: 0.25
+      BasicBulletSize: 0.2
       BulletObject: {fileID: 5271754677532632859, guid: d6f2c4ae02fe1cf40b3d32c63b02c45c, type: 3}
       type: 3
     EvolvedBulletData:
@@ -84,7 +84,7 @@ MonoBehaviour:
       baseDamage: 300
       BasicCriticalChance: 15
       BasicCriticalMultiplier: 1.3
-      BasicBulletSize: 0.25
+      BasicBulletSize: 0.2
       BulletObject: {fileID: 5271754677532632859, guid: 22ac4f4278557ac47a04ea421ba3a0ed, type: 3}
       type: 3
     _skillPrefab: {fileID: 3445268473023105740, guid: 119ffc81b3831424eae88df781067ecb, type: 3}
