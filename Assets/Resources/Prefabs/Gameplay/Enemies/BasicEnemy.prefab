@@ -319,7 +319,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4680851288958423769, guid: 9e0f7edca56abf14a8fada04ad298bf6, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4680851288958423770, guid: 9e0f7edca56abf14a8fada04ad298bf6, type: 3}
       propertyPath: m_LocalPosition.x
@@ -368,6 +368,18 @@ PrefabInstance:
     - target: {fileID: 4680851288958423772, guid: 9e0f7edca56abf14a8fada04ad298bf6, type: 3}
       propertyPath: looping
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4680851288958423772, guid: 9e0f7edca56abf14a8fada04ad298bf6, type: 3}
+      propertyPath: ShapeModule.radius.value
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4680851288958423772, guid: 9e0f7edca56abf14a8fada04ad298bf6, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4680851288958423772, guid: 9e0f7edca56abf14a8fada04ad298bf6, type: 3}
+      propertyPath: InitialModule.startSize.minScalar
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

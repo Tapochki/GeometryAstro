@@ -10,10 +10,13 @@ namespace TandC.GeometryAstro.Gameplay
 
         private readonly GameObject _freezeVFX;
 
-        public FreezeComponent(GameObject freezeVFX)
+        private readonly Rigidbody2D _rigidbody2D;
+
+        public FreezeComponent(GameObject freezeVFX, Rigidbody2D rigidbody2D)
         {
             IsFreeze = false;
             _freezeVFX = freezeVFX;
+            _rigidbody2D = rigidbody2D;
 
             SetFreezeObject(IsFreeze);
         }
@@ -29,6 +32,7 @@ namespace TandC.GeometryAstro.Gameplay
 
         public void Freeze(float freezeTimer)
         {
+            _rigidbody2D.bodyType = RigidbodyType2D.Kinematic;
             _freezeTimer = freezeTimer;
             IsFreeze = true;
             SetFreezeObject(IsFreeze);
@@ -36,6 +40,7 @@ namespace TandC.GeometryAstro.Gameplay
 
         private void EndFreeze()
         {
+            _rigidbody2D.bodyType = RigidbodyType2D.Dynamic;
             IsFreeze = false;
             SetFreezeObject(IsFreeze);
         }

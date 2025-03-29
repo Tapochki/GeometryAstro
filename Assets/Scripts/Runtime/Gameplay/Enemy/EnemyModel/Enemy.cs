@@ -42,7 +42,7 @@ namespace TandC.GeometryAstro.Gameplay
         private void Awake() 
         {
             _enemySprite = gameObject.transform.Find("ModelView").GetComponent<SpriteRenderer>();
-            _freezeComponent = new FreezeComponent(gameObject.transform.Find("FreezEnemyVFX").gameObject);
+            _freezeComponent = new FreezeComponent(gameObject.transform.Find("FreezEnemyVFX").gameObject, _rigidbody);
         }
 
         public void Initialize(EnemyData data, Transform target, Action<Enemy, bool> onDeathEvent, float healthModificator, float speedModificator)
@@ -103,6 +103,9 @@ namespace TandC.GeometryAstro.Gameplay
 
         private void OnCollisionEnter2D(Collision2D collision)
         {
+            if (_freezeComponent.IsFreeze)
+                return;
+
             if (collision.gameObject.TryGetComponent(out Player player))
             {
                 _attackComponent.SubscribePlayer(player);
