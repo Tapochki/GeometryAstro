@@ -84,25 +84,50 @@ namespace TandC.GeometryAstro.Gameplay
 
         public void RestoringShield() 
         {
-            if(_currentShieldHealth == 0) 
-            {
-                ActivateShield();
-            }
-
             if (_isEvolve)
             {
-                _currentShieldHealth = _maxShieldHealth;
-                UpdateShieldColor();
+                FullRestoreShield();
                 return;
             }
 
-            _currentShieldHealth++;
-            UpdateShieldColor();
+            if (_currentShieldHealth == 0) 
+            {
+                RestoreFromDeactivateShield();
+                return;
+            }
 
-            if (_currentShieldHealth < _maxShieldHealth) 
+            RegularRestore();
+            StartReload();
+        }
+
+        private void StartReload() 
+        {
+            if (_currentShieldHealth < _maxShieldHealth)
             {
                 _reloader.StartReload();
             }
+        }
+
+        private void RegularRestore() 
+        {
+            _currentShieldHealth++;
+            UpdateShieldColor();
+            _animator.Play("RestoringShield", -1, 0);
+        }
+
+        private void RestoreFromDeactivateShield() 
+        {
+            UpdateShieldColor();
+            _currentShieldHealth++;
+            ActivateShield();
+            StartReload();
+        }
+
+        private void FullRestoreShield() 
+        {
+            _currentShieldHealth = _maxShieldHealth;
+            UpdateShieldColor();
+            ActivateShield();
         }
 
         public bool TryAbsorbDamage() 
