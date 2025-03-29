@@ -10,11 +10,9 @@ namespace TandC.GeometryAstro.Gameplay
         private IMove _moveComponent;
         private IDoTweenAnimationComponent _triggerItemDoTweenAnimationComponent;
 
-        private Transform _playerTransform;
+        private Transform _finalTransform;
 
         private bool _isMoveToPlayer;
-
-        private bool _isPickedByPickaper;
 
         private void Start()
         {
@@ -28,13 +26,11 @@ namespace TandC.GeometryAstro.Gameplay
             MoveToPlayer();
         }
 
-        public void Init(Action<ItemView> backToPoolEvent, Transform player, Sprite itemSprite, ItemModel itemModel)
+        public void Init(Action<ItemView> backToPoolEvent, Sprite itemSprite, ItemModel itemModel)
         {
             gameObject.GetComponent<SpriteRenderer>().sprite = itemSprite;
             _onItemCollected = backToPoolEvent;
             _itemModel = itemModel;
-            _playerTransform = player;
-            _isPickedByPickaper = false;
         }
 
         private void StartMoveToPlayer()
@@ -42,41 +38,29 @@ namespace TandC.GeometryAstro.Gameplay
             _isMoveToPlayer = true;
         }
 
-        private void PickByPlayerFinish()
+        private void PickFinish()
         {
             _onItemCollected?.Invoke(this);
             _itemModel.ReleseItem();
-
-            _isPickedByPickaper = false;
-        }
-
-        private void PickByPlayer(Collider2D collision)
-        {
-            if (collision.gameObject.TryGetComponent(out Player player))
-            {
-                PickByPlayerFinish();
-            }
         }
 
         private void MoveToPlayer()
         {
             if (_isMoveToPlayer)
             {
-                _moveComponent.Move(_playerTransform.position, 100f);
+                _moveComponent.Move(_finalTransform.position, 100f);
             }
         }
 
-        private void OnTriggerEnter2D(Collider2D collision)
+        public void FirstPickUp(Transform finalTransform) 
         {
-            if (collision.gameObject.TryGetComponent(out ItemPickUper pickUper) && !_isPickedByPickaper)
-            {
-                _isPickedByPickaper = true;
-                StartMoveToPlayer();
-               // _triggerItemDoTweenAnimationComponent.DoAnimation(gameObject, _playerTransform, StartMoveToPlayer);
-                return;
-            }
+            _finalTransform = finalTransform;
+            StartMoveToPlayer();
+        }
 
-            PickByPlayer(collision);
+        public void EndPickUp() 
+        {
+            PickFinish();
         }
     }
 }

@@ -20,6 +20,15 @@ namespace TandC.GeometryAstro.Gameplay
         {
             _collider.radius = _itemRadiusModificator.Value;
         }
+
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (collision.gameObject.TryGetComponent(out ItemView itemView))
+            {
+                itemView.FirstPickUp(gameObject.transform);
+                return;
+            }
+        }
     }
 }
 

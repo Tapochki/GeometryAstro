@@ -21,6 +21,8 @@ MonoBehaviour:
       weight: 25
     - itemType: 4
       weight: 1
+    - itemType: 3
+      weight: 3
   - dropType: 0
     itemsWithChance:
     - itemType: 0

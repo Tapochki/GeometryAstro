@@ -21,7 +21,6 @@ namespace TandC.GeometryAstro.Gameplay
         private ItemConfig _itemsConfig;
         private ChanceDropItemCofig _dropConfig;
 
-        private Player _player;
         private IItemFactory _itemfactory;
 
         private ObjectPool<ItemView> _itemPool;
@@ -29,9 +28,8 @@ namespace TandC.GeometryAstro.Gameplay
         private List<ITickable> _activeItems;
 
         [Inject]
-        private void Construct(GameConfig gameConfig, Player player, LoadObjectsService loadObjectsService, TickService tickService) 
+        private void Construct(GameConfig gameConfig, LoadObjectsService loadObjectsService, TickService tickService) 
         {
-            _player = player;
             _itemsConfig = gameConfig.ItemConfig;
             _dropConfig = gameConfig.ChanceDropItemCofig;
             _loadObjectsService = loadObjectsService;
@@ -104,7 +102,7 @@ namespace TandC.GeometryAstro.Gameplay
         {           
             ItemView itemView = _itemPool.Get();
             ItemModel itemData = _itemfactory.GetItemModel(itemType);
-            itemView.Init(ReturnToPool, _player.transform, itemData.ItemSprite, _itemfactory.GetItemModel(itemType));
+            itemView.Init(ReturnToPool, itemData.ItemSprite, _itemfactory.GetItemModel(itemType));
             itemView.transform.position = spawnPosition;
             itemView.gameObject.SetActive(true);
             _activeItems.Add(itemView);
