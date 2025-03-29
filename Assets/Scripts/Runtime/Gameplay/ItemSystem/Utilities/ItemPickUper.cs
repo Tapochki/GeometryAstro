@@ -35,7 +35,6 @@ namespace TandC.GeometryAstro.Gameplay
         {
             if (collision.gameObject.TryGetComponent(out ItemView itemView))
             {
-                Debug.LogError($"_ammoCount {_ammoCount.Value} _maxAmmoCount {_maxAmmoCount.Value} itemView.IsModelRocketAmmo {itemView.IsModelRocketAmmo()}");
                 if (itemView.IsModelRocketAmmo()) 
                 {
                     if (_ammoCount.Value == _maxAmmoCount.Value)
