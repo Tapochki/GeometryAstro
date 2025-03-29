@@ -6,6 +6,8 @@ namespace TandC.GeometryAstro.Gameplay
 
     public interface IActiveSkill
     {
+        public bool IsWeapon { get; }
+
         public ActiveSkillType SkillType { get; }
 
         public void SetData(ActiveSkillData data);

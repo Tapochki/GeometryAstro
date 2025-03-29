@@ -6,6 +6,8 @@ namespace TandC.GeometryAstro.Gameplay
 {
     public class ShieldSkill : IActiveSkill, IShield
     {
+        public bool IsWeapon { get => false; }
+
         private IReloadable _reloader;
         private ActiveSkillData _data;
         private GameObject _shieldObject;

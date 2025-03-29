@@ -6,6 +6,8 @@ namespace TandC.GeometryAstro.Gameplay
 {
     public class RocketGun : IActiveSkill
     {
+        public bool IsWeapon { get => true; }
+
         private RocketAmmo _rocketAmmo;
         private IProjectileFactory _projectileFactory;
         private IReloadable _reloader;
@@ -55,10 +57,6 @@ namespace TandC.GeometryAstro.Gameplay
         {
             _reloader = reloader;
             rocketInputButton.Initialize(_reloader.ReloadProgress, _rocketAmmo.RocketCount, _rocketAmmo.MaxRocketCount, ShootAction);
-        }
-
-        public void SetEnemyDetector(IEnemyDetector enemyDetector)
-        {
         }
 
         public void Initialization()

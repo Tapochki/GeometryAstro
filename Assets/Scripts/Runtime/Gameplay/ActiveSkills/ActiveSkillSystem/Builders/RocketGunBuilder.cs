@@ -34,7 +34,7 @@ namespace TandC.GeometryAstro.Gameplay
 
         private void SetReloader(IReadableModificator reloadModificator)
         {
-            _skill.SetReloader(new WeaponReloader(_activeSkillData.shootDeley, reloadModificator), _rocketButton);
+            _skill.SetReloader(new SkillReloader(_activeSkillData.shootDeley, reloadModificator), _rocketButton);
         }
 
         private void SetSkillPrefab()

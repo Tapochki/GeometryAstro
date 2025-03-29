@@ -7,9 +7,17 @@ namespace TandC.GeometryAstro.Data
     {
         public ShieldColorConfig ShieldColorConfig => _shieldColorConfig;
         public AreaEffectConfig AreaEffectConfig => _areaEffectConfig;
+        public CloakConfig CloakConfig => _cloakConfig;
 
         [SerializeField] ShieldColorConfig _shieldColorConfig;
         [SerializeField] AreaEffectConfig _areaEffectConfig;
+        [SerializeField] CloakConfig _cloakConfig;
+    }
+
+    [System.Serializable]
+    public class CloakConfig
+    {
+        public float StartCloakActiveTime;
     }
 
     [System.Serializable]

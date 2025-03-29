@@ -178,6 +178,47 @@ MonoBehaviour:
         Description: Shield Evolve
         Value: 1
         IsPercentageValue: 0
+  - SkillName: Cloak
+    SkillIcon: {fileID: 21300000, guid: f9b73c21ea5b66d48add072c40acaa6d, type: 3}
+    Type: 38
+    UseType: 0
+    UpgradesInfo:
+    - Name: Cloaking New
+      Level: 1
+      Description: Cloaking New
+      Value: 10
+      IsPercentageValue: 0
+    - Name: Cloaking 2
+      Level: 2
+      Description: Cloaking 2
+      Value: 10
+      IsPercentageValue: 0
+    - Name: Cloaking 3
+      Level: 3
+      Description: Cloaking 3
+      Value: 10
+      IsPercentageValue: 0
+    - Name: Cloaking 4
+      Level: 4
+      Description: Cloaking 4
+      Value: 10
+      IsPercentageValue: 0
+    - Name: Cloaking 5
+      Level: 5
+      Description: Cloaking 5
+      Value: 10
+      IsPercentageValue: 0
+    ActiveSkillUpgradeType: 21
+    ExclusionSkillType: 0
+    EvolutionData:
+      EvolutionIcon: {fileID: 21300000, guid: 7687ef4166babf9469dc6dc499c5e2cf, type: 3}
+      TypeForEvolution: 13
+      EvolutionInfo:
+        Name: Cloak Evolve
+        Level: 1
+        Description: Cloak Evolve
+        Value: 10
+        IsPercentageValue: 0
   _passiveSkills:
   - SkillName: Damage
     SkillIcon: {fileID: 21300000, guid: e7d87d2e18de961448b01cc53d0852e9, type: 3}
@@ -1008,5 +1049,5 @@ MonoBehaviour:
       Value: 100
       IsPercentageValue: 0
     ModificatorUpgradeType: 0
-  _startAvailableSkills: 1200000013000000140000002500000001000000020000000300000004000000050000000d0000000c0000000e000000060000000700000008000000090000000b0000000a0000000f00000010000000
+  _startAvailableSkills: 120000001300000014000000250000002600000001000000020000000300000004000000050000000d0000000c0000000e000000060000000700000008000000090000000b0000000a0000000f00000010000000
   _startAvailableTestSkills: 

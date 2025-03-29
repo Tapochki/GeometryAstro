@@ -25,7 +25,7 @@ namespace TandC.GeometryAstro.Core
 
         private readonly IItemSpawner _itemSpawner;
 
-        private readonly ActiveSkillController _activeSkillControllerController;
+        private readonly IActiveSkillController _activeSkillControllerController;
         private readonly TickService _tickService;
 
         private readonly ModificatorContainer _modificatorContainer;
@@ -57,7 +57,7 @@ namespace TandC.GeometryAstro.Core
             IEnemySpawner enemySpawner,
             IEnemySpawnPositionService enemySpawnPositionService,
             TickService tickService,
-            ActiveSkillController activeSkillController,
+            IActiveSkillController activeSkillController,
             IItemSpawner itemSpawner,
             LoadObjectsService loadObjectsService,
             LocalisationService localizationService,

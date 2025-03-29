@@ -112,7 +112,7 @@ namespace TandC.GeometryAstro.Core
         private void RegisterActiveSkillController(IContainerBuilder builder)
         {
             builder.Register<ActiveSkillFactory>(Lifetime.Scoped).As<IActiveSkillFactory>();
-            builder.Register<ActiveSkillController>(Lifetime.Scoped);
+            builder.Register<ActiveSkillController>(Lifetime.Scoped).As<IActiveSkillController>(); ;
         }
 
         private void RegisterTickService(IContainerBuilder builder)

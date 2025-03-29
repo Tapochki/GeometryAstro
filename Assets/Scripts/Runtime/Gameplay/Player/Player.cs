@@ -42,6 +42,8 @@ namespace TandC.GeometryAstro.Gameplay
 
         private ItemPickUper _itemPickuper;
 
+        private PlayerCloakReceiver _playerCloak;
+
         public bool IsDead { get; private set; }
 
         [Inject]
@@ -156,9 +158,16 @@ namespace TandC.GeometryAstro.Gameplay
             gameObject.SetActive(false);
         }
 
+        public void RegisterCloak() 
+        {
+            SpriteRenderer spriteRenderer = gameObject.GetComponentInChildren<SpriteRenderer>();
+            _playerCloak = new PlayerCloakReceiver(gameObject.GetComponent<Collider2D>(), spriteRenderer);
+        }
+
         private void OnDestroy()
         {
             _playerTeleportationComponent.Dispose();
+            _playerCloak?.Dispose();
         }
     }
 }

@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace TandC.GeometryAstro.Gameplay 
 {
-    public class WeaponReloader : IReloadable
+    public class SkillReloader : IReloadable
     {
         public IReadOnlyReactiveProperty<float> ReloadProgress => _reloadProgress;
         private IReadableModificator _reloadModificator;
@@ -16,7 +16,7 @@ namespace TandC.GeometryAstro.Gameplay
         private float _reloadTime;
         private bool _isReloading;
 
-        public WeaponReloader(float reloadTime, IReadableModificator ReloadModificator)
+        public SkillReloader(float reloadTime, IReadableModificator ReloadModificator)
         {
             _reloadModificator = ReloadModificator;
             _reloadTime = reloadTime;
@@ -38,7 +38,6 @@ namespace TandC.GeometryAstro.Gameplay
             if (!_isReloading) return;
 
             _reloadTimer -= Time.deltaTime;
-
             _reloadProgress.Value = Mathf.Clamp01(1f - (_reloadTimer / _reloadTime));
 
             if (_reloadTimer <= 0)

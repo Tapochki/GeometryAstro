@@ -5,10 +5,10 @@ using TandC.GeometryAstro.EventBus;
 using TandC.GeometryAstro.Gameplay;
 using TandC.GeometryAstro.Services;
 using TandC.GeometryAstro.Settings;
-using UnityEngine;
+using UniRx;
 using VContainer;
 
-public class ActiveSkillController: IEventReceiver<ActiveSkillUpgradeEvent>, IEventReceiver<ActiveSkillEvolveEvent>
+public class ActiveSkillController : IActiveSkillController, IEventReceiver<ActiveSkillUpgradeEvent>, IEventReceiver<ActiveSkillEvolveEvent>, IEventReceiver<CloakingEvent> 
 {
     private List<IActiveSkill> _activeSkills = new List<IActiveSkill>();
     private IActiveSkillFactory _activeSkillFactory;
@@ -16,10 +16,12 @@ public class ActiveSkillController: IEventReceiver<ActiveSkillUpgradeEvent>, IEv
     private TickService _tickService;
     private ModificatorContainer _modificatorContainer;
 
+    protected CompositeDisposable _disposables = new CompositeDisposable();
+
     public UniqueId Id { get; } = new UniqueId();
 
     [Inject]
-    private void Construct(GameConfig config, TickService tickService, ModificatorContainer modificatorContainer, IActiveSkillFactory activeSkillFactory) 
+    private void Construct(GameConfig config, TickService tickService, ModificatorContainer modificatorContainer, IActiveSkillFactory activeSkillFactory)
     {
         _config = config.ActiveSkillConfig;
         _tickService = tickService;
@@ -39,7 +41,7 @@ public class ActiveSkillController: IEventReceiver<ActiveSkillUpgradeEvent>, IEv
         EventBusHolder.EventBus.Unregister(this as IEventReceiver<ActiveSkillEvolveEvent>);
     }
 
-    public ActiveSkillController() 
+    public ActiveSkillController()
     {
         _activeSkills = new List<IActiveSkill>();
     }
@@ -47,15 +49,16 @@ public class ActiveSkillController: IEventReceiver<ActiveSkillUpgradeEvent>, IEv
     public void Init()
     {
         RegisterEvent();
-        _tickService.RegisterUpdate(Tick);
+        _tickService.RegisterUpdate(TickAll);
+        _activeSkillFactory.SetActiveSkillContainer(this);
     }
 
-    public void Dispose() 
+    public void Dispose()
     {
         UnregisterEvent();
     }
 
-    private IActiveSkill CreateWeapon(ActiveSkillType type) 
+    private IActiveSkill CreateWeapon(ActiveSkillType type)
     {
         return _activeSkillFactory.GetBuilder(type)
             .SetConfig(_config)
@@ -71,12 +74,57 @@ public class ActiveSkillController: IEventReceiver<ActiveSkillUpgradeEvent>, IEv
         return weapon;
     }
 
-    private void Tick() 
+    private void TickAll()
     {
         for (int i = 0; i < _activeSkills.Count; i++)
         {
             _activeSkills[i].Tick();
         }
+    }
+
+    private void TickNotWeapon()
+    {
+        for (int i = 0; i < _activeSkills.Count; i++)
+        {
+            if (!_activeSkills[i].IsWeapon)
+                _activeSkills[i].Tick();
+        }
+    }
+
+    public void RegisterMask()
+    {
+        EventBusHolder.EventBus.Register(this as IEventReceiver<CloakingEvent>);
+    }
+
+    public void UnRegisterMask()
+    {
+        EventBusHolder.EventBus.Unregister(this as IEventReceiver<CloakingEvent>);
+    }
+
+    public void OnEvent(CloakingEvent @event)
+    {
+        if (@event.IsEvolved) 
+        {
+            UnRegisterMask();
+            SetUpdateAll();
+            return;
+        }
+        if (@event.IsActive)
+            SetUpdateOnlyAbilities();
+        else if (!@event.IsActive)
+            SetUpdateAll();
+    }
+
+    private void SetUpdateOnlyAbilities()
+    {
+        _tickService.UnregisterUpdate(TickAll);
+        _tickService.RegisterUpdate(TickNotWeapon);
+    }
+
+    private void SetUpdateAll()
+    {
+        _tickService.UnregisterUpdate(TickNotWeapon);
+        _tickService.RegisterUpdate(TickAll);
     }
 
     public void OnEvent(ActiveSkillUpgradeEvent @event)
@@ -97,5 +145,5 @@ public class ActiveSkillController: IEventReceiver<ActiveSkillUpgradeEvent>, IEv
     private IActiveSkill GetActiveSkill(ActiveSkillType type)
         => _activeSkills.FirstOrDefault(w => w.SkillType == type);
 
-    public IReadOnlyList<IActiveSkill> GetAllWeapons() => _activeSkills;
+    private IReadOnlyList<IActiveSkill> GetAllWeapons() => _activeSkills;
 }

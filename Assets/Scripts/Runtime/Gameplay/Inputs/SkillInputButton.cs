@@ -21,7 +21,7 @@ namespace TandC.GeometryAstro.Gameplay
 
         private void UpdateActiveVisual(float progress)
         {
-            _activeEffectImage.fillAmount = progress;
+            _activeEffectImage.fillAmount = 1 - progress;
         }
     }
 }

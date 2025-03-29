@@ -1,41 +1,45 @@
 using TandC.GeometryAstro.Gameplay;
 using TandC.GeometryAstro.Settings;
 
-public class ShieldBuilder : ActiveSkillBuilder<ShieldSkill>
+namespace TandC.GeometryAstro.Gameplay 
 {
-    protected override ActiveSkillType _activeSkillType => ActiveSkillType.Shield;
-
-    private Player _player;
-
-    public ShieldBuilder(Player player)
+    public class ShieldBuilder : ActiveSkillBuilder<ShieldSkill>
     {
-        _player = player;
-    }
+        protected override ActiveSkillType _activeSkillType => ActiveSkillType.Shield;
 
-    private void SetReloader(IReadableModificator reloadModificator)
-    {
-        _skill.SetReloader(new WeaponReloader(_activeSkillData.shootDeley, reloadModificator));
-    }
+        private Player _player;
 
-    private void SetSkillPrefab() 
-    {
-        _skill.InitShieldObject(_player.SkillTransform);
-    }
+        public ShieldBuilder(Player player)
+        {
+            _player = player;
+        }
 
-    private void SetColorConfig() 
-    {
-        _skill.SetShieldColorConfig(_config.AdditionalSkillConfig.ShieldColorConfig);
-    }
+        private void SetReloader(IReadableModificator reloadModificator)
+        {
+            _skill.SetReloader(new SkillReloader(_activeSkillData.shootDeley, reloadModificator));
+        }
 
-    protected override void ConstructWeapon()
-    {
-        SetColorConfig();
+        private void SetSkillPrefab()
+        {
+            _skill.InitShieldObject(_player.SkillTransform);
+        }
 
-        SetSkillPrefab();
+        private void SetColorConfig()
+        {
+            _skill.SetShieldColorConfig(_config.AdditionalSkillConfig.ShieldColorConfig);
+        }
 
-        _skill.SetPlayerShield(_player);
+        protected override void ConstructWeapon()
+        {
+            SetColorConfig();
 
-        SetReloader(_modificatorContainer.GetModificator(ModificatorType.ReloadTimer));
+            SetSkillPrefab();
+
+            _skill.SetPlayerShield(_player);
+
+            SetReloader(_modificatorContainer.GetModificator(ModificatorType.ReloadTimer));
+        }
     }
 }
+
 

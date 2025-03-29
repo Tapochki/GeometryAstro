@@ -6,6 +6,8 @@ namespace TandC.GeometryAstro.Gameplay
 {
     public class AutomaticGun : IActiveSkill
     {
+        public bool IsWeapon { get => true; }
+
         private IProjectileFactory _projectileFactory;
         private IReloadable _reloader;
         private IEnemyDetector _enemyDetector;

@@ -8,6 +8,7 @@ namespace TandC.GeometryAstro.Gameplay
         public Vector2 RotationDirection { get; }
 
         public RocketInputButton RocketButton { get; }
+        public SkillInputButton CloakButton { get; }
     }
 }
 

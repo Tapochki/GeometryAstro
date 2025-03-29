@@ -63,6 +63,21 @@ namespace TandC.GeometryAstro.Services
             return Disposable.Create(() => _lateUpdateActions.Remove(onLateUpdate));
         }
 
+        public void UnregisterUpdate(Action onUpdate)
+        {
+            _updateActions.Remove(onUpdate);
+        }
+
+        public void UnregisterFixedUpdate(Action onFixedUpdate)
+        {
+            _fixedUpdateActions.Remove(onFixedUpdate);
+        }
+
+        public void UnregisterLateUpdate(Action onLateUpdate)
+        {
+            _lateUpdateActions.Remove(onLateUpdate);
+        }
+
         public IDisposable RegisterTimer(TimeSpan interval, Action callback, bool checkPause = true)
         {
             float timer = 0f;

@@ -4,10 +4,12 @@ using UnityEngine;
 
 namespace TandC.GeometryAstro.Gameplay
 {
-    public class PlayerBoundary : MonoBehaviour
+    public class PlayerBoundary : MonoBehaviour, IEventReceiver<CloakingEvent>
     {
         [SerializeField] private GameObject _selfObject;
         [SerializeField] private GameObject _playerModel;
+
+        public UniqueId Id { get; } = new UniqueId();
 
         [SerializeField] private TextMeshProUGUI _timeText;
         [SerializeField] private GameObject _zoneView;
@@ -17,25 +19,77 @@ namespace TandC.GeometryAstro.Gameplay
 
         private bool _isActive;
 
+        private bool _isCloakActive;
+
+        private bool _playerExitBoundaryInCloak;
+
         private void Awake()
         {
             _timer = _timeToTeleportBackToZone;
             _isActive = false;
+            _isCloakActive = false;
+            _playerExitBoundaryInCloak = false;
+            RegisterEvent();
+        }
+
+        private void RegisterEvent()
+        {
+            EventBusHolder.EventBus.Register(this as IEventReceiver<CloakingEvent>);
+        }
+
+        private void UnregisterEvent()
+        {
+            EventBusHolder.EventBus.Unregister(this as IEventReceiver<CloakingEvent>);
+        }
+
+        public void OnEvent(CloakingEvent @event)
+        {  
+            if (@event.IsActive) 
+            {
+                PlayerEnterBoundary();
+                _isCloakActive = true;
+            }
+            else if (!@event.IsActive)
+            {
+                if (_playerExitBoundaryInCloak) 
+                {
+                    PlayerExitBoundary();
+                }
+                _isCloakActive = false;
+            }
         }
 
         private void OnTriggerExit2D(Collider2D collision)
         {
             if (collision.gameObject.Equals(_playerModel))
             {
+                Debug.LogError("PlayerBoundary OnTriggerExit2D");
+                if (_isCloakActive)
+                {
+                    _playerExitBoundaryInCloak = true;
+                    return;
+                }
                 if (collision.gameObject.GetComponent<Player>().IsDead)
                 {
                     return;
                 }
 
-                _zoneView.SetActive(true);
-                _timer = _timeToTeleportBackToZone;
-                _isActive = true;
+                PlayerExitBoundary();
             }
+        }
+
+        private void PlayerExitBoundary() 
+        {
+            _playerExitBoundaryInCloak = false;
+            _zoneView.SetActive(true);
+            _timer = _timeToTeleportBackToZone;
+            _isActive = true;
+        }
+
+        private void PlayerEnterBoundary() 
+        {
+            _zoneView.SetActive(false);
+            _isActive = false;
         }
 
         private void OnTriggerEnter2D(Collider2D collision)

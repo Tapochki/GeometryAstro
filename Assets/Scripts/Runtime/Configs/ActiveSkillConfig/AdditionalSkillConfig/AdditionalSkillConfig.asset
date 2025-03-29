@@ -21,3 +21,5 @@ MonoBehaviour:
     - {r: 0.7427734, g: 0.30588233, b: 1, a: 1}
   _areaEffectConfig:
     damageInterval: 0.5
+  _cloakConfig:
+    StartCloakActiveTime: 5
