@@ -15,37 +15,13 @@ MonoBehaviour:
   _dropData:
   - dropType: 1
     itemsWithChance:
-    - itemType: 0
+    - itemType: 1
       weight: 100
     - itemType: 10
       weight: 25
-    - itemType: 4
+    - itemType: 5
       weight: 1
-    - itemType: 3
-      weight: 3
-  - dropType: 0
-    itemsWithChance:
+    - itemType: 4
+      weight: 25
     - itemType: 0
-      weight: 100
-    - itemType: 1
-      weight: 1
-    - itemType: 4
-      weight: 5
-    - itemType: 5
-      weight: 2
-    - itemType: 6
-      weight: 1
-  - dropType: 2
-    itemsWithChance:
-    - itemType: 1
-      weight: 50
-    - itemType: 8
-      weight: 5
-    - itemType: 5
-      weight: 5
-  - dropType: 3
-    itemsWithChance:
-    - itemType: 2
-      weight: 10
-    - itemType: 7
-      weight: 10
+      weight: 60

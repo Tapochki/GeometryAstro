@@ -23,3 +23,5 @@ MonoBehaviour:
     damageInterval: 0.5
   _cloakConfig:
     StartCloakActiveTime: 5
+  _rocketConfig:
+    StartRocketCount: 10

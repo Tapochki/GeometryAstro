@@ -1,4 +1,5 @@
 using TandC.GeometryAstro.EventBus;
+using TandC.GeometryAstro.Settings;
 using UnityEngine;
 
 namespace TandC.GeometryAstro.Gameplay 
@@ -7,7 +8,7 @@ namespace TandC.GeometryAstro.Gameplay
     {
         public float FreezeTime { get; }
 
-        public FrozeBombItem(int freezeTime, Sprite itemSprite) : base(itemSprite)
+        public FrozeBombItem(int freezeTime, Sprite itemSprite, ItemType type) : base(itemSprite, type)
         {
             FreezeTime = freezeTime;
         }

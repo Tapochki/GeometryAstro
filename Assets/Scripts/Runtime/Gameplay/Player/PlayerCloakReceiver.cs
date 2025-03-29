@@ -14,7 +14,6 @@ namespace TandC.GeometryAstro.Gameplay
         {
             _playerCollider = playerCollider;
             _playerSpriteModel = playerSpriteModel;
-            Debug.LogError(_playerSpriteModel.gameObject.name);
             RegisterEvent();
         }
 

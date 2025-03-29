@@ -27,6 +27,8 @@ namespace TandC.GeometryAstro.Gameplay
 
         private List<ITickable> _activeItems;
 
+        private bool _canSpawnRocketBox;
+
         [Inject]
         private void Construct(GameConfig gameConfig, LoadObjectsService loadObjectsService, TickService tickService) 
         {
@@ -90,9 +92,23 @@ namespace TandC.GeometryAstro.Gameplay
 
         private ItemView Preload() => MonoBehaviour.Instantiate(_itemViewPrefab, _itemParent);
 
+        public void SetCanSpawnRocket() 
+        {
+            _canSpawnRocketBox = true;
+        }
+
         public void DropRandomItem(DropItemRareType type, Vector2 spawnPosition)
         {
             ItemType itemType = _dropConfig.GetDropDataByType(type).GetRandomItemType();
+            if (itemType == ItemType.None)
+                return;
+            if (!_canSpawnRocketBox) 
+            {
+                while(itemType != ItemType.RocketAmmo) 
+                {
+                    itemType = _dropConfig.GetDropDataByType(type).GetRandomItemType();
+                }
+            }
             DropItem(itemType, spawnPosition);
         }
 

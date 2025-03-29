@@ -11,11 +11,13 @@ namespace TandC.GeometryAstro.Gameplay
 
         private readonly RocketInputButton _rocketButton;
 
-        private Transform _playerTransformSkills;
+        private Player _player;
+        private IItemSpawner _itemSpawner;
 
-        public RocketGunBuilder(Transform playerTransformSkills, RocketInputButton rocketButton)
+        public RocketGunBuilder(Player player, IItemSpawner itemSpawner, RocketInputButton rocketButton)
         {
-            _playerTransformSkills = playerTransformSkills;
+            _player = player;
+            _itemSpawner = itemSpawner;
             _rocketButton = rocketButton;
         }
 
@@ -39,12 +41,20 @@ namespace TandC.GeometryAstro.Gameplay
 
         private void SetSkillPrefab()
         {
-            _skill.RegisterShootingPatterns(_playerTransformSkills);
+            _skill.RegisterShootingPatterns(_player.SkillTransform);
         }
 
         private void SetAreaDamageInterval() 
         {
             _skill.SetAreaDamageInterval(_config.AdditionalSkillConfig.AreaEffectConfig.damageInterval);
+        }
+
+        private void CreateRocketAmmoContainer() 
+        {
+            RocketAmmo rocketAmmo = new RocketAmmo(_config.AdditionalSkillConfig.RocketConfig.StartRocketCount);
+            _player.SetRocketAmmo(rocketAmmo.RocketCount, rocketAmmo.MaxRocketCount);
+            _itemSpawner.SetCanSpawnRocket();
+            _skill.InitRocketAmmo(rocketAmmo);
         }
 
         protected override void ConstructWeapon()
@@ -57,7 +67,7 @@ namespace TandC.GeometryAstro.Gameplay
                 _modificatorContainer.GetModificator(ModificatorType.CriticalDamageMultiplier),
                 _modificatorContainer.GetModificator(ModificatorType.BulletsSize));
 
-            _skill.InitRocketAmmo();
+            CreateRocketAmmoContainer();
 
             SetSkillPrefab();
 

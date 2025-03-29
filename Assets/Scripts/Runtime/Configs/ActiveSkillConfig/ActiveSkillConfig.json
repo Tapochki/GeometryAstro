@@ -4,7 +4,7 @@
             "SkillName": "StandartGun",
             "type": 1,
             "shootDeley": 0.5,
-            "detectorRadius": 30.0,
+            "detectorRadius": 60.0,
             "bulletData": {
                 "BulletSpeed": 20000,
                 "bulletLifeTime": 3.0,
@@ -14,12 +14,12 @@
                 "BasicCriticalMultiplier": 1.25,
                 "BasicBulletSize": 0.4000000059604645,
                 "BulletObject": {
-                    "instanceID": 33834
+                    "instanceID": 33720
                 },
                 "type": 1
             },
             "EvolvedBulletData": {
-                "BulletSpeed": 200000,
+                "BulletSpeed": 20000,
                 "bulletLifeTime": 3.0,
                 "bulletLife": 1,
                 "baseDamage": 50.0,
@@ -27,19 +27,19 @@
                 "BasicCriticalMultiplier": 1.2999999523162842,
                 "BasicBulletSize": 0.4000000059604645,
                 "BulletObject": {
-                    "instanceID": 33836
+                    "instanceID": 33722
                 },
                 "type": 1
             },
             "_skillPrefab": {
-                "instanceID": 35370
+                "instanceID": 33724
             }
         },
         {
             "SkillName": "Auto Gun",
             "type": 2,
             "shootDeley": 1.0,
-            "detectorRadius": 30.0,
+            "detectorRadius": 50.0,
             "bulletData": {
                 "BulletSpeed": 20000,
                 "bulletLifeTime": 3.0,
@@ -47,9 +47,9 @@
                 "baseDamage": 20.0,
                 "BasicCriticalChance": 10.0,
                 "BasicCriticalMultiplier": 1.25,
-                "BasicBulletSize": 0.5,
+                "BasicBulletSize": 0.4000000059604645,
                 "BulletObject": {
-                    "instanceID": 33838
+                    "instanceID": 33726
                 },
                 "type": 2
             },
@@ -60,14 +60,14 @@
                 "baseDamage": 30.0,
                 "BasicCriticalChance": 15.0,
                 "BasicCriticalMultiplier": 1.2999999523162842,
-                "BasicBulletSize": 0.5,
+                "BasicBulletSize": 0.4000000059604645,
                 "BulletObject": {
-                    "instanceID": 33840
+                    "instanceID": 33728
                 },
                 "type": 2
             },
             "_skillPrefab": {
-                "instanceID": 35482
+                "instanceID": 33730
             }
         },
         {
@@ -76,34 +76,107 @@
             "shootDeley": 1.0,
             "detectorRadius": 10.0,
             "bulletData": {
-                "BulletSpeed": 10000,
+                "BulletSpeed": 20000,
                 "bulletLifeTime": 5.0,
                 "bulletLife": 1,
                 "baseDamage": 300.0,
                 "BasicCriticalChance": 10.0,
                 "BasicCriticalMultiplier": 1.25,
-                "BasicBulletSize": 0.30000001192092898,
+                "BasicBulletSize": 0.20000000298023225,
                 "BulletObject": {
-                    "instanceID": 33842
+                    "instanceID": 33732
                 },
                 "type": 3
             },
             "EvolvedBulletData": {
-                "BulletSpeed": 1000,
+                "BulletSpeed": 20000,
                 "bulletLifeTime": 5.0,
                 "bulletLife": 5,
                 "baseDamage": 300.0,
                 "BasicCriticalChance": 15.0,
                 "BasicCriticalMultiplier": 1.2999999523162842,
-                "BasicBulletSize": 0.30000001192092898,
+                "BasicBulletSize": 0.20000000298023225,
                 "BulletObject": {
-                    "instanceID": 33844
+                    "instanceID": 33734
                 },
                 "type": 3
             },
             "_skillPrefab": {
-                "instanceID": 35506
+                "instanceID": 33736
+            }
+        },
+        {
+            "SkillName": "Shield",
+            "type": 20,
+            "shootDeley": 2.0,
+            "detectorRadius": 15.0,
+            "bulletData": {
+                "BulletSpeed": 0,
+                "bulletLifeTime": 0.0,
+                "bulletLife": 0,
+                "baseDamage": 3.0,
+                "BasicCriticalChance": 0.0,
+                "BasicCriticalMultiplier": 0.0,
+                "BasicBulletSize": 0.0,
+                "BulletObject": {
+                    "instanceID": 0
+                },
+                "type": 0
+            },
+            "EvolvedBulletData": {
+                "BulletSpeed": 0,
+                "bulletLifeTime": 0.0,
+                "bulletLife": 0,
+                "baseDamage": 0.0,
+                "BasicCriticalChance": 0.0,
+                "BasicCriticalMultiplier": 0.0,
+                "BasicBulletSize": 0.0,
+                "BulletObject": {
+                    "instanceID": 0
+                },
+                "type": 0
+            },
+            "_skillPrefab": {
+                "instanceID": 34594
+            }
+        },
+        {
+            "SkillName": "Cloak",
+            "type": 21,
+            "shootDeley": 5.0,
+            "detectorRadius": 0.0,
+            "bulletData": {
+                "BulletSpeed": 0,
+                "bulletLifeTime": 0.0,
+                "bulletLife": 0,
+                "baseDamage": 0.0,
+                "BasicCriticalChance": 0.0,
+                "BasicCriticalMultiplier": 0.0,
+                "BasicBulletSize": 0.0,
+                "BulletObject": {
+                    "instanceID": 0
+                },
+                "type": 0
+            },
+            "EvolvedBulletData": {
+                "BulletSpeed": 0,
+                "bulletLifeTime": 0.0,
+                "bulletLife": 0,
+                "baseDamage": 0.0,
+                "BasicCriticalChance": 0.0,
+                "BasicCriticalMultiplier": 0.0,
+                "BasicBulletSize": 0.0,
+                "BulletObject": {
+                    "instanceID": 0
+                },
+                "type": 0
+            },
+            "_skillPrefab": {
+                "instanceID": 0
             }
         }
-    ]
+    ],
+    "_additionalSkillConfig": {
+        "instanceID": -49696
+    }
 }

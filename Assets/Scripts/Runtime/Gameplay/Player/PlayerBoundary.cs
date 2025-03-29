@@ -63,7 +63,6 @@ namespace TandC.GeometryAstro.Gameplay
         {
             if (collision.gameObject.Equals(_playerModel))
             {
-                Debug.LogError("PlayerBoundary OnTriggerExit2D");
                 if (_isCloakActive)
                 {
                     _playerExitBoundaryInCloak = true;

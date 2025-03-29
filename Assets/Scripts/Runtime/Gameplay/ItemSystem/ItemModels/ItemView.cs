@@ -52,6 +52,11 @@ namespace TandC.GeometryAstro.Gameplay
             }
         }
 
+        public bool IsModelRocketAmmo() 
+        {
+            return _itemModel.ItemType == Settings.ItemType.RocketAmmo;
+        }
+
         public void FirstPickUp(Transform finalTransform) 
         {
             _finalTransform = finalTransform;
@@ -60,7 +65,8 @@ namespace TandC.GeometryAstro.Gameplay
 
         public void EndPickUp() 
         {
-            PickFinish();
+            if(_isMoveToPlayer)
+                PickFinish();
         }
     }
 }

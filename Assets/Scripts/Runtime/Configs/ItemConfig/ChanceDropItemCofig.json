@@ -4,7 +4,7 @@
             "dropType": 1,
             "itemsWithChance": [
                 {
-                    "itemType": 0,
+                    "itemType": 1,
                     "weight": 100.0
                 },
                 {
@@ -12,63 +12,16 @@
                     "weight": 25.0
                 },
                 {
-                    "itemType": 4,
+                    "itemType": 5,
                     "weight": 1.0
-                }
-            ]
-        },
-        {
-            "dropType": 0,
-            "itemsWithChance": [
+                },
+                {
+                    "itemType": 4,
+                    "weight": 25.0
+                },
                 {
                     "itemType": 0,
-                    "weight": 100.0
-                },
-                {
-                    "itemType": 1,
-                    "weight": 1.0
-                },
-                {
-                    "itemType": 4,
-                    "weight": 5.0
-                },
-                {
-                    "itemType": 5,
-                    "weight": 2.0
-                },
-                {
-                    "itemType": 6,
-                    "weight": 1.0
-                }
-            ]
-        },
-        {
-            "dropType": 2,
-            "itemsWithChance": [
-                {
-                    "itemType": 1,
-                    "weight": 50.0
-                },
-                {
-                    "itemType": 8,
-                    "weight": 5.0
-                },
-                {
-                    "itemType": 5,
-                    "weight": 5.0
-                }
-            ]
-        },
-        {
-            "dropType": 3,
-            "itemsWithChance": [
-                {
-                    "itemType": 2,
-                    "weight": 10.0
-                },
-                {
-                    "itemType": 7,
-                    "weight": 10.0
+                    "weight": 60.0
                 }
             ]
         }

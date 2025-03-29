@@ -1,4 +1,5 @@
 using TandC.GeometryAstro.EventBus;
+using TandC.GeometryAstro.Settings;
 using UnityEngine;
 
 namespace TandC.GeometryAstro.Gameplay
@@ -7,7 +8,7 @@ namespace TandC.GeometryAstro.Gameplay
     {
         public int ChestItemCount { get; }
 
-        public ChestItem(int chestItemCount, Sprite itemSprite) : base(itemSprite)
+        public ChestItem(int chestItemCount, Sprite itemSprite, ItemType type) : base(itemSprite, type)
         {
             ChestItemCount = chestItemCount;
         }

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using UniRx;
+using UnityEngine;
 
 namespace TandC.GeometryAstro.Gameplay 
 {
@@ -6,6 +7,9 @@ namespace TandC.GeometryAstro.Gameplay
     {
         private IReadableModificator _itemRadiusModificator;
         private CircleCollider2D _collider;
+
+        private IReadOnlyReactiveProperty<int> _ammoCount;
+        private IReadOnlyReactiveProperty<int> _maxAmmoCount;
 
         public void SetModificator(IReadableModificator itemRadiusModificator) 
         {
@@ -21,10 +25,22 @@ namespace TandC.GeometryAstro.Gameplay
             _collider.radius = _itemRadiusModificator.Value;
         }
 
+        public void SetCanPickUpRocket(IReadOnlyReactiveProperty<int> ammoCount, IReadOnlyReactiveProperty<int> maxAmmoCount) 
+        {
+            _ammoCount = ammoCount;
+            _maxAmmoCount = maxAmmoCount;
+        }
+
         private void OnTriggerEnter2D(Collider2D collision)
         {
             if (collision.gameObject.TryGetComponent(out ItemView itemView))
             {
+                Debug.LogError($"_ammoCount {_ammoCount.Value} _maxAmmoCount {_maxAmmoCount.Value} itemView.IsModelRocketAmmo {itemView.IsModelRocketAmmo()}");
+                if (itemView.IsModelRocketAmmo()) 
+                {
+                    if (_ammoCount.Value == _maxAmmoCount.Value)
+                        return;
+                }
                 itemView.FirstPickUp(gameObject.transform);
                 return;
             }

@@ -19,13 +19,13 @@ namespace TandC.GeometryAstro.Settings
 
     public enum ItemType
     {
+        None,
         SmallXp,
         MeduimXp,
         BigXp,
         RocketAmmo,
         Medecine,
         FrozenBomb,
-        RocketBox,
         Chest,
         Bomb,
         Magnet,

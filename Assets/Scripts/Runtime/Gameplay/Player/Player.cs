@@ -2,6 +2,7 @@
 using TandC.GeometryAstro.Data;
 using TandC.GeometryAstro.EventBus;
 using TandC.GeometryAstro.Services;
+using UniRx;
 using UnityEngine;
 using VContainer;
 
@@ -162,6 +163,11 @@ namespace TandC.GeometryAstro.Gameplay
         {
             SpriteRenderer spriteRenderer = gameObject.GetComponentInChildren<SpriteRenderer>();
             _playerCloak = new PlayerCloakReceiver(gameObject.GetComponent<Collider2D>(), spriteRenderer);
+        }
+
+        public void SetRocketAmmo(IReadOnlyReactiveProperty<int> ammoCount, IReadOnlyReactiveProperty<int> maxAmmoCount) 
+        {
+            _itemPickuper.SetCanPickUpRocket(ammoCount, maxAmmoCount);
         }
 
         private void OnDestroy()

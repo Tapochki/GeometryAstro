@@ -69,9 +69,9 @@ namespace TandC.GeometryAstro.Gameplay
             _explosionRadiusModificatorUpgrade = new Modificator(_data.detectorRadius, 0, false);
         }
 
-        public void InitRocketAmmo()
+        public void InitRocketAmmo(RocketAmmo rocketAmmo)
         {
-            _rocketAmmo = new RocketAmmo(10);
+            _rocketAmmo = rocketAmmo;
         }
 
         public void RegisterDuplicatorComponent(IReadableModificator duplicateModificator)

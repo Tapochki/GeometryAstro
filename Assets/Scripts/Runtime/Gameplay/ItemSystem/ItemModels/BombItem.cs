@@ -1,4 +1,5 @@
 using TandC.GeometryAstro.EventBus;
+using TandC.GeometryAstro.Settings;
 using UnityEngine;
 
 namespace TandC.GeometryAstro.Gameplay 
@@ -7,7 +8,7 @@ namespace TandC.GeometryAstro.Gameplay
     {
         public int BombDamage { get; }
 
-        public BombItem(int bombDamage, Sprite itemSprite) : base(itemSprite)
+        public BombItem(int bombDamage, Sprite itemSprite, ItemType type) : base(itemSprite, type)
         {
             BombDamage = bombDamage;
         }

@@ -28,14 +28,14 @@ namespace TandC.GeometryAstro.Gameplay
 
             return type switch
             {
-                ItemType.Bomb => new BombItem(randomValue, itemData.sprite),
-                ItemType.Chest => new ChestItem(randomValue, itemData.sprite),
-                ItemType.Coin => new CoinItem(randomValue, itemData.sprite),
-                ItemType.SmallXp or ItemType.MeduimXp or ItemType.BigXp => new ExpirienceItem(randomValue, itemData.sprite),
-                ItemType.FrozenBomb => new FrozeBombItem(randomValue, itemData.sprite),
-                ItemType.Magnet => new MagnetItem(itemData.sprite),
-                ItemType.Medecine => new MedecineItem(randomValue, itemData.sprite),
-                ItemType.RocketAmmo => new RocketAmmoItem(randomValue, itemData.sprite),
+                ItemType.Bomb => new BombItem(randomValue, itemData.sprite, type),
+                ItemType.Chest => new ChestItem(randomValue, itemData.sprite, type),
+                ItemType.Coin => new CoinItem(randomValue, itemData.sprite, type),
+                ItemType.SmallXp or ItemType.MeduimXp or ItemType.BigXp => new ExpirienceItem(randomValue, itemData.sprite, type),
+                ItemType.FrozenBomb => new FrozeBombItem(randomValue, itemData.sprite, type),
+                ItemType.Magnet => new MagnetItem(itemData.sprite, type),
+                ItemType.Medecine => new MedecineItem(randomValue, itemData.sprite, type),
+                ItemType.RocketAmmo => new RocketAmmoItem(randomValue, itemData.sprite, type),
                 _ => throw new ArgumentException($"Неизвестный тип предмета: {type}")
             };
         }

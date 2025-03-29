@@ -5,9 +5,9 @@
             "itemValueMin": 10,
             "itemValueMax": 100,
             "sprite": {
-                "instanceID": 33202
+                "instanceID": 33490
             },
-            "type": 0,
+            "type": 1,
             "description": ""
         },
         {
@@ -15,9 +15,9 @@
             "itemValueMin": 30,
             "itemValueMax": 80,
             "sprite": {
-                "instanceID": 33364
+                "instanceID": 33680
             },
-            "type": 4,
+            "type": 5,
             "description": ""
         },
         {
@@ -25,9 +25,19 @@
             "itemValueMin": 30,
             "itemValueMax": 50,
             "sprite": {
-                "instanceID": 33216
+                "instanceID": 33504
             },
             "type": 10,
+            "description": ""
+        },
+        {
+            "itemId": 3,
+            "itemValueMin": 3,
+            "itemValueMax": 5,
+            "sprite": {
+                "instanceID": 37092
+            },
+            "type": 4,
             "description": ""
         }
     ]

@@ -7,6 +7,7 @@ namespace TandC.GeometryAstro.Gameplay
     {
         public void Init();
         public void DropRandomItem(DropItemRareType type, Vector2 spawnPosition);
+        public void SetCanSpawnRocket();
     }
 }
 

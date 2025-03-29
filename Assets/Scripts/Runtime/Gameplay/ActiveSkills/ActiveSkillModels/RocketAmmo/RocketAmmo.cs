@@ -1,9 +1,10 @@
+using TandC.GeometryAstro.EventBus;
 using UniRx;
 using UnityEngine;
 
 namespace TandC.GeometryAstro.Gameplay 
 {
-    public class RocketAmmo : MonoBehaviour
+    public class RocketAmmo : IEventReceiver<RocketAmmoItemReleaseEvent>
     {
         public IReadOnlyReactiveProperty<int> RocketCount => _rocketCount;
 
@@ -13,9 +14,32 @@ namespace TandC.GeometryAstro.Gameplay
 
         private ReactiveProperty<int> _maxRocketCount = new ReactiveProperty<int>(10);
 
+        public UniqueId Id { get; } = new UniqueId();
+
         public RocketAmmo(int startRocketCount) 
         {
             _rocketCount.Value = _maxRocketCount.Value = startRocketCount;
+            RegisterEvent();
+        }
+
+        public void Dispose()
+        {
+            UnregisterEvent();
+        }
+
+        private void RegisterEvent()
+        {
+            EventBusHolder.EventBus.Register(this as IEventReceiver<RocketAmmoItemReleaseEvent>);
+        }
+
+        private void UnregisterEvent()
+        {
+            EventBusHolder.EventBus.Unregister(this as IEventReceiver<RocketAmmoItemReleaseEvent>);
+        }
+
+        public void OnEvent(RocketAmmoItemReleaseEvent @event)
+        {
+            AddRockets(@event.AmmoCount);
         }
 
         public bool TryShoot()
