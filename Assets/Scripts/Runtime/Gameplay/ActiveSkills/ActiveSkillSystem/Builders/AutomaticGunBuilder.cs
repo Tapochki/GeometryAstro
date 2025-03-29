@@ -21,7 +21,7 @@ namespace TandC.GeometryAstro.Gameplay
             IReadableModificator criticalDamageMultiplierModificator,
             IReadableModificator bulletSizeModificator)
         {
-            _weapon.SetProjectileFactory(new ProjectileFactory(
+            _skill.SetProjectileFactory(new ProjectileFactory(
                 _activeSkillData.bulletData, 
                 _startBulletPreloadCount,
                 () => Object.Instantiate(_activeSkillData.bulletData.BulletObject).GetComponent<StandartBullet>(),
@@ -33,22 +33,22 @@ namespace TandC.GeometryAstro.Gameplay
 
         private void SetDuplicatorComponent(IReadableModificator duplicatorModificator)
         {
-            _weapon.RegisterDuplicatorComponent(duplicatorModificator);
+            _skill.RegisterDuplicatorComponent(duplicatorModificator);
         }
 
         private void SetReloader(IReadableModificator reloadModificator)
         {
-            _weapon.SetReloader(new WeaponReloader(_activeSkillData.shootDeley, reloadModificator));
+            _skill.SetReloader(new WeaponReloader(_activeSkillData.shootDeley, reloadModificator));
         }
 
         private void SetEnemyDetector()
         {
-            _weapon.SetEnemyDetector(new CircleFirstEnemyDetector(LayerMask.GetMask("Enemy")));
+            _skill.SetEnemyDetector(new CircleFirstEnemyDetector(LayerMask.GetMask("Enemy")));
         }
 
         private void SetSkillPrefab()
         {
-            _weapon.RegisterShootingPatterns(_playerTransformSkills);
+            _skill.RegisterShootingPatterns(_playerTransformSkills);
         }
 
         protected override void ConstructWeapon()

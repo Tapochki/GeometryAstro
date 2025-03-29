@@ -10,7 +10,7 @@ namespace TandC.GeometryAstro.Gameplay
 
         private ReactiveProperty<float> _reloadProgress = new ReactiveProperty<float>(0f);
 
-        public bool CanShoot { get; private set; }
+        public bool CanAction { get; private set; }
 
         private float _reloadTimer;
         private float _reloadTime;
@@ -20,14 +20,14 @@ namespace TandC.GeometryAstro.Gameplay
         {
             _reloadModificator = ReloadModificator;
             _reloadTime = reloadTime;
-            CanShoot = true;
+            CanAction = true;
             _isReloading = false;
             _reloadProgress.Value = 1f;
         }
 
         public void StartReload()
         {
-            CanShoot = false;
+            CanAction = false;
             _reloadTimer = _reloadTime * _reloadModificator.Value;
             _isReloading = true;
             _reloadProgress.Value = 0f;
@@ -44,7 +44,7 @@ namespace TandC.GeometryAstro.Gameplay
             if (_reloadTimer <= 0)
             {
                 _isReloading = false;
-                CanShoot = true;
+                CanAction = true;
             }
         }
     }

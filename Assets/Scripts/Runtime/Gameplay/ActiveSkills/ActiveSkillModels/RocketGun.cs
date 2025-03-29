@@ -21,12 +21,19 @@ namespace TandC.GeometryAstro.Gameplay
 
         private int _currentLevel = 1;
 
+        private float _areaDamageInterval;
+
         private bool _shootStart;
 
         public void SetData(ActiveSkillData data)
         {
             _data = data;
             InitRadiusModificator();
+        }
+
+        public void SetAreaDamageInterval(float areaDamageInterval)
+        {
+            _areaDamageInterval = areaDamageInterval;
         }
 
         public void SetProjectileFactory(IReadableModificator damageModificator,
@@ -131,7 +138,8 @@ namespace TandC.GeometryAstro.Gameplay
 
         public void Evolve()
         {
-            _projectileFactory.Evolve(_data.EvolvedBulletData, () => Object.Instantiate(_data.EvolvedBulletData.BulletObject).GetComponent<ExplosiveDamageAreaBullet>().SetExplosiveDamageAreaBullet((IReadableModificator)_explosionRadiusModificatorUpgrade));
+            _projectileFactory.Evolve(_data.EvolvedBulletData, () => Object.Instantiate(_data.EvolvedBulletData.BulletObject)
+            .GetComponent<ExplosiveDamageAreaBullet>().SetExplosiveDamageAreaBullet((IReadableModificator)_explosionRadiusModificatorUpgrade, _areaDamageInterval));
         }
 
         public void Tick()

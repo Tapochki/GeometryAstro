@@ -9,9 +9,12 @@ namespace TandC.GeometryAstro.Gameplay
 
         IReadableModificator _areaRadiusModificator;
 
-        public ExplosiveDamageAreaBullet SetExplosiveDamageAreaBullet(IReadableModificator areaRadiusModificator)
+        private float _damageInterval;
+
+        public ExplosiveDamageAreaBullet SetExplosiveDamageAreaBullet(IReadableModificator areaRadiusModificator, float damageInterval)
         {
             _areaRadiusModificator = areaRadiusModificator;
+            _damageInterval = damageInterval;
             return this;
         }
 
@@ -29,13 +32,13 @@ namespace TandC.GeometryAstro.Gameplay
 
         private void CreateDamageArea()
         {
-            float damageAreaRadius = _areaRadiusModificator.Value; //TODO Take Radius From Data
+            float damageAreaRadius = _areaRadiusModificator.Value;
             float duration = _bulletData.bulletLife;
-            float tickInterval = 0.5f; // standart damage interval for zone
             float damagePerTick = _bulletData.baseDamage / 10;
 
             Deactivate();
-            _damageAreaEffect = new DamageAreaEffect(transform.position, damageAreaRadius, LayerMask.GetMask("Enemy"), damagePerTick, _criticalChance, _criticalMultiplier, EffectEndHandler, duration, tickInterval);
+            _damageAreaEffect = new DamageAreaEffect(transform.position, damageAreaRadius, 
+                LayerMask.GetMask("Enemy"), damagePerTick, _criticalChance, _criticalMultiplier, EffectEndHandler, duration, _damageInterval);
         }
 
         private void EffectEndHandler()

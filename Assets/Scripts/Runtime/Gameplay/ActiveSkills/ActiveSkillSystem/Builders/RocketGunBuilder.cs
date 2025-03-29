@@ -24,33 +24,40 @@ namespace TandC.GeometryAstro.Gameplay
             IReadableModificator criticalDamageMultiplierModificator,
             IReadableModificator bulletSizeModificator)
         {
-            _weapon.SetProjectileFactory(damageModificator, criticalChanceModificator, criticalDamageMultiplierModificator, bulletSizeModificator, _startBulletPreloadCount);
+            _skill.SetProjectileFactory(damageModificator, criticalChanceModificator, criticalDamageMultiplierModificator, bulletSizeModificator, _startBulletPreloadCount);
         }
 
         private void SetDuplicatorComponent(IReadableModificator duplicatorModificator)
         {
-            _weapon.RegisterDuplicatorComponent(duplicatorModificator);
+            _skill.RegisterDuplicatorComponent(duplicatorModificator);
         }
 
         private void SetReloader(IReadableModificator reloadModificator)
         {
-            _weapon.SetReloader(new WeaponReloader(_activeSkillData.shootDeley, reloadModificator), _rocketButton);
+            _skill.SetReloader(new WeaponReloader(_activeSkillData.shootDeley, reloadModificator), _rocketButton);
         }
 
         private void SetSkillPrefab()
         {
-            _weapon.RegisterShootingPatterns(_playerTransformSkills);
+            _skill.RegisterShootingPatterns(_playerTransformSkills);
+        }
+
+        private void SetAreaDamageInterval() 
+        {
+            _skill.SetAreaDamageInterval(_config.AdditionalSkillConfig.AreaEffectConfig.damageInterval);
         }
 
         protected override void ConstructWeapon()
         {
+            SetAreaDamageInterval();
+
             SetProjectileFactory(
                 _modificatorContainer.GetModificator(ModificatorType.Damage),
                 _modificatorContainer.GetModificator(ModificatorType.CriticalChance),
                 _modificatorContainer.GetModificator(ModificatorType.CriticalDamageMultiplier),
                 _modificatorContainer.GetModificator(ModificatorType.BulletsSize));
 
-            _weapon.InitRocketAmmo();
+            _skill.InitRocketAmmo();
 
             SetSkillPrefab();
 

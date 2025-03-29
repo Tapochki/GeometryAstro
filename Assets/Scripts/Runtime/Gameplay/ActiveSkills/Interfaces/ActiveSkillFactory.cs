@@ -1,5 +1,4 @@
 using TandC.GeometryAstro.Settings;
-using UnityEngine;
 using VContainer;
 
 namespace TandC.GeometryAstro.Gameplay 
@@ -23,6 +22,7 @@ namespace TandC.GeometryAstro.Gameplay
                 ActiveSkillType.AutoGun => new AutomaticGunBuilder(_player.SkillTransform),
                 ActiveSkillType.StandartGun => new StandardGunBuilder(_player.SkillTransform),
                 ActiveSkillType.RocketGun => new RocketGunBuilder(_player.SkillTransform, _inputHandler.RocketButton),
+                ActiveSkillType.Shield => new ShieldBuilder(_player),
                 _ => throw new System.ArgumentException("Unknown weapon type")
             };
         }

@@ -12,6 +12,8 @@ namespace TandC.GeometryAstro.Gameplay
         [SerializeField] private Transform _bodyTransform;
         [SerializeField] private Transform _skillTransform;
 
+        private IShield _shield;
+
         public Transform SkillTransform { get { return _skillTransform; } }
 
         private IReadableModificator _moveSpeed;
@@ -126,7 +128,18 @@ namespace TandC.GeometryAstro.Gameplay
 
         public void TakeDamage(float damage)
         {
-            _healthComponent.TakeDamage(damage);
+            bool isDamageAbsorb = false;
+            if (_shield != null) 
+            {
+                isDamageAbsorb = _shield.TryAbsorbDamage();
+            }
+            if (!isDamageAbsorb)
+                _healthComponent.TakeDamage(damage);
+        }
+
+        public void SetShield(IShield shield) 
+        {
+            _shield = shield;
         }
 
         public void PlayerEnable()

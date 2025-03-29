@@ -137,6 +137,47 @@ MonoBehaviour:
         Description: Rocket Gun Evolve
         Value: 0
         IsPercentageValue: 0
+  - SkillName: Shield
+    SkillIcon: {fileID: 21300000, guid: 6d2d21dea667fa046a7391e13083beb7, type: 3}
+    Type: 37
+    UseType: 0
+    UpgradesInfo:
+    - Name: Shield New
+      Level: 1
+      Description: Shield New
+      Value: 1
+      IsPercentageValue: 0
+    - Name: Shield 2
+      Level: 2
+      Description: Shield 2
+      Value: 1
+      IsPercentageValue: 0
+    - Name: Shield 3
+      Level: 3
+      Description: Shield 3
+      Value: 1
+      IsPercentageValue: 0
+    - Name: Shield 4
+      Level: 4
+      Description: Shield 4
+      Value: 1
+      IsPercentageValue: 0
+    - Name: Shield 5
+      Level: 5
+      Description: Shield 5
+      Value: 1
+      IsPercentageValue: 0
+    ActiveSkillUpgradeType: 20
+    ExclusionSkillType: 0
+    EvolutionData:
+      EvolutionIcon: {fileID: 21300000, guid: 213abc47d1d5ddc4f925b89e685e6199, type: 3}
+      TypeForEvolution: 5
+      EvolutionInfo:
+        Name: Shield Evolve
+        Level: 1
+        Description: Shield Evolve
+        Value: 1
+        IsPercentageValue: 0
   _passiveSkills:
   - SkillName: Damage
     SkillIcon: {fileID: 21300000, guid: e7d87d2e18de961448b01cc53d0852e9, type: 3}
@@ -967,5 +1008,5 @@ MonoBehaviour:
       Value: 100
       IsPercentageValue: 0
     ModificatorUpgradeType: 0
-  _startAvailableSkills: 12000000130000001400000001000000020000000300000004000000050000000d0000000c0000000e000000060000000700000008000000090000000b0000000a0000000f00000010000000
+  _startAvailableSkills: 1200000013000000140000002500000001000000020000000300000004000000050000000d0000000c0000000e000000060000000700000008000000090000000b0000000a0000000f00000010000000
   _startAvailableTestSkills: 

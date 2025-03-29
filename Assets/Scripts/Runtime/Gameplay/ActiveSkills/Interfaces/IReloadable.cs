@@ -6,7 +6,7 @@ namespace TandC.GeometryAstro.Gameplay
     {
         IReadOnlyReactiveProperty<float> ReloadProgress { get; }
         void StartReload();
-        public bool CanShoot { get; }
+        public bool CanAction { get; }
         public void Update();
     }
 }

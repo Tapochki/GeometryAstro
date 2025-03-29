@@ -88,3 +88,29 @@ MonoBehaviour:
       BulletObject: {fileID: 5271754677532632859, guid: 22ac4f4278557ac47a04ea421ba3a0ed, type: 3}
       type: 3
     _skillPrefab: {fileID: 3445268473023105740, guid: 119ffc81b3831424eae88df781067ecb, type: 3}
+  - SkillName: Shield
+    type: 20
+    shootDeley: 1
+    detectorRadius: 15
+    bulletData:
+      BulletSpeed: 0
+      bulletLifeTime: 0
+      bulletLife: 0
+      baseDamage: 3
+      BasicCriticalChance: 0
+      BasicCriticalMultiplier: 0
+      BasicBulletSize: 0
+      BulletObject: {fileID: 0}
+      type: 0
+    EvolvedBulletData:
+      BulletSpeed: 0
+      bulletLifeTime: 0
+      bulletLife: 0
+      baseDamage: 0
+      BasicCriticalChance: 0
+      BasicCriticalMultiplier: 0
+      BasicBulletSize: 0
+      BulletObject: {fileID: 0}
+      type: 0
+    _skillPrefab: {fileID: 4711702513037973378, guid: 1b703568690374848980a07874ae6edc, type: 3}
+  _additionalSkillConfig: {fileID: 11400000, guid: 4b0f5f9250d6d104c9f100651c75b047, type: 2}

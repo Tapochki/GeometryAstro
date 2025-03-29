@@ -171,7 +171,7 @@ namespace TandC.GeometryAstro.Gameplay
             _projectileFactory.Tick();
             _duplicatorComponent?.Tick();
 
-            if (_reloader.CanShoot && !_shootStart)
+            if (_reloader.CanAction && !_shootStart)
             {
                 TryShoot();
             }

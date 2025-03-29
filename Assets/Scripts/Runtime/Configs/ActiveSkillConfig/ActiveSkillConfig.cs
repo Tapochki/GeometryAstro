@@ -11,6 +11,10 @@ namespace TandC.GeometryAstro.Data
     {
         [SerializeField] private List<ActiveSkillData> _activeSkillsData;
 
+        [SerializeField] private AdditionalSkillConfig _additionalSkillConfig;
+
+        public AdditionalSkillConfig AdditionalSkillConfig => _additionalSkillConfig;
+
         public ActiveSkillData GetActiveSkillByType(ActiveSkillType activeSkillType)
         {
             foreach (var activeSkill in _activeSkillsData)
