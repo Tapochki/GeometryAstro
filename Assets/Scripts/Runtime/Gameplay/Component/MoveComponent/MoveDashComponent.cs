@@ -6,6 +6,8 @@ namespace TandC.GeometryAstro.Gameplay
     {
         private readonly Rigidbody2D _moveRigidbody2D;
 
+        private readonly Collider2D _collider2D;
+
         private readonly IMove _baseMove;
 
         private readonly IReadableModificator _dashModificator;
@@ -16,6 +18,7 @@ namespace TandC.GeometryAstro.Gameplay
         {
             _baseMove = baseMove;
             _moveRigidbody2D = moveRigidbody2D;
+            _collider2D = _moveRigidbody2D.gameObject.GetComponent<Collider2D>();
             _dashModificator = dashModificator;
         }
 
@@ -40,11 +43,13 @@ namespace TandC.GeometryAstro.Gameplay
 
         public void StartDash()
         {
+            _collider2D.enabled = false;
             _isDash = true;
         }
 
         public void StopDash()
         {
+            _collider2D.enabled = true;
             _isDash = false;
         }
     }

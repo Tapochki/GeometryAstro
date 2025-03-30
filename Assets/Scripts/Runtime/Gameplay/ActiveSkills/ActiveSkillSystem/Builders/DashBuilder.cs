@@ -9,6 +9,8 @@ namespace TandC.GeometryAstro.Gameplay
         private readonly Player _player;
         private readonly SkillInputButton _skillButton;
 
+        private readonly SkillInputButton _maskButton;
+
         public DashBuilder(Player player, SkillInputButton skillButton)
         {
             _player = player;

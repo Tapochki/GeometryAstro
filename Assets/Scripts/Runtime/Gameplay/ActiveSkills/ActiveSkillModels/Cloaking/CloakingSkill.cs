@@ -4,7 +4,7 @@ using TandC.GeometryAstro.Settings;
 
 namespace TandC.GeometryAstro.Gameplay 
 {
-    public class CloakingSkill : IActiveSkill
+    public class CloakingSkill : IActiveSkill, IEventReceiver<DashEvent>
     {
         public bool IsWeapon { get => false; }
 
@@ -20,6 +20,10 @@ namespace TandC.GeometryAstro.Gameplay
 
         private bool _isMaskActive;
 
+        private bool _isDashActivated;
+
+        public UniqueId Id { get; } = new UniqueId();
+
         public void SetData(ActiveSkillData data)
         {
             _data = data;
@@ -33,13 +37,30 @@ namespace TandC.GeometryAstro.Gameplay
             cloacingInputButton.Initialize(_reloader.ReloadProgress, _activeTimer.ReloadProgress, ActivateCloak);
         }
 
+        public void OnEvent(DashEvent @event)
+        {
+            _isDashActivated = @event.IsActive;
+        }
+
+        private void RegisterEvent()
+        {
+            EventBusHolder.EventBus.Register(this as IEventReceiver<DashEvent>);
+        }
+
+        private void UnregisterEvent()
+        {
+            EventBusHolder.EventBus.Unregister(this as IEventReceiver<DashEvent>);
+        }
+
         public void Initialization()
         {
-
+            RegisterEvent();
         }
 
         private void ActivateCloak() 
         {
+            if (!_isDashActivated)
+                return;
             if (_reloader.CanAction)
             {
                 _isMaskActive = true;

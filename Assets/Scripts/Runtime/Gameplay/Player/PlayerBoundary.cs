@@ -1,10 +1,11 @@
 using TandC.GeometryAstro.EventBus;
 using TMPro;
+using Unity.Services.Analytics.Internal;
 using UnityEngine;
 
 namespace TandC.GeometryAstro.Gameplay
 {
-    public class PlayerBoundary : MonoBehaviour, IEventReceiver<CloakingEvent>
+    public class PlayerBoundary : MonoBehaviour, IEventReceiver<CloakingEvent>, IEventReceiver<DashEvent>
     {
         [SerializeField] private GameObject _selfObject;
         [SerializeField] private GameObject _playerModel;
@@ -19,53 +20,65 @@ namespace TandC.GeometryAstro.Gameplay
 
         private bool _isActive;
 
-        private bool _isCloakActive;
+        private bool _isAbility;
 
-        private bool _playerExitBoundaryInCloak;
+        private bool _playerExitBoundaryWithAbility;
 
         private void Awake()
         {
             _timer = _timeToTeleportBackToZone;
             _isActive = false;
-            _isCloakActive = false;
-            _playerExitBoundaryInCloak = false;
+            _isAbility = false;
+            _playerExitBoundaryWithAbility = false;
             RegisterEvent();
         }
 
         private void RegisterEvent()
         {
             EventBusHolder.EventBus.Register(this as IEventReceiver<CloakingEvent>);
+            EventBusHolder.EventBus.Register(this as IEventReceiver<DashEvent>);
         }
 
         private void UnregisterEvent()
         {
             EventBusHolder.EventBus.Unregister(this as IEventReceiver<CloakingEvent>);
+            EventBusHolder.EventBus.Unregister(this as IEventReceiver<DashEvent>);
         }
 
-        public void OnEvent(CloakingEvent @event)
-        {  
-            if (@event.IsActive) 
+        public void OnEvent(DashEvent @event) 
+        {
+            AbilityActivated(@event.IsActive);
+        }
+
+        private void AbilityActivated(bool isActive) 
+        {
+            if (isActive)
             {
                 PlayerEnterBoundary();
-                _isCloakActive = true;
+                _isAbility = true;
             }
-            else if (!@event.IsActive)
+            else if (!isActive
             {
-                if (_playerExitBoundaryInCloak) 
+                if (_playerExitBoundaryWithAbility)
                 {
                     PlayerExitBoundary();
                 }
-                _isCloakActive = false;
+                _isAbility = false;
             }
+        }
+
+        public void OnEvent(CloakingEvent @event)
+        {
+            AbilityActivated(@event.IsActive);
         }
 
         private void OnTriggerExit2D(Collider2D collision)
         {
             if (collision.gameObject.Equals(_playerModel))
             {
-                if (_isCloakActive)
+                if (_isAbility)
                 {
-                    _playerExitBoundaryInCloak = true;
+                    _playerExitBoundaryWithAbility = true;
                     return;
                 }
                 if (collision.gameObject.GetComponent<Player>().IsDead)
@@ -79,7 +92,7 @@ namespace TandC.GeometryAstro.Gameplay
 
         private void PlayerExitBoundary() 
         {
-            _playerExitBoundaryInCloak = false;
+            _playerExitBoundaryWithAbility = false;
             _zoneView.SetActive(true);
             _timer = _timeToTeleportBackToZone;
             _isActive = true;

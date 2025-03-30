@@ -1,4 +1,5 @@
 using TandC.GeometryAstro.Data;
+using TandC.GeometryAstro.EventBus;
 using TandC.GeometryAstro.Settings;
 using UnityEngine;
 
@@ -63,6 +64,7 @@ namespace TandC.GeometryAstro.Gameplay
 
             if (_reloader.CanAction)
             {
+                EventBusHolder.EventBus.Raise(new DashEvent(true));
                 _dashView.Activete();
                 _dashMove.StartDash();
                 _isDashActive = true;
@@ -72,6 +74,7 @@ namespace TandC.GeometryAstro.Gameplay
 
         private void EndDash() 
         {
+            EventBusHolder.EventBus.Raise(new DashEvent(false));
             _dashView.Stop();
             _dashMove.StopDash();
             _isDashActive = false;
