@@ -55,9 +55,9 @@ namespace TandC.GeometryAstro.Gameplay
             EventBusHolder.EventBus.Raise(new CloakingEvent(false, _isEvolved));
         }
 
-        public void Upgrade(float Value = 0)
+        public void Upgrade(float value = 0)
         {
-            _activeCloakTimeUpgrade.ApplyModifier(Value);
+            _activeCloakTimeUpgrade.ApplyModifier(value);
         }
 
         public void Evolve()

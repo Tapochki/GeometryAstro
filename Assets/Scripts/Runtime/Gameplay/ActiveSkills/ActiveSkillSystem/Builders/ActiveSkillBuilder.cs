@@ -33,11 +33,11 @@ namespace TandC.GeometryAstro.Gameplay
             return this;
         }
 
-        protected abstract void ConstructWeapon();
+        protected abstract void ConstructSkill();
 
         public IActiveSkill Build()
         {
-            ConstructWeapon();
+            ConstructSkill();
             return _skill;
         }
     }

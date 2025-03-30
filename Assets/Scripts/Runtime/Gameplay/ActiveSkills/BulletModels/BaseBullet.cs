@@ -20,6 +20,11 @@ namespace TandC.GeometryAstro.Gameplay
 
         private void Awake()
         {
+            InitComponent();
+        }
+
+        protected virtual void InitComponent() 
+        {
             _moveComponent = new MoveInDirectionComponent(GetComponent<Rigidbody2D>());
             _rotationComponent = new OnTargetRotateComponte(transform);
         }
@@ -30,7 +35,7 @@ namespace TandC.GeometryAstro.Gameplay
         {
             transform.position = startPosition;
 
-            _rotationComponent.SetRotation(target);
+            _rotationComponent?.SetRotation(target);
 
             _bulletBackToPoolEvent = bulletBackToPoolEvent;
             _bulletData = bulletData;
@@ -42,14 +47,14 @@ namespace TandC.GeometryAstro.Gameplay
             CalculateCriticalMultiplier(criticalDamageMultiplier);
         }
 
+        public void SetOldBulletOld()
+        {
+            IsOld = true;
+        }
+
         private void CalculateCriticalChance(float criticalChanceModificator) 
         {
             _criticalChance = _bulletData.BasicCriticalChance + criticalChanceModificator;
-        }
-
-        public void SetOldBulletOld() 
-        {
-            IsOld = true;
         }
 
         private void CalculateCriticalMultiplier(float criticalDamageMultiplier)

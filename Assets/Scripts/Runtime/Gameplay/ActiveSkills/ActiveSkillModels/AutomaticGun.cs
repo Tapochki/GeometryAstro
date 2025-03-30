@@ -96,7 +96,7 @@ namespace TandC.GeometryAstro.Gameplay
             );
         }
 
-        public void Upgrade(float Value = 0)
+        public void Upgrade(float value = 0)
         {
             _duplicatorComponent.UpgradeDuplicateCount();
         }

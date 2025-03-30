@@ -57,7 +57,7 @@ namespace TandC.GeometryAstro.Gameplay
             _skill.InitRocketAmmo(rocketAmmo);
         }
 
-        protected override void ConstructWeapon()
+        protected override void ConstructSkill()
         {
             SetAreaDamageInterval();
 

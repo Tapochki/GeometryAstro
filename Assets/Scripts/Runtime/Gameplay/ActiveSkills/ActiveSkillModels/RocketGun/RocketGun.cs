@@ -56,6 +56,7 @@ namespace TandC.GeometryAstro.Gameplay
         public void SetReloader(IReloadable reloader, RocketInputButton rocketInputButton)
         {
             _reloader = reloader;
+            Debug.LogError(rocketInputButton);
             rocketInputButton.Initialize(_reloader.ReloadProgress, _rocketAmmo.RocketCount, _rocketAmmo.MaxRocketCount, ShootAction);
         }
 
@@ -128,10 +129,10 @@ namespace TandC.GeometryAstro.Gameplay
             );
         }
 
-        public void Upgrade(float Value = 0)
+        public void Upgrade(float value = 0)
         {
-            _rocketAmmo.UpgradeRocketMaxCount((int)(Value));
-            _explosionRadiusModificatorUpgrade.ApplyModifier(Value/2);
+            _rocketAmmo.UpgradeRocketMaxCount((int)(value));
+            _explosionRadiusModificatorUpgrade.ApplyModifier(value / 2);
         }
 
         public void Evolve()

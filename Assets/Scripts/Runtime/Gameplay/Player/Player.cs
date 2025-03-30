@@ -159,6 +159,13 @@ namespace TandC.GeometryAstro.Gameplay
             gameObject.SetActive(false);
         }
 
+        public IDashMove RegisterDashSkill(IReadableModificator dashModificator) 
+        {
+            MoveDashComponent move = new MoveDashComponent(gameObject.GetComponent<Rigidbody2D>(), dashModificator, _moveComponent);
+            _moveComponent = move;
+            return move;
+        }
+
         public void RegisterCloak() 
         {
             SpriteRenderer spriteRenderer = gameObject.GetComponentInChildren<SpriteRenderer>();

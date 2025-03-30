@@ -9,6 +9,7 @@ namespace TandC.GeometryAstro.Gameplay
 
         public RocketInputButton RocketButton { get; }
         public SkillInputButton CloakButton { get; }
+        public SkillInputButton DashButton { get; }
     }
 }
 

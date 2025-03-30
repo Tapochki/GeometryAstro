@@ -54,7 +54,7 @@ namespace TandC.GeometryAstro.Gameplay
             _skill.RegisterShootingPatterns(_playerTransformSkills);
         }
 
-        protected override void ConstructWeapon()
+        protected override void ConstructSkill()
         {
             SetProjectileFactory(
                 _modificatorContainer.GetModificator(ModificatorType.Damage),

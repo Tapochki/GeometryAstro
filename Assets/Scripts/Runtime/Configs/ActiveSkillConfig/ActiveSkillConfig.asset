@@ -138,4 +138,29 @@ MonoBehaviour:
       BulletObject: {fileID: 0}
       type: 0
     _skillPrefab: {fileID: 0}
+  - SkillName: Dash
+    type: 19
+    shootDeley: 5
+    detectorRadius: 0
+    bulletData:
+      BulletSpeed: 0
+      bulletLifeTime: 0
+      bulletLife: 0
+      baseDamage: 30
+      BasicCriticalChance: 10
+      BasicCriticalMultiplier: 1.25
+      BasicBulletSize: 0
+      BulletObject: {fileID: 0}
+      type: 19
+    EvolvedBulletData:
+      BulletSpeed: 0
+      bulletLifeTime: 2
+      bulletLife: 1
+      baseDamage: 10
+      BasicCriticalChance: 1.3
+      BasicCriticalMultiplier: 10
+      BasicBulletSize: 0.3
+      BulletObject: {fileID: 2431657971425446526, guid: 4f4d5354e2863b6478c3c6e6a6bfca95, type: 3}
+      type: 19
+    _skillPrefab: {fileID: 4270166609174777316, guid: 1bdc9026fa6d8a04183627ab4e1d4a4b, type: 3}
   _additionalSkillConfig: {fileID: 11400000, guid: 4b0f5f9250d6d104c9f100651c75b047, type: 2}

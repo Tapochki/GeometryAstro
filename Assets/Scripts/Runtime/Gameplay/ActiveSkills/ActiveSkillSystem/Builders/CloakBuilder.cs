@@ -34,7 +34,7 @@ namespace TandC.GeometryAstro.Gameplay
             _player.RegisterCloak();
         }
 
-        protected override void ConstructWeapon()
+        protected override void ConstructSkill()
         {
             SetReloader(_modificatorContainer.GetModificator(ModificatorType.ReloadTimer));
 

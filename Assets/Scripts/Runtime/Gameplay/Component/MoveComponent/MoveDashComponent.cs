@@ -1,0 +1,51 @@
+using UnityEngine;
+
+namespace TandC.GeometryAstro.Gameplay 
+{
+    public class MoveDashComponent : IMove, IDashMove
+    {
+        private readonly Rigidbody2D _moveRigidbody2D;
+
+        private readonly IMove _baseMove;
+
+        private readonly IReadableModificator _dashModificator;
+
+        private bool _isDash;
+
+        public MoveDashComponent(Rigidbody2D moveRigidbody2D, IReadableModificator dashModificator, IMove baseMove)
+        {
+            _baseMove = baseMove;
+            _moveRigidbody2D = moveRigidbody2D;
+            _dashModificator = dashModificator;
+        }
+
+        public void Move(Vector2 direction, float moveSpeed)
+        {
+            if (_isDash)
+                Dash(direction, moveSpeed);
+            else
+                NormalMove(direction, moveSpeed);
+        }
+
+        private void NormalMove(Vector2 direction, float moveSpeed)
+        {
+            _baseMove.Move(direction, moveSpeed);
+        }
+
+        private void Dash(Vector2 direction, float moveSpeed)
+        {
+            _isDash = true;
+            _moveRigidbody2D.velocity = direction * moveSpeed * _dashModificator.Value;
+        }
+
+        public void StartDash()
+        {
+            _isDash = true;
+        }
+
+        public void StopDash()
+        {
+            _isDash = false;
+        }
+    }
+}

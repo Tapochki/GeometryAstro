@@ -25,3 +25,8 @@ MonoBehaviour:
     StartCloakActiveTime: 5
   _rocketConfig:
     StartRocketCount: 10
+  _dashConfig:
+    StartDashMultiplier: 1.5
+    DashTime: 2
+    FireTraceSpawnTimer: 0.01
+    EvolvedColor: {r: 1, g: 0.12941177, b: 0, a: 1}

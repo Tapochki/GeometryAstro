@@ -28,6 +28,7 @@ namespace TandC.GeometryAstro.Gameplay
         //Test change to VfX
         private void Create(Vector2 position, float radius, float duration = 0.3f)
         {
+            Debug.LogError("Stop");
             GameObject explosion = new GameObject("ExplosionVFX");
             explosion.transform.position = position;
 
@@ -35,16 +36,36 @@ namespace TandC.GeometryAstro.Gameplay
             renderer.sprite = CreateCircleSprite();
             renderer.color = new Color(1f, 0.5f, 0f, 0.5f);
 
-            explosion.transform.localScale = Vector3.one * radius * 2f;
+            explosion.transform.localScale = Vector3.one * radius * 1.5f;
 
             Object.Destroy(explosion, duration);
         }
 
         private Sprite CreateCircleSprite()
         {
-            Texture2D texture = new Texture2D(128, 128);
-            Sprite sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.one * 0.5f);
-            return sprite;
+            int size = 128;
+            Texture2D texture = new Texture2D(size, size);
+            Color transparent = new Color(0, 0, 0, 0);
+            Color circleColor = new Color(1f, 0.5f, 0f, 0.5f);
+
+            for (int x = 0; x < size; x++)
+            {
+                for (int y = 0; y < size; y++)
+                {
+                    float dx = x - size / 2;
+                    float dy = y - size / 2;
+                    float distance = Mathf.Sqrt(dx * dx + dy * dy);
+
+                    if (distance < size / 2)
+                        texture.SetPixel(x, y, circleColor);
+                    else
+                        texture.SetPixel(x, y, transparent);
+                }
+            }
+
+            texture.Apply();
+
+            return Sprite.Create(texture, new Rect(0, 0, size, size), new Vector2(0.5f, 0.5f));
         }
     }
 }

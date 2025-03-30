@@ -69,7 +69,7 @@ namespace TandC.GeometryAstro.Gameplay
 
         private void UpdateShieldColor() 
         {
-            _shieldSprite.color = _colorConfig.shieldColors[_currentShieldHealth-1];
+            _shieldSprite.color = _colorConfig.shieldColors[_currentShieldHealth - 1];
         }
 
         private void InitKnockBack() 
@@ -117,8 +117,8 @@ namespace TandC.GeometryAstro.Gameplay
 
         private void RestoreFromDeactivateShield() 
         {
-            UpdateShieldColor();
             _currentShieldHealth++;
+            UpdateShieldColor();
             ActivateShield();
             StartReload();
         }

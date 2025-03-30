@@ -29,7 +29,7 @@ namespace TandC.GeometryAstro.Gameplay
             _skill.SetShieldColorConfig(_config.AdditionalSkillConfig.ShieldColorConfig);
         }
 
-        protected override void ConstructWeapon()
+        protected override void ConstructSkill()
         {
             SetColorConfig();
 

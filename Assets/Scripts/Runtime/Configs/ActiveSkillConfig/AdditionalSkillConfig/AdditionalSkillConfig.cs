@@ -10,11 +10,13 @@ namespace TandC.GeometryAstro.Data
         public AreaEffectConfig AreaEffectConfig => _areaEffectConfig;
         public CloakConfig CloakConfig => _cloakConfig;
         public RocketConfig RocketConfig => _rocketConfig;
+        public DashConfig DashConfig => _dashConfig;
 
         [SerializeField] ShieldColorConfig _shieldColorConfig;
         [SerializeField] AreaEffectConfig _areaEffectConfig;
         [SerializeField] CloakConfig _cloakConfig;
         [SerializeField] RocketConfig _rocketConfig;
+        [SerializeField] DashConfig _dashConfig;
     }
 
     [System.Serializable]
@@ -41,5 +43,14 @@ namespace TandC.GeometryAstro.Data
     public class RocketConfig
     {
         public int StartRocketCount;
+    }
+
+    [System.Serializable]
+    public class DashConfig
+    {
+        public float StartDashMultiplier;
+        public float DashTime;
+        public float FireTraceSpawnTimer;
+        public Color EvolvedColor;
     }
 }
