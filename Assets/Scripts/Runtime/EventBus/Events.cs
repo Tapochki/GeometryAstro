@@ -1,3 +1,5 @@
+using UnityEngine;
+
 namespace TandC.GeometryAstro.EventBus
 {
     public readonly struct PlayerHealthChangeEvent : IEvent
@@ -52,6 +54,18 @@ namespace TandC.GeometryAstro.EventBus
         public PlayerLevelUpEvent(int currentLevel)
         {
             CurrentLevel = currentLevel;
+        }
+    }
+
+    public readonly struct CreateExplosion : IEvent
+    {
+        public readonly Vector3 Position;
+        public readonly float Radius;
+
+        public CreateExplosion(Vector3 position, float radius)
+        {
+            Position = position;
+            Radius = radius;
         }
     }
 }

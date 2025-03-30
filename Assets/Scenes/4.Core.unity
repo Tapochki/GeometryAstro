@@ -1137,8 +1137,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _moveJoystick: {fileID: 5948424579276831484}
   _rotationJoystick: {fileID: 4393218176931205002}
-  _rocketButton: {fileID: 7656752210059144609}
-  _cloakButton: {fileID: 8795137780454977056}
+  _rocketButton: {fileID: 0}
+  _cloakButton: {fileID: 0}
 --- !u!4 &251573281
 Transform:
   m_ObjectHideFlags: 0
@@ -10735,7 +10735,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bodyTransform: {fileID: 3707314565005728386}
-  _skillTransform: {fileID: 7512575137256570293}
+  _skillTransform: {fileID: 0}
 --- !u!224 &812790574651285389
 RectTransform:
   m_ObjectHideFlags: 0

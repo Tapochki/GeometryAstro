@@ -1,10 +1,11 @@
+using TandC.GeometryAstro.EventBus;
 using UnityEngine;
 
 namespace TandC.GeometryAstro.Gameplay
 {
     public class ExplosiveBullet : BaseBullet
     {
-        IReadableModificator _areaRadiusModificator;
+        private IReadableModificator _areaRadiusModificator;
 
         public ExplosiveBullet SetExplosiveDamageAreaBullet(IReadableModificator areaRadiusModificator)
         {
@@ -18,8 +19,9 @@ namespace TandC.GeometryAstro.Gameplay
             BackToPool();
         }
 
-        protected void CreateExplosion() 
+        protected void CreateExplosion()
         {
+            EventBusHolder.EventBus.Raise(new CreateExplosion(gameObject.transform.position, _areaRadiusModificator.Value));
             //change hardcode radius to data.radius
             Create(gameObject.transform.position, _areaRadiusModificator.Value);
             new ExplosionDamage().ApplyExplosionDamage(gameObject.transform.position, _areaRadiusModificator.Value, _bulletData.baseDamage, _criticalChance, _criticalMultiplier);
