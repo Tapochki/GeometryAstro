@@ -105,6 +105,7 @@ namespace TandC.GeometryAstro.Gameplay
         {
             if (_freezeComponent.IsFreeze)
                 return;
+
             if (collision.gameObject.TryGetComponent(out Player player))
             {
                 _attackComponent.SubscribePlayer(player);

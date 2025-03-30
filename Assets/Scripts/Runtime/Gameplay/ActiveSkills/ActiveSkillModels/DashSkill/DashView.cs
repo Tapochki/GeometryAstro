@@ -133,7 +133,7 @@ namespace TandC.GeometryAstro.Gameplay
             return _data.baseDamage * _damageModificator.Value;
         }
 
-        private void OnCollisionEnter2D(Collision2D collision)
+        private void OnTriggerEnter2D(Collider2D collision)
         {
             if (collision.gameObject.TryGetComponent(out Enemy enemy))
             {

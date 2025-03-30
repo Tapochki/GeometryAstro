@@ -131,7 +131,6 @@ namespace TandC.GeometryAstro.Gameplay
 
         public void TakeDamage(float damage)
         {
-            Debug.LogError(damage);
             bool isDamageAbsorb = false;
             if (_shield != null) 
             {
