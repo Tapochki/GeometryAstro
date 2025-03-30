@@ -131,6 +131,7 @@ namespace TandC.GeometryAstro.Gameplay
 
         public void TakeDamage(float damage)
         {
+            Debug.LogError(damage);
             bool isDamageAbsorb = false;
             if (_shield != null) 
             {
@@ -161,7 +162,7 @@ namespace TandC.GeometryAstro.Gameplay
 
         public IDashMove RegisterDashSkill(IReadableModificator dashModificator) 
         {
-            MoveDashComponent move = new MoveDashComponent(gameObject.GetComponent<Rigidbody2D>(), dashModificator, _moveComponent);
+            MoveDashComponent move = new MoveDashComponent(gameObject.GetComponent<Rigidbody2D>(), gameObject.GetComponent<Collider2D>(), dashModificator, _moveComponent);
             _moveComponent = move;
             return move;
         }

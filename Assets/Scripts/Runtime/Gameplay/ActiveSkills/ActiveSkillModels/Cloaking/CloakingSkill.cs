@@ -59,7 +59,7 @@ namespace TandC.GeometryAstro.Gameplay
 
         private void ActivateCloak() 
         {
-            if (!_isDashActivated)
+            if (_isDashActivated)
                 return;
             if (_reloader.CanAction)
             {

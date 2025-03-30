@@ -14,11 +14,11 @@ namespace TandC.GeometryAstro.Gameplay
 
         private bool _isDash;
 
-        public MoveDashComponent(Rigidbody2D moveRigidbody2D, IReadableModificator dashModificator, IMove baseMove)
+        public MoveDashComponent(Rigidbody2D moveRigidbody2D, Collider2D collider, IReadableModificator dashModificator, IMove baseMove)
         {
             _baseMove = baseMove;
             _moveRigidbody2D = moveRigidbody2D;
-            _collider2D = _moveRigidbody2D.gameObject.GetComponent<Collider2D>();
+            _collider2D = collider;
             _dashModificator = dashModificator;
         }
 

@@ -57,7 +57,7 @@ namespace TandC.GeometryAstro.Gameplay
                 PlayerEnterBoundary();
                 _isAbility = true;
             }
-            else if (!isActive
+            else if (!isActive)
             {
                 if (_playerExitBoundaryWithAbility)
                 {

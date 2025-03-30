@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace TandC.GeometryAstro.Gameplay 
 {
-    public class DashSkill : IActiveSkill
+    public class DashSkill : IActiveSkill, IEventReceiver<CloakingEvent>
     {
         public bool IsWeapon { get => true; }
 
@@ -25,6 +25,10 @@ namespace TandC.GeometryAstro.Gameplay
         private bool _isEvolved;
 
         private bool _isDashActive;
+
+        public UniqueId Id { get; } = new UniqueId();
+
+        private bool _isCloakActivated;
 
         public void SetData(ActiveSkillData data)
         {
@@ -52,33 +56,48 @@ namespace TandC.GeometryAstro.Gameplay
             return _dashView;
         }
 
+        private void RegisterEvent()
+        {
+            EventBusHolder.EventBus.Register(this as IEventReceiver<CloakingEvent>);
+        }
+
+        private void UnregisterEvent()
+        {
+            EventBusHolder.EventBus.Unregister(this as IEventReceiver<CloakingEvent>);
+        }
+
         public void Initialization()
         {
+            RegisterEvent();
+        }
 
+        public void OnEvent(CloakingEvent @event)
+        {
+            _isCloakActivated = @event.IsActive;
         }
 
         private void ActivateDash() 
         {
-            if (_isDashActive)
+            if (_isDashActive || _isCloakActivated)
                 return;
 
             if (_reloader.CanAction)
             {
-                EventBusHolder.EventBus.Raise(new DashEvent(true));
                 _dashView.Activete();
                 _dashMove.StartDash();
                 _isDashActive = true;
                 _activeTimer.StartReload();
+                EventBusHolder.EventBus.Raise(new DashEvent(true));
             }
         }
 
         private void EndDash() 
         {
-            EventBusHolder.EventBus.Raise(new DashEvent(false));
             _dashView.Stop();
             _dashMove.StopDash();
             _isDashActive = false;
             _reloader.StartReload();
+            EventBusHolder.EventBus.Raise(new DashEvent(false));
         }
 
         public void Upgrade(float value = 0)

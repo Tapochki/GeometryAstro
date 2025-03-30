@@ -56,7 +56,6 @@ namespace TandC.GeometryAstro.Gameplay
         public void SetReloader(IReloadable reloader, RocketInputButton rocketInputButton)
         {
             _reloader = reloader;
-            Debug.LogError(rocketInputButton);
             rocketInputButton.Initialize(_reloader.ReloadProgress, _rocketAmmo.RocketCount, _rocketAmmo.MaxRocketCount, ShootAction);
         }
 
