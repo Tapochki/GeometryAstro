@@ -44,6 +44,7 @@ namespace TandC.GeometryAstro.Core
         private readonly MoneyVaultContainer _moneyVaultContainer;
 
         private readonly VaultService _vaultService;
+        private readonly VFXService _vfxService;
 
 
         public CoreFlow(
@@ -69,7 +70,8 @@ namespace TandC.GeometryAstro.Core
             IPauseService pauseService,
             ScoreContainer scoreContainer,
             MoneyVaultContainer moneyVaultContainer,
-            VaultService vaultService)
+            VaultService vaultService,
+            VFXService vfxService)
         {
             _loadingService = loadingService;
             _dataService = dataService;
@@ -94,6 +96,7 @@ namespace TandC.GeometryAstro.Core
             _scoreContainer = scoreContainer;
             _moneyVaultContainer = moneyVaultContainer;
             _vaultService = vaultService;
+            _vfxService = vfxService;
         }
 
         public async void Start()
@@ -111,6 +114,7 @@ namespace TandC.GeometryAstro.Core
             var fooLoadingUnit = new FooLoadingUnit(0, false);
             _skillService.Initialize();
             await _loadingService.BeginLoading(_uiService);
+            await _loadingService.BeginLoading(_vfxService);
             await _loadingService.BeginLoading(fooLoadingUnit);
 
             RegisterUI();

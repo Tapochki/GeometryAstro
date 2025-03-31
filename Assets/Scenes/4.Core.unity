@@ -1137,8 +1137,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _moveJoystick: {fileID: 5948424579276831484}
   _rotationJoystick: {fileID: 4393218176931205002}
-  _rocketButton: {fileID: 0}
-  _cloakButton: {fileID: 0}
+  _rocketButton: {fileID: 7656752210059144609}
+  _cloakButton: {fileID: 8795137780454977056}
 --- !u!4 &251573281
 Transform:
   m_ObjectHideFlags: 0

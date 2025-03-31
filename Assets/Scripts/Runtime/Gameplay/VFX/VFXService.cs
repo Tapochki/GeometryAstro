@@ -9,12 +9,13 @@ namespace TandC.GeometryAstro.Gameplay
 {
     public class VFXService : ILoadUnit, IEventReceiver<CreateExplosion>
     {
-        private ObjectPool<ParticleSystem> _explosionParticlesPool;
+        private ObjectPool<ExplosionEffect> _explosionParticlesPool;
 
         [Inject] private LoadObjectsService _loadObjectsService;
 
-        private ParticleSystem _explosionParticlePrefab;
+        private ExplosionEffect _explosionParticlePrefab;
 
+        private Transform _explosionParticleContainer; 
         public UniqueId Id { get; private set; } = new UniqueId();
 
         public async UniTask Load()
@@ -27,25 +28,26 @@ namespace TandC.GeometryAstro.Gameplay
 
         private void Initialize()
         {
-            _explosionParticlePrefab = _loadObjectsService.GetObjectByPath<ParticleSystem>("Prefabs/Gameplay/VFX/RocketBoomVFX");
-
-            _explosionParticlesPool = new ObjectPool<ParticleSystem>
+            _explosionParticleContainer = new GameObject("[EXPLOSION_VFX]").transform;
+            _explosionParticlePrefab = _loadObjectsService.GetObjectByPath<ExplosionEffect>("Prefabs/Gameplay/VFX/Explosion_Effect");
+            
+            _explosionParticlesPool = new ObjectPool<ExplosionEffect>
                 (PreloadExplosionParticle, GetExplosionParticle, ReturnExplosionParticle, 10);
         }
 
-        private void ReturnExplosionParticle(ParticleSystem system)
-        {
-            _explosionParticlesPool.Return(system);
-        }
-
-        private void GetExplosionParticle(ParticleSystem system)
+        private void ReturnExplosionParticle(ExplosionEffect system)
         {
             system.gameObject.SetActive(false);
         }
 
-        private ParticleSystem PreloadExplosionParticle()
+        private void GetExplosionParticle(ExplosionEffect system)
         {
-            ParticleSystem item = MonoBehaviour.Instantiate(_explosionParticlePrefab).GetComponent<ParticleSystem>();
+            system.gameObject.SetActive(true);
+        }
+
+        private ExplosionEffect PreloadExplosionParticle()
+        {
+            ExplosionEffect item = Object.Instantiate(_explosionParticlePrefab, _explosionParticleContainer);
             return item;
         }
 
@@ -56,8 +58,33 @@ namespace TandC.GeometryAstro.Gameplay
 
         public void OnEvent(CreateExplosion @event)
         {
-            ParticleSystem item = _explosionParticlesPool.Get();
+            ExplosionEffect item = _explosionParticlesPool.Get();
             item.transform.position = @event.Position;
+
+            var calculatedSizeOfParticleSystem = 0.0f;
+            switch (@event.Radius)
+            {
+                case 10:
+                    calculatedSizeOfParticleSystem = 1;
+                    break;
+                case 15:
+                    calculatedSizeOfParticleSystem = 1.2f;
+                    break;
+                case 20:
+                    calculatedSizeOfParticleSystem = 1.4f;
+                    break;
+                case 25:
+                    calculatedSizeOfParticleSystem = 1.6f;
+                    break;
+                case 30:
+                    calculatedSizeOfParticleSystem = 1.8f;
+                    break;
+                default:
+                    Debug.LogWarning($"Current radius is {@event.Radius} not supported");
+                    break;
+            }
+            item.transform.localScale = Vector3.one * calculatedSizeOfParticleSystem;
+            item.Init(ReturnExplosionParticle);
         }
     }
 }
