@@ -7,7 +7,7 @@ namespace TandC.GeometryAstro.Gameplay
 {
     public class Enemy : MonoBehaviour, IEnemyDamageable, IEnemy
     {
-        private const float _flashDuration = 0.1f;
+        private const float _flashDuration = 0.05f;
 
         [Header("References")]
         [SerializeField] private SpriteRenderer _modelViewRenderer;
@@ -96,7 +96,7 @@ namespace TandC.GeometryAstro.Gameplay
 
             _enemySprite.color = transparentColor;
 
-            Observable.Timer(System.TimeSpan.FromSeconds(_flashDuration))
+            Observable.Timer(TimeSpan.FromSeconds(_flashDuration))
                 .Subscribe(_ => _enemySprite.color = originalColor)
                 .AddTo(this);
         }

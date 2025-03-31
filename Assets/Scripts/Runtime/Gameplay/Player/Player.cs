@@ -45,6 +45,8 @@ namespace TandC.GeometryAstro.Gameplay
 
         private PlayerCloakReceiver _playerCloak;
 
+        private bool _isPlayerCanMove;
+
         public bool IsDead { get; private set; }
 
         [Inject]
@@ -59,6 +61,7 @@ namespace TandC.GeometryAstro.Gameplay
         {
             _playerData = playerData;
             IsDead = false;
+            _isPlayerCanMove = true;
             InitLevelModel();
             InitPlayerHealthComponent();
             InitPlayerMoveComponent();
@@ -112,6 +115,9 @@ namespace TandC.GeometryAstro.Gameplay
 
         private void FixedTick()
         {
+            _healthRegenerator.Tick();
+            if (!_isPlayerCanMove)
+                return;
             _moveComponent.Move(_inputHandler.MoveDirection, _moveSpeed.Value);
             if (_inputHandler.RotationDirection != Vector2.zero)
             {
@@ -126,7 +132,6 @@ namespace TandC.GeometryAstro.Gameplay
             {
                 _mainRotateComponent.Update();
             }
-            _healthRegenerator.Tick();
         }
 
         public void TakeDamage(float damage)
@@ -175,6 +180,11 @@ namespace TandC.GeometryAstro.Gameplay
         public void SetRocketAmmo(IReadOnlyReactiveProperty<int> ammoCount, IReadOnlyReactiveProperty<int> maxAmmoCount) 
         {
             _itemPickuper.SetCanPickUpRocket(ammoCount, maxAmmoCount);
+        }
+
+        public void SetPlayerCanMove(bool value) 
+        {
+            _isPlayerCanMove = value;
         }
 
         private void OnDestroy()

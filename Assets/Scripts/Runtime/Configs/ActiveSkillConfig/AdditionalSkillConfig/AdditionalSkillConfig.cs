@@ -11,12 +11,14 @@ namespace TandC.GeometryAstro.Data
         public CloakConfig CloakConfig => _cloakConfig;
         public RocketConfig RocketConfig => _rocketConfig;
         public DashConfig DashConfig => _dashConfig;
+        public LaserConfig LaserConfig => _laserConfig;
 
         [SerializeField] ShieldColorConfig _shieldColorConfig;
         [SerializeField] AreaEffectConfig _areaEffectConfig;
         [SerializeField] CloakConfig _cloakConfig;
         [SerializeField] RocketConfig _rocketConfig;
         [SerializeField] DashConfig _dashConfig;
+        [SerializeField] LaserConfig _laserConfig;
     }
 
     [System.Serializable]
@@ -52,5 +54,11 @@ namespace TandC.GeometryAstro.Data
         public float DashTime;
         public float FireTraceSpawnTimer;
         public Color EvolvedColor;
+    }
+
+    [System.Serializable]
+    public class LaserConfig
+    {
+        public float LaserActiveTime;
     }
 }

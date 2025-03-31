@@ -41,5 +41,19 @@
     },
     "_rocketConfig": {
         "StartRocketCount": 10
+    },
+    "_dashConfig": {
+        "StartDashMultiplier": 1.5,
+        "DashTime": 2.0,
+        "FireTraceSpawnTimer": 0.009999999776482582,
+        "EvolvedColor": {
+            "r": 1.0,
+            "g": 0.12941177189350129,
+            "b": 0.0,
+            "a": 1.0
+        }
+    },
+    "_laserConfig": {
+        "LaserActiveTime": 1.100000023841858
     }
 }

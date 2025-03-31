@@ -4,7 +4,7 @@ using TandC.GeometryAstro.Settings;
 
 namespace TandC.GeometryAstro.Gameplay 
 {
-    public class CloakingSkill : IActiveSkill, IEventReceiver<DashEvent>
+    public class CloakingSkill : IActiveSkill, IEventReceiver<DashEvent>, IEventReceiver<LaserEvent>
     {
         public bool IsWeapon { get => false; }
 
@@ -21,6 +21,7 @@ namespace TandC.GeometryAstro.Gameplay
         private bool _isMaskActive;
 
         private bool _isDashActivated;
+        private bool _isLaserActivated;
 
         public UniqueId Id { get; } = new UniqueId();
 
@@ -42,14 +43,21 @@ namespace TandC.GeometryAstro.Gameplay
             _isDashActivated = @event.IsActive;
         }
 
+        public void OnEvent(LaserEvent @event)
+        {
+            _isLaserActivated = @event.IsActive;
+        }
+
         private void RegisterEvent()
         {
             EventBusHolder.EventBus.Register(this as IEventReceiver<DashEvent>);
+            EventBusHolder.EventBus.Register(this as IEventReceiver<LaserEvent>);
         }
 
         private void UnregisterEvent()
         {
             EventBusHolder.EventBus.Unregister(this as IEventReceiver<DashEvent>);
+            EventBusHolder.EventBus.Unregister(this as IEventReceiver<LaserEvent>);
         }
 
         public void Initialization()
@@ -59,7 +67,7 @@ namespace TandC.GeometryAstro.Gameplay
 
         private void ActivateCloak() 
         {
-            if (_isDashActivated)
+            if (_isDashActivated || _isMaskActive || _isLaserActivated)
                 return;
             if (_reloader.CanAction)
             {

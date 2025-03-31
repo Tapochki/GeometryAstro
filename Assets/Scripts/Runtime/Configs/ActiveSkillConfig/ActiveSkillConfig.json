@@ -14,7 +14,7 @@
                 "BasicCriticalMultiplier": 1.25,
                 "BasicBulletSize": 0.4000000059604645,
                 "BulletObject": {
-                    "instanceID": 33720
+                    "instanceID": 33812
                 },
                 "type": 1
             },
@@ -27,12 +27,12 @@
                 "BasicCriticalMultiplier": 1.2999999523162842,
                 "BasicBulletSize": 0.4000000059604645,
                 "BulletObject": {
-                    "instanceID": 33722
+                    "instanceID": 33814
                 },
                 "type": 1
             },
             "_skillPrefab": {
-                "instanceID": 33724
+                "instanceID": 33816
             }
         },
         {
@@ -49,7 +49,7 @@
                 "BasicCriticalMultiplier": 1.25,
                 "BasicBulletSize": 0.4000000059604645,
                 "BulletObject": {
-                    "instanceID": 33726
+                    "instanceID": 33818
                 },
                 "type": 2
             },
@@ -62,12 +62,12 @@
                 "BasicCriticalMultiplier": 1.2999999523162842,
                 "BasicBulletSize": 0.4000000059604645,
                 "BulletObject": {
-                    "instanceID": 33728
+                    "instanceID": 33820
                 },
                 "type": 2
             },
             "_skillPrefab": {
-                "instanceID": 33730
+                "instanceID": 33822
             }
         },
         {
@@ -84,7 +84,7 @@
                 "BasicCriticalMultiplier": 1.25,
                 "BasicBulletSize": 0.20000000298023225,
                 "BulletObject": {
-                    "instanceID": 33732
+                    "instanceID": 33824
                 },
                 "type": 3
             },
@@ -97,12 +97,12 @@
                 "BasicCriticalMultiplier": 1.2999999523162842,
                 "BasicBulletSize": 0.20000000298023225,
                 "BulletObject": {
-                    "instanceID": 33734
+                    "instanceID": 33826
                 },
                 "type": 3
             },
             "_skillPrefab": {
-                "instanceID": 33736
+                "instanceID": 33828
             }
         },
         {
@@ -137,7 +137,7 @@
                 "type": 0
             },
             "_skillPrefab": {
-                "instanceID": 34594
+                "instanceID": 17790
             }
         },
         {
@@ -174,9 +174,79 @@
             "_skillPrefab": {
                 "instanceID": 0
             }
+        },
+        {
+            "SkillName": "Dash",
+            "type": 19,
+            "shootDeley": 5.0,
+            "detectorRadius": 0.0,
+            "bulletData": {
+                "BulletSpeed": 0,
+                "bulletLifeTime": 0.0,
+                "bulletLife": 0,
+                "baseDamage": 30.0,
+                "BasicCriticalChance": 10.0,
+                "BasicCriticalMultiplier": 1.25,
+                "BasicBulletSize": 0.0,
+                "BulletObject": {
+                    "instanceID": 0
+                },
+                "type": 19
+            },
+            "EvolvedBulletData": {
+                "BulletSpeed": 0,
+                "bulletLifeTime": 2.0,
+                "bulletLife": 1,
+                "baseDamage": 10.0,
+                "BasicCriticalChance": 10.0,
+                "BasicCriticalMultiplier": 1.5,
+                "BasicBulletSize": 0.30000001192092898,
+                "BulletObject": {
+                    "instanceID": 33830
+                },
+                "type": 19
+            },
+            "_skillPrefab": {
+                "instanceID": 33832
+            }
+        },
+        {
+            "SkillName": "Laser",
+            "type": 4,
+            "shootDeley": 10.0,
+            "detectorRadius": 0.0,
+            "bulletData": {
+                "BulletSpeed": 0,
+                "bulletLifeTime": 0.0,
+                "bulletLife": 0,
+                "baseDamage": 400.0,
+                "BasicCriticalChance": 10.0,
+                "BasicCriticalMultiplier": 1.25,
+                "BasicBulletSize": 0.0,
+                "BulletObject": {
+                    "instanceID": 0
+                },
+                "type": 19
+            },
+            "EvolvedBulletData": {
+                "BulletSpeed": 0,
+                "bulletLifeTime": 2.0,
+                "bulletLife": 1,
+                "baseDamage": 500.0,
+                "BasicCriticalChance": 15.0,
+                "BasicCriticalMultiplier": 1.5,
+                "BasicBulletSize": 0.30000001192092898,
+                "BulletObject": {
+                    "instanceID": 0
+                },
+                "type": 19
+            },
+            "_skillPrefab": {
+                "instanceID": 38250
+            }
         }
     ],
     "_additionalSkillConfig": {
-        "instanceID": -49696
+        "instanceID": 31276
     }
 }

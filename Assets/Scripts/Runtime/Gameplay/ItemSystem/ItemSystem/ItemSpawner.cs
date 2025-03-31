@@ -100,15 +100,18 @@ namespace TandC.GeometryAstro.Gameplay
         public void DropRandomItem(DropItemRareType type, Vector2 spawnPosition)
         {
             ItemType itemType = _dropConfig.GetDropDataByType(type).GetRandomItemType();
-            if (itemType == ItemType.None)
-                return;
-            if (!_canSpawnRocketBox) 
+
+            if (!_canSpawnRocketBox)
             {
-                while(itemType != ItemType.RocketAmmo) 
+                while (itemType == ItemType.RocketAmmo)
                 {
                     itemType = _dropConfig.GetDropDataByType(type).GetRandomItemType();
                 }
             }
+
+            if (itemType == ItemType.None)
+                return;
+
             DropItem(itemType, spawnPosition);
         }
 

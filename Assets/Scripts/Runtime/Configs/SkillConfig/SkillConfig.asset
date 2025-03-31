@@ -260,6 +260,27 @@ MonoBehaviour:
         Description: Dash Evolve
         Value: 10
         IsPercentageValue: 0
+  - SkillName: Laser
+    SkillIcon: {fileID: 21300000, guid: 375df1768e4d66a40a196542fff58442, type: 3}
+    Type: 21
+    UseType: 0
+    UpgradesInfo:
+    - Name: Laser New
+      Level: 1
+      Description: Laser New
+      Value: 1
+      IsPercentageValue: 0
+    ActiveSkillUpgradeType: 4
+    ExclusionSkillType: 0
+    EvolutionData:
+      EvolutionIcon: {fileID: 21300000, guid: 8ff4e88f20bb0924db8a39aa084fea12, type: 3}
+      TypeForEvolution: 5
+      EvolutionInfo:
+        Name: Laser Evolve
+        Level: 1
+        Description: 1
+        Value: 1
+        IsPercentageValue: 0
   _passiveSkills:
   - SkillName: Damage
     SkillIcon: {fileID: 21300000, guid: e7d87d2e18de961448b01cc53d0852e9, type: 3}
@@ -1090,5 +1111,5 @@ MonoBehaviour:
       Value: 100
       IsPercentageValue: 0
     ModificatorUpgradeType: 0
-  _startAvailableSkills: 12000000130000001400000025000000260000002400000001000000020000000300000004000000050000000d0000000c0000000e000000060000000700000008000000090000000b0000000a0000000f00000010000000
+  _startAvailableSkills: 12000000130000001400000025000000260000002400000001000000020000000300000004000000050000000d0000000c0000000e000000060000000700000008000000090000000b0000000a0000000f0000001000000015000000
   _startAvailableTestSkills: 

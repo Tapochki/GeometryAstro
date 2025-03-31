@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace TandC.GeometryAstro.Gameplay 
 {
-    public class DashSkill : IActiveSkill, IEventReceiver<CloakingEvent>
+    public class DashSkill : IActiveSkill, IEventReceiver<CloakingEvent>, IEventReceiver<LaserEvent>
     {
         public bool IsWeapon { get => true; }
 
@@ -29,6 +29,7 @@ namespace TandC.GeometryAstro.Gameplay
         public UniqueId Id { get; } = new UniqueId();
 
         private bool _isCloakActivated;
+        private bool _isLaserActivated;
 
         public void SetData(ActiveSkillData data)
         {
@@ -59,16 +60,23 @@ namespace TandC.GeometryAstro.Gameplay
         private void RegisterEvent()
         {
             EventBusHolder.EventBus.Register(this as IEventReceiver<CloakingEvent>);
+            EventBusHolder.EventBus.Register(this as IEventReceiver<LaserEvent>);
         }
 
         private void UnregisterEvent()
         {
             EventBusHolder.EventBus.Unregister(this as IEventReceiver<CloakingEvent>);
+            EventBusHolder.EventBus.Unregister(this as IEventReceiver<LaserEvent>);
         }
 
         public void Initialization()
         {
             RegisterEvent();
+        }
+
+        public void OnEvent(LaserEvent @event)
+        {
+            _isLaserActivated = @event.IsActive;
         }
 
         public void OnEvent(CloakingEvent @event)
@@ -78,7 +86,7 @@ namespace TandC.GeometryAstro.Gameplay
 
         private void ActivateDash() 
         {
-            if (_isDashActive || _isCloakActivated)
+            if (_isDashActive || _isCloakActivated || _isLaserActivated)
                 return;
 
             if (_reloader.CanAction)

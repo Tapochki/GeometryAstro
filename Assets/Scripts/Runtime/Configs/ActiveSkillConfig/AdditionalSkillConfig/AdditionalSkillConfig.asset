@@ -30,3 +30,5 @@ MonoBehaviour:
     DashTime: 2
     FireTraceSpawnTimer: 0.01
     EvolvedColor: {r: 1, g: 0.12941177, b: 0, a: 1}
+  _laserConfig:
+    LaserActiveTime: 1.1
