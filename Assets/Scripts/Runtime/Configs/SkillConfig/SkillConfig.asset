@@ -270,6 +270,26 @@ MonoBehaviour:
       Description: Laser New
       Value: 1
       IsPercentageValue: 0
+    - Name: Laser 2
+      Level: 2
+      Description: Laser 2
+      Value: 0.2
+      IsPercentageValue: 0
+    - Name: Laser 3
+      Level: 3
+      Description: Laser 3
+      Value: 0.2
+      IsPercentageValue: 0
+    - Name: Laser 4
+      Level: 4
+      Description: Laser 4
+      Value: 0.2
+      IsPercentageValue: 0
+    - Name: Laser 5
+      Level: 5
+      Description: Laser 5
+      Value: 0.2
+      IsPercentageValue: 0
     ActiveSkillUpgradeType: 4
     ExclusionSkillType: 0
     EvolutionData:
@@ -278,7 +298,7 @@ MonoBehaviour:
       EvolutionInfo:
         Name: Laser Evolve
         Level: 1
-        Description: 1
+        Description: Laser Evolve
         Value: 1
         IsPercentageValue: 0
   _passiveSkills:
@@ -1111,5 +1131,5 @@ MonoBehaviour:
       Value: 100
       IsPercentageValue: 0
     ModificatorUpgradeType: 0
-  _startAvailableSkills: 12000000130000001400000025000000260000002400000001000000020000000300000004000000050000000d0000000c0000000e000000060000000700000008000000090000000b0000000a0000000f0000001000000015000000
+  _startAvailableSkills: 1200000013000000140000002500000026000000240000001500000001000000020000000300000004000000050000000d0000000c0000000e000000060000000700000008000000090000000b0000000a0000000f00000010000000
   _startAvailableTestSkills: 

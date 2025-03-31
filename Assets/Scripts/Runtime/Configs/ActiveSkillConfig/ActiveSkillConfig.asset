@@ -174,9 +174,9 @@ MonoBehaviour:
       baseDamage: 400
       BasicCriticalChance: 10
       BasicCriticalMultiplier: 1.25
-      BasicBulletSize: 0
+      BasicBulletSize: 1
       BulletObject: {fileID: 0}
-      type: 19
+      type: 4
     EvolvedBulletData:
       BulletSpeed: 0
       bulletLifeTime: 2
@@ -184,8 +184,8 @@ MonoBehaviour:
       baseDamage: 500
       BasicCriticalChance: 15
       BasicCriticalMultiplier: 1.5
-      BasicBulletSize: 0.3
+      BasicBulletSize: 1
       BulletObject: {fileID: 0}
-      type: 19
+      type: 4
     _skillPrefab: {fileID: 475745689575540838, guid: 3f5361e693738154da77dbd808ab341f, type: 3}
   _additionalSkillConfig: {fileID: 11400000, guid: 4b0f5f9250d6d104c9f100651c75b047, type: 2}

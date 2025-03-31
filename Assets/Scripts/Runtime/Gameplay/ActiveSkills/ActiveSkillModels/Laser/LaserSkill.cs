@@ -3,13 +3,16 @@ using TandC.GeometryAstro.Data;
 using TandC.GeometryAstro.EventBus;
 using TandC.GeometryAstro.Settings;
 using UnityEngine;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 namespace TandC.GeometryAstro.Gameplay 
 {
     public class LaserSkill : IActiveSkill, IEventReceiver<DashEvent>, IEventReceiver<CloakingEvent>
     {
         public bool IsWeapon { get => true; }
+
+        private IReadableModificator _sizeModificator;
+
+        private float _sizeUpgrade;
 
         private IReloadable _reloader;
         private IReloadable _activeTimer;
@@ -75,14 +78,39 @@ namespace TandC.GeometryAstro.Gameplay
             _interactableMoveInput = action;
         }
 
-        public void SetLaserPrefab(Transform owner, IReadableModificator damageModificator, IReadableModificator critChanceModificator, IReadableModificator critDamageMultiplierModificator) 
+        public void SetLaserPrefab(Transform owner, 
+            IReadableModificator damageModificator, 
+            IReadableModificator critChanceModificator, 
+            IReadableModificator critDamageMultiplierModificator,
+            IReadableModificator sizeModificator) 
         {
+            _sizeModificator = sizeModificator;
             _laser = GameObject.Instantiate(_data._skillPrefab, owner);
             _laserView = _laser.GetComponentInChildren<LaserView>();
             _laserView.Init(_data.bulletData, damageModificator, critChanceModificator, critDamageMultiplierModificator);
+
+            SetStartAnimator();
+            _laser.gameObject.SetActive(false);
+
+            _sizeModificator.OnValueChanged += UpdateLaserSize;
+            _sizeUpgrade = 1f;
+            UpdateLaserSize(0f);
+        }
+
+        private void SetStartAnimator() 
+        {
             _laserAnimator = _laser.GetComponent<Animator>();
             _laserAnimationName = "LaserAnimation";
-            _laser.gameObject.SetActive(false);
+        }
+
+        private void UpdateLaserSize(float value) 
+        {
+            _laser.transform.localScale = new Vector2(CalculateSize(), CalculateSize() * 2);
+        }
+
+        private float CalculateSize() 
+        {
+            return _data.bulletData.BasicBulletSize * _sizeModificator.Value * _sizeUpgrade;
         }
 
         public void Initialization()
@@ -116,7 +144,8 @@ namespace TandC.GeometryAstro.Gameplay
 
         public void Upgrade(float value = 0)
         {
-            
+            _sizeUpgrade += value;
+            UpdateLaserSize(_sizeUpgrade);
         }
 
         private void SetNewEvolvedAnimation() 

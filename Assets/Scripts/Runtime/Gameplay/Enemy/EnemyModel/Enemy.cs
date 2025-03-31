@@ -17,6 +17,7 @@ namespace TandC.GeometryAstro.Gameplay
         private IMove _moveComponent;
         private IRotation _rotationComponent;
         private IHealth _healthComponent;
+        private FlashSpriteComponent _flashSpriteComponent;
         private AttackComponent _attackComponent;
         private Action<Enemy, bool> _onDeathEvent;
         private FreezeComponent _freezeComponent;
@@ -29,7 +30,8 @@ namespace TandC.GeometryAstro.Gameplay
 
         public void Tick()
         {
-            if(_freezeComponent.IsFreeze) 
+            _flashSpriteComponent.Tick();
+            if (_freezeComponent.IsFreeze) 
             {
                 _freezeComponent.Tick();
                 return;
@@ -43,6 +45,7 @@ namespace TandC.GeometryAstro.Gameplay
         {
             _enemySprite = gameObject.transform.Find("ModelView").GetComponent<SpriteRenderer>();
             _freezeComponent = new FreezeComponent(gameObject.transform.Find("FreezEnemyVFX").gameObject, _rigidbody);
+            _flashSpriteComponent = new FlashSpriteComponent(_enemySprite, _enemySprite.color);
         }
 
         public void Initialize(EnemyData data, Transform target, Action<Enemy, bool> onDeathEvent, float healthModificator, float speedModificator)
@@ -85,20 +88,8 @@ namespace TandC.GeometryAstro.Gameplay
                 //Send damage value to vfx 
             }
 
-            FlashSprite();
+            _flashSpriteComponent.StartFlash();
             _healthComponent.TakeDamage(finalDamage);
-        }
-
-        private void FlashSprite()
-        {
-            var originalColor = _enemySprite.color;
-            var transparentColor = Color.red;
-
-            _enemySprite.color = transparentColor;
-
-            Observable.Timer(TimeSpan.FromSeconds(_flashDuration))
-                .Subscribe(_ => _enemySprite.color = originalColor)
-                .AddTo(this);
         }
 
         private void OnCollisionEnter2D(Collision2D collision)

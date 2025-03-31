@@ -40,7 +40,8 @@ namespace TandC.GeometryAstro.Gameplay
             _skill.SetLaserPrefab(_player,
                 _modificatorContainer.GetModificator(ModificatorType.Damage),
                 _modificatorContainer.GetModificator(ModificatorType.CriticalChance),
-                _modificatorContainer.GetModificator(ModificatorType.CriticalDamageMultiplier)
+                _modificatorContainer.GetModificator(ModificatorType.CriticalDamageMultiplier),
+                _modificatorContainer.GetModificator(ModificatorType.BulletsSize)
                 );
         }
 
