@@ -301,6 +301,47 @@ MonoBehaviour:
         Description: Laser Evolve
         Value: 1
         IsPercentageValue: 0
+  - SkillName: Machine Gun
+    SkillIcon: {fileID: 21300000, guid: 8bab814baf82d4a4685a0fb865819e6a, type: 3}
+    Type: 22
+    UseType: 0
+    UpgradesInfo:
+    - Name: Machine Gun New
+      Level: 1
+      Description: Machine Gun New
+      Value: 5
+      IsPercentageValue: 0
+    - Name: Machine Gun 2
+      Level: 2
+      Description: Machine Gun 2
+      Value: 2
+      IsPercentageValue: 0
+    - Name: Machine Gun 3
+      Level: 3
+      Description: Machine Gun 3
+      Value: 2
+      IsPercentageValue: 0
+    - Name: Machine Gun 4
+      Level: 4
+      Description: Machine Gun 4
+      Value: 2
+      IsPercentageValue: 0
+    - Name: Machine Gun 5
+      Level: 5
+      Description: Machine Gun 5
+      Value: 2
+      IsPercentageValue: 0
+    ActiveSkillUpgradeType: 5
+    ExclusionSkillType: 29
+    EvolutionData:
+      EvolutionIcon: {fileID: 21300000, guid: 3c3f1fcc6ed150d4ca204bd96ff9280d, type: 3}
+      TypeForEvolution: 11
+      EvolutionInfo:
+        Name: Machine Gun Evolution
+        Level: 1
+        Description: 2
+        Value: 3
+        IsPercentageValue: 0
   _passiveSkills:
   - SkillName: Damage
     SkillIcon: {fileID: 21300000, guid: e7d87d2e18de961448b01cc53d0852e9, type: 3}
@@ -1131,5 +1172,5 @@ MonoBehaviour:
       Value: 100
       IsPercentageValue: 0
     ModificatorUpgradeType: 0
-  _startAvailableSkills: 1200000013000000140000002500000026000000240000001500000001000000020000000300000004000000050000000d0000000c0000000e000000060000000700000008000000090000000b0000000a0000000f00000010000000
+  _startAvailableSkills: 1200000013000000140000002500000026000000240000001500000001000000020000000300000004000000050000000d0000000c0000000e000000060000000700000008000000090000000b0000000a0000000f0000001000000016000000
   _startAvailableTestSkills: 
