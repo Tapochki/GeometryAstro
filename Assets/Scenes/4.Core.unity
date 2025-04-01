@@ -10887,7 +10887,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bodyTransform: {fileID: 3707314565005728386}
-  _skillTransform: {fileID: 7512575137256570293}
+  _skillTransform: {fileID: 0}
 --- !u!224 &812790574651285389
 RectTransform:
   m_ObjectHideFlags: 0
