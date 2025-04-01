@@ -36,6 +36,7 @@ namespace TandC.GeometryAstro.Gameplay
                 ActiveSkillType.Dash => new DashBuilder(_player, _inputHandler.DashButton),
                 ActiveSkillType.LaserDestroyerGun => new LaserBuilder(_player.SkillTransform, _inputHandler.SetInteractable, _inputHandler.LaserButton),
                 ActiveSkillType.MachineGun => new MachineGunBuilder(_player.SkillTransform),
+                ActiveSkillType.RifleGun => new RifleGunBuilder(_player.SkillTransform),
                 _ => throw new System.ArgumentException("Unknown skill type")
             };
         }

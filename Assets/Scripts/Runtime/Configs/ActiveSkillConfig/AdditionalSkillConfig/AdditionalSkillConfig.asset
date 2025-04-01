@@ -34,3 +34,5 @@ MonoBehaviour:
     LaserActiveTime: 1.1
   _miniGunConfig:
     StartShootPreCycleCount: 20
+  _rifleGunConfig:
+    StartShootCount: 6

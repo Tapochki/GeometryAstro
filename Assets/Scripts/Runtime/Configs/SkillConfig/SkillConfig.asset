@@ -342,6 +342,47 @@ MonoBehaviour:
         Description: 2
         Value: 3
         IsPercentageValue: 0
+  - SkillName: Rifle Gun
+    SkillIcon: {fileID: 21300000, guid: 12585403ebb444e4686491fd9fc09cf0, type: 3}
+    Type: 29
+    UseType: 0
+    UpgradesInfo:
+    - Name: Rifle Gun New
+      Level: 1
+      Description: Rifle Gun New
+      Value: 3
+      IsPercentageValue: 0
+    - Name: Rifle Gun 2
+      Level: 2
+      Description: Rifle Gun 2
+      Value: 3
+      IsPercentageValue: 0
+    - Name: Rifle Gun 3
+      Level: 3
+      Description: Rifle Gun 3
+      Value: 3
+      IsPercentageValue: 0
+    - Name: Rifle Gun 4
+      Level: 4
+      Description: Rifle Gun 4
+      Value: 3
+      IsPercentageValue: 0
+    - Name: Rifle Gun 5
+      Level: 5
+      Description: Rifle Gun 5
+      Value: 3
+      IsPercentageValue: 0
+    ActiveSkillUpgradeType: 12
+    ExclusionSkillType: 22
+    EvolutionData:
+      EvolutionIcon: {fileID: 0}
+      TypeForEvolution: 0
+      EvolutionInfo:
+        Name: 
+        Level: 0
+        Description: 
+        Value: 0
+        IsPercentageValue: 0
   _passiveSkills:
   - SkillName: Damage
     SkillIcon: {fileID: 21300000, guid: e7d87d2e18de961448b01cc53d0852e9, type: 3}
@@ -1172,5 +1213,5 @@ MonoBehaviour:
       Value: 100
       IsPercentageValue: 0
     ModificatorUpgradeType: 0
-  _startAvailableSkills: 120000001300000014000000250000002600000024000000150000001600000001000000020000000300000004000000050000000d0000000c0000000e000000060000000700000008000000090000000b0000000a0000000f00000010000000
+  _startAvailableSkills: 120000001300000014000000250000002600000024000000150000001600000001000000020000000300000004000000050000000d0000000c0000000e000000060000000700000008000000090000000b0000000a0000000f000000100000001d000000
   _startAvailableTestSkills: 

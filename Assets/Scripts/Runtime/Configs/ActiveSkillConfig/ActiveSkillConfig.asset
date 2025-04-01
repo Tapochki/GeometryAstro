@@ -213,4 +213,29 @@ MonoBehaviour:
       BulletObject: {fileID: 5271754677532632859, guid: 4901795d3c3cd0747bfa383a7ad52b10, type: 3}
       type: 5
     _skillPrefab: {fileID: 3072409194021651063, guid: 2214bbfe8a5cdd04289185d100e59190, type: 3}
+  - SkillName: Rifle
+    type: 12
+    shootDeley: 3
+    detectorRadius: 1
+    bulletData:
+      BulletSpeed: 30000
+      bulletLifeTime: 3
+      bulletLife: 1
+      baseDamage: 30
+      BasicCriticalChance: 5
+      BasicCriticalMultiplier: 1.2
+      BasicBulletSize: 1
+      BulletObject: {fileID: 5271754677532632859, guid: 2b6ffcf916d33d447b9faa123b84322d, type: 3}
+      type: 12
+    EvolvedBulletData:
+      BulletSpeed: 30000
+      bulletLifeTime: 3
+      bulletLife: 1
+      baseDamage: 40
+      BasicCriticalChance: 10
+      BasicCriticalMultiplier: 1.3
+      BasicBulletSize: 1
+      BulletObject: {fileID: 5271754677532632859, guid: 40ec0d97164a6d44780812276738cacc, type: 3}
+      type: 12
+    _skillPrefab: {fileID: 1349409686748728665, guid: bc572c2819bc2424ab7d98d91218d931, type: 3}
   _additionalSkillConfig: {fileID: 11400000, guid: 4b0f5f9250d6d104c9f100651c75b047, type: 2}

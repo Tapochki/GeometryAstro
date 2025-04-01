@@ -13,6 +13,7 @@ namespace TandC.GeometryAstro.Data
         public DashConfig DashConfig => _dashConfig;
         public LaserConfig LaserConfig => _laserConfig;
         public MiniGunConfig MinigunConfig => _miniGunConfig;
+        public RifleGunConfig RifleConfig => _rifleGunConfig;
 
         [SerializeField] ShieldColorConfig _shieldColorConfig;
         [SerializeField] AreaEffectConfig _areaEffectConfig;
@@ -21,6 +22,7 @@ namespace TandC.GeometryAstro.Data
         [SerializeField] DashConfig _dashConfig;
         [SerializeField] LaserConfig _laserConfig;
         [SerializeField] MiniGunConfig _miniGunConfig;
+        [SerializeField] RifleGunConfig _rifleGunConfig;
     }
 
     [System.Serializable]
@@ -68,5 +70,11 @@ namespace TandC.GeometryAstro.Data
     public class MiniGunConfig
     {
         public int StartShootPreCycleCount;
+    }
+
+    [System.Serializable]
+    public class RifleGunConfig
+    {
+        public int StartShootCount;
     }
 }

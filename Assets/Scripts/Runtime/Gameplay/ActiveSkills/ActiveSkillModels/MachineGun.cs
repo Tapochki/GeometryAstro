@@ -27,7 +27,7 @@ namespace TandC.GeometryAstro.Gameplay
         private bool _isShooting;
 
         private float _shootDelayTimer;
-        private const float _shootDelayTime = 0.1f;
+        private float _shootDelayTime = 0.1f;
         private float _shotAngleStep;
 
         private bool _isEvolved;
@@ -63,7 +63,7 @@ namespace TandC.GeometryAstro.Gameplay
             _shotsPerCycle = _startShotsPerCycle * (int)_duplicatorModificator.Value;
             if (_isEvolved)
             {
-                _shotAngleStep = (120f / _shotsPerCycle) * 2;
+                _shotAngleStep = (60f / _shotsPerCycle) * 2;
                 ResetPatternRotation();
             }
 
@@ -144,6 +144,7 @@ namespace TandC.GeometryAstro.Gameplay
 
         public void Evolve()
         {
+            _shootDelayTime = 0.05f;
             _startShotsPerCycle *= 2;
             _isEvolved = true;
             _projectileFactory.Evolve(_data.EvolvedBulletData, () => Object.Instantiate(_data.EvolvedBulletData.BulletObject).GetComponent<StandartBullet>());
