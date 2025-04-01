@@ -46,6 +46,11 @@ namespace TandC.GeometryAstro.Gameplay
             _skill.RegisterShootingPatterns(_playerTransformSkills);
         }
 
+        private void SetStartShootCountPrefab()
+        {
+            _skill.SetStartShotsPerCycle(_config.AdditionalSkillConfig.MinigunConfig.StartShootPreCycleCount);
+        }
+
         protected override void ConstructSkill()
         {
             SetProjectileFactory(
@@ -55,7 +60,7 @@ namespace TandC.GeometryAstro.Gameplay
                 _modificatorContainer.GetModificator(ModificatorType.BulletsSize));
 
             SetReloader(_modificatorContainer.GetModificator(ModificatorType.ReloadTimer));
-
+            SetStartShootCountPrefab();
             SetSkillPrefab();
 
             SetDuplicatorComponent(_modificatorContainer.GetModificator(ModificatorType.Duplicator));

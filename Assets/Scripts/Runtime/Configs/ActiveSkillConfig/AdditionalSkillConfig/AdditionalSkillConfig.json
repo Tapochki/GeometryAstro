@@ -55,5 +55,8 @@
     },
     "_laserConfig": {
         "LaserActiveTime": 1.100000023841858
+    },
+    "_miniGunConfig": {
+        "StartShootPreCycleCount": 20
     }
 }

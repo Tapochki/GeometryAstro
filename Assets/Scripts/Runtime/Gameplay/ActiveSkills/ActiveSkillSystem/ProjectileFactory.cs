@@ -69,7 +69,6 @@ namespace TandC.GeometryAstro.Gameplay
 
         private BaseBullet CreateBullet()
         {
-            Debug.LogError("CreateBullet");
             var bulletObj = _bulletCreator.Invoke();
             bulletObj.transform.SetParent(_projectileParent);
             return bulletObj.GetComponent<BaseBullet>();

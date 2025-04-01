@@ -32,3 +32,5 @@ MonoBehaviour:
     EvolvedColor: {r: 1, g: 0.12941177, b: 0, a: 1}
   _laserConfig:
     LaserActiveTime: 1.1
+  _miniGunConfig:
+    StartShootPreCycleCount: 20

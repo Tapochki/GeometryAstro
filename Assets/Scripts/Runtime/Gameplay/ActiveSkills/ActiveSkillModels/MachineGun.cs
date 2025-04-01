@@ -1,3 +1,4 @@
+using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 using TandC.GeometryAstro.Data;
 using TandC.GeometryAstro.Settings;
@@ -15,46 +16,32 @@ namespace TandC.GeometryAstro.Gameplay
 
         private List<WeaponShootingPattern> _shootingPatterns = new();
 
-        private int _shotsPerCycle = 20;
+        private int _startShotsPerCycle;
+        private int _shotsPerCycle;
         private int _shotsFired;
 
         public ActiveSkillType SkillType { get; } = ActiveSkillType.MachineGun;
 
-        private DuplicatorComponent _duplicatorComponent;
+        private IReadableModificator _duplicatorModificator;
 
-        private bool _shootStart;
+        private bool _isShooting;
 
-        private float _shootDeleyTimer;
-        private float _shootDeleyTime = 0.1f;
+        private float _shootDelayTimer;
+        private const float _shootDelayTime = 0.1f;
+        private float _shotAngleStep;
 
-        public void SetData(ActiveSkillData data) 
-        {
-            _data = data;
-        }
+        private bool _isEvolved;
 
-        public void SetProjectileFactory(IProjectileFactory projectileFactory) 
-        {
-            _projectileFactory = projectileFactory;
-        }
+        public void SetData(ActiveSkillData data) => _data = data;
+        public void SetProjectileFactory(IProjectileFactory projectileFactory) => _projectileFactory = projectileFactory;
+        public void SetReloader(IReloadable reloader) => _reloader = reloader;
+        public void SetStartShotsPerCycle(int value) => _startShotsPerCycle = value;
 
-        public void SetReloader(IReloadable reloader)
-        {
-            _reloader = reloader;
-        }
-
-        public void SetStartShotPerCycle(int value) 
-        {
-            _shotsPerCycle = value;
-        }
-
-        public void Initialization() 
-        {
-            _reloader.StartReload();
-        }
+        public void Initialization() => _reloader.StartReload(); 
 
         public void RegisterDuplicatorComponent(IReadableModificator duplicateModificator)
         {
-            //_duplicatorComponent = new DuplicatorComponent(duplicateModificator, TryShoot, EndShoot);
+            _duplicatorModificator = duplicateModificator;
         }
 
         public void RegisterShootingPatterns(Transform skillParent)
@@ -70,81 +57,109 @@ namespace TandC.GeometryAstro.Gameplay
             }
         }
 
-        private void ShootAction() 
+        private void StartShooting()
         {
-            _shootStart = true;
-            _shotsFired = 0; 
+            Debug.LogError((int)_duplicatorModificator.Value);
+            _shotsPerCycle = _startShotsPerCycle * (int)_duplicatorModificator.Value;
+            if (_isEvolved)
+            {
+                _shotAngleStep = (120f / _shotsPerCycle) * 2;
+                ResetPatternRotation();
+            }
+
+            _isShooting = true;
+            _shotsFired = 0;
         }
 
-        private void Shoot() 
+        private void Shoot()
         {
-            foreach(var pattern in _shootingPatterns) 
+            if (_isEvolved)
             {
-                TryShoot(pattern.Origin.position, pattern.Direction.position);
+                bool isRightOrLeft = true;
+                foreach (var pattern in _shootingPatterns)
+                {
+                    TryShootEvolved(pattern, isRightOrLeft);
+                    isRightOrLeft = !isRightOrLeft;
+                }
+            }
+            else
+            {
+                foreach (var pattern in _shootingPatterns)
+                    TryShoot(pattern);
             }
         }
 
-        private void TryShoot(Vector2 originPattern, Vector2 direction)
+        private void TryShootEvolved(WeaponShootingPattern pattern, bool isRightOrLeft)
         {
-            if (!_shootStart || _shotsFired >= _shotsPerCycle)
-                return;
+            if (!CanShoot()) return;
 
-            Vector2 origin = originPattern;
+            CreateProjectile(pattern.Origin.position, pattern.Direction.position);
+            AdjustPatternRotation(pattern, isRightOrLeft);
+            ProcessShot();
+        }
+
+        private void TryShoot(WeaponShootingPattern pattern)
+        {
+            if (!CanShoot()) return;
 
             float spread = Random.Range(-_data.detectorRadius, _data.detectorRadius);
+            Vector2 direction = new(pattern.Direction.position.x + spread, pattern.Direction.position.y);
 
-            Vector2 baseDirection = new Vector2(direction.x + spread, direction.y);
-
-            CreateShoot(origin, baseDirection);
-
-            _shotsFired++;
-            if (_shotsFired >= _shotsPerCycle)
-            {
-                EndShoot();
-            }
-            _shootDeleyTimer = _shootDeleyTime;
+            CreateProjectile(pattern.Origin.position, direction);
+            ProcessShot();
         }
 
-        private void EndShoot() 
+        private void CreateProjectile(Vector2 origin, Vector2 direction)
         {
-            _shootStart = false;
+            _projectileFactory.CreateProjectile(origin, direction);
+        }
+
+        private bool CanShoot() => _isShooting && _shotsFired < _shotsPerCycle;
+
+        private void ProcessShot()
+        {
+            _shotsFired++;
+            _shootDelayTimer = _shootDelayTime;
+            if (_shotsFired >= _shotsPerCycle) EndShooting();
+        }
+
+        private void EndShooting()
+        {
+            _isShooting = false;
             _reloader.StartReload();
         }
 
-        private void CreateShoot(Vector2 origin, Vector2 direction)
+        private void ResetPatternRotation()
         {
-            _projectileFactory.CreateProjectile(
-                origin,
-                direction
-            );
+            foreach (var pattern in _shootingPatterns)
+                pattern.Origin.localRotation = Quaternion.Euler(0, 0, 0);
         }
 
-        public void Upgrade(float value = 0)
+        private void AdjustPatternRotation(WeaponShootingPattern pattern, bool isRightOrLeft)
         {
-            _shotsPerCycle += (int)value;
+            pattern.Origin.Rotate(0, 0, isRightOrLeft ? _shotAngleStep : -_shotAngleStep);
         }
+
+        public void Upgrade(float value = 0) => _startShotsPerCycle += (int)value;
 
         public void Evolve()
         {
-            _projectileFactory.Evolve(_data.EvolvedBulletData, () => Object.Instantiate(_data.EvolvedBulletData.BulletObject).GetComponent<BulletWithHealth>());
+            _startShotsPerCycle *= 2;
+            _isEvolved = true;
+            _projectileFactory.Evolve(_data.EvolvedBulletData, () => Object.Instantiate(_data.EvolvedBulletData.BulletObject).GetComponent<StandartBullet>());
         }
 
         public void Tick()
         {
-            _duplicatorComponent?.Tick();
             _reloader.Update();
             _projectileFactory.Tick();
-            if (_reloader.CanAction && !_shootStart)
+
+            if (_reloader.CanAction && !_isShooting) StartShooting();
+
+            if (_isShooting)
             {
-                ShootAction();
-            }
-            if (_shootStart) 
-            {
-                _shootDeleyTimer -= Time.deltaTime;
-                if(_shootDeleyTimer <= 0) 
-                {
-                    Shoot();
-                }
+                _shootDelayTimer -= Time.deltaTime;
+                if (_shootDelayTimer <= 0) Shoot();
             }
         }
     }

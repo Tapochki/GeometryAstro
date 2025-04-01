@@ -53,5 +53,10 @@ namespace TandC.GeometryAstro.Data
         public float StartValue;
         [Tooltip("True if the paratransit is used as a percentage. For example, the percentage of increase in crit damage.")]
         public bool IsPercentageValue;
+
+        public override string ToString()
+        {
+            return Type.ToString();
+        }
     }
 }

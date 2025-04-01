@@ -314,22 +314,22 @@ MonoBehaviour:
     - Name: Machine Gun 2
       Level: 2
       Description: Machine Gun 2
-      Value: 2
+      Value: 5
       IsPercentageValue: 0
     - Name: Machine Gun 3
       Level: 3
       Description: Machine Gun 3
-      Value: 2
+      Value: 5
       IsPercentageValue: 0
     - Name: Machine Gun 4
       Level: 4
       Description: Machine Gun 4
-      Value: 2
+      Value: 5
       IsPercentageValue: 0
     - Name: Machine Gun 5
       Level: 5
       Description: Machine Gun 5
-      Value: 2
+      Value: 5
       IsPercentageValue: 0
     ActiveSkillUpgradeType: 5
     ExclusionSkillType: 29
@@ -1172,5 +1172,5 @@ MonoBehaviour:
       Value: 100
       IsPercentageValue: 0
     ModificatorUpgradeType: 0
-  _startAvailableSkills: 1200000013000000140000002500000026000000240000001500000001000000020000000300000004000000050000000d0000000c0000000e000000060000000700000008000000090000000b0000000a0000000f0000001000000016000000
+  _startAvailableSkills: 120000001300000014000000250000002600000024000000150000001600000001000000020000000300000004000000050000000d0000000c0000000e000000060000000700000008000000090000000b0000000a0000000f00000010000000
   _startAvailableTestSkills: 
