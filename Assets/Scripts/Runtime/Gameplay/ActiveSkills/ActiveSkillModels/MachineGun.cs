@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using TandC.GeometryAstro.Data;
 using TandC.GeometryAstro.Settings;
 using UnityEngine;
@@ -12,9 +13,9 @@ namespace TandC.GeometryAstro.Gameplay
         private IReloadable _reloader;
         private ActiveSkillData _data;
 
-        private WeaponShootingPattern _weaponShootingPattern;
+        private List<WeaponShootingPattern> _shootingPatterns = new();
 
-        private int _shotsPerCycle;
+        private int _shotsPerCycle = 20;
         private int _shotsFired;
 
         public ActiveSkillType SkillType { get; } = ActiveSkillType.MachineGun;
@@ -22,6 +23,9 @@ namespace TandC.GeometryAstro.Gameplay
         private DuplicatorComponent _duplicatorComponent;
 
         private bool _shootStart;
+
+        private float _shootDeleyTimer;
+        private float _shootDeleyTime = 0.1f;
 
         public void SetData(ActiveSkillData data) 
         {
@@ -38,6 +42,11 @@ namespace TandC.GeometryAstro.Gameplay
             _reloader = reloader;
         }
 
+        public void SetStartShotPerCycle(int value) 
+        {
+            _shotsPerCycle = value;
+        }
+
         public void Initialization() 
         {
             _reloader.StartReload();
@@ -45,19 +54,18 @@ namespace TandC.GeometryAstro.Gameplay
 
         public void RegisterDuplicatorComponent(IReadableModificator duplicateModificator)
         {
-            _duplicatorComponent = new DuplicatorComponent(duplicateModificator, TryShoot, EndShoot);
+            //_duplicatorComponent = new DuplicatorComponent(duplicateModificator, TryShoot, EndShoot);
         }
 
         public void RegisterShootingPatterns(Transform skillParent)
         {
             GameObject skillObject = MonoBehaviour.Instantiate(_data._skillPrefab, skillParent);
-
+            _shootingPatterns = new List<WeaponShootingPattern>();
             foreach (var pattern in skillObject.GetComponentsInChildren<WeaponShootingPattern>())
             {
                 if (pattern.Type == SkillType)
                 {
-                    _weaponShootingPattern = pattern;
-                    break;
+                    _shootingPatterns.Add(pattern);
                 }
             }
         }
@@ -65,27 +73,36 @@ namespace TandC.GeometryAstro.Gameplay
         private void ShootAction() 
         {
             _shootStart = true;
-            _shotsFired = 0;
+            _shotsFired = 0; 
         }
 
-        private void TryShoot()
+        private void Shoot() 
+        {
+            foreach(var pattern in _shootingPatterns) 
+            {
+                TryShoot(pattern.Origin.position, pattern.Direction.position);
+            }
+        }
+
+        private void TryShoot(Vector2 originPattern, Vector2 direction)
         {
             if (!_shootStart || _shotsFired >= _shotsPerCycle)
                 return;
 
-            Vector2 origin = _weaponShootingPattern.Origin.position;
-            Vector2 baseDirection = (_weaponShootingPattern.Direction.position - _weaponShootingPattern.Origin.position).normalized;
+            Vector2 origin = originPattern;
 
-            float spread = UnityEngine.Random.Range(-5f, 5f);
-            Vector2 direction = Quaternion.Euler(0, 0, spread) * baseDirection;
+            float spread = Random.Range(-_data.detectorRadius, _data.detectorRadius);
 
-            Shoot(origin, direction);
+            Vector2 baseDirection = new Vector2(direction.x + spread, direction.y);
+
+            CreateShoot(origin, baseDirection);
 
             _shotsFired++;
             if (_shotsFired >= _shotsPerCycle)
             {
                 EndShoot();
             }
+            _shootDeleyTimer = _shootDeleyTime;
         }
 
         private void EndShoot() 
@@ -94,7 +111,7 @@ namespace TandC.GeometryAstro.Gameplay
             _reloader.StartReload();
         }
 
-        private void Shoot(Vector2 origin, Vector2 direction)
+        private void CreateShoot(Vector2 origin, Vector2 direction)
         {
             _projectileFactory.CreateProjectile(
                 origin,
@@ -117,12 +134,18 @@ namespace TandC.GeometryAstro.Gameplay
             _duplicatorComponent?.Tick();
             _reloader.Update();
             _projectileFactory.Tick();
-            if (_reloader.CanAction)
+            if (_reloader.CanAction && !_shootStart)
             {
                 ShootAction();
             }
-
-            TryShoot();
+            if (_shootStart) 
+            {
+                _shootDeleyTimer -= Time.deltaTime;
+                if(_shootDeleyTimer <= 0) 
+                {
+                    Shoot();
+                }
+            }
         }
     }
 }

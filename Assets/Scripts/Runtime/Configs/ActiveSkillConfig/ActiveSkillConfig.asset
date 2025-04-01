@@ -191,7 +191,7 @@ MonoBehaviour:
   - SkillName: Machine Gun
     type: 5
     shootDeley: 5
-    detectorRadius: 10
+    detectorRadius: 2
     bulletData:
       BulletSpeed: 30000
       bulletLifeTime: 3
