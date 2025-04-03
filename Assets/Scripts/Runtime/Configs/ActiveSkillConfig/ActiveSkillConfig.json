@@ -248,14 +248,14 @@
         {
             "SkillName": "Machine Gun",
             "type": 5,
-            "shootDeley": 5.0,
-            "detectorRadius": 2.0,
+            "shootDeley": 4.0,
+            "detectorRadius": 4.0,
             "bulletData": {
                 "BulletSpeed": 30000,
                 "bulletLifeTime": 3.0,
                 "bulletLife": 1,
                 "baseDamage": 10.0,
-                "BasicCriticalChance": 5.0,
+                "BasicCriticalChance": 10.0,
                 "BasicCriticalMultiplier": 1.2000000476837159,
                 "BasicBulletSize": 0.5,
                 "BulletObject": {
@@ -268,7 +268,7 @@
                 "bulletLifeTime": 3.0,
                 "bulletLife": 1,
                 "baseDamage": 15.0,
-                "BasicCriticalChance": 10.0,
+                "BasicCriticalChance": 15.0,
                 "BasicCriticalMultiplier": 1.2999999523162842,
                 "BasicBulletSize": 0.5,
                 "BulletObject": {
@@ -281,18 +281,18 @@
             }
         },
         {
-            "SkillName": "Rifle",
+            "SkillName": "Rifle Gun",
             "type": 12,
-            "shootDeley": 3.0,
-            "detectorRadius": 5.0,
+            "shootDeley": 4.0,
+            "detectorRadius": 2.0,
             "bulletData": {
                 "BulletSpeed": 30000,
                 "bulletLifeTime": 3.0,
                 "bulletLife": 1,
-                "baseDamage": 30.0,
-                "BasicCriticalChance": 5.0,
+                "baseDamage": 50.0,
+                "BasicCriticalChance": 10.0,
                 "BasicCriticalMultiplier": 1.2000000476837159,
-                "BasicBulletSize": 0.699999988079071,
+                "BasicBulletSize": 1.0,
                 "BulletObject": {
                     "instanceID": 194568
                 },
@@ -302,10 +302,10 @@
                 "BulletSpeed": 30000,
                 "bulletLifeTime": 3.0,
                 "bulletLife": 1,
-                "baseDamage": 40.0,
-                "BasicCriticalChance": 10.0,
+                "baseDamage": 60.0,
+                "BasicCriticalChance": 15.0,
                 "BasicCriticalMultiplier": 1.2999999523162842,
-                "BasicBulletSize": 0.699999988079071,
+                "BasicBulletSize": 1.0,
                 "BulletObject": {
                     "instanceID": 195318
                 },

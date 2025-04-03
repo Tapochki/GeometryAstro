@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using TandC.GeometryAstro.Data;
 using TandC.GeometryAstro.Settings;
 using UnityEngine;
@@ -14,7 +15,8 @@ namespace TandC.GeometryAstro.Gameplay
 
         private WeaponShootingPattern _shootingPattern;
 
-        private int _shotsPerCycle;
+        private int _currentShots;
+        private int _startShootCount;
 
         public ActiveSkillType SkillType { get; } = ActiveSkillType.RifleGun;
 
@@ -27,7 +29,7 @@ namespace TandC.GeometryAstro.Gameplay
         public void SetData(ActiveSkillData data) => _data = data;
         public void SetProjectileFactory(IProjectileFactory projectileFactory) => _projectileFactory = projectileFactory;
         public void SetReloader(IReloadable reloader) => _reloader = reloader;
-        public void SetStartShotsPerCycle(int value) => _shotsPerCycle = value;
+        public void SetStartShotsPerCycle(int value) => _startShootCount = value;
 
         public void Initialization() => _reloader.StartReload(); 
 
@@ -51,8 +53,8 @@ namespace TandC.GeometryAstro.Gameplay
 
         private void StartShooting()
         {
+            _currentShots = 0;
             _isShooting = true;
-            Shoot();
         }
 
         private void Shoot()
@@ -69,19 +71,19 @@ namespace TandC.GeometryAstro.Gameplay
 
         private void TryShoot()
         {
-            for(int i = 0; i < _shotsPerCycle; i++) 
-            {
-                float spread = Random.Range(-_data.detectorRadius, _data.detectorRadius);
-                Vector2 direction = new(_shootingPattern.Direction.position.x + spread, _shootingPattern.Direction.position.y);
+            float spread = Random.Range(-_data.detectorRadius, _data.detectorRadius);
+            Vector2 direction = new(_shootingPattern.Direction.position.x + spread, _shootingPattern.Direction.position.y);
 
-                Debug.LogError("direction " + direction + "origin " + _shootingPattern.Origin.position);
-                CreateProjectile(_shootingPattern.Origin.position, direction);
-            }
-            EndShooting();
+            CreateProjectile(_shootingPattern.Origin.position, direction);
+            _currentShots++;
+
+            if(_currentShots >= _startShootCount)
+                EndShooting();
         }
 
         private void CreateProjectile(Vector2 origin, Vector2 direction)
         {
+            Debug.LogError(1);
             _projectileFactory.CreateProjectile(origin, direction);
         }
 
@@ -91,11 +93,11 @@ namespace TandC.GeometryAstro.Gameplay
             _reloader.StartReload();
         }
 
-        public void Upgrade(float value = 0) => _shotsPerCycle += (int)value;
+        public void Upgrade(float value = 0) => _startShootCount += (int)value;
 
         public void Evolve()
         {
-            _shotsPerCycle *= 2;
+            _startShootCount *= 2;
             _isEvolved = true;
             _projectileFactory.Evolve(_data.EvolvedBulletData, () => Object.Instantiate(_data.EvolvedBulletData.BulletObject).GetComponent<StandartBullet>());
         }
@@ -105,7 +107,13 @@ namespace TandC.GeometryAstro.Gameplay
             _reloader.Update();
             _projectileFactory.Tick();
 
-            if (_reloader.CanAction && !_isShooting) StartShooting();
+            if (_reloader.CanAction && !_isShooting) 
+                StartShooting();
+
+            if (_isShooting)
+            {
+                Shoot();
+            }
         }
     }
 }
