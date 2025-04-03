@@ -53,7 +53,7 @@ MonoBehaviour:
       BulletObject: {fileID: 5271754677532632859, guid: 1c51f157b5981a644b932ca253a18634, type: 3}
       type: 2
     EvolvedBulletData:
-      BulletSpeed: 200000
+      BulletSpeed: 20000
       bulletLifeTime: 5
       bulletLife: 5
       baseDamage: 30

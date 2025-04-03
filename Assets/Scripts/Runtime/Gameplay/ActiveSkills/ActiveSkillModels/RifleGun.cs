@@ -31,7 +31,10 @@ namespace TandC.GeometryAstro.Gameplay
         public void SetReloader(IReloadable reloader) => _reloader = reloader;
         public void SetStartShotsPerCycle(int value) => _startShootCount = value;
 
-        public void Initialization() => _reloader.StartReload(); 
+        public void Initialization() => _reloader.StartReload();
+
+        public float _circleRotationStep;
+        public float _currentRotation;
 
         public void RegisterDuplicatorComponent(IReadableModificator duplicateModificator)
         {
@@ -54,14 +57,20 @@ namespace TandC.GeometryAstro.Gameplay
         private void StartShooting()
         {
             _currentShots = 0;
+            _currentRotation = 0;
             _isShooting = true;
+            if (_isEvolved) 
+            {
+                _circleRotationStep = (360f / _startShootCount);
+                Debug.LogError("Step" + _circleRotationStep);
+            }
         }
 
         private void Shoot()
         {
             if (_isEvolved)
             {
-
+                TryCircleShoot();
             }
             else
             {
@@ -69,21 +78,45 @@ namespace TandC.GeometryAstro.Gameplay
             }
         }
 
-        private void TryShoot()
+        private void TryCircleShoot() 
+        {
+            RotateOrigin();
+            CreateProjectile(_shootingPattern.Origin.position, _shootingPattern.Direction.position);
+            ProcessShot();
+        }
+
+        private void RotateOrigin() 
+        {
+            _shootingPattern.Origin.rotation = Quaternion.Euler(0, 0, _currentRotation);
+            _currentRotation += _circleRotationStep;
+        }
+
+        private Vector2 SpreadShot() 
         {
             float spread = Random.Range(-_data.detectorRadius, _data.detectorRadius);
-            Vector2 direction = new(_shootingPattern.Direction.position.x + spread, _shootingPattern.Direction.position.y);
+            return new(_shootingPattern.Direction.position.x + spread, _shootingPattern.Direction.position.y);
+        }
+
+        private void TryShoot()
+        {
+            Vector2 direction = SpreadShot();
 
             CreateProjectile(_shootingPattern.Origin.position, direction);
+
+            ProcessShot();
+        }
+
+        private void ProcessShot() 
+        {
             _currentShots++;
 
-            if(_currentShots >= _startShootCount)
+            if (_currentShots >= _startShootCount)
                 EndShooting();
         }
 
         private void CreateProjectile(Vector2 origin, Vector2 direction)
         {
-            Debug.LogError(1);
+            Debug.LogError("CreateProjectile");
             _projectileFactory.CreateProjectile(origin, direction);
         }
 

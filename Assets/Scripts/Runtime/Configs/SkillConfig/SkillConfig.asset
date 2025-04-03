@@ -89,7 +89,7 @@ MonoBehaviour:
     ExclusionSkillType: 0
     EvolutionData:
       EvolutionIcon: {fileID: 21300000, guid: 213abc47d1d5ddc4f925b89e685e6199, type: 3}
-      TypeForEvolution: 2
+      TypeForEvolution: 5
       EvolutionInfo:
         Name: Auto Gun Evolution
         Level: 0
@@ -375,13 +375,13 @@ MonoBehaviour:
     ActiveSkillUpgradeType: 12
     ExclusionSkillType: 22
     EvolutionData:
-      EvolutionIcon: {fileID: 0}
-      TypeForEvolution: 0
+      EvolutionIcon: {fileID: 21300000, guid: 52e9433d8f99e6341a97400e7db0fbd8, type: 3}
+      TypeForEvolution: 5
       EvolutionInfo:
-        Name: 
-        Level: 0
-        Description: 
-        Value: 0
+        Name: Rifle Gun Evolution
+        Level: 1
+        Description: Rifle Gun Evolution
+        Value: 1
         IsPercentageValue: 0
   _passiveSkills:
   - SkillName: Damage
@@ -1213,5 +1213,5 @@ MonoBehaviour:
       Value: 100
       IsPercentageValue: 0
     ModificatorUpgradeType: 0
-  _startAvailableSkills: 120000001300000014000000250000002600000024000000150000001600000001000000020000000300000004000000050000000d0000000c0000000e000000060000000700000008000000090000000b0000000a0000000f000000100000001d000000
+  _startAvailableSkills: 12000000130000001400000025000000260000002400000015000000160000001d00000001000000020000000300000004000000050000000d0000000c0000000e000000060000000700000008000000090000000b0000000a0000000f00000010000000
   _startAvailableTestSkills: 
