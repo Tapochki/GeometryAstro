@@ -71,7 +71,7 @@ CapsuleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1, y: 0.6}
+  m_Size: {x: 0.43, y: 1}
   m_Direction: 0
 --- !u!50 &4221104261401994081
 Rigidbody2D:
@@ -139,7 +139,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.17035, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7138253935901533441}
@@ -187,7 +187,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: 00c09f3d95723aa4cb2b52c01dd13adf, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f7e6b3204bb829d4cabb80c4f6fdb5dc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -420,8 +420,8 @@ ParticleSystem:
     startColor:
       serializedVersion: 2
       minMaxState: 2
-      minColor: {r: 0.65882355, g: 0.2604131, b: 0, a: 1}
-      maxColor: {r: 1, g: 0.49068552, b: 0, a: 1}
+      minColor: {r: 0, g: 0.61960787, b: 1, a: 1}
+      maxColor: {r: 0.49411768, g: 0.7843138, b: 0.91372555, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}

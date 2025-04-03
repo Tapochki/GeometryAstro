@@ -89,7 +89,7 @@ MonoBehaviour:
     ExclusionSkillType: 0
     EvolutionData:
       EvolutionIcon: {fileID: 21300000, guid: 213abc47d1d5ddc4f925b89e685e6199, type: 3}
-      TypeForEvolution: 2
+      TypeForEvolution: 5
       EvolutionInfo:
         Name: Auto Gun Evolution
         Level: 0
@@ -299,6 +299,88 @@ MonoBehaviour:
         Name: Laser Evolve
         Level: 1
         Description: Laser Evolve
+        Value: 1
+        IsPercentageValue: 0
+  - SkillName: Machine Gun
+    SkillIcon: {fileID: 21300000, guid: 8bab814baf82d4a4685a0fb865819e6a, type: 3}
+    Type: 22
+    UseType: 0
+    UpgradesInfo:
+    - Name: Machine Gun New
+      Level: 1
+      Description: Machine Gun New
+      Value: 5
+      IsPercentageValue: 0
+    - Name: Machine Gun 2
+      Level: 2
+      Description: Machine Gun 2
+      Value: 5
+      IsPercentageValue: 0
+    - Name: Machine Gun 3
+      Level: 3
+      Description: Machine Gun 3
+      Value: 5
+      IsPercentageValue: 0
+    - Name: Machine Gun 4
+      Level: 4
+      Description: Machine Gun 4
+      Value: 5
+      IsPercentageValue: 0
+    - Name: Machine Gun 5
+      Level: 5
+      Description: Machine Gun 5
+      Value: 5
+      IsPercentageValue: 0
+    ActiveSkillUpgradeType: 5
+    ExclusionSkillType: 29
+    EvolutionData:
+      EvolutionIcon: {fileID: 21300000, guid: 3c3f1fcc6ed150d4ca204bd96ff9280d, type: 3}
+      TypeForEvolution: 11
+      EvolutionInfo:
+        Name: Machine Gun Evolution
+        Level: 1
+        Description: 2
+        Value: 3
+        IsPercentageValue: 0
+  - SkillName: Rifle Gun
+    SkillIcon: {fileID: 21300000, guid: 12585403ebb444e4686491fd9fc09cf0, type: 3}
+    Type: 29
+    UseType: 0
+    UpgradesInfo:
+    - Name: Rifle Gun New
+      Level: 1
+      Description: Rifle Gun New
+      Value: 3
+      IsPercentageValue: 0
+    - Name: Rifle Gun 2
+      Level: 2
+      Description: Rifle Gun 2
+      Value: 3
+      IsPercentageValue: 0
+    - Name: Rifle Gun 3
+      Level: 3
+      Description: Rifle Gun 3
+      Value: 3
+      IsPercentageValue: 0
+    - Name: Rifle Gun 4
+      Level: 4
+      Description: Rifle Gun 4
+      Value: 3
+      IsPercentageValue: 0
+    - Name: Rifle Gun 5
+      Level: 5
+      Description: Rifle Gun 5
+      Value: 3
+      IsPercentageValue: 0
+    ActiveSkillUpgradeType: 12
+    ExclusionSkillType: 22
+    EvolutionData:
+      EvolutionIcon: {fileID: 21300000, guid: 52e9433d8f99e6341a97400e7db0fbd8, type: 3}
+      TypeForEvolution: 5
+      EvolutionInfo:
+        Name: Rifle Gun Evolution
+        Level: 1
+        Description: Rifle Gun Evolution
         Value: 1
         IsPercentageValue: 0
   _passiveSkills:
@@ -1131,5 +1213,5 @@ MonoBehaviour:
       Value: 100
       IsPercentageValue: 0
     ModificatorUpgradeType: 0
-  _startAvailableSkills: 1200000013000000140000002500000026000000240000001500000001000000020000000300000004000000050000000d0000000c0000000e000000060000000700000008000000090000000b0000000a0000000f00000010000000
+  _startAvailableSkills: 12000000130000001400000025000000260000002400000015000000160000001d00000001000000020000000300000004000000050000000d0000000c0000000e000000060000000700000008000000090000000b0000000a0000000f00000010000000
   _startAvailableTestSkills: 
