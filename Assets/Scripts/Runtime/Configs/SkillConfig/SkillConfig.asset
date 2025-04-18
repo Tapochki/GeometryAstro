@@ -383,6 +383,47 @@ MonoBehaviour:
         Description: Rifle Gun Evolution
         Value: 1
         IsPercentageValue: 0
+  - SkillName: Energy Gun
+    SkillIcon: {fileID: 21300000, guid: 375df1768e4d66a40a196542fff58442, type: 3}
+    Type: 23
+    UseType: 0
+    UpgradesInfo:
+    - Name: Energy Gun New
+      Level: 1
+      Description: Energy Gun New
+      Value: 1
+      IsPercentageValue: 0
+    - Name: Energy Gun 2
+      Level: 2
+      Description: Energy Gun 2
+      Value: 1
+      IsPercentageValue: 0
+    - Name: Energy Gun 3
+      Level: 3
+      Description: Energy Gun 3
+      Value: 1
+      IsPercentageValue: 0
+    - Name: Energy Gun 4
+      Level: 4
+      Description: Energy Gun 4
+      Value: 1
+      IsPercentageValue: 0
+    - Name: Energy Gun 5
+      Level: 5
+      Description: Energy Gun 5
+      Value: 1
+      IsPercentageValue: 0
+    ActiveSkillUpgradeType: 6
+    ExclusionSkillType: 0
+    EvolutionData:
+      EvolutionIcon: {fileID: 21300000, guid: ad98789fb395a994bb53aa73116bd70a, type: 3}
+      TypeForEvolution: 11
+      EvolutionInfo:
+        Name: Energy Gun Evolve
+        Level: 1
+        Description: Energy Gun Evolve
+        Value: 1
+        IsPercentageValue: 0
   _passiveSkills:
   - SkillName: Damage
     SkillIcon: {fileID: 21300000, guid: e7d87d2e18de961448b01cc53d0852e9, type: 3}
@@ -1213,5 +1254,5 @@ MonoBehaviour:
       Value: 100
       IsPercentageValue: 0
     ModificatorUpgradeType: 0
-  _startAvailableSkills: 12000000130000001400000025000000260000002400000015000000160000001d00000001000000020000000300000004000000050000000d0000000c0000000e000000060000000700000008000000090000000b0000000a0000000f00000010000000
+  _startAvailableSkills: 12000000130000001400000025000000260000002400000015000000160000001d00000001000000020000000300000004000000050000000d0000000c0000000e000000060000000700000008000000090000000b0000000a0000000f0000001000000017000000
   _startAvailableTestSkills: 

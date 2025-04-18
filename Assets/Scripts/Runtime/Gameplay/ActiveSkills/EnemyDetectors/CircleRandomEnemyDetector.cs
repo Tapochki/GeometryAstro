@@ -8,7 +8,7 @@ namespace TandC.GeometryAstro.Gameplay
     {
         public CircleRandomEnemyDetector(LayerMask enemyLayer): base(enemyLayer) { }
 
-        public override Vector2? GetEnemyPosition(Vector2 origin, Vector2 direction = default, float maxDistance = 100)
+        public override Enemy GetEnemy(Vector2 origin, Vector2 direction = default, float maxDistance = 100)
         {
             Collider2D[] hits = TakeCircleHits(origin, maxDistance);
 
@@ -33,7 +33,7 @@ namespace TandC.GeometryAstro.Gameplay
 
             Debug.LogError(randomEnemy.transform.position);
 
-            return randomEnemy.transform.position;
+            return randomEnemy;
         }
     }
 }

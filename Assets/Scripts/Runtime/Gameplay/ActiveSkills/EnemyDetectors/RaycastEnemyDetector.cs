@@ -12,7 +12,7 @@ namespace TandC.GeometryAstro.Gameplay
             _enemyLayer = enemyLayer;
         }
 
-        public Vector2? GetEnemyPosition(Vector2 origin, Vector2 direction = default, float maxDistance = 100)
+        public Enemy GetEnemy(Vector2 origin, Vector2 direction = default, float maxDistance = 100)
         {
             RaycastHit2D hit = Physics2D.Raycast(origin, -(origin - direction), maxDistance, _enemyLayer);
 
@@ -20,7 +20,7 @@ namespace TandC.GeometryAstro.Gameplay
 
             if (hit.collider != null && hit.collider.TryGetComponent(out Enemy enemy))
             {
-                return enemy.transform.position;
+                return enemy;
             }
             return null;
         }

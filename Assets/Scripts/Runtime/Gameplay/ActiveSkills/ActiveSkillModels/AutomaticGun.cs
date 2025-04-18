@@ -75,7 +75,7 @@ namespace TandC.GeometryAstro.Gameplay
 
         private void TryShoot()
         {
-            Vector2? target = _enemyDetector.GetEnemyPosition(_weaponShootingPattern.Origin.position, default, _data.detectorRadius);
+            Vector2? target = _enemyDetector.GetEnemy(_weaponShootingPattern.Origin.position, default, _data.detectorRadius).transform.position;
             if (target.HasValue)
             {
                 Shoot(_weaponShootingPattern.Origin.position, target.Value);

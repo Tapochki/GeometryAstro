@@ -125,12 +125,14 @@ namespace TandC.GeometryAstro.Gameplay
 
             Vector2 origin = detectionPattern.Origin.position;
             Vector2 direction = detectionPattern.Direction.position;
+            Debug.LogError(_enemyDetector);
+            Enemy enemy = _enemyDetector.GetEnemy(origin, direction, _data.detectorRadius);
+            if(enemy == null) return;
 
-            Vector2? enemyPosition = _enemyDetector.GetEnemyPosition(origin, direction, _data.detectorRadius);
+            Vector2? enemyPosition = enemy.transform.position;
 
             if (enemyPosition.HasValue)
             {
-
                 _shootStart = true;
                 _duplicatorComponent.Activate();           
             }

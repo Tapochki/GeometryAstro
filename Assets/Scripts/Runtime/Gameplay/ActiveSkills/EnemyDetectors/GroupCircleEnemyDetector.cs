@@ -1,13 +1,14 @@
 
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace TandC.GeometryAstro.Gameplay 
 {
-    public abstract class CircleEnemyDetector : IEnemyDetector
+    public class GroupCircleEnemyDetector : IEnemyDetector
     {
         private readonly LayerMask _enemyLayer;
 
-        public CircleEnemyDetector(LayerMask enemyLayer)
+        public GroupCircleEnemyDetector(LayerMask enemyLayer)
         {
             _enemyLayer = enemyLayer;
         }
@@ -34,19 +35,29 @@ namespace TandC.GeometryAstro.Gameplay
             }
         }
 
-        protected Enemy HitScanEnemy(Collider2D[] hits) 
+        protected List<Enemy> FilterEnemies(Collider2D[] hits)
         {
+            List<Enemy> enemies = new List<Enemy>();
             foreach (var hit in hits)
             {
                 if (hit.TryGetComponent(out Enemy enemy))
                 {
-                    return enemy;
+                    enemies.Add(enemy);
                 }
             }
-            return null;
+            return enemies;
         }
 
-        public abstract Enemy GetEnemy(Vector2 origin, Vector2 direction = default, float maxDistance = 100);
+        public List<Enemy> GetEnemyGroup(Vector2 origin, float maxDistance = 100) 
+        {
+            Collider2D[] hits = TakeCircleHits(origin, maxDistance);
+            return FilterEnemies(hits);
+        }
+
+        public Enemy GetEnemy(Vector2 origin, Vector2 direction = default, float maxDistance = 100)
+        {
+            return null;
+        }
     }
 }
 

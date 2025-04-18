@@ -24,6 +24,8 @@ namespace TandC.GeometryAstro.Gameplay
 
         public EnemyData EnemyData { get; private set; }
 
+        public bool IsActive { get; private set; }
+
         private float _speedModificator;
 
         private SpriteRenderer _enemySprite;
@@ -58,6 +60,7 @@ namespace TandC.GeometryAstro.Gameplay
 
             _modelViewRenderer.sprite = data.mainSprite;
             SetupHealthComponent(healthModificator);
+            IsActive = true;
         }
 
         public void SetupHealthComponent(float healthModificator)
@@ -70,6 +73,7 @@ namespace TandC.GeometryAstro.Gameplay
         public void ProccesingEnemyDeath(bool isKilled = true)
         {
             _onDeathEvent?.Invoke(this, isKilled);
+            IsActive = false;
         }
 
         public void ConfigureComponents(IMove moveComponent, IRotation rotationComponent, AttackComponent attackComponent)
