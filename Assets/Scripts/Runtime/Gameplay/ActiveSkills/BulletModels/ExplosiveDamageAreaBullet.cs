@@ -6,6 +6,7 @@ namespace TandC.GeometryAstro.Gameplay
     public class ExplosiveDamageAreaBullet : BaseBullet
     {
         private DamageAreaEffect _damageAreaEffect;
+        private ExplosionDamage _explosionDamage;
 
         IReadableModificator _areaRadiusModificator;
 
@@ -15,6 +16,7 @@ namespace TandC.GeometryAstro.Gameplay
         {
             _areaRadiusModificator = areaRadiusModificator;
             _damageInterval = damageInterval;
+            _explosionDamage = new ExplosionDamage();
             return this;
         }
 
@@ -27,7 +29,7 @@ namespace TandC.GeometryAstro.Gameplay
         private void CreateExplosion()
         {
             float explosionRadius = _areaRadiusModificator.Value;
-            new ExplosionDamage().ApplyExplosionDamage(transform.position, explosionRadius, _bulletData.baseDamage, _criticalChance, _criticalMultiplier);
+            _explosionDamage.ApplyExplosionDamage(transform.position, explosionRadius, _bulletData.baseDamage, _criticalChance, _criticalMultiplier);
         }
 
         private void CreateDamageArea()

@@ -29,6 +29,8 @@ namespace TandC.GeometryAstro.Gameplay
         private IReadableModificator _critModificator;
         private IReadableModificator _critChanceModificator;
 
+        private ExplosionDamage _explosionDamage;
+
         public bool IsHaveTarget { get; private set; }
         private bool _isEvolved;
 
@@ -97,7 +99,7 @@ namespace TandC.GeometryAstro.Gameplay
 
             if (_isEvolved) 
             {
-                new ExplosionDamage().ApplyExplosionDamage(_targetEnemy.transform.position, 4f, _beamData.baseDamage, CalculateCriticalChance(), CalculateCriticalMultiplier());
+                _explosionDamage.ApplyExplosionDamage(_targetEnemy.transform.position, 4f, _beamData.baseDamage, CalculateCriticalChance(), CalculateCriticalMultiplier());
             }
         }
 
@@ -164,7 +166,7 @@ namespace TandC.GeometryAstro.Gameplay
             _lineAnimationObject.GetComponent<SpriteRenderer>().color = Color.red;
             _endlineObject.GetComponent<SpriteRenderer>().color = Color.red;
             _endlineObject.transform.localScale = new Vector3(2, 2, 2);
-
+            _explosionDamage = new ExplosionDamage();
             _isEvolved = true;
         }
 

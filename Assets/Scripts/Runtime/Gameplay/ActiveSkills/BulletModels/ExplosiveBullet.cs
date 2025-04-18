@@ -6,9 +6,11 @@ namespace TandC.GeometryAstro.Gameplay
     public class ExplosiveBullet : BaseBullet
     {
         private IReadableModificator _areaRadiusModificator;
+        private ExplosionDamage _explosionDamage;
 
         public ExplosiveBullet SetExplosiveDamageAreaBullet(IReadableModificator areaRadiusModificator)
         {
+            _explosionDamage = new ExplosionDamage();
             _areaRadiusModificator = areaRadiusModificator;
             return this;
         }
@@ -24,7 +26,7 @@ namespace TandC.GeometryAstro.Gameplay
             EventBusHolder.EventBus.Raise(new CreateExplosion(gameObject.transform.position, _areaRadiusModificator.Value));
             //change hardcode radius to data.radius
             Create(gameObject.transform.position, _areaRadiusModificator.Value);
-            new ExplosionDamage().ApplyExplosionDamage(gameObject.transform.position, _areaRadiusModificator.Value, _bulletData.baseDamage, _criticalChance, _criticalMultiplier);
+            _explosionDamage.ApplyExplosionDamage(gameObject.transform.position, _areaRadiusModificator.Value, _bulletData.baseDamage, _criticalChance, _criticalMultiplier);
         }
 
         //Test change to VfX
