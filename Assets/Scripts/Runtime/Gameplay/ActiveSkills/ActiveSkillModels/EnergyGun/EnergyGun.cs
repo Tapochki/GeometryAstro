@@ -151,7 +151,7 @@ namespace TandC.GeometryAstro.Gameplay
             foreach(var beam in _activeBeams) 
             {
                 beam.DiscardEnemy();
-                beam.Evolve();
+                beam.Evolve(_data.EvolvedBulletData);
             }
         }
 

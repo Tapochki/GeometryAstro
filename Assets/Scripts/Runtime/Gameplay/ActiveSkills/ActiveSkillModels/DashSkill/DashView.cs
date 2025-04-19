@@ -89,6 +89,7 @@ namespace TandC.GeometryAstro.Gameplay
 
         public void Evolve(BulletData traceData) 
         {
+            _data = traceData;
             CreateProjectFactory(traceData);
             SetNewEvolvedColor();
             _isEvolve = true;

@@ -424,6 +424,47 @@ MonoBehaviour:
         Description: Energy Gun Evolve
         Value: 1
         IsPercentageValue: 0
+  - SkillName: Aura Skill
+    SkillIcon: {fileID: 21300000, guid: e3350eeea3dd9b94db32bcdb2c42495a, type: 3}
+    Type: 25
+    UseType: 0
+    UpgradesInfo:
+    - Name: Aura New
+      Level: 1
+      Description: Aura New
+      Value: 2
+      IsPercentageValue: 0
+    - Name: Aura 2
+      Level: 2
+      Description: Aura 2
+      Value: 2
+      IsPercentageValue: 0
+    - Name: Aura 3
+      Level: 3
+      Description: Aura 3
+      Value: 2
+      IsPercentageValue: 0
+    - Name: Aura 4
+      Level: 4
+      Description: Aura 4
+      Value: 2
+      IsPercentageValue: 0
+    - Name: Aura 5
+      Level: 5
+      Description: Aura 5
+      Value: 2
+      IsPercentageValue: 0
+    ActiveSkillUpgradeType: 8
+    ExclusionSkillType: 0
+    EvolutionData:
+      EvolutionIcon: {fileID: 0}
+      TypeForEvolution: 11
+      EvolutionInfo:
+        Name: Aura Evolution
+        Level: 1
+        Description: Aura Evolution
+        Value: 0
+        IsPercentageValue: 0
   _passiveSkills:
   - SkillName: Damage
     SkillIcon: {fileID: 21300000, guid: e7d87d2e18de961448b01cc53d0852e9, type: 3}
@@ -1254,5 +1295,5 @@ MonoBehaviour:
       Value: 100
       IsPercentageValue: 0
     ModificatorUpgradeType: 0
-  _startAvailableSkills: 12000000130000001400000025000000260000002400000015000000160000001d00000001000000020000000300000004000000050000000d0000000c0000000e000000060000000700000008000000090000000b0000000a0000000f0000001000000017000000
+  _startAvailableSkills: 12000000130000001400000025000000260000002400000015000000160000001d0000001700000001000000020000000300000004000000050000000d0000000c0000000e000000060000000700000008000000090000000b0000000a0000000f0000001000000019000000
   _startAvailableTestSkills: 

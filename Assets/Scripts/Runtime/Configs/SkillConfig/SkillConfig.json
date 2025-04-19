@@ -4,7 +4,7 @@
         {
             "SkillName": "Standart Gun",
             "SkillIcon": {
-                "instanceID": 33894
+                "instanceID": 34504
             },
             "Type": 18,
             "UseType": 0,
@@ -49,7 +49,7 @@
             "ExclusionSkillType": 0,
             "EvolutionData": {
                 "EvolutionIcon": {
-                    "instanceID": 33896
+                    "instanceID": 34506
                 },
                 "TypeForEvolution": 11,
                 "EvolutionInfo": {
@@ -64,7 +64,7 @@
         {
             "SkillName": "Auto Gun",
             "SkillIcon": {
-                "instanceID": 33898
+                "instanceID": 34508
             },
             "Type": 19,
             "UseType": 0,
@@ -109,7 +109,7 @@
             "ExclusionSkillType": 0,
             "EvolutionData": {
                 "EvolutionIcon": {
-                    "instanceID": 33900
+                    "instanceID": 34510
                 },
                 "TypeForEvolution": 5,
                 "EvolutionInfo": {
@@ -124,7 +124,7 @@
         {
             "SkillName": "Rocket Gun",
             "SkillIcon": {
-                "instanceID": 33902
+                "instanceID": 34512
             },
             "Type": 20,
             "UseType": 0,
@@ -169,7 +169,7 @@
             "ExclusionSkillType": 20,
             "EvolutionData": {
                 "EvolutionIcon": {
-                    "instanceID": 33904
+                    "instanceID": 34514
                 },
                 "TypeForEvolution": 3,
                 "EvolutionInfo": {
@@ -184,7 +184,7 @@
         {
             "SkillName": "Shield",
             "SkillIcon": {
-                "instanceID": 33906
+                "instanceID": 34516
             },
             "Type": 37,
             "UseType": 0,
@@ -229,7 +229,7 @@
             "ExclusionSkillType": 0,
             "EvolutionData": {
                 "EvolutionIcon": {
-                    "instanceID": 33900
+                    "instanceID": 34510
                 },
                 "TypeForEvolution": 5,
                 "EvolutionInfo": {
@@ -244,7 +244,7 @@
         {
             "SkillName": "Cloak",
             "SkillIcon": {
-                "instanceID": 33908
+                "instanceID": 34518
             },
             "Type": 38,
             "UseType": 0,
@@ -289,7 +289,7 @@
             "ExclusionSkillType": 0,
             "EvolutionData": {
                 "EvolutionIcon": {
-                    "instanceID": 33910
+                    "instanceID": 34520
                 },
                 "TypeForEvolution": 13,
                 "EvolutionInfo": {
@@ -304,7 +304,7 @@
         {
             "SkillName": "Dash",
             "SkillIcon": {
-                "instanceID": 33912
+                "instanceID": 34522
             },
             "Type": 36,
             "UseType": 0,
@@ -349,7 +349,7 @@
             "ExclusionSkillType": 0,
             "EvolutionData": {
                 "EvolutionIcon": {
-                    "instanceID": 33914
+                    "instanceID": 34524
                 },
                 "TypeForEvolution": 5,
                 "EvolutionInfo": {
@@ -364,7 +364,7 @@
         {
             "SkillName": "Laser",
             "SkillIcon": {
-                "instanceID": 33916
+                "instanceID": 34526
             },
             "Type": 21,
             "UseType": 0,
@@ -409,7 +409,7 @@
             "ExclusionSkillType": 0,
             "EvolutionData": {
                 "EvolutionIcon": {
-                    "instanceID": 33918
+                    "instanceID": 34528
                 },
                 "TypeForEvolution": 5,
                 "EvolutionInfo": {
@@ -424,7 +424,7 @@
         {
             "SkillName": "Machine Gun",
             "SkillIcon": {
-                "instanceID": 33920
+                "instanceID": 34530
             },
             "Type": 22,
             "UseType": 0,
@@ -469,7 +469,7 @@
             "ExclusionSkillType": 29,
             "EvolutionData": {
                 "EvolutionIcon": {
-                    "instanceID": 33922
+                    "instanceID": 34532
                 },
                 "TypeForEvolution": 11,
                 "EvolutionInfo": {
@@ -484,7 +484,7 @@
         {
             "SkillName": "Rifle Gun",
             "SkillIcon": {
-                "instanceID": 33924
+                "instanceID": 34534
             },
             "Type": 29,
             "UseType": 0,
@@ -529,7 +529,7 @@
             "ExclusionSkillType": 22,
             "EvolutionData": {
                 "EvolutionIcon": {
-                    "instanceID": 33926
+                    "instanceID": 34536
                 },
                 "TypeForEvolution": 5,
                 "EvolutionInfo": {
@@ -544,7 +544,7 @@
         {
             "SkillName": "Energy Gun",
             "SkillIcon": {
-                "instanceID": 33916
+                "instanceID": 34526
             },
             "Type": 23,
             "UseType": 0,
@@ -589,7 +589,7 @@
             "ExclusionSkillType": 0,
             "EvolutionData": {
                 "EvolutionIcon": {
-                    "instanceID": 36808
+                    "instanceID": 34538
                 },
                 "TypeForEvolution": 11,
                 "EvolutionInfo": {
@@ -600,13 +600,73 @@
                     "IsPercentageValue": false
                 }
             }
+        },
+        {
+            "SkillName": "Aura Skill",
+            "SkillIcon": {
+                "instanceID": 33852
+            },
+            "Type": 25,
+            "UseType": 0,
+            "UpgradesInfo": [
+                {
+                    "Name": "Aura New",
+                    "Level": 1,
+                    "Description": "Aura New",
+                    "Value": 2.0,
+                    "IsPercentageValue": false
+                },
+                {
+                    "Name": "Aura 2",
+                    "Level": 2,
+                    "Description": "Aura 2",
+                    "Value": 2.0,
+                    "IsPercentageValue": false
+                },
+                {
+                    "Name": "Aura 3",
+                    "Level": 3,
+                    "Description": "Aura 3",
+                    "Value": 2.0,
+                    "IsPercentageValue": false
+                },
+                {
+                    "Name": "Aura 4",
+                    "Level": 4,
+                    "Description": "Aura 4",
+                    "Value": 2.0,
+                    "IsPercentageValue": false
+                },
+                {
+                    "Name": "Aura 5",
+                    "Level": 5,
+                    "Description": "Aura 5",
+                    "Value": 2.0,
+                    "IsPercentageValue": false
+                }
+            ],
+            "ActiveSkillUpgradeType": 8,
+            "ExclusionSkillType": 0,
+            "EvolutionData": {
+                "EvolutionIcon": {
+                    "instanceID": 0
+                },
+                "TypeForEvolution": 11,
+                "EvolutionInfo": {
+                    "Name": "Aura Evolution",
+                    "Level": 1,
+                    "Description": "Aura Evolution",
+                    "Value": 0.0,
+                    "IsPercentageValue": false
+                }
+            }
         }
     ],
     "_passiveSkills": [
         {
             "SkillName": "Damage",
             "SkillIcon": {
-                "instanceID": 33928
+                "instanceID": 34540
             },
             "Type": 1,
             "UseType": 1,
@@ -687,7 +747,7 @@
         {
             "SkillName": "MaxHealth",
             "SkillIcon": {
-                "instanceID": 33930
+                "instanceID": 34542
             },
             "Type": 2,
             "UseType": 1,
@@ -768,7 +828,7 @@
         {
             "SkillName": "Armor",
             "SkillIcon": {
-                "instanceID": 33932
+                "instanceID": 34544
             },
             "Type": 3,
             "UseType": 1,
@@ -849,7 +909,7 @@
         {
             "SkillName": "Speed",
             "SkillIcon": {
-                "instanceID": 33934
+                "instanceID": 34546
             },
             "Type": 4,
             "UseType": 1,
@@ -930,7 +990,7 @@
         {
             "SkillName": "ReviveCount",
             "SkillIcon": {
-                "instanceID": 33936
+                "instanceID": 34548
             },
             "Type": 5,
             "UseType": 1,
@@ -948,7 +1008,7 @@
         {
             "SkillName": "Reloader",
             "SkillIcon": {
-                "instanceID": 33938
+                "instanceID": 34550
             },
             "Type": 13,
             "UseType": 1,
@@ -1029,7 +1089,7 @@
         {
             "SkillName": "Regeneration",
             "SkillIcon": {
-                "instanceID": 33940
+                "instanceID": 34552
             },
             "Type": 12,
             "UseType": 1,
@@ -1110,7 +1170,7 @@
         {
             "SkillName": "Magnet",
             "SkillIcon": {
-                "instanceID": 33942
+                "instanceID": 34554
             },
             "Type": 14,
             "UseType": 1,
@@ -1191,7 +1251,7 @@
         {
             "SkillName": "Critical Damage",
             "SkillIcon": {
-                "instanceID": 33944
+                "instanceID": 34556
             },
             "Type": 6,
             "UseType": 1,
@@ -1272,7 +1332,7 @@
         {
             "SkillName": "Critical Chance",
             "SkillIcon": {
-                "instanceID": 33894
+                "instanceID": 34504
             },
             "Type": 7,
             "UseType": 1,
@@ -1353,7 +1413,7 @@
         {
             "SkillName": "Curse Provocation",
             "SkillIcon": {
-                "instanceID": 33894
+                "instanceID": 34504
             },
             "Type": 8,
             "UseType": 1,
@@ -1434,7 +1494,7 @@
         {
             "SkillName": "СurseReinforcement",
             "SkillIcon": {
-                "instanceID": 33946
+                "instanceID": 34558
             },
             "Type": 9,
             "UseType": 1,
@@ -1515,7 +1575,7 @@
         {
             "SkillName": "Duplicator",
             "SkillIcon": {
-                "instanceID": 33948
+                "instanceID": 34560
             },
             "Type": 11,
             "UseType": 1,
@@ -1533,7 +1593,7 @@
         {
             "SkillName": "BulletsSize",
             "SkillIcon": {
-                "instanceID": 33946
+                "instanceID": 34558
             },
             "Type": 10,
             "UseType": 1,
@@ -1614,7 +1674,7 @@
         {
             "SkillName": "Receiving Experience",
             "SkillIcon": {
-                "instanceID": 33950
+                "instanceID": 34562
             },
             "Type": 15,
             "UseType": 1,
@@ -1695,7 +1755,7 @@
         {
             "SkillName": "Receiving Coins",
             "SkillIcon": {
-                "instanceID": 33952
+                "instanceID": 34564
             },
             "Type": 16,
             "UseType": 1,
@@ -1778,7 +1838,7 @@
         {
             "SkillName": "Score Infinite",
             "SkillIcon": {
-                "instanceID": 33952
+                "instanceID": 34564
             },
             "Type": 42,
             "UseType": 1,
@@ -1796,7 +1856,7 @@
         {
             "SkillName": "Score Infinite",
             "SkillIcon": {
-                "instanceID": 33952
+                "instanceID": 34564
             },
             "Type": 43,
             "UseType": 1,
@@ -1822,6 +1882,7 @@
         21,
         22,
         29,
+        23,
         1,
         2,
         3,
@@ -1838,7 +1899,7 @@
         10,
         15,
         16,
-        23
+        25
     ],
     "_startAvailableTestSkills": []
 }

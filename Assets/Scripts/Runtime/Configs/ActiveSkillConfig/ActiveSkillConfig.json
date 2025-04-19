@@ -1,7 +1,7 @@
 {
     "_activeSkillsData": [
         {
-            "SkillName": "StandartGun",
+            "SkillName": "Standart Gun",
             "type": 1,
             "shootDeley": 0.5,
             "detectorRadius": 60.0,
@@ -14,7 +14,7 @@
                 "BasicCriticalMultiplier": 1.25,
                 "BasicBulletSize": 0.4000000059604645,
                 "BulletObject": {
-                    "instanceID": 17748
+                    "instanceID": 17768
                 },
                 "type": 1
             },
@@ -27,12 +27,12 @@
                 "BasicCriticalMultiplier": 1.2999999523162842,
                 "BasicBulletSize": 0.4000000059604645,
                 "BulletObject": {
-                    "instanceID": 17768
+                    "instanceID": 17788
                 },
                 "type": 1
             },
             "_skillPrefab": {
-                "instanceID": 17868
+                "instanceID": 17882
             }
         },
         {
@@ -49,7 +49,7 @@
                 "BasicCriticalMultiplier": 1.25,
                 "BasicBulletSize": 0.4000000059604645,
                 "BulletObject": {
-                    "instanceID": 17866
+                    "instanceID": 17880
                 },
                 "type": 2
             },
@@ -62,16 +62,16 @@
                 "BasicCriticalMultiplier": 1.2999999523162842,
                 "BasicBulletSize": 0.4000000059604645,
                 "BulletObject": {
-                    "instanceID": 17828
+                    "instanceID": 17848
                 },
                 "type": 2
             },
             "_skillPrefab": {
-                "instanceID": 17738
+                "instanceID": 17758
             }
         },
         {
-            "SkillName": "RocketGun",
+            "SkillName": "Rocket Gun",
             "type": 3,
             "shootDeley": 1.0,
             "detectorRadius": 10.0,
@@ -84,7 +84,7 @@
                 "BasicCriticalMultiplier": 1.25,
                 "BasicBulletSize": 0.20000000298023225,
                 "BulletObject": {
-                    "instanceID": 17776
+                    "instanceID": 17796
                 },
                 "type": 3
             },
@@ -97,12 +97,12 @@
                 "BasicCriticalMultiplier": 1.2999999523162842,
                 "BasicBulletSize": 0.20000000298023225,
                 "BulletObject": {
-                    "instanceID": 17846
+                    "instanceID": 17864
                 },
                 "type": 3
             },
             "_skillPrefab": {
-                "instanceID": 17756
+                "instanceID": 17776
             }
         },
         {
@@ -137,7 +137,7 @@
                 "type": 0
             },
             "_skillPrefab": {
-                "instanceID": 17812
+                "instanceID": 17832
             }
         },
         {
@@ -202,12 +202,12 @@
                 "BasicCriticalMultiplier": 1.5,
                 "BasicBulletSize": 0.30000001192092898,
                 "BulletObject": {
-                    "instanceID": 17850
+                    "instanceID": 17868
                 },
                 "type": 19
             },
             "_skillPrefab": {
-                "instanceID": 17822
+                "instanceID": 17842
             }
         },
         {
@@ -242,7 +242,7 @@
                 "type": 4
             },
             "_skillPrefab": {
-                "instanceID": 17834
+                "instanceID": 17854
             }
         },
         {
@@ -259,7 +259,7 @@
                 "BasicCriticalMultiplier": 1.2000000476837159,
                 "BasicBulletSize": 0.5,
                 "BulletObject": {
-                    "instanceID": 17860
+                    "instanceID": 17874
                 },
                 "type": 5
             },
@@ -272,12 +272,12 @@
                 "BasicCriticalMultiplier": 1.2999999523162842,
                 "BasicBulletSize": 0.5,
                 "BulletObject": {
-                    "instanceID": 17876
+                    "instanceID": 17892
                 },
                 "type": 5
             },
             "_skillPrefab": {
-                "instanceID": 17770
+                "instanceID": 17790
             }
         },
         {
@@ -294,7 +294,7 @@
                 "BasicCriticalMultiplier": 1.2000000476837159,
                 "BasicBulletSize": 1.0,
                 "BulletObject": {
-                    "instanceID": 17854
+                    "instanceID": 34100
                 },
                 "type": 12
             },
@@ -307,51 +307,86 @@
                 "BasicCriticalMultiplier": 1.2999999523162842,
                 "BasicBulletSize": 1.0,
                 "BulletObject": {
-                    "instanceID": 17742
+                    "instanceID": 17762
                 },
                 "type": 12
             },
             "_skillPrefab": {
-                "instanceID": 17838
+                "instanceID": 17858
             }
         },
         {
             "SkillName": "Energy Gun",
             "type": 6,
-            "shootDeley": 1.0,
-            "detectorRadius": 30.0,
+            "shootDeley": 0.5,
+            "detectorRadius": 50.0,
             "bulletData": {
                 "BulletSpeed": 0,
-                "bulletLifeTime": 0.10000000149011612,
+                "bulletLifeTime": 0.4000000059604645,
                 "bulletLife": 1,
-                "baseDamage": 10.0,
+                "baseDamage": 3.0,
                 "BasicCriticalChance": 10.0,
                 "BasicCriticalMultiplier": 1.2000000476837159,
                 "BasicBulletSize": 1.0,
                 "BulletObject": {
-                    "instanceID": 17840
+                    "instanceID": 34088
                 },
                 "type": 6
             },
             "EvolvedBulletData": {
                 "BulletSpeed": 0,
-                "bulletLifeTime": 0.10000000149011612,
+                "bulletLifeTime": 0.30000001192092898,
                 "bulletLife": 1,
-                "baseDamage": 15.0,
+                "baseDamage": 5.0,
                 "BasicCriticalChance": 15.0,
                 "BasicCriticalMultiplier": 1.2999999523162842,
                 "BasicBulletSize": 1.0,
                 "BulletObject": {
-                    "instanceID": 17840
+                    "instanceID": 34088
                 },
                 "type": 6
             },
             "_skillPrefab": {
-                "instanceID": 36716
+                "instanceID": 17890
+            }
+        },
+        {
+            "SkillName": "Aura Skill",
+            "type": 8,
+            "shootDeley": 1.0,
+            "detectorRadius": 4.0,
+            "bulletData": {
+                "BulletSpeed": 0,
+                "bulletLifeTime": 0.4000000059604645,
+                "bulletLife": 1,
+                "baseDamage": 5.0,
+                "BasicCriticalChance": 10.0,
+                "BasicCriticalMultiplier": 1.2000000476837159,
+                "BasicBulletSize": 1.0,
+                "BulletObject": {
+                    "instanceID": 0
+                },
+                "type": 0
+            },
+            "EvolvedBulletData": {
+                "BulletSpeed": 0,
+                "bulletLifeTime": 0.30000001192092898,
+                "bulletLife": 1,
+                "baseDamage": 10.0,
+                "BasicCriticalChance": 15.0,
+                "BasicCriticalMultiplier": 1.2999999523162842,
+                "BasicBulletSize": 1.0,
+                "BulletObject": {
+                    "instanceID": 0
+                },
+                "type": 8
+            },
+            "_skillPrefab": {
+                "instanceID": 35330
             }
         }
     ],
     "_additionalSkillConfig": {
-        "instanceID": 31384
+        "instanceID": 31528
     }
 }

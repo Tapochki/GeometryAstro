@@ -161,8 +161,9 @@ namespace TandC.GeometryAstro.Gameplay
             _endlineObject.transform.position = _targetEnemy.transform.position;
         }
 
-        public void Evolve() 
+        public void Evolve(BulletData data) 
         {
+            _beamData = data;
             _lineAnimationObject.GetComponent<SpriteRenderer>().color = Color.red;
             _endlineObject.GetComponent<SpriteRenderer>().color = Color.red;
             _endlineObject.transform.localScale = new Vector3(2, 2, 2);
