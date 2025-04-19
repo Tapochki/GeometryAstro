@@ -110,7 +110,7 @@ namespace TandC.GeometryAstro.Gameplay
 
         public void Upgrade(float value = 0)
         {
-            _dashTimeUpgrade.ApplyModifier(value);
+            //_dashTimeUpgrade.ApplyModifier(value);
             _dashModificatorUpgrade.ApplyModifier(value);
         }
 

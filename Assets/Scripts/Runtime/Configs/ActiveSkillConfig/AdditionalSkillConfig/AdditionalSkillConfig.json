@@ -44,7 +44,7 @@
     },
     "_dashConfig": {
         "StartDashMultiplier": 1.5,
-        "DashTime": 2.0,
+        "DashTime": 1.0,
         "FireTraceSpawnTimer": 0.009999999776482582,
         "EvolvedColor": {
             "r": 1.0,
@@ -58,5 +58,8 @@
     },
     "_miniGunConfig": {
         "StartShootPreCycleCount": 20
+    },
+    "_rifleGunConfig": {
+        "StartShootCount": 6
     }
 }

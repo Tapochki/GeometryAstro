@@ -50,6 +50,11 @@ namespace TandC.GeometryAstro.Gameplay
             _collider.GetComponent<SpriteRenderer>().color = Color.red;
         }
 
+        public void SetActive(bool value) 
+        {
+            gameObject.SetActive(value);
+        }
+
         private void OnTriggerEnter2D(Collider2D collision)
         {
             if (collision.gameObject.TryGetComponent(out Enemy enemy))
@@ -96,7 +101,7 @@ namespace TandC.GeometryAstro.Gameplay
 
             if (_isEvolved) 
             {
-                EventBusHolder.EventBus.Raise(new PlayerHealReleaseEvent(_enemiesInZone.Count / 10));
+                EventBusHolder.EventBus.Raise(new PlayerHealReleaseEvent(_enemiesInZone.Count / 2));
             }
         }
     }

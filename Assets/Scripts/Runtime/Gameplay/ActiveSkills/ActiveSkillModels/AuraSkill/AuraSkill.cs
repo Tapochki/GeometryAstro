@@ -1,16 +1,19 @@
 using TandC.GeometryAstro.Data;
+using TandC.GeometryAstro.EventBus;
 using TandC.GeometryAstro.Settings;
 using UnityEngine;
 
 namespace TandC.GeometryAstro.Gameplay 
 {
-    public class AuraSkill : IActiveSkill
+    public class AuraSkill : IActiveSkill, IEventReceiver<CloakingEvent>
     {
+        public UniqueId Id { get; } = new UniqueId();
+
         public bool IsWeapon => true;
 
         private ActiveSkillData _data;
 
-        public ActiveSkillType SkillType => ActiveSkillType.EnergyGun;
+        public ActiveSkillType SkillType => ActiveSkillType.AuraGun;
 
         private IReloadable _reloader;
 
@@ -19,9 +22,29 @@ namespace TandC.GeometryAstro.Gameplay
 
         private float _rotationSpeed = 45f;
 
+        private void RegisterEvent()
+        {
+            EventBusHolder.EventBus.Register(this as IEventReceiver<CloakingEvent>);
+        }
+
+        private void UnregisterEvent()
+        {
+            EventBusHolder.EventBus.Unregister(this as IEventReceiver<CloakingEvent>);
+        }
+
         public void Initialization()
         {
+            RegisterEvent();
+        }
+        
+        public void Dispose() 
+        {
+            UnregisterEvent();
+        }
 
+        public void OnEvent(CloakingEvent @event)
+        {
+            _auraSkillView.SetActive(!@event.IsActive);
         }
 
         public void SetObject(Transform skillParent) 
@@ -57,6 +80,7 @@ namespace TandC.GeometryAstro.Gameplay
 
         public void Upgrade(float value = 0)
         {
+            Debug.LogError(value);
             _auraSkillView.Upgrade(value);
         }
 
