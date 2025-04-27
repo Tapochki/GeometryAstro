@@ -36,7 +36,6 @@ namespace TandC.GeometryAstro.Gameplay
         public void Update()
         {
             if (!_isReloading) return;
-
             _reloadTimer -= Time.deltaTime;
             _reloadProgress.Value = Mathf.Clamp01(1f - (_reloadTimer / _reloadTime));
 

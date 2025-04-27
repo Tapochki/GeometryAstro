@@ -39,6 +39,7 @@ namespace TandC.GeometryAstro.Gameplay
                 ActiveSkillType.RifleGun => new RifleGunBuilder(_player.SkillTransform),
                 ActiveSkillType.EnergyGun => new EnergyGunBuilder(_player.SkillTransform),
                 ActiveSkillType.AuraGun => new AuraSkillBuilder(_player.SkillTransform),
+                ActiveSkillType.Drone => new DroneSkillBuilder(_player.transform),
                 _ => throw new System.ArgumentException("Unknown skill type")
             };
         }

@@ -465,6 +465,47 @@ MonoBehaviour:
         Description: Aura Evolution
         Value: 0
         IsPercentageValue: 0
+  - SkillName: Drone Skill
+    SkillIcon: {fileID: 21300000, guid: 7b1b67783152ca34faae7e7185b93ee3, type: 3}
+    Type: 35
+    UseType: 0
+    UpgradesInfo:
+    - Name: Drone New
+      Level: 1
+      Description: 1
+      Value: 1
+      IsPercentageValue: 0
+    - Name: Drone 2
+      Level: 2
+      Description: Drone 2
+      Value: 1
+      IsPercentageValue: 0
+    - Name: Drone 3
+      Level: 3
+      Description: Drone 3
+      Value: 1
+      IsPercentageValue: 0
+    - Name: Drone 4
+      Level: 4
+      Description: Drone 4
+      Value: 1
+      IsPercentageValue: 0
+    - Name: Drone 5
+      Level: 5
+      Description: Drone 5
+      Value: 1
+      IsPercentageValue: 0
+    ActiveSkillUpgradeType: 18
+    ExclusionSkillType: 0
+    EvolutionData:
+      EvolutionIcon: {fileID: 21300000, guid: e2656b444b560d0409e8274101ff85a4, type: 3}
+      TypeForEvolution: 10
+      EvolutionInfo:
+        Name: Drone Evolution
+        Level: 1
+        Description: Drone Evolution
+        Value: 0
+        IsPercentageValue: 0
   _passiveSkills:
   - SkillName: Damage
     SkillIcon: {fileID: 21300000, guid: e7d87d2e18de961448b01cc53d0852e9, type: 3}
@@ -1295,5 +1336,5 @@ MonoBehaviour:
       Value: 100
       IsPercentageValue: 0
     ModificatorUpgradeType: 0
-  _startAvailableSkills: 12000000130000001400000025000000260000002400000015000000160000001d0000001700000001000000020000000300000004000000050000000d0000000c0000000e000000060000000700000008000000090000000b0000000a0000000f0000001000000019000000
+  _startAvailableSkills: 12000000130000001400000025000000260000002400000015000000160000001d00000017000000190000002300000001000000020000000300000004000000050000000d0000000c0000000e000000060000000700000008000000090000000b0000000a0000000f00000010000000
   _startAvailableTestSkills: 

@@ -63,10 +63,10 @@ namespace TandC.Editor
             EditorCoroutine.Start(Save());
         }
 
-        [MenuItem("Utility/AutoSaverScene/Stop Auto Saving")]
+        [MenuItem("Utility/AutoSaverScene/ForseStop Auto Saving")]
         public static void Stop()
         {
-            UnityEngine.Debug.Log("Stop Auto Saving");
+            UnityEngine.Debug.Log("ForseStop Auto Saving");
             _isStop = true;
         }
 

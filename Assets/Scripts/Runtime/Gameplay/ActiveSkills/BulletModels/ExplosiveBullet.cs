@@ -32,7 +32,7 @@ namespace TandC.GeometryAstro.Gameplay
         //Test change to VfX
         private void Create(Vector2 position, float radius, float duration = 0.3f)
         {
-            Debug.LogError("Stop");
+            Debug.LogError("ForseStop");
             GameObject explosion = new GameObject("ExplosionVFX");
             explosion.transform.position = position;
 
