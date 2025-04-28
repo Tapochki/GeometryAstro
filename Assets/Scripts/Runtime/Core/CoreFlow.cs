@@ -1,8 +1,11 @@
 ﻿using Cysharp.Threading.Tasks;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using TandC.GeometryAstro.Bootstrap.Units;
+using TandC.GeometryAstro.Data;
 using TandC.GeometryAstro.Gameplay;
+using TandC.GeometryAstro.Gameplay.VFX;
 using TandC.GeometryAstro.Services;
 using TandC.GeometryAstro.UI;
 using TandC.GeometryAstro.Utilities;
@@ -12,6 +15,8 @@ namespace TandC.GeometryAstro.Core
 {
     public class CoreFlow : IStartable, IDisposable
     {
+        private readonly GameConfig _gameConfig;
+
         private readonly LoadingService _loadingService;
         private readonly DataService _dataService;
         private readonly Player _player;
@@ -44,7 +49,7 @@ namespace TandC.GeometryAstro.Core
         private readonly MoneyVaultContainer _moneyVaultContainer;
 
         private readonly VaultService _vaultService;
-        private readonly VFXService _vfxService;
+        private readonly IVFXService _vfxService;
 
 
         public CoreFlow(
@@ -71,7 +76,8 @@ namespace TandC.GeometryAstro.Core
             ScoreContainer scoreContainer,
             MoneyVaultContainer moneyVaultContainer,
             VaultService vaultService,
-            VFXService vfxService)
+            IVFXService vfxService,
+            GameConfig gameConfig)
         {
             _loadingService = loadingService;
             _dataService = dataService;
@@ -97,6 +103,7 @@ namespace TandC.GeometryAstro.Core
             _moneyVaultContainer = moneyVaultContainer;
             _vaultService = vaultService;
             _vfxService = vfxService;
+            _gameConfig = gameConfig;
         }
 
         public async void Start()
@@ -111,15 +118,26 @@ namespace TandC.GeometryAstro.Core
             InitVaultCointainer();
             InitScoreContainer();
 
-            var fooLoadingUnit = new FooLoadingUnit(0, false);
-            _skillService.Initialize();
-            await _loadingService.BeginLoading(_uiService);
-            await _loadingService.BeginLoading(_vfxService);
-            await _loadingService.BeginLoading(fooLoadingUnit);
+            RegisterEffect();
 
             RegisterUI();
 
+
+            _skillService.Initialize();
+
+            await LoadAssetsAsync();
+
             _pauseService.Init();
+
+            OpenFirstPage();
+        }
+
+        private async Task LoadAssetsAsync()
+        {
+            var fooLoadingUnit = new FooLoadingUnit(0, false);
+            await _loadingService.BeginLoading(_uiService);
+            await _loadingService.BeginLoading(_vfxService);
+            await _loadingService.BeginLoading(fooLoadingUnit);
         }
 
         private void InitInputHandler() 
@@ -150,7 +168,6 @@ namespace TandC.GeometryAstro.Core
 
         private void RegisterUI()
         {
-            // TODO -- СДЕЛАТЬ ЕБАНУЮ СТРУКТУРУ СКАЗАЛ ДАНИЛА
             var corePages = new List<IUIPage>
             {
                 new GamePageView(new GamePageModel(_soundService, _uiService)),
@@ -167,7 +184,23 @@ namespace TandC.GeometryAstro.Core
 
             _uiService.RegisterUI(corePages, corePopups);
             UnityEngine.Debug.LogWarning("OPEN GAMEPLAY SCENE ON START");
+
+        }
+
+        private void OpenFirstPage() 
+        {
             _uiService.OpenPage<GamePageView>();
+        }
+
+        private void RegisterEffect() 
+        {
+            List<IEffectContainer> effectContainers = new List<IEffectContainer>
+            {
+                new ExplosionEffectContainer(_gameConfig.EffectConfig),
+                new DamageVFXContainer(_gameConfig.EffectConfig, _dataService),
+            };
+
+            _vfxService.RegisterEffectContainers(effectContainers);
         }
 
         private void InitItemSpawner()

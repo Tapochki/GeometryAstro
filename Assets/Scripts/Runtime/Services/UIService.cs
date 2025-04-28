@@ -25,13 +25,6 @@ namespace TandC.GeometryAstro.Utilities
         {
             Canvas = GameObject.Find("Canvas");
 
-        }
-
-        public void RegisterUI(List<IUIPage> pages, List<IUIPopup> popups)
-        {
-            _pages = pages;
-            _popups = popups;
-
             foreach (var page in _pages)
             {
                 page.Init();
@@ -41,6 +34,12 @@ namespace TandC.GeometryAstro.Utilities
             {
                 popup.Init();
             }
+        }
+
+        public void RegisterUI(List<IUIPage> pages, List<IUIPopup> popups)
+        {
+            _pages = pages;
+            _popups = popups;
         }
 
         public void OpenPage<T>(object data = null) where T : IUIPage

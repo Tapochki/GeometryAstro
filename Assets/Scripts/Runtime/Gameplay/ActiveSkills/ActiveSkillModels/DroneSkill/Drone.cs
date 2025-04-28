@@ -121,7 +121,6 @@ namespace TandC.GeometryAstro.Gameplay
 
         private void EndFadeOut() 
         {
-            Debug.LogError("EndFadeOut");
             _backToPoolEvent?.Invoke(this);
         }
 

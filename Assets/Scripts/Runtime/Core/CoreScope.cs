@@ -15,7 +15,6 @@ namespace TandC.GeometryAstro.Core
         [SerializeField] private GameplayInputHandler _inputHandler;
         [SerializeField] private GameplayCamera _gameplayCamera;
         [SerializeField] private SkillsView _skillView;
-        [SerializeField] private VFXService _vfxService;
 
         protected override void Configure(IContainerBuilder builder)
         {
@@ -45,7 +44,7 @@ namespace TandC.GeometryAstro.Core
         
         private void RegisterVFXService(IContainerBuilder builder)
         {
-            builder.Register<VFXService>(Lifetime.Scoped);
+            builder.Register<VFXService>(Lifetime.Scoped).As<IVFXService>();
         }
 
         private void RegisterPauseService(IContainerBuilder builder)

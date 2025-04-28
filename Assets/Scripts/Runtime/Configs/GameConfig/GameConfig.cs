@@ -11,6 +11,7 @@ namespace TandC.GeometryAstro.Data
         [SerializeField] private SkillConfig _skillConfig;
         [SerializeField] private ActiveSkillConfig _activeSkillConfig;
         [SerializeField] private ChanceDropItemCofig _ñhanceDropItemCofig;
+        [SerializeField] private EffectsConfig _effectEffect;
         [SerializeField] private StartPlayerParams _startPlayerParams;
 
         public EnemyConfig EnemyConfig { get => _enemyConfig; }
@@ -19,6 +20,7 @@ namespace TandC.GeometryAstro.Data
         public LevelConfig LevelsConfig { get => _phaseConfig; }
         public SkillConfig SkillConfig { get => _skillConfig; }
         public ActiveSkillConfig ActiveSkillConfig { get => _activeSkillConfig; }
+        public EffectsConfig EffectConfig { get => _effectEffect; }
         public StartPlayerParams StartPlayerParams { get => _startPlayerParams; }
     }
 }

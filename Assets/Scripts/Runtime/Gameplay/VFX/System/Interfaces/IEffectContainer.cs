@@ -1,10 +1,11 @@
+using TandC.GeometryAstro.Data;
 using TandC.GeometryAstro.Services;
 
 namespace TandC.GeometryAstro.Gameplay.VFX
 {
-    public interface IEffectPool
+    public interface IEffectContainer
     {
-        void Init(LoadObjectsService loadObjectsService);
+        void Init();
         void Dispose();
     }
 }

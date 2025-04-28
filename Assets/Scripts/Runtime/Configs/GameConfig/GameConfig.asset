@@ -18,4 +18,5 @@ MonoBehaviour:
   _skillConfig: {fileID: 11400000, guid: 0691f6d76309ef64aaafc04d3bedaa0b, type: 2}
   _activeSkillConfig: {fileID: 11400000, guid: 8c0fc13abf0c813478435f2ce7a496d8, type: 2}
   "_\u0441hanceDropItemCofig": {fileID: 11400000, guid: 0cfcb1ef0d547d74eaf7a86a594d7711, type: 2}
+  _effectEffect: {fileID: 11400000, guid: 58f38b87a1adcc641a08841b5b855b9e, type: 2}
   _startPlayerParams: {fileID: 11400000, guid: ac2aaec2de5419442a261e2db962e9c2, type: 2}

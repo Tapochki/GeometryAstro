@@ -1,5 +1,6 @@
 using System;
 using TandC.GeometryAstro.Data;
+using TandC.GeometryAstro.EventBus;
 using UniRx;
 using UnityEngine;
 
@@ -87,13 +88,16 @@ namespace TandC.GeometryAstro.Gameplay
         {
             bool isCriticalHit = UnityEngine.Random.Range(1f, 100f) <= criticalChance;
             float finalDamage = isCriticalHit ? damageValue * criticalDamageMultiplier : damageValue;
-            if (isCriticalHit)
-            {
-                //Send damage value to vfx 
-            }
+
+            ThrowDamageVFXEvent(finalDamage, gameObject.transform.position, isCriticalHit);
 
             _flashSpriteComponent.StartFlash();
             _healthComponent.TakeDamage(finalDamage);
+        }
+
+        private void ThrowDamageVFXEvent(float damage, Vector3 position, bool isCrit) 
+        {
+            EventBusHolder.EventBus.Raise(new CreateDamageEffect(damage, position, isCrit));
         }
 
         private void OnCollisionEnter2D(Collision2D collision)

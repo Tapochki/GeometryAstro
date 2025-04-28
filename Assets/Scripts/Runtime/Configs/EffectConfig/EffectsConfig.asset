@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: add5299393eb45f48b3568e23f6670f0, type: 3}
+  m_Name: EffectsConfig
+  m_EditorClassIdentifier: 
+  _damageEffectConfig:
+    startPreloadCount: 50
+    effectObject: {fileID: 1345950679473157435, guid: 03c51be6666e1e6469f1b9df62914da1, type: 3}
+    StandartColor: {r: 1, g: 0.6456446, b: 0, a: 1}
+    CritColor: {r: 0.9245283, g: 0, b: 0, a: 1}
+    LifeTime: 2
+  _explosionEffectConfig:
+    startPreloadCount: 10
+    effectObject: {fileID: 5177272580008071605, guid: 023065d1e18fd6a4d8b36df4cd84fafe, type: 3}

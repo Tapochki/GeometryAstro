@@ -38,9 +38,11 @@ namespace TandC.GeometryAstro.Menu
 
         public async void Start()
         {
+            RegisterUI();
+
             await LoadAssetsAsync();
 
-            RegisterUI();
+            OpenFirstPage();
         }
 
         private async Task LoadAssetsAsync()
@@ -61,6 +63,11 @@ namespace TandC.GeometryAstro.Menu
             };
 
             _uiService.RegisterUI(mainMenuPages, mainMenuPopups); // register and initing
+
+        }
+
+        private void OpenFirstPage() 
+        {
             _uiService.OpenPage<MainMenuPageView>();
         }
 

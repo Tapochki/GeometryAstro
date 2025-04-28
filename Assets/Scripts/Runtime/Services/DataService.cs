@@ -120,6 +120,8 @@ namespace TandC.GeometryAstro.Services
                 appLanguage = (Languages)Application.systemLanguage,
                 musicVolume = 1,
                 soundVolume = 1,
+                _isShowCritDamageEffect = true,
+                _isShowDamageEffect = true,
             };
         }
 

@@ -19,6 +19,8 @@ namespace TandC.GeometryAstro.Settings
         public bool isFirstRun;
         public float soundVolume;
         public float musicVolume;
+        public bool _isShowDamageEffect;
+        public bool _isShowCritDamageEffect;
         public Languages appLanguage;
     }
 

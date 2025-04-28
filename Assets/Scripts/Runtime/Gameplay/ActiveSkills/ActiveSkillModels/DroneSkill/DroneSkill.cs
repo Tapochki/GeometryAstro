@@ -107,7 +107,6 @@ namespace TandC.GeometryAstro.Gameplay
 
         private void UpdateSize(float value) 
         {
-            Debug.LogError(_sizeModificator.Value);
             _shootingPattern.transform.localScale = new Vector3(_startSpawnScale * _sizeModificator.Value, _startSpawnScale * _sizeModificator.Value, _startSpawnScale * _sizeModificator.Value);
         }
 
