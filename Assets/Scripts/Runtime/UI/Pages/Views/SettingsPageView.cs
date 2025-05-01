@@ -65,6 +65,8 @@ namespace TandC.GeometryAstro.UI
             TextMeshProUGUI currentLanguageTitle = selfObject.transform.
                 Find("Image_Panel/Container_Language/Image_CurrentLanguageBackground/Text_Main").GetComponent<TextMeshProUGUI>();
 
+            Debug.LogError(languageTitle);
+
             pageTitle.text = _model.GetLocalisation("KEY_SETTINGS_TITLE");
             aboutUsButtonTitle.text = _model.GetLocalisation("KEY_ABOUT_US_TITLE");
             tutorialButtonTitle.text = _model.GetLocalisation("KEY_TUTORIAL_TITLE");

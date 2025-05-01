@@ -41,7 +41,7 @@ namespace TandC.GeometryAstro.Gameplay.VFX
 
         private void InitPool() 
         {
-            _damageParticlePool = new ObjectPool<DamageEffect>(PreloadEffect, OnGetEffect, OnReturnEffect, _preloadEffectCount);
+            _damageParticlePool = new ObjectPool<DamageEffect>(PreloadEffect, OnGetEffect, OnReturnEffect, _config.startPreloadCount);
         }
 
         private void RegisterEvent()

@@ -8,9 +8,11 @@ namespace TandC.GeometryAstro.Data
     {
         public DamageEffectConfig DamageEffectConfig => _damageEffectConfig;
         public ExplosionEffectConfig ExplosionEffectConfig => _explosionEffectConfig;
+        public EnemyDeathEffectConfig EnemyDeathEffectConfig => _enemyDeathEffectConfig;
 
         [SerializeField] DamageEffectConfig _damageEffectConfig;
         [SerializeField] ExplosionEffectConfig _explosionEffectConfig;
+        [SerializeField] EnemyDeathEffectConfig _enemyDeathEffectConfig;
     }
 
     public class BaseEffectConfig 
@@ -32,5 +34,11 @@ namespace TandC.GeometryAstro.Data
     public class ExplosionEffectConfig : BaseEffectConfig
     {
        
+    }
+
+    [System.Serializable]
+    public class EnemyDeathEffectConfig : BaseEffectConfig
+    {
+
     }
 }

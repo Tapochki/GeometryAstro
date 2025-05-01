@@ -15,9 +15,12 @@ MonoBehaviour:
   _damageEffectConfig:
     startPreloadCount: 50
     effectObject: {fileID: 1345950679473157435, guid: 03c51be6666e1e6469f1b9df62914da1, type: 3}
-    StandartColor: {r: 1, g: 0.6456446, b: 0, a: 1}
+    StandartColor: {r: 1, g: 0.74861264, b: 0.28773582, a: 1}
     CritColor: {r: 0.9245283, g: 0, b: 0, a: 1}
     LifeTime: 2
   _explosionEffectConfig:
     startPreloadCount: 10
     effectObject: {fileID: 5177272580008071605, guid: 023065d1e18fd6a4d8b36df4cd84fafe, type: 3}
+  _enemyDeathEffectConfig:
+    startPreloadCount: 20
+    effectObject: {fileID: 4953662319019140615, guid: c65a1f763cb2ad147bc96884342a2755, type: 3}

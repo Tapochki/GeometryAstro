@@ -49,6 +49,7 @@ namespace TandC.GeometryAstro.Gameplay.VFX
 
         private void AnimationEndEvent() 
         {
+            Debug.LogError(1);
             _returnToPoolAction?.Invoke(this);
         }
 

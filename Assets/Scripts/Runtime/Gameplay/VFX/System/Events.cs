@@ -1,4 +1,3 @@
-using TandC.GeometryAstro.EventBus;
 using UnityEngine;
 
 namespace TandC.GeometryAstro.EventBus 
@@ -12,6 +11,16 @@ namespace TandC.GeometryAstro.EventBus
         {
             Position = position;
             Radius = radius;
+        }
+    }
+
+    public readonly struct EnemyDeath : IEvent 
+    {
+        public readonly Vector3 Position;
+
+        public EnemyDeath(Vector3 position)
+        {
+            Position = position;
         }
     }
 

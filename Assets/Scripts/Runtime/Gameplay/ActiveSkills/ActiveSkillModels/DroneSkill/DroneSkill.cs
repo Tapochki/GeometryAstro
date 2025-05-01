@@ -117,6 +117,7 @@ namespace TandC.GeometryAstro.Gameplay
         {
             var droneObject = new GameObject("DroneSkillView");
             droneObject.transform.SetParent(playerTransform);
+            droneObject.transform.localPosition = Vector3.zero;
             _droneSkillView = droneObject.AddComponent<DroneSkillView>();
 
             _droneSkillView.Init(_data.bulletData, damageModificator, criticalChanceModificator, criticalDamageMultiplier, _shootingPattern.Direction, EndAction);

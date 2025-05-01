@@ -3,6 +3,7 @@ using TandC.GeometryAstro.Data;
 using TandC.GeometryAstro.EventBus;
 using UniRx;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace TandC.GeometryAstro.Gameplay
 {
@@ -73,6 +74,10 @@ namespace TandC.GeometryAstro.Gameplay
 
         public void ProccesingEnemyDeath(bool isKilled = true)
         {
+            if (isKilled) 
+            {
+                ThrowDeathEffectEvent(gameObject.transform.position);
+            }
             _onDeathEvent?.Invoke(this, isKilled);
             IsActive = false;
         }
@@ -98,6 +103,12 @@ namespace TandC.GeometryAstro.Gameplay
         private void ThrowDamageVFXEvent(float damage, Vector3 position, bool isCrit) 
         {
             EventBusHolder.EventBus.Raise(new CreateDamageEffect(damage, position, isCrit));
+        }
+
+
+        private void ThrowDeathEffectEvent(Vector3 position)
+        {
+            EventBusHolder.EventBus.Raise(new EnemyDeath(position));
         }
 
         private void OnCollisionEnter2D(Collision2D collision)
