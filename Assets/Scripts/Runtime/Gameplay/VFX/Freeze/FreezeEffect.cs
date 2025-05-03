@@ -1,14 +1,14 @@
 using System;
 using UnityEngine;
 
-namespace TandC.GeometryAstro.Gameplay.VFX 
+namespace TandC.GeometryAstro.Gameplay.VFX
 {
-    public class EnemyDeathEffect : MonoBehaviour, IEffect, ITickable
+    public class FreezeEffect : MonoBehaviour, IEffect
     {
         [SerializeField]
         private ParticleSystem _particleSystem;
 
-        private Action<IEffect> _returnToPoolAction;
+        private Action<FreezeEffect> _returnToPoolAction;
 
         public void Init(Action<IEffect> returnToPoolAction)
         {
@@ -17,7 +17,7 @@ namespace TandC.GeometryAstro.Gameplay.VFX
             InitParticleSystem();
         }
 
-        private void InitParticleSystem()
+        private void InitParticleSystem() 
         {
             ParticleSystem.MainModule main = _particleSystem.main;
             main.stopAction = ParticleSystemStopAction.Callback;
@@ -28,35 +28,26 @@ namespace TandC.GeometryAstro.Gameplay.VFX
             gameObject.SetActive(true);
         }
 
+        public void StartEffect(Vector3 position)
+        {
+            SetPosition(position);
+            _particleSystem.Emit(500);
+        }
+
+        private void SetPosition(Vector3 position) 
+        {
+            gameObject.transform.position = position;
+        }
+
         public void Hide()
         {
             gameObject.SetActive(false);
         }
 
-        public void Dispose()
+        public void Dispose() 
         {
             _returnToPoolAction = null;
             Destroy(gameObject);
-        }
-
-        public void StartEffect(Vector3 position)
-        {
-            SetPosition(position);
-        }
-
-        private void SetPosition(Vector3 position)
-        {
-            gameObject.transform.position = position;
-        }
-
-        public void Tick()
-        {
-            
-        }
-
-        private void OnDestroy()
-        {
-
         }
 
         private void OnParticleSystemStopped()
@@ -66,4 +57,3 @@ namespace TandC.GeometryAstro.Gameplay.VFX
         }
     }
 }
-

@@ -9,10 +9,14 @@ namespace TandC.GeometryAstro.Data
         public DamageEffectConfig DamageEffectConfig => _damageEffectConfig;
         public ExplosionEffectConfig ExplosionEffectConfig => _explosionEffectConfig;
         public EnemyDeathEffectConfig EnemyDeathEffectConfig => _enemyDeathEffectConfig;
+        public FreezeEffectConfig FreezeEffectConfig => _freezeEffectConfig;
+        public DamageAreaEffectConfig DamageAreaEffectConfig => _damageAreaEffectConfig;
 
         [SerializeField] DamageEffectConfig _damageEffectConfig;
         [SerializeField] ExplosionEffectConfig _explosionEffectConfig;
         [SerializeField] EnemyDeathEffectConfig _enemyDeathEffectConfig;
+        [SerializeField] FreezeEffectConfig _freezeEffectConfig;
+        [SerializeField] DamageAreaEffectConfig _damageAreaEffectConfig;
     }
 
     public class BaseEffectConfig 
@@ -38,6 +42,18 @@ namespace TandC.GeometryAstro.Data
 
     [System.Serializable]
     public class EnemyDeathEffectConfig : BaseEffectConfig
+    {
+
+    }
+
+    [System.Serializable]
+    public class FreezeEffectConfig : BaseEffectConfig
+    {
+
+    }
+
+    [System.Serializable]
+    public class DamageAreaEffectConfig : BaseEffectConfig
     {
 
     }

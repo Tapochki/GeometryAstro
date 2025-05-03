@@ -41,7 +41,7 @@ namespace TandC.GeometryAstro.Gameplay
         private void PickFinish()
         {
             _onItemCollected?.Invoke(this);
-            _itemModel.ReleseItem();
+            _itemModel.ReleseItem(gameObject.transform.position);
         }
 
         private void MoveToPlayer()

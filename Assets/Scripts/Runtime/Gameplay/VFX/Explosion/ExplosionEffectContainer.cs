@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace TandC.GeometryAstro.Gameplay.VFX
 {
-    public class ExplosionEffectContainer : IEffectContainer, IEventReceiver<CreateExplosion>
+    public class ExplosionEffectContainer : IEffectContainer, IEventReceiver<CreateExplosionEffect>
     {
         private readonly ExplosionEffectConfig _config;
 
@@ -41,12 +41,12 @@ namespace TandC.GeometryAstro.Gameplay.VFX
 
         private void RegisterEvent()
         {
-            EventBusHolder.EventBus.Register(this as IEventReceiver<CreateExplosion>);
+            EventBusHolder.EventBus.Register(this as IEventReceiver<CreateExplosionEffect>);
         }
 
         private void UnregisterEvent()
         {
-            EventBusHolder.EventBus.Unregister(this as IEventReceiver<CreateExplosion>);
+            EventBusHolder.EventBus.Unregister(this as IEventReceiver<CreateExplosionEffect>);
         }
 
         public void Dispose()
@@ -80,11 +80,11 @@ namespace TandC.GeometryAstro.Gameplay.VFX
 
         private float CalculateSize(float radius) 
         {
-            return Mathf.Lerp(1f, 1.8f, (radius - 10f) / (30f - 10f));
+            return Mathf.Lerp(1f, 3f, (radius - 10f) / (20f));
         }
             
 
-        public void OnEvent(CreateExplosion @event)
+        public void OnEvent(CreateExplosionEffect @event)
         {
             ExplosionEffect effect = _explosionParticlesPool.Get();
 

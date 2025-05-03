@@ -2,23 +2,49 @@ using UnityEngine;
 
 namespace TandC.GeometryAstro.EventBus 
 {
-    public readonly struct CreateExplosion : IEvent
+    public readonly struct CreateExplosionEffect : IEvent
     {
         public readonly Vector3 Position;
         public readonly float Radius;
 
-        public CreateExplosion(Vector3 position, float radius)
+        public CreateExplosionEffect(Vector3 position, float radius)
         {
             Position = position;
             Radius = radius;
         }
     }
 
-    public readonly struct EnemyDeath : IEvent 
+    public readonly struct CreateFreezeEffect : IEvent
+    {
+        public readonly Vector3 Position;
+        public readonly float Radius;
+
+        public CreateFreezeEffect(Vector3 position, float radius)
+        {
+            Position = position;
+            Radius = radius;
+        }
+    }
+
+    public readonly struct CreateDamageAreaEffect : IEvent
+    {
+        public readonly Vector3 Position;
+        public readonly float Radius;
+        public readonly float Time;
+
+        public CreateDamageAreaEffect(Vector3 position, float radius, float time)
+        {
+            Position = position;
+            Radius = radius;
+            Time = time;
+        }
+    }
+
+    public readonly struct CreateEnemyDeathEffect : IEvent 
     {
         public readonly Vector3 Position;
 
-        public EnemyDeath(Vector3 position)
+        public CreateEnemyDeathEffect(Vector3 position)
         {
             Position = position;
         }

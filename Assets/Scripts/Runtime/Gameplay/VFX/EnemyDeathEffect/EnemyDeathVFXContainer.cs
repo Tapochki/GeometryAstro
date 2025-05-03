@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace TandC.GeometryAstro.Gameplay.VFX
 {
-    public class EnemyDeathVFXContainer : IEffectContainer, IEventReceiver<EnemyDeath>
+    public class EnemyDeathVFXContainer : IEffectContainer, IEventReceiver<CreateEnemyDeathEffect>
     {
         private readonly EnemyDeathEffectConfig _config;
 
@@ -41,12 +41,12 @@ namespace TandC.GeometryAstro.Gameplay.VFX
 
         private void RegisterEvent()
         {
-            EventBusHolder.EventBus.Register(this as IEventReceiver<EnemyDeath>);
+            EventBusHolder.EventBus.Register(this as IEventReceiver<CreateEnemyDeathEffect>);
         }
 
         private void UnregisterEvent()
         {
-            EventBusHolder.EventBus.Unregister(this as IEventReceiver<EnemyDeath>);
+            EventBusHolder.EventBus.Unregister(this as IEventReceiver<CreateEnemyDeathEffect>);
         }
 
         public void Dispose()
@@ -76,7 +76,7 @@ namespace TandC.GeometryAstro.Gameplay.VFX
             return effect;
         }
 
-        public void OnEvent(EnemyDeath @event)
+        public void OnEvent(CreateEnemyDeathEffect @event)
         {
             EnemyDeathEffect effect = _enemyDeathEffectPool.Get();
 

@@ -223,7 +223,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.8962264, g: 0.74458456, b: 0.20714669, a: 1}
+      maxColor: {r: 0.49803922, g: 0.70980394, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -5123,7 +5123,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.9245283, g: 0.5163993, b: 0.06541473, a: 1}
+      maxColor: {r: 0.49803922, g: 0.70980394, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -11165,10 +11165,10 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 0.9915132, g: 1, b: 0.6273585, a: 1}
-        key1: {r: 0.9020078, g: 0.9150943, b: 0.09064613, a: 1}
-        key2: {r: 0.8867924, g: 0.5790622, b: 0.2216981, a: 1}
-        key3: {r: 0.8867924, g: 0.47256777, b: 0.071110725, a: 1}
+        key0: {r: 0.627451, g: 0.9255807, b: 1, a: 1}
+        key1: {r: 0.09019608, g: 0.6311081, b: 0.9137255, a: 1}
+        key2: {r: 0.22352937, g: 0.56502694, b: 0.8862745, a: 1}
+        key3: {r: 0.07058821, g: 0.3157567, b: 0.8862745, a: 1}
         key4: {r: 0, g: 0, b: 0, a: 0}
         key5: {r: 0, g: 0, b: 0, a: 0}
         key6: {r: 0, g: 0, b: 0, a: 0}
@@ -11176,7 +11176,7 @@ ParticleSystem:
         ctime0: 0
         ctime1: 21627
         ctime2: 43253
-        ctime3: 58982
+        ctime3: 58211
         ctime4: 0
         ctime5: 0
         ctime6: 0
@@ -11190,7 +11190,7 @@ ParticleSystem:
         atime6: 0
         atime7: 0
         m_Mode: 0
-        m_ColorSpace: -1
+        m_ColorSpace: 0
         m_NumColorKeys: 4
         m_NumAlphaKeys: 5
       minGradient:
@@ -14700,9 +14700,9 @@ GameObject:
   - component: {fileID: 2857341531009489670}
   - component: {fileID: 4679576196815691155}
   - component: {fileID: 8299896837417246714}
-  - component: {fileID: 1122475868487606531}
+  - component: {fileID: 9056426507533550616}
   m_Layer: 6
-  m_Name: Explosion_Effect
+  m_Name: FreezeEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14800,7 +14800,7 @@ ParticleSystem:
       m_RotationOrder: 4
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
-  scalingMode: 2
+  scalingMode: 0
   randomSeed: 0
   InitialModule:
     serializedVersion: 3
@@ -14979,7 +14979,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.1
+      scalar: 1
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -17975,7 +17975,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
   SizeBySpeedModule:
-    enabled: 1
+    enabled: 0
     curve:
       serializedVersion: 2
       minMaxState: 1
@@ -19582,7 +19582,7 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!114 &1122475868487606531
+--- !u!114 &9056426507533550616
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -19591,7 +19591,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5177272580008071605}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c21c22536787df24995d56708f920067, type: 3}
+  m_Script: {fileID: 11500000, guid: 94148b5338876fb4c9bf9b48ca43d8e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _particleSystem: {fileID: 4679576196815691155}

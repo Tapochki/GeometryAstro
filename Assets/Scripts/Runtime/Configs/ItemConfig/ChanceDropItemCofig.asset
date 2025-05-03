@@ -25,3 +25,7 @@ MonoBehaviour:
       weight: 25
     - itemType: 0
       weight: 60
+    - itemType: 6
+      weight: 60
+    - itemType: 8
+      weight: 60

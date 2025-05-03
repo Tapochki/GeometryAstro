@@ -28,6 +28,7 @@ namespace TandC.GeometryAstro.Data
     [Serializable]
     public class ItemData
     {
+        public string Name;
         public int itemId;
         public int itemValueMin;
         public int itemValueMax;

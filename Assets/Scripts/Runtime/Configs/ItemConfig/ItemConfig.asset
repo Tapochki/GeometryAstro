@@ -13,27 +13,45 @@ MonoBehaviour:
   m_Name: ItemConfig
   m_EditorClassIdentifier: 
   _itemData:
-  - itemId: 0
+  - Name: SmallXp
+    itemId: 0
     itemValueMin: 10
     itemValueMax: 100
     sprite: {fileID: 21300000, guid: 85024921523293b4b94bdf2de612c5f8, type: 3}
     type: 1
     description: 
-  - itemId: 2
+  - Name: Medecine
+    itemId: 2
     itemValueMin: 30
     itemValueMax: 80
     sprite: {fileID: 21300000, guid: 15bd7ab1f1fc6064b8be2af484d5fb23, type: 3}
     type: 5
     description: 
-  - itemId: 3
+  - Name: Coin
+    itemId: 3
     itemValueMin: 30
     itemValueMax: 50
     sprite: {fileID: 21300000, guid: faaa4dbb74f51fc43880d58d6cc90d1f, type: 3}
     type: 10
     description: 
-  - itemId: 3
+  - Name: RocketBox
+    itemId: 3
     itemValueMin: 3
     itemValueMax: 5
     sprite: {fileID: 21300000, guid: 15a9f371e08d7fb488067e068edcfa52, type: 3}
     type: 4
+    description: 
+  - Name: FreezeBomb
+    itemId: 4
+    itemValueMin: 1
+    itemValueMax: 1
+    sprite: {fileID: 21300000, guid: b643f07f2158dba43b084cefa5838c56, type: 3}
+    type: 6
+    description: 
+  - Name: Bomb
+    itemId: 5
+    itemValueMin: 150
+    itemValueMax: 300
+    sprite: {fileID: 21300000, guid: 9be96cfac41ed964d94547cab2c21c5e, type: 3}
+    type: 8
     description: 

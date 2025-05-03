@@ -11,7 +11,7 @@ namespace TandC.GeometryAstro.Gameplay
             
         }
 
-        public override void ReleseItem()
+        public override void ReleseItem(Vector3 position)
         {
             EventBusHolder.EventBus.Raise(new MagnetItemReleaseEvent());
         }

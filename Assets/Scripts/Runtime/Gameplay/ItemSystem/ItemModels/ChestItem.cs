@@ -13,7 +13,7 @@ namespace TandC.GeometryAstro.Gameplay
             ChestItemCount = chestItemCount;
         }
 
-        public override void ReleseItem()
+        public override void ReleseItem(Vector3 position)
         {
             EventBusHolder.EventBus.Raise(new ChestItemReleaseEvent());
         }

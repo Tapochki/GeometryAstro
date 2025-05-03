@@ -13,14 +13,20 @@ MonoBehaviour:
   m_Name: EffectsConfig
   m_EditorClassIdentifier: 
   _damageEffectConfig:
-    startPreloadCount: 50
+    startPreloadCount: 20
     effectObject: {fileID: 1345950679473157435, guid: 03c51be6666e1e6469f1b9df62914da1, type: 3}
     StandartColor: {r: 1, g: 0.74861264, b: 0.28773582, a: 1}
     CritColor: {r: 0.9245283, g: 0, b: 0, a: 1}
     LifeTime: 2
   _explosionEffectConfig:
-    startPreloadCount: 10
+    startPreloadCount: 3
     effectObject: {fileID: 5177272580008071605, guid: 023065d1e18fd6a4d8b36df4cd84fafe, type: 3}
   _enemyDeathEffectConfig:
-    startPreloadCount: 20
+    startPreloadCount: 10
     effectObject: {fileID: 4953662319019140615, guid: c65a1f763cb2ad147bc96884342a2755, type: 3}
+  _freezeEffectConfig:
+    startPreloadCount: 2
+    effectObject: {fileID: 5177272580008071605, guid: 8bdd83b9ff2d6714caa8a0877666ae23, type: 3}
+  _damageAreaEffectConfig:
+    startPreloadCount: 2
+    effectObject: {fileID: 1070822118196585530, guid: a22188099822bad4e99c8e699c0441b1, type: 3}

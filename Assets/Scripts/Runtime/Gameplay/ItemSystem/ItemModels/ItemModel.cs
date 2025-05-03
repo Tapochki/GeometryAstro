@@ -17,7 +17,7 @@ namespace TandC.GeometryAstro.Gameplay
             _itemSprite = itemSprite ?? throw new System.ArgumentNullException(nameof(itemSprite), "Sprite cannot be null");
         }
 
-        public abstract void ReleseItem();
+        public abstract void ReleseItem(Vector3 position);
     }
 }
 

@@ -199,6 +199,7 @@ namespace TandC.GeometryAstro.Core
                 new ExplosionEffectContainer(_gameConfig.EffectConfig),
                 new DamageVFXContainer(_gameConfig.EffectConfig, _dataService),
                 new EnemyDeathVFXContainer(_gameConfig.EffectConfig),
+                new FreezeEffectContainer(_gameConfig.EffectConfig),
             };
 
             _vfxService.RegisterEffectContainers(effectContainers);

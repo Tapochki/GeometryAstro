@@ -108,7 +108,7 @@ namespace TandC.GeometryAstro.Gameplay
 
         private void ThrowDeathEffectEvent(Vector3 position)
         {
-            EventBusHolder.EventBus.Raise(new EnemyDeath(position));
+            EventBusHolder.EventBus.Raise(new CreateEnemyDeathEffect(position));
         }
 
         private void OnCollisionEnter2D(Collision2D collision)

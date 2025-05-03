@@ -1,0 +1,45 @@
+{
+    "_damageEffectConfig": {
+        "startPreloadCount": 20,
+        "effectObject": {
+            "instanceID": 34036
+        },
+        "StandartColor": {
+            "r": 1.0,
+            "g": 0.748612642288208,
+            "b": 0.28773581981658938,
+            "a": 1.0
+        },
+        "CritColor": {
+            "r": 0.9245283007621765,
+            "g": 0.0,
+            "b": 0.0,
+            "a": 1.0
+        },
+        "LifeTime": 2.0
+    },
+    "_explosionEffectConfig": {
+        "startPreloadCount": 3,
+        "effectObject": {
+            "instanceID": 34038
+        }
+    },
+    "_enemyDeathEffectConfig": {
+        "startPreloadCount": 10,
+        "effectObject": {
+            "instanceID": 34040
+        }
+    },
+    "_freezeEffectConfig": {
+        "startPreloadCount": 2,
+        "effectObject": {
+            "instanceID": 17850
+        }
+    },
+    "_damageAreaEffectConfig": {
+        "startPreloadCount": 2,
+        "effectObject": {
+            "instanceID": 17846
+        }
+    }
+}
