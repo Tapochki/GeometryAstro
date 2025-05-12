@@ -130,7 +130,7 @@ MonoBehaviour:
     ExclusionSkillType: 20
     EvolutionData:
       EvolutionIcon: {fileID: 21300000, guid: 6b757f16474edf2449cfa99e4a9996f4, type: 3}
-      TypeForEvolution: 3
+      TypeForEvolution: 11
       EvolutionInfo:
         Name: Rocket Gun Evolve
         Level: 0

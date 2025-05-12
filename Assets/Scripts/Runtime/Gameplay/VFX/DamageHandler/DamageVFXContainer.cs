@@ -90,7 +90,7 @@ namespace TandC.GeometryAstro.Gameplay.VFX
         {
             bool isVisible = @event.IsCrit ? _dataService.AppSettingsData._isShowCritDamageEffect
                                            : _dataService.AppSettingsData._isShowDamageEffect;
-            Debug.LogError($"isVisible {isVisible} @event.IsCrit {@event.IsCrit} _isShowCritDamageEffect {_dataService.AppSettingsData._isShowCritDamageEffect} _isShowDamageEffect {_dataService.AppSettingsData._isShowDamageEffect}");
+
             if (!isVisible)
                 return;
 

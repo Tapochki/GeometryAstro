@@ -1,4 +1,5 @@
 
+using TandC.GeometryAstro.EventBus;
 using UnityEngine;
 
 namespace TandC.GeometryAstro.Gameplay 
@@ -30,6 +31,8 @@ namespace TandC.GeometryAstro.Gameplay
         {
             float explosionRadius = _areaRadiusModificator.Value;
             _explosionDamage.ApplyExplosionDamage(transform.position, explosionRadius, _bulletData.baseDamage, _criticalChance, _criticalMultiplier);
+            EventBusHolder.EventBus.Raise(new CreateExplosionEffect(gameObject.transform.position, _areaRadiusModificator.Value));
+
         }
 
         private void CreateDamageArea()
@@ -41,6 +44,7 @@ namespace TandC.GeometryAstro.Gameplay
             Deactivate();
             _damageAreaEffect = new DamageAreaEffect(transform.position, damageAreaRadius, 
                 LayerMask.GetMask("Enemy"), damagePerTick, _criticalChance, _criticalMultiplier, EffectEndHandler, duration, _damageInterval);
+            EventBusHolder.EventBus.Raise(new CreateDamageAreaEffect(gameObject.transform.position, _areaRadiusModificator.Value, duration));
         }
 
         private void EffectEndHandler()

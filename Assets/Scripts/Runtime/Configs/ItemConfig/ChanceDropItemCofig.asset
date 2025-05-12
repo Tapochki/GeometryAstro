@@ -15,17 +15,24 @@ MonoBehaviour:
   _dropData:
   - dropType: 1
     itemsWithChance:
-    - itemType: 1
+    - Name: SmallXp
+      itemType: 1
       weight: 100
-    - itemType: 10
+    - Name: Coin
+      itemType: 10
       weight: 25
-    - itemType: 5
+    - Name: Medecine
+      itemType: 5
       weight: 1
-    - itemType: 4
+    - Name: RocketAmmo
+      itemType: 4
       weight: 25
-    - itemType: 0
+    - Name: None
+      itemType: 0
       weight: 60
-    - itemType: 6
+    - Name: Frozen Bomb
+      itemType: 6
       weight: 60
-    - itemType: 8
+    - Name: Bomb
+      itemType: 8
       weight: 60

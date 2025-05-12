@@ -28,6 +28,7 @@ namespace TandC.GeometryAstro.Data
     [Serializable]
     public class EnemyData
     {
+        public string Name;
         public int enemyId;
         public float health;
         public int damage;

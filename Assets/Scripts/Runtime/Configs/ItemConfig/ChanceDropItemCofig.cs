@@ -57,6 +57,7 @@ namespace TandC.GeometryAstro.Data
     [Serializable]
     public struct DropItemChance
     {
+        public string Name;
         public ItemType itemType;
         public float weight;
     }

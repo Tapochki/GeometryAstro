@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: EnemyConfig
   m_EditorClassIdentifier: 
   _enemies:
-  - enemyId: 0
+  - Name: DefaultEnemy
+    enemyId: 0
     health: 100
     damage: 10
     movementSpeed: 10
