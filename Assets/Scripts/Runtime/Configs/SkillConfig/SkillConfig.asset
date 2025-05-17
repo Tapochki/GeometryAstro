@@ -15,7 +15,7 @@ MonoBehaviour:
   _useTestSkills: 0
   _activeSkills:
   - SkillName: Standart Gun
-    SkillIcon: {fileID: 21300000, guid: 14aac5af2708b4742a8a39e4fd625720, type: 3}
+    SkillIcon: {fileID: 534573057, guid: 58785f1f5682f1b4886595320200aa01, type: 3}
     Type: 18
     UseType: 0
     UpgradesInfo:
@@ -47,7 +47,7 @@ MonoBehaviour:
     ActiveSkillUpgradeType: 1
     ExclusionSkillType: 0
     EvolutionData:
-      EvolutionIcon: {fileID: 21300000, guid: 1120737f073bad14d8303f5de0cdda1d, type: 3}
+      EvolutionIcon: {fileID: -2116910433, guid: 58785f1f5682f1b4886595320200aa01, type: 3}
       TypeForEvolution: 11
       EvolutionInfo:
         Name: Standart Gun Evolution
@@ -56,7 +56,7 @@ MonoBehaviour:
         Value: 1
         IsPercentageValue: 0
   - SkillName: Auto Gun
-    SkillIcon: {fileID: 21300000, guid: 218562ded58b8b44e86b03d12a2f1bd2, type: 3}
+    SkillIcon: {fileID: -1725837180, guid: 58785f1f5682f1b4886595320200aa01, type: 3}
     Type: 19
     UseType: 0
     UpgradesInfo:
@@ -88,7 +88,7 @@ MonoBehaviour:
     ActiveSkillUpgradeType: 2
     ExclusionSkillType: 0
     EvolutionData:
-      EvolutionIcon: {fileID: 21300000, guid: 213abc47d1d5ddc4f925b89e685e6199, type: 3}
+      EvolutionIcon: {fileID: -1518298884, guid: 58785f1f5682f1b4886595320200aa01, type: 3}
       TypeForEvolution: 5
       EvolutionInfo:
         Name: Auto Gun Evolution
@@ -97,7 +97,7 @@ MonoBehaviour:
         Value: 0
         IsPercentageValue: 0
   - SkillName: Rocket Gun
-    SkillIcon: {fileID: 21300000, guid: a73a44cb9a0a85c4388e37972efb7f06, type: 3}
+    SkillIcon: {fileID: 487324706, guid: 58785f1f5682f1b4886595320200aa01, type: 3}
     Type: 20
     UseType: 0
     UpgradesInfo:
@@ -129,7 +129,7 @@ MonoBehaviour:
     ActiveSkillUpgradeType: 3
     ExclusionSkillType: 20
     EvolutionData:
-      EvolutionIcon: {fileID: 21300000, guid: 6b757f16474edf2449cfa99e4a9996f4, type: 3}
+      EvolutionIcon: {fileID: -511925687, guid: 58785f1f5682f1b4886595320200aa01, type: 3}
       TypeForEvolution: 11
       EvolutionInfo:
         Name: Rocket Gun Evolve
@@ -138,7 +138,7 @@ MonoBehaviour:
         Value: 0
         IsPercentageValue: 0
   - SkillName: Shield
-    SkillIcon: {fileID: 21300000, guid: 6d2d21dea667fa046a7391e13083beb7, type: 3}
+    SkillIcon: {fileID: 1947607415, guid: 58785f1f5682f1b4886595320200aa01, type: 3}
     Type: 37
     UseType: 0
     UpgradesInfo:
@@ -170,7 +170,7 @@ MonoBehaviour:
     ActiveSkillUpgradeType: 20
     ExclusionSkillType: 0
     EvolutionData:
-      EvolutionIcon: {fileID: 21300000, guid: 213abc47d1d5ddc4f925b89e685e6199, type: 3}
+      EvolutionIcon: {fileID: -1303949378, guid: 58785f1f5682f1b4886595320200aa01, type: 3}
       TypeForEvolution: 5
       EvolutionInfo:
         Name: Shield Evolve
@@ -179,7 +179,7 @@ MonoBehaviour:
         Value: 1
         IsPercentageValue: 0
   - SkillName: Cloak
-    SkillIcon: {fileID: 21300000, guid: f9b73c21ea5b66d48add072c40acaa6d, type: 3}
+    SkillIcon: {fileID: -644270697, guid: 58785f1f5682f1b4886595320200aa01, type: 3}
     Type: 38
     UseType: 0
     UpgradesInfo:
@@ -211,7 +211,7 @@ MonoBehaviour:
     ActiveSkillUpgradeType: 21
     ExclusionSkillType: 0
     EvolutionData:
-      EvolutionIcon: {fileID: 21300000, guid: 7687ef4166babf9469dc6dc499c5e2cf, type: 3}
+      EvolutionIcon: {fileID: -36461056, guid: 58785f1f5682f1b4886595320200aa01, type: 3}
       TypeForEvolution: 13
       EvolutionInfo:
         Name: Cloak Evolve
@@ -220,7 +220,7 @@ MonoBehaviour:
         Value: 10
         IsPercentageValue: 0
   - SkillName: Dash
-    SkillIcon: {fileID: 21300000, guid: a470f25fc42a4af4ebbece1cf4397c5f, type: 3}
+    SkillIcon: {fileID: -821331812, guid: 58785f1f5682f1b4886595320200aa01, type: 3}
     Type: 36
     UseType: 0
     UpgradesInfo:
@@ -252,7 +252,7 @@ MonoBehaviour:
     ActiveSkillUpgradeType: 19
     ExclusionSkillType: 0
     EvolutionData:
-      EvolutionIcon: {fileID: 21300000, guid: 404462b205f8cac4f9e6288471807575, type: 3}
+      EvolutionIcon: {fileID: -20704781, guid: 58785f1f5682f1b4886595320200aa01, type: 3}
       TypeForEvolution: 5
       EvolutionInfo:
         Name: Dash Evolve
@@ -261,7 +261,7 @@ MonoBehaviour:
         Value: 10
         IsPercentageValue: 0
   - SkillName: Laser
-    SkillIcon: {fileID: 21300000, guid: 375df1768e4d66a40a196542fff58442, type: 3}
+    SkillIcon: {fileID: 1522642348, guid: 58785f1f5682f1b4886595320200aa01, type: 3}
     Type: 21
     UseType: 0
     UpgradesInfo:
@@ -293,7 +293,7 @@ MonoBehaviour:
     ActiveSkillUpgradeType: 4
     ExclusionSkillType: 0
     EvolutionData:
-      EvolutionIcon: {fileID: 21300000, guid: 8ff4e88f20bb0924db8a39aa084fea12, type: 3}
+      EvolutionIcon: {fileID: 1370330958, guid: 58785f1f5682f1b4886595320200aa01, type: 3}
       TypeForEvolution: 5
       EvolutionInfo:
         Name: Laser Evolve
@@ -302,7 +302,7 @@ MonoBehaviour:
         Value: 1
         IsPercentageValue: 0
   - SkillName: Machine Gun
-    SkillIcon: {fileID: 21300000, guid: 8bab814baf82d4a4685a0fb865819e6a, type: 3}
+    SkillIcon: {fileID: -814323553, guid: 58785f1f5682f1b4886595320200aa01, type: 3}
     Type: 22
     UseType: 0
     UpgradesInfo:
@@ -334,7 +334,7 @@ MonoBehaviour:
     ActiveSkillUpgradeType: 5
     ExclusionSkillType: 29
     EvolutionData:
-      EvolutionIcon: {fileID: 21300000, guid: 3c3f1fcc6ed150d4ca204bd96ff9280d, type: 3}
+      EvolutionIcon: {fileID: -1538256448, guid: 58785f1f5682f1b4886595320200aa01, type: 3}
       TypeForEvolution: 11
       EvolutionInfo:
         Name: Machine Gun Evolution
@@ -343,7 +343,7 @@ MonoBehaviour:
         Value: 3
         IsPercentageValue: 0
   - SkillName: Rifle Gun
-    SkillIcon: {fileID: 21300000, guid: 12585403ebb444e4686491fd9fc09cf0, type: 3}
+    SkillIcon: {fileID: -2134982636, guid: 58785f1f5682f1b4886595320200aa01, type: 3}
     Type: 29
     UseType: 0
     UpgradesInfo:
@@ -375,7 +375,7 @@ MonoBehaviour:
     ActiveSkillUpgradeType: 12
     ExclusionSkillType: 22
     EvolutionData:
-      EvolutionIcon: {fileID: 21300000, guid: 52e9433d8f99e6341a97400e7db0fbd8, type: 3}
+      EvolutionIcon: {fileID: 1905161246, guid: 58785f1f5682f1b4886595320200aa01, type: 3}
       TypeForEvolution: 5
       EvolutionInfo:
         Name: Rifle Gun Evolution
@@ -384,7 +384,7 @@ MonoBehaviour:
         Value: 1
         IsPercentageValue: 0
   - SkillName: Energy Gun
-    SkillIcon: {fileID: 21300000, guid: 375df1768e4d66a40a196542fff58442, type: 3}
+    SkillIcon: {fileID: -173509474, guid: 58785f1f5682f1b4886595320200aa01, type: 3}
     Type: 23
     UseType: 0
     UpgradesInfo:
@@ -425,7 +425,7 @@ MonoBehaviour:
         Value: 1
         IsPercentageValue: 0
   - SkillName: Aura Skill
-    SkillIcon: {fileID: 21300000, guid: e3350eeea3dd9b94db32bcdb2c42495a, type: 3}
+    SkillIcon: {fileID: -1478844675, guid: 58785f1f5682f1b4886595320200aa01, type: 3}
     Type: 25
     UseType: 0
     UpgradesInfo:
@@ -457,7 +457,7 @@ MonoBehaviour:
     ActiveSkillUpgradeType: 8
     ExclusionSkillType: 0
     EvolutionData:
-      EvolutionIcon: {fileID: 0}
+      EvolutionIcon: {fileID: 1087070663, guid: 58785f1f5682f1b4886595320200aa01, type: 3}
       TypeForEvolution: 11
       EvolutionInfo:
         Name: Aura Evolution
@@ -466,7 +466,7 @@ MonoBehaviour:
         Value: 0
         IsPercentageValue: 0
   - SkillName: Drone Skill
-    SkillIcon: {fileID: 21300000, guid: 7b1b67783152ca34faae7e7185b93ee3, type: 3}
+    SkillIcon: {fileID: -1519659802, guid: 58785f1f5682f1b4886595320200aa01, type: 3}
     Type: 35
     UseType: 0
     UpgradesInfo:
@@ -498,7 +498,7 @@ MonoBehaviour:
     ActiveSkillUpgradeType: 18
     ExclusionSkillType: 0
     EvolutionData:
-      EvolutionIcon: {fileID: 21300000, guid: e2656b444b560d0409e8274101ff85a4, type: 3}
+      EvolutionIcon: {fileID: -2134758374, guid: 58785f1f5682f1b4886595320200aa01, type: 3}
       TypeForEvolution: 10
       EvolutionInfo:
         Name: Drone Evolution
@@ -508,7 +508,7 @@ MonoBehaviour:
         IsPercentageValue: 0
   _passiveSkills:
   - SkillName: Damage
-    SkillIcon: {fileID: 21300000, guid: e7d87d2e18de961448b01cc53d0852e9, type: 3}
+    SkillIcon: {fileID: -1851257301, guid: 58785f1f5682f1b4886595320200aa01, type: 3}
     Type: 1
     UseType: 1
     UpgradesInfo:
@@ -564,7 +564,7 @@ MonoBehaviour:
       IsPercentageValue: 0
     ModificatorUpgradeType: 1
   - SkillName: MaxHealth
-    SkillIcon: {fileID: 21300000, guid: 92b92c8df3f18d4498490a29e8c5642f, type: 3}
+    SkillIcon: {fileID: 615711966, guid: 58785f1f5682f1b4886595320200aa01, type: 3}
     Type: 2
     UseType: 1
     UpgradesInfo:
@@ -620,7 +620,7 @@ MonoBehaviour:
       IsPercentageValue: 0
     ModificatorUpgradeType: 2
   - SkillName: Armor
-    SkillIcon: {fileID: 21300000, guid: 6db0794b57f7e9a409d3f65fa006386f, type: 3}
+    SkillIcon: {fileID: -714653084, guid: 58785f1f5682f1b4886595320200aa01, type: 3}
     Type: 3
     UseType: 1
     UpgradesInfo:
@@ -676,7 +676,7 @@ MonoBehaviour:
       IsPercentageValue: 1
     ModificatorUpgradeType: 3
   - SkillName: Speed
-    SkillIcon: {fileID: 21300000, guid: 375fa44e98b3b4e43b6736913fed1f4c, type: 3}
+    SkillIcon: {fileID: -2056981039, guid: 58785f1f5682f1b4886595320200aa01, type: 3}
     Type: 4
     UseType: 1
     UpgradesInfo:
@@ -732,7 +732,7 @@ MonoBehaviour:
       IsPercentageValue: 1
     ModificatorUpgradeType: 4
   - SkillName: ReviveCount
-    SkillIcon: {fileID: 21300000, guid: c999327a25f4ed04482e6b4949000614, type: 3}
+    SkillIcon: {fileID: -1848560963, guid: 58785f1f5682f1b4886595320200aa01, type: 3}
     Type: 5
     UseType: 1
     UpgradesInfo:
@@ -743,7 +743,7 @@ MonoBehaviour:
       IsPercentageValue: 0
     ModificatorUpgradeType: 5
   - SkillName: Reloader
-    SkillIcon: {fileID: 21300000, guid: bd239fc7bc743454cb6a4a01de9d328b, type: 3}
+    SkillIcon: {fileID: 765566438, guid: 58785f1f5682f1b4886595320200aa01, type: 3}
     Type: 13
     UseType: 1
     UpgradesInfo:
@@ -799,7 +799,7 @@ MonoBehaviour:
       IsPercentageValue: 0
     ModificatorUpgradeType: 13
   - SkillName: Regeneration
-    SkillIcon: {fileID: 21300000, guid: 5baa6ee19365cf145bfe86a8577f855b, type: 3}
+    SkillIcon: {fileID: -349008986, guid: 58785f1f5682f1b4886595320200aa01, type: 3}
     Type: 12
     UseType: 1
     UpgradesInfo:
@@ -855,7 +855,7 @@ MonoBehaviour:
       IsPercentageValue: 0
     ModificatorUpgradeType: 12
   - SkillName: Magnet
-    SkillIcon: {fileID: 21300000, guid: 405c29e796ce8c34c95ef7e0b10e445e, type: 3}
+    SkillIcon: {fileID: 1751763403, guid: 58785f1f5682f1b4886595320200aa01, type: 3}
     Type: 14
     UseType: 1
     UpgradesInfo:
@@ -911,7 +911,7 @@ MonoBehaviour:
       IsPercentageValue: 1
     ModificatorUpgradeType: 14
   - SkillName: Critical Damage
-    SkillIcon: {fileID: 21300000, guid: 26999ab674c817941b813c2b2aa70393, type: 3}
+    SkillIcon: {fileID: 1731202441, guid: 58785f1f5682f1b4886595320200aa01, type: 3}
     Type: 6
     UseType: 1
     UpgradesInfo:
@@ -967,7 +967,7 @@ MonoBehaviour:
       IsPercentageValue: 1
     ModificatorUpgradeType: 6
   - SkillName: Critical Chance
-    SkillIcon: {fileID: 21300000, guid: 14aac5af2708b4742a8a39e4fd625720, type: 3}
+    SkillIcon: {fileID: 2058657659, guid: 58785f1f5682f1b4886595320200aa01, type: 3}
     Type: 7
     UseType: 1
     UpgradesInfo:
@@ -1023,7 +1023,7 @@ MonoBehaviour:
       IsPercentageValue: 1
     ModificatorUpgradeType: 7
   - SkillName: Curse Provocation
-    SkillIcon: {fileID: 21300000, guid: 14aac5af2708b4742a8a39e4fd625720, type: 3}
+    SkillIcon: {fileID: 2103138366, guid: 58785f1f5682f1b4886595320200aa01, type: 3}
     Type: 8
     UseType: 1
     UpgradesInfo:
@@ -1079,7 +1079,7 @@ MonoBehaviour:
       IsPercentageValue: 1
     ModificatorUpgradeType: 8
   - SkillName: "\u0421urseReinforcement"
-    SkillIcon: {fileID: 21300000, guid: 48b510ccc135fda46bee76d9558c7125, type: 3}
+    SkillIcon: {fileID: 1915768225, guid: 58785f1f5682f1b4886595320200aa01, type: 3}
     Type: 9
     UseType: 1
     UpgradesInfo:
@@ -1135,7 +1135,7 @@ MonoBehaviour:
       IsPercentageValue: 1
     ModificatorUpgradeType: 9
   - SkillName: Duplicator
-    SkillIcon: {fileID: 21300000, guid: a62c6f4c57737574b87e498d2cfa6f1b, type: 3}
+    SkillIcon: {fileID: 1111363621, guid: 58785f1f5682f1b4886595320200aa01, type: 3}
     Type: 11
     UseType: 1
     UpgradesInfo:
@@ -1146,7 +1146,7 @@ MonoBehaviour:
       IsPercentageValue: 0
     ModificatorUpgradeType: 11
   - SkillName: BulletsSize
-    SkillIcon: {fileID: 21300000, guid: 48b510ccc135fda46bee76d9558c7125, type: 3}
+    SkillIcon: {fileID: -2132596665, guid: 58785f1f5682f1b4886595320200aa01, type: 3}
     Type: 10
     UseType: 1
     UpgradesInfo:
@@ -1202,7 +1202,7 @@ MonoBehaviour:
       IsPercentageValue: 1
     ModificatorUpgradeType: 10
   - SkillName: Receiving Experience
-    SkillIcon: {fileID: 21300000, guid: e584b432052af3046be1c71bc54e4d54, type: 3}
+    SkillIcon: {fileID: -1475776183, guid: 58785f1f5682f1b4886595320200aa01, type: 3}
     Type: 15
     UseType: 1
     UpgradesInfo:
@@ -1258,7 +1258,7 @@ MonoBehaviour:
       IsPercentageValue: 1
     ModificatorUpgradeType: 15
   - SkillName: Receiving Coins
-    SkillIcon: {fileID: 21300000, guid: 8c1b27e5c99daa442bd7b8179c044aba, type: 3}
+    SkillIcon: {fileID: 401250356, guid: 58785f1f5682f1b4886595320200aa01, type: 3}
     Type: 16
     UseType: 1
     UpgradesInfo:
