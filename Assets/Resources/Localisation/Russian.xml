@@ -11,7 +11,7 @@
     <string name="KEY_LEADERBOARD_SWITCH_TO_LOCAL">Локальные</string>
     <string name="KEY_LEADERBOARD_SWITCH_TO_GLOBAL">Глобальные</string>
     <string name="KEY_ABOUT_US_TITLE">О нас</string>
-    <string name="KEY_ABOUT_US_LEAD_PROGRAMME">Ведущий программист, геймдизайнер</string>
+    <string name="KEY_ABOUT_US_LEAD_PROGRAMME">Ведущий программист, игровой дизайнер</string>
     <string name="KEY_ABOUT_US_LEAD_ARTIST">Ведущий художник, программист</string>
     <string name="KEY_ABOUT_US_PATREON">Patreon</string>
     <string name="KEY_ABOUT_US_INSTAGRAMM">Instagram</string>
@@ -27,7 +27,7 @@
     <string name="KEY_SETTINGS_SOUNDS">Звуки</string>
     <string name="KEY_SETTINGS_MUSIC">Музыка</string>
     <string name="KEY_SETTINGS_LANGUAGE">Язык</string>
-    <string name="KEY_SETTINGS_SHOW_FPS">Показать ФПС</string>
+    <string name="KEY_SETTINGS_SHOW_FPS">Показать FPS</string>
     <string name="KEY_TUTORIAL_TITLE">Руководство</string>
     <string name="KEY_TUTORIAL_PAGE_0">Это ваш персонаж.</string>
     <string name="KEY_TUTORIAL_PAGE_1">Это джойстик которым можно управлять вашим персонажем двигая его в пространстве и поворачивая.</string>
@@ -55,4 +55,6 @@
     <string name="KEY_BACK_TO_GAME_ZONE">Вернитесь в игровую зону</string>
     <string name="KEY_LOADING">Загрузка...</string>
     <string name="KEY_RELOAD">Перезагрузите</string>
+    <string name="KEY_DAMAGE_VISUALIZATION">Визуализация урона</string>
+    <string name="KEY_CRIT_DAMAGE_VISUALIZATION">Визуализация критического урона</string>
 </Document>

@@ -55,4 +55,6 @@
     <string name="KEY_BACK_TO_GAME_ZONE">Back to game zone</string>
     <string name="KEY_LOADING">Loading...</string>
     <string name="KEY_RELOAD">Reload</string>
+    <string name="KEY_DAMAGE_VISUALIZATION">Damage Visualization</string>
+    <string name="KEY_CRIT_DAMAGE_VISUALIZATION">Critical Damage Visualization</string>
 </Document>
