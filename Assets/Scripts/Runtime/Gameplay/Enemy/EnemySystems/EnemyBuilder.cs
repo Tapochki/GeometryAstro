@@ -30,9 +30,10 @@ namespace TandC.GeometryAstro.Gameplay
             var move = new MoveToTargetComponent(enemy.GetComponent<Rigidbody2D>());
             var rotation = new NoRotationComponent();
             var attack = new AttackComponent(data, damageModificator);
+            var animationComponent = new AnimationComponent(enemy.gameObject, data.sprites);
             rotation.SetRotation(rotationDirection);
 
-            enemy.ConfigureComponents(move, rotation, attack);
+            enemy.ConfigureComponents(move, rotation, attack, animationComponent);
         }
 
     }
@@ -45,8 +46,9 @@ namespace TandC.GeometryAstro.Gameplay
             var rotation = new OnTargetRotateComponte(enemy.transform);
             rotation.SetRotation(rotationDirection);
             var attack = new AttackComponent(data, damageModificator);
+            var animationComponent = new AnimationComponent(enemy.gameObject, data.sprites);
 
-            enemy.ConfigureComponents(move, rotation, attack);
+            enemy.ConfigureComponents(move, rotation, attack, animationComponent);
         }
     }
 }

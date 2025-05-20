@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace TandC.GeometryAstro.Data
 {
-    [CreateAssetMenu(fileName = "StartPlayerParams", menuName = "TandC/Player Params/Start Player Params", order = 1)]
+    [CreateAssetMenu(fileName = "StartPlayerParams", menuName = "TandC/Player Params/Play Player Params", order = 1)]
     public class StartPlayerParams : ScriptableObject
     {
         [Tooltip("We store the player's starting parameters.")]
@@ -49,7 +49,7 @@ namespace TandC.GeometryAstro.Data
     {
         [Tooltip("Parameter type for modification")]
         public ModificatorType Type;
-        [Tooltip("Start value of the parameter")]
+        [Tooltip("Play value of the parameter")]
         public float StartValue;
         [Tooltip("True if the paratransit is used as a percentage. For example, the percentage of increase in crit damage.")]
         public bool IsPercentageValue;

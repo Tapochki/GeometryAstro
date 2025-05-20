@@ -3,16 +3,14 @@ using UnityEngine;
 
 namespace TandC.GeometryAstro.Gameplay.VFX 
 {
-    public class EnemyDeathEffect : MonoBehaviour, IEffect, ITickable
+    public class EnemyDeathEffect : Effect
     {
         [SerializeField]
         private ParticleSystem _particleSystem;
 
-        private Action<IEffect> _returnToPoolAction;
-
-        public void Init(Action<IEffect> returnToPoolAction)
+        public override void Init(Action<IEffect> returnToPoolAction)
         {
-            _returnToPoolAction = returnToPoolAction;
+            base.Init(returnToPoolAction);
 
             InitParticleSystem();
         }
@@ -23,22 +21,6 @@ namespace TandC.GeometryAstro.Gameplay.VFX
             main.stopAction = ParticleSystemStopAction.Callback;
         }
 
-        public void Show()
-        {
-            gameObject.SetActive(true);
-        }
-
-        public void Hide()
-        {
-            gameObject.SetActive(false);
-        }
-
-        public void Dispose()
-        {
-            _returnToPoolAction = null;
-            Destroy(gameObject);
-        }
-
         public void StartEffect(Vector3 position)
         {
             SetPosition(position);
@@ -47,16 +29,6 @@ namespace TandC.GeometryAstro.Gameplay.VFX
         private void SetPosition(Vector3 position)
         {
             gameObject.transform.position = position;
-        }
-
-        public void Tick()
-        {
-            
-        }
-
-        private void OnDestroy()
-        {
-
         }
 
         private void OnParticleSystemStopped()

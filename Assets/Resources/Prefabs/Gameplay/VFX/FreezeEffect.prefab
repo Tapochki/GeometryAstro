@@ -14700,7 +14700,7 @@ GameObject:
   - component: {fileID: 2857341531009489670}
   - component: {fileID: 4679576196815691155}
   - component: {fileID: 8299896837417246714}
-  - component: {fileID: 9056426507533550616}
+  - component: {fileID: -2917025205765479469}
   m_Layer: 6
   m_Name: FreezeEffect
   m_TagString: Untagged
@@ -19582,7 +19582,7 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!114 &9056426507533550616
+--- !u!114 &-2917025205765479469
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -19591,7 +19591,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5177272580008071605}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94148b5338876fb4c9bf9b48ca43d8e7, type: 3}
+  m_Script: {fileID: 11500000, guid: c21c22536787df24995d56708f920067, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _particleSystem: {fileID: 4679576196815691155}

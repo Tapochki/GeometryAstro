@@ -3,29 +3,24 @@ using UnityEngine;
 
 namespace TandC.GeometryAstro.Gameplay.VFX
 {
-    public class ExplosionEffect : MonoBehaviour, IEffect
+    [RequireComponent(typeof(ParticleSystem))]
+    public class ExplosionEffect : Effect
     {
-        [SerializeField]
         private ParticleSystem _particleSystem;
 
-        private Action<ExplosionEffect> _returnToPoolAction;
-
-        public void Init(Action<IEffect> returnToPoolAction)
+        public override void Init(Action<IEffect> returnToPoolAction)
         {
-            _returnToPoolAction = returnToPoolAction;
+            base.Init(returnToPoolAction);
 
             InitParticleSystem();
         }
 
         private void InitParticleSystem() 
         {
+            _particleSystem = gameObject.GetComponent<ParticleSystem>();
+
             ParticleSystem.MainModule main = _particleSystem.main;
             main.stopAction = ParticleSystemStopAction.Callback;
-        }
-
-        public void Show()
-        {
-            gameObject.SetActive(true);
         }
 
         public void StartEffect(Vector3 position)
@@ -37,17 +32,6 @@ namespace TandC.GeometryAstro.Gameplay.VFX
         private void SetPosition(Vector3 position) 
         {
             gameObject.transform.position = position;
-        }
-
-        public void Hide()
-        {
-            gameObject.SetActive(false);
-        }
-
-        public void Dispose() 
-        {
-            _returnToPoolAction = null;
-            Destroy(gameObject);
         }
 
         private void OnParticleSystemStopped()

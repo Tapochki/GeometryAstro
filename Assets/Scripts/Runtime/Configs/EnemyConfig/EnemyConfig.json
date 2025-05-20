@@ -1,6 +1,7 @@
 {
     "_enemies": [
         {
+            "Name": "DefaultEnemy",
             "enemyId": 0,
             "health": 100.0,
             "damage": 10,
@@ -9,12 +10,17 @@
             "BuilderType": 0,
             "type": 0,
             "droperType": 1,
-            "mainSprite": {
-                "instanceID": 33678
-            },
-            "enemyAdditionalSprite": {
-                "instanceID": 0
-            }
+            "sprites": [
+                {
+                    "instanceID": 33956
+                },
+                {
+                    "instanceID": 35482
+                },
+                {
+                    "instanceID": 35486
+                }
+            ]
         }
     ]
 }

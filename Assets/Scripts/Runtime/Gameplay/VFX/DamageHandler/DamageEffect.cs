@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace TandC.GeometryAstro.Gameplay.VFX 
 {
-    public class DamageEffect : MonoBehaviour, IEffect, ITickable
+    public class DamageEffect : MonoBehaviour, IEffect
     {
         private Action<IEffect> _returnToPoolAction;
         private TextMesh _textMesh;
@@ -50,11 +50,6 @@ namespace TandC.GeometryAstro.Gameplay.VFX
         private void AnimationEndEvent() 
         {
             _returnToPoolAction?.Invoke(this);
-        }
-
-        public void Tick()
-        {
-            
         }
     }
 }

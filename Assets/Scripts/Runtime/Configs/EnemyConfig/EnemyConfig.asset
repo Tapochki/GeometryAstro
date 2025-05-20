@@ -22,5 +22,7 @@ MonoBehaviour:
     BuilderType: 0
     type: 0
     droperType: 1
-    mainSprite: {fileID: 21300000, guid: dbf828637df39934ea9d5b19f567223f, type: 3}
-    enemyAdditionalSprite: {fileID: 0}
+    sprites:
+    - {fileID: 21300000, guid: dbf828637df39934ea9d5b19f567223f, type: 3}
+    - {fileID: 21300000, guid: 768d8cf63ba673a43bb02f98f71508b1, type: 3}
+    - {fileID: 21300000, guid: 5629c9efc12e7184aa6de988bbed4347, type: 3}

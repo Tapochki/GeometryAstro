@@ -80,7 +80,7 @@ namespace TandC.Editor
 
             if (!_isStop)
             {
-                UnityEngine.Debug.Log("Start Auto Save");
+                UnityEngine.Debug.Log("Play Auto Save");
                 if (EditorSceneManager.SaveOpenScenes())
                 {
                     UnityEngine.Debug.Log("All Opened scenes was saved successfull!");

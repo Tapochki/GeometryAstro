@@ -61,7 +61,7 @@ namespace TandC.GeometryAstro.Editor
 
             if (sceneAsset == null)
             {
-                Debug.LogWarning("Current scene is not saved! Start scene reset.");
+                Debug.LogWarning("Current scene is not saved! Play scene reset.");
                 EditorSceneManager.playModeStartScene = null;
                 return;
             }

@@ -37,7 +37,6 @@ namespace TandC.GeometryAstro.Data
         public EnemyBuilderType BuilderType;
         public EnemyType type;
         public DropItemRareType droperType;
-        public Sprite mainSprite;
-        public Sprite enemyAdditionalSprite;
+        public List<Sprite> sprites;
     }
 }

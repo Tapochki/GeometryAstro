@@ -22,7 +22,11 @@ MonoBehaviour:
     minEnemies: 20
     spawnInterval: 1
     waveDuration: 60
-    waveEvents: []
+    waveEvents:
+    - eventType: 0
+      activationTime: 0
+      eventChance: 0
+      maxRepetitions: 0
     bossInPhase: []
   _baseDifficulty: 1
   _difficultyMultipliers:

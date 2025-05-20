@@ -1,9 +1,7 @@
 using System;
 using TandC.GeometryAstro.Data;
 using TandC.GeometryAstro.EventBus;
-using UniRx;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 namespace TandC.GeometryAstro.Gameplay
 {
@@ -20,6 +18,7 @@ namespace TandC.GeometryAstro.Gameplay
         private IRotation _rotationComponent;
         private IHealth _healthComponent;
         private FlashSpriteComponent _flashSpriteComponent;
+        private AnimationComponent _animationComponent;
         private AttackComponent _attackComponent;
         private Action<Enemy, bool> _onDeathEvent;
         private FreezeComponent _freezeComponent;
@@ -49,6 +48,7 @@ namespace TandC.GeometryAstro.Gameplay
         {
             _enemySprite = gameObject.transform.Find("ModelView").GetComponent<SpriteRenderer>();
             _freezeComponent = new FreezeComponent(gameObject.transform.Find("FreezEnemyVFX").gameObject, _rigidbody);
+            _freezeComponent.EndFreezeEvent += EndFreeze;
             _flashSpriteComponent = new FlashSpriteComponent(_enemySprite, _enemySprite.color);
         }
 
@@ -60,7 +60,7 @@ namespace TandC.GeometryAstro.Gameplay
 
             _speedModificator = speedModificator;
 
-            _modelViewRenderer.sprite = data.mainSprite;
+            _modelViewRenderer.sprite = data.sprites[0];
             SetupHealthComponent(healthModificator);
             IsActive = true;
         }
@@ -82,11 +82,12 @@ namespace TandC.GeometryAstro.Gameplay
             IsActive = false;
         }
 
-        public void ConfigureComponents(IMove moveComponent, IRotation rotationComponent, AttackComponent attackComponent)
+        public void ConfigureComponents(IMove moveComponent, IRotation rotationComponent, AttackComponent attackComponent, AnimationComponent animationComponent)
         {
             _moveComponent = moveComponent;
             _rotationComponent = rotationComponent;
             _attackComponent = attackComponent;
+            _animationComponent = animationComponent;
         }
 
         public void TakeDamage(float damageValue, float criticalChance, float criticalDamageMultiplier)
@@ -104,7 +105,6 @@ namespace TandC.GeometryAstro.Gameplay
         {
             EventBusHolder.EventBus.Raise(new CreateDamageEffect(damage, position, isCrit));
         }
-
 
         private void ThrowDeathEffectEvent(Vector3 position)
         {
@@ -133,6 +133,12 @@ namespace TandC.GeometryAstro.Gameplay
         public void Freeze(float freezeTimer = 3f)
         {
             _freezeComponent.Freeze(freezeTimer);
+            _animationComponent.Stop();
+        }
+
+        public void EndFreeze() 
+        {
+            _animationComponent.Play();
         }
     }
 }

@@ -3,21 +3,14 @@ using UnityEngine;
 
 namespace TandC.GeometryAstro.Gameplay.VFX
 {
-    public class DamageAreaEffect : MonoBehaviour, IEffect
+    public class DamageAreaEffect : Effect
     {
-        private Action<DamageAreaEffect> _returnToPoolAction;
-
         private float _timer;
         private bool _isStart;
 
-        public void Init(Action<IEffect> returnToPoolAction)
+        public override void Init(Action<IEffect> returnToPoolAction)
         {
-            _returnToPoolAction = returnToPoolAction;
-        }
-
-        public void Show()
-        {
-            gameObject.SetActive(true);
+           base.Init(returnToPoolAction);
         }
 
         public void StartEffect(Vector3 position, float timer)
@@ -30,11 +23,6 @@ namespace TandC.GeometryAstro.Gameplay.VFX
         private void SetPosition(Vector3 position) 
         {
             gameObject.transform.position = position;
-        }
-
-        public void Hide()
-        {
-            gameObject.SetActive(false);
         }
 
         public void Update()
@@ -53,12 +41,6 @@ namespace TandC.GeometryAstro.Gameplay.VFX
         {
             _isStart = false;
             _returnToPoolAction.Invoke(this);
-        }
-
-        public void Dispose() 
-        {
-            _returnToPoolAction = null;
-            Destroy(gameObject);
         }
     }
 }

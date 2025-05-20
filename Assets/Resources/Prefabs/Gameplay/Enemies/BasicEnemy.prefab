@@ -225,7 +225,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   frames: []
-  framesPerSecond: 0
+  framesPerSecond: 3
   loop: 0
   currentFrame: 0
   wasPaused: 0

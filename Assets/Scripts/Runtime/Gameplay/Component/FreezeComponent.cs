@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace TandC.GeometryAstro.Gameplay
@@ -11,6 +12,8 @@ namespace TandC.GeometryAstro.Gameplay
         private readonly GameObject _freezeVFX;
 
         private readonly Rigidbody2D _rigidbody2D;
+
+        public Action EndFreezeEvent;
 
         public FreezeComponent(GameObject freezeVFX, Rigidbody2D rigidbody2D)
         {
@@ -43,6 +46,7 @@ namespace TandC.GeometryAstro.Gameplay
             _rigidbody2D.bodyType = RigidbodyType2D.Dynamic;
             IsFreeze = false;
             SetFreezeObject(IsFreeze);
+            EndFreezeEvent.Invoke();
         }
 
         private void SetFreezeObject(bool isActive)
