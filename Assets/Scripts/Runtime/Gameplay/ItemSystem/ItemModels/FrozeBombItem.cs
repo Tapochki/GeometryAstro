@@ -6,7 +6,7 @@ namespace TandC.GeometryAstro.Gameplay
 {
     public class FrozeBombItem : ItemModel 
     {
-        private float _explosionArea = 300f;
+        private float _explosionArea = 100f;
 
         public float FreezeTime { get; }
 

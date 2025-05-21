@@ -6,7 +6,7 @@ namespace TandC.GeometryAstro.Gameplay
 {
     public class BombItem : ItemModel
     {
-        private float _explosionArea = 300f;
+        private float _explosionArea = 20f;
 
         public int BombDamage { get; }
         private ExplosionDamage _explosionDamage;

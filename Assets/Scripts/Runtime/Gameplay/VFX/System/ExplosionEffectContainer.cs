@@ -11,19 +11,14 @@ namespace TandC.GeometryAstro.Gameplay.VFX
 
         protected virtual float CalculateSize(float radius)
         {
-            return Mathf.Lerp(1f, 5f, (radius - 10f) / (20f));
+            return Mathf.Lerp(1f, 10f, (radius - 10f) / (20f));
         }
 
         protected void ApplyEffect(ExplosionEffect effect, float radius, Vector3 position)
         {
             float calculatedSizeOfParticleSystem = CalculateSize(radius);
+            Debug.LogError($"radius {radius} calculatedSizeOfParticleSystem {calculatedSizeOfParticleSystem}");
             effect.transform.localScale = Vector3.one * calculatedSizeOfParticleSystem;
-
-            for (int i = 0; i < effect.transform.childCount; i++)
-            {
-                effect.transform.GetChild(i).transform.localScale = Vector3.one * calculatedSizeOfParticleSystem;
-            }
-
             effect.StartEffect(position);
         }
     }
