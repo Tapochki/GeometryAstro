@@ -9,16 +9,16 @@ namespace TandC.GeometryAstro.Services
 {
     public class PurchasingService : IDetailedStoreListener
     {
-        private DataSystem _dataSystem;
-        private SoundSystem _soundSystem;
+        private DataService _dataSystem;
+        private SoundService _soundSystem;
 
         private List<Products> _purchasingIDs;
 
         private IStoreController _storeController;
 
-        public void Construct(DataSystem dataSystem, SoundSystem soundSystem)
+        public void Construct(DataService dataSystem, SoundService soundSystem)
         {
-            Utilities.Logger.Log("PurchasingService Construct", LogTypes.Info);
+            //Utilities.Logger.Log("PurchasingService Construct", LogTypes.Info);
 
             _dataSystem = dataSystem;
             _soundSystem = soundSystem;
@@ -75,38 +75,38 @@ namespace TandC.GeometryAstro.Services
                     break;
 
                 default:
-                    Utilities.Logger.Log($"Purchase with id [{product.definition.id}] not implemented", Settings.LogTypes.Error);
+                    //Utilities.Logger.Log($"Purchase with id [{product.definition.id}] not implemented", Settings.LogTypes.Error);
                     break;
             }
 
-            Utilities.Logger.Log($"Purchase complete with id - [{product.definition.id}]", LogTypes.Info);
+            //Utilities.Logger.Log($"Purchase complete with id - [{product.definition.id}]", LogTypes.Info);
 
             return PurchaseProcessingResult.Complete;
         }
 
         public void OnInitializeFailed(InitializationFailureReason error)
         {
-            Utilities.Logger.Log($"Initialize of purchase failed with error [{error}]", LogTypes.Error);
+            //Utilities.Logger.Log($"Initialize of purchase failed with error [{error}]", LogTypes.Error);
         }
 
         public void OnInitializeFailed(InitializationFailureReason error, string message)
         {
-            Utilities.Logger.Log($"Initialize of purchase failed with error [{error}] and message [{message}]", LogTypes.Error);
+            //Utilities.Logger.Log($"Initialize of purchase failed with error [{error}] and message [{message}]", LogTypes.Error);
         }
 
         public void OnPurchaseFailed(Product product, PurchaseFailureReason failureReason)
         {
-            Utilities.Logger.Log($"Purchase failed with ID [{product.definition.id}] and reason [{failureReason}]", LogTypes.Error);
+            //Utilities.Logger.Log($"Purchase failed with ID [{product.definition.id}] and reason [{failureReason}]", LogTypes.Error);
         }
 
         public void OnPurchaseFailed(Product product, PurchaseFailureDescription failureDescription)
         {
-            Utilities.Logger.Log($"Purchase failed with ID [{product.definition.id}] and failureDescription [{failureDescription}]", LogTypes.Error);
+            //Utilities.Logger.Log($"Purchase failed with ID [{product.definition.id}] and failureDescription [{failureDescription}]", LogTypes.Error);
         }
 
         public void OnInitialized(IStoreController controller, IExtensionProvider extensions)
         {
-            Utilities.Logger.Log($"Initialize of purchases [{controller}] and extensions [{extensions}]", LogTypes.Info);
+            //Utilities.Logger.Log($"Initialize of purchases [{controller}] and extensions [{extensions}]", LogTypes.Info);
         }
 
         private Products GetProductInfoByType(PurchasingType type)

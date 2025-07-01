@@ -8,11 +8,11 @@ namespace TandC.GeometryAstro.Services
 {
     public class PurchasingListenerService
     {
-        private PurchasingSystem _purchasingSystem;
+        private PurchasingService _purchasingSystem;
 
-        public void Construct(PurchasingSystem purchasingSystem)
+        public void Construct(PurchasingService purchasingSystem)
         {
-            Utilities.Logger.Log("PurchasingListenerService Construct", LogTypes.Info);
+            //Utilities.Logger.Log("PurchasingListenerService Construct", LogTypes.Info);
 
             _purchasingSystem = purchasingSystem;
         }
@@ -21,7 +21,7 @@ namespace TandC.GeometryAstro.Services
         {
             if (subType == "Unknown")
             {
-                Utilities.Logger.Log("Unknown is not implemented", LogTypes.Error);
+                //Utilities.Logger.Log("Unknown is not implemented", LogTypes.Error);
                 return;
             }
 
@@ -31,7 +31,7 @@ namespace TandC.GeometryAstro.Services
             }
             else
             {
-                Utilities.Logger.Log($"Can't parse [{subType}] to [{type}]", LogTypes.Error);
+                //Utilities.Logger.Log($"Can't parse [{subType}] to [{type}]", LogTypes.Error);
             }
         }
     }
