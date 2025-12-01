@@ -14,7 +14,7 @@ namespace TandC.GeometryAstro.Gameplay
         public void Move(Vector2 direction, float moveSpeed)
         {
             Vector2 moveVelocity = direction * moveSpeed;
-            _moveRigidbody2D.velocity = moveVelocity;
+            _moveRigidbody2D.linearVelocity = moveVelocity;
         }
     }
 }

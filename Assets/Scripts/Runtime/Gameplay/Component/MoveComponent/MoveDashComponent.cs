@@ -38,7 +38,7 @@ namespace TandC.GeometryAstro.Gameplay
         private void Dash(Vector2 direction, float moveSpeed)
         {
             _isDash = true;
-            _moveRigidbody2D.velocity = direction * moveSpeed * _dashModificator.Value;
+            _moveRigidbody2D.linearVelocity = direction * moveSpeed * _dashModificator.Value;
         }
 
         public void StartDash()
