@@ -59,13 +59,17 @@ namespace TandC.GeometryAstro.Services
                 _dataService.SaveCache(Settings.CacheType.PlayerValutData);
             }
 
-            public void Substruct(int amount)
+            public bool Subtract(int amount)
             {
+                if (_storedItem < amount)
+                    return false;
+
                 _storedItem -= amount;
                 _changedVaultAction?.Invoke();
 
                 _dataService.PlayerVaultData.coins = _storedItem;
                 _dataService.SaveCache(Settings.CacheType.PlayerValutData);
+                return true;
             }
 
             public int Get() => _storedItem;

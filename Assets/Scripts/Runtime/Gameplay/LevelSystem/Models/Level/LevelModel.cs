@@ -2,7 +2,7 @@ using TandC.GeometryAstro.EventBus;
 
 namespace TandC.GeometryAstro.Gameplay
 {
-    public class LevelModel : IEventReceiver<ExpirienceItemReleaseEvent>
+    public class LevelModel : IEventReceiver<ExperienceItemReleaseEvent>
     {
         private int _currentLevel;
 
@@ -11,7 +11,7 @@ namespace TandC.GeometryAstro.Gameplay
 
         private IReadableModificator _expModificator;
 
-        private const float _expirienceNextLevelMultiplayer = 1f;
+        private const float _experienceNextLevelMultiplier = 1f;
 
         public UniqueId Id { get; } = new UniqueId();
 
@@ -25,9 +25,9 @@ namespace TandC.GeometryAstro.Gameplay
             EventBusHolder.EventBus.Unregister(this);
         }
 
-        public void OnEvent(ExpirienceItemReleaseEvent @event)
+        public void OnEvent(ExperienceItemReleaseEvent @event)
         {
-            AddExpirience(@event.ExpAmount);
+            AddExperience(@event.ExpAmount);
         }
 
         public void Init(IReadableModificator expModificator)
@@ -36,7 +36,7 @@ namespace TandC.GeometryAstro.Gameplay
 
             InitEvent();
             SetStartLevel();
-            SetStartExpirience();
+            SetStartExperience();
         }
 
         private void InitEvent()
@@ -55,14 +55,14 @@ namespace TandC.GeometryAstro.Gameplay
             UpdateView();
         }
 
-        private void SetStartExpirience()
+        private void SetStartExperience()
         {
             _xpForNextLevel = 0;
             _xpForNextLevel = 100;
             UpdateView();
         }
 
-        public void AddExpirience(int addedXp)
+        public void AddExperience(int addedXp)
         {
             _currentXp += addedXp * _expModificator.Value;
             CheckForNewLevel();
@@ -71,7 +71,7 @@ namespace TandC.GeometryAstro.Gameplay
 
         private void UpdateView()
         {
-            EventBusHolder.EventBus.Raise(new ExpirienceChangeEvent(_currentXp, _xpForNextLevel, _currentLevel));
+            EventBusHolder.EventBus.Raise(new ExperienceChangeEvent(_currentXp, _xpForNextLevel, _currentLevel));
         }
 
         public void CheckForNewLevel()
@@ -79,14 +79,14 @@ namespace TandC.GeometryAstro.Gameplay
             if (_currentXp >= _xpForNextLevel)
             {
                 _currentXp -= _xpForNextLevel;
-                MuliplyExpirienceForNewLevel();
+                MultiplyExperienceForNewLevel();
                 LevelUp();
             }
         }
 
-        private void MuliplyExpirienceForNewLevel()
+        private void MultiplyExperienceForNewLevel()
         {
-            _xpForNextLevel *= _expirienceNextLevelMultiplayer;
+            _xpForNextLevel *= _experienceNextLevelMultiplier;
         }
 
         private void LevelUp()

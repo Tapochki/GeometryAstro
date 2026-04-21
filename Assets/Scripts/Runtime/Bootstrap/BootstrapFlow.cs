@@ -35,14 +35,21 @@ namespace TandC.GeometryAstro.Bootstrap
 
         public async void Start()
         {
-            var fooLoadingUnit = new FooLoadingUnit();
+            try
+            {
+                var fooLoadingUnit = new FooLoadingUnit();
 
-            await _loadingService.BeginLoading(fooLoadingUnit);
-            await _loadingService.BeginLoading(_localisationService);
-            await _loadingService.BeginLoading(_dataService);
-            await _loadingService.BeginLoading(_vaultService);
+                await _loadingService.BeginLoading(fooLoadingUnit);
+                await _loadingService.BeginLoading(_localisationService);
+                await _loadingService.BeginLoading(_dataService);
+                await _loadingService.BeginLoading(_vaultService);
 
-            _sceneService.LoadScene(RuntimeConstants.Scenes.Loading).Forget();
+                _sceneService.LoadScene(RuntimeConstants.Scenes.Loading).Forget();
+            }
+            catch (System.Exception e)
+            {
+                UnityEngine.Debug.LogException(e);
+            }
         }
     }
 }

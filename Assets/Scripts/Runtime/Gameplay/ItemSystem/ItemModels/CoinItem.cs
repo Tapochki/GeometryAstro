@@ -15,7 +15,7 @@ namespace TandC.GeometryAstro.Gameplay
 
         public override void ReleseItem(Vector3 position) 
         {
-            EventBusHolder.EventBus.Raise(new CointItemReleaseEvent(CoinAmount));
+            EventBusHolder.EventBus.Raise(new CoinItemReleaseEvent(CoinAmount));
         }
     }
 }

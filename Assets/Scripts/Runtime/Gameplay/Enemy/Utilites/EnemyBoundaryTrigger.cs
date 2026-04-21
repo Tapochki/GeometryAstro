@@ -36,7 +36,7 @@ namespace TandC.GeometryAstro.Gameplay
         {
             if (other.TryGetComponent(out Enemy enemy))
             {
-                enemy.ProccesingEnemyDeath(false);
+                enemy.ProcessEnemyDeath(false);
             }
         }
     }

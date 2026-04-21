@@ -31,12 +31,12 @@ namespace TandC.GeometryAstro.Gameplay
                 ItemType.Bomb => new BombItem(randomValue, itemData.sprite, type),
                 ItemType.Chest => new ChestItem(randomValue, itemData.sprite, type),
                 ItemType.Coin => new CoinItem(randomValue, itemData.sprite, type),
-                ItemType.SmallXp or ItemType.MeduimXp or ItemType.BigXp => new ExpirienceItem(randomValue, itemData.sprite, type),
+                ItemType.SmallXp or ItemType.MeduimXp or ItemType.BigXp => new ExperienceItem(randomValue, itemData.sprite, type),
                 ItemType.FrozenBomb => new FrozeBombItem(randomValue, itemData.sprite, type),
                 ItemType.Magnet => new MagnetItem(itemData.sprite, type),
-                ItemType.Medecine => new MedecineItem(randomValue, itemData.sprite, type),
+                ItemType.Medicine => new MedicineItem(randomValue, itemData.sprite, type),
                 ItemType.RocketAmmo => new RocketAmmoItem(randomValue, itemData.sprite, type),
-                _ => throw new ArgumentException($"Неизвестный тип предмета: {type}")
+                _ => throw new ArgumentException($"пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ: {type}")
             };
         }
     }

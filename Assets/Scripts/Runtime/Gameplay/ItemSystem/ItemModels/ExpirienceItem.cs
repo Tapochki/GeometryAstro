@@ -4,18 +4,18 @@ using UnityEngine;
 
 namespace TandC.GeometryAstro.Gameplay 
 {
-    public class ExpirienceItem : ItemModel 
+    public class ExperienceItem : ItemModel 
     {
         public int ExpAmount { get; }
 
-        public ExpirienceItem(int expAmount, Sprite itemSprite, ItemType type) : base(itemSprite, type)
+        public ExperienceItem(int expAmount, Sprite itemSprite, ItemType type) : base(itemSprite, type)
         {
             ExpAmount = expAmount;
         }
 
         public override void ReleseItem(Vector3 position) 
         {
-            EventBusHolder.EventBus.Raise(new ExpirienceItemReleaseEvent(ExpAmount));
+            EventBusHolder.EventBus.Raise(new ExperienceItemReleaseEvent(ExpAmount));
         }
     }
 

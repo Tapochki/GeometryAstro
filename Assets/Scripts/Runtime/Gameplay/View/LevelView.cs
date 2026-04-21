@@ -5,10 +5,10 @@ using UnityEngine.UI;
 
 namespace TandC.GeometryAstro.Gameplay 
 {
-    public class LevelView : MonoBehaviour, IEventReceiver<ExpirienceChangeEvent>
+    public class LevelView : MonoBehaviour, IEventReceiver<ExperienceChangeEvent>
     {
         [SerializeField]
-        private Image _expirienceImage;
+        private Image _experienceImage;
 
         [SerializeField]
         private TextMeshProUGUI _levelText;
@@ -17,12 +17,12 @@ namespace TandC.GeometryAstro.Gameplay
 
         private void RegisterEvent()
         {
-            EventBusHolder.EventBus.Register(this as IEventReceiver<ExpirienceChangeEvent>);
+            EventBusHolder.EventBus.Register(this as IEventReceiver<ExperienceChangeEvent>);
         }
 
         private void UnregisterEvent()
         {
-            EventBusHolder.EventBus.Unregister(this as IEventReceiver<ExpirienceChangeEvent>);
+            EventBusHolder.EventBus.Unregister(this as IEventReceiver<ExperienceChangeEvent>);
         }
 
         private void OnEnable()
@@ -35,10 +35,10 @@ namespace TandC.GeometryAstro.Gameplay
             UnregisterEvent();
         }
 
-        public void OnEvent(ExpirienceChangeEvent @event)
+        public void OnEvent(ExperienceChangeEvent @event)
         {
             UpdateLevel(@event.CurrentLevel);
-            UpdateExpririence(@event.CurrentExpirience, @event.MaxExpirienceForNextLevel);
+            UpdateExperience(@event.CurrentExperience, @event.MaxExperienceForNextLevel);
         }
 
         public void UpdateLevel(int level) 
@@ -48,9 +48,9 @@ namespace TandC.GeometryAstro.Gameplay
             _levelText.text = $"Level: {level}";
         }
 
-        public void UpdateExpririence(float currentXp, float xpToNextLevel)
+        public void UpdateExperience(float currentXp, float xpToNextLevel)
         {
-            _expirienceImage.fillAmount = currentXp / xpToNextLevel;
+            _experienceImage.fillAmount = currentXp / xpToNextLevel;
         }
     }
 }

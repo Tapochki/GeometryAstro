@@ -39,6 +39,7 @@ namespace TandC.GeometryAstro.Gameplay
 
         public void Dispose() 
         {
+            _reviveDisposables?.Dispose();
             UnregisterEvent();
         }
 

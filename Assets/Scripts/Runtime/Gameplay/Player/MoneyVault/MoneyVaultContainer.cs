@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace TandC.GeometryAstro.Gameplay 
 {
-    public class MoneyVaultContainer : IEventReceiver<CointItemReleaseEvent>
+    public class MoneyVaultContainer : IEventReceiver<CoinItemReleaseEvent>
     {
         public UniqueId Id { get; } = new UniqueId();
 
@@ -33,15 +33,15 @@ namespace TandC.GeometryAstro.Gameplay
 
         private void RegisterEvent()
         {
-            EventBusHolder.EventBus.Register(this as IEventReceiver<CointItemReleaseEvent>);
+            EventBusHolder.EventBus.Register(this as IEventReceiver<CoinItemReleaseEvent>);
         }
 
         private void UnregisterEvent()
         {
-            EventBusHolder.EventBus.Unregister(this as IEventReceiver<CointItemReleaseEvent>);
+            EventBusHolder.EventBus.Unregister(this as IEventReceiver<CoinItemReleaseEvent>);
         }
 
-        public void OnEvent(CointItemReleaseEvent @event)
+        public void OnEvent(CoinItemReleaseEvent @event)
         {
             AddMoney(@event.CoinAmount);
         }

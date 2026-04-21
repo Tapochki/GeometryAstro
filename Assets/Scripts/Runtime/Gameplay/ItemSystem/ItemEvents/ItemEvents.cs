@@ -13,21 +13,21 @@ namespace TandC.GeometryAstro.EventBus
 
     public readonly struct ChestItemReleaseEvent : IEvent { }
 
-    public readonly struct CointItemReleaseEvent : IEvent
+    public readonly struct CoinItemReleaseEvent : IEvent
     {
         public readonly int CoinAmount;
 
-        public CointItemReleaseEvent(int coinAmount)
+        public CoinItemReleaseEvent(int coinAmount)
         {
             CoinAmount = coinAmount;
         }
     }
 
-    public readonly struct ExpirienceItemReleaseEvent : IEvent
+    public readonly struct ExperienceItemReleaseEvent : IEvent
     {
         public readonly int ExpAmount;
 
-        public ExpirienceItemReleaseEvent(int expAmount)
+        public ExperienceItemReleaseEvent(int expAmount)
         {
             ExpAmount = expAmount;
         }

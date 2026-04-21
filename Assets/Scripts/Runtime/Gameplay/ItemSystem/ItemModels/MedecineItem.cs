@@ -4,11 +4,11 @@ using UnityEngine;
 
 namespace TandC.GeometryAstro.Gameplay 
 {
-    public class MedecineItem : ItemModel
+    public class MedicineItem : ItemModel
     {
         public int HealAmount { get; }
 
-        public MedecineItem(int healAmount, Sprite itemSprite, ItemType type) : base(itemSprite, type)
+        public MedicineItem(int healAmount, Sprite itemSprite, ItemType type) : base(itemSprite, type)
         {
             HealAmount = healAmount;
         }

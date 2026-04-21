@@ -108,28 +108,34 @@ namespace TandC.GeometryAstro.Core
 
         public async void Start()
         {
-            InitInputHandler();
-            _modificatorContainer.Init();
-            InitPlayer();
-            InitItemSpawner();
-            InitActiveSkillCointainer();
-            InitEnemy();
+            try
+            {
+                InitInputHandler();
+                _modificatorContainer.Init();
+                InitPlayer();
+                InitItemSpawner();
+                InitActiveSkillContainer();
+                InitEnemy();
 
-            InitVaultCointainer();
-            InitScoreContainer();
+                InitVaultContainer();
+                InitScoreContainer();
 
-            RegisterEffect();
+                RegisterEffect();
 
-            RegisterUI();
+                RegisterUI();
 
+                _skillService.Initialize();
 
-            _skillService.Initialize();
+                await LoadAssetsAsync();
 
-            await LoadAssetsAsync();
+                _pauseService.Init();
 
-            _pauseService.Init();
-
-            OpenFirstPage();
+                OpenFirstPage();
+            }
+            catch (System.Exception e)
+            {
+                UnityEngine.Debug.LogException(e);
+            }
         }
 
         private async Task LoadAssetsAsync()
@@ -145,7 +151,7 @@ namespace TandC.GeometryAstro.Core
             _gameplayInputHandler.Init();
         }
 
-        private void InitVaultCointainer() 
+        private void InitVaultContainer() 
         {
             _moneyVaultContainer.Init(_modificatorContainer.GetModificator(Settings.ModificatorType.ReceivingCoins));
         }
@@ -211,7 +217,7 @@ namespace TandC.GeometryAstro.Core
             _itemSpawner.Init();
         }
 
-        private void InitActiveSkillCointainer()
+        private void InitActiveSkillContainer()
         {
             _activeSkillControllerController.Init();
         }
@@ -226,6 +232,8 @@ namespace TandC.GeometryAstro.Core
         public void Dispose()
         {
             _uiService.Dispose();
+            _pauseService.Dispose();
+            _playerDeathProcessor.Dispose();
         }
     }
 }

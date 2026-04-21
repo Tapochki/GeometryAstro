@@ -30,16 +30,16 @@ namespace TandC.GeometryAstro.EventBus
 
     }
 
-    public readonly struct ExpirienceChangeEvent : IEvent
+    public readonly struct ExperienceChangeEvent : IEvent
     {
-        public readonly float CurrentExpirience;
-        public readonly float MaxExpirienceForNextLevel;
+        public readonly float CurrentExperience;
+        public readonly float MaxExperienceForNextLevel;
         public readonly int CurrentLevel;
 
-        public ExpirienceChangeEvent(float currentExpirience, float maxExpirienceForNextLevel, int currentLevel)
+        public ExperienceChangeEvent(float currentExperience, float maxExperienceForNextLevel, int currentLevel)
         {
-            CurrentExpirience = currentExpirience;
-            MaxExpirienceForNextLevel = maxExpirienceForNextLevel;
+            CurrentExperience = currentExperience;
+            MaxExperienceForNextLevel = maxExperienceForNextLevel;
             CurrentLevel = currentLevel;
         }
     }

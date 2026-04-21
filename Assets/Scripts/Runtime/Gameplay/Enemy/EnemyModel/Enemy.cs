@@ -69,10 +69,10 @@ namespace TandC.GeometryAstro.Gameplay
         {
             _healthComponent = new BaseHealthComponent(
                 EnemyData.health * healthModificator,
-                ProccesingEnemyDeath);
+                ProcessEnemyDeath);
         }
 
-        public void ProccesingEnemyDeath(bool isKilled = true)
+        public void ProcessEnemyDeath(bool isKilled = true)
         {
             if (isKilled) 
             {
