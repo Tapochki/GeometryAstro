@@ -8,10 +8,10 @@
   <Project Path="UnityEngine.Purchasing.Stores.csproj" />
   <Project Path="UnityEngine.Advertisements.csproj" />
   <Project Path="UniRx.csproj" />
+  <Project Path="Assembly-CSharp.csproj" />
   <Project Path="Unity.Services.Core.Environments.Editor.csproj" />
   <Project Path="UnityEngine.Purchasing.csproj" />
   <Project Path="Unity.Services.Analytics.csproj" />
-  <Project Path="Assembly-CSharp.csproj" />
   <Project Path="Unity.AI.Navigation.Editor.csproj" />
   <Project Path="Unity.VisualStudio.Editor.csproj" />
   <Project Path="Assembly-CSharp-Editor-firstpass.csproj" />
