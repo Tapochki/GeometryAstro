@@ -36,4 +36,18 @@ namespace GameplayCore
         public float CritChance = 0f;
         public float CritMultiplier = 1.5f;
     }
+
+    [CreateAssetMenu(fileName = "AuraModuleConfig", menuName = "GameplayCore/Aura Module Config")]
+    public class AuraModuleConfig : ScriptableObject
+    {
+        public ActiveSkillData Data;
+
+        [Tooltip("Base damage applied to each enemy inside the aura per tick.")]
+        public float Damage = 5f;
+        public float CritChance = 0f;
+        public float CritMultiplier = 1.5f;
+
+        [Tooltip("How much each Upgrade() call increases the aura collider scale.")]
+        public float UpgradeSizeStep = 0.5f;
+    }
 }

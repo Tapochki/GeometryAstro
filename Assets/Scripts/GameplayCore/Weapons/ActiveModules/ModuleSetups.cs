@@ -113,4 +113,31 @@ namespace GameplayCore
             GetComponent<Player>().RegisterWeapon(drone);
         }
     }
+
+    /// <summary>
+    /// Drop on the Player GameObject. Creates and registers an AuraModule.
+    /// The skill prefab (AuraModuleConfig.Data.SkillPrefab) must have an
+    /// AuraModuleView component with a Trigger Collider2D on a child object.
+    /// </summary>
+    [RequireComponent(typeof(Player))]
+    public class AuraModuleSetup : MonoBehaviour
+    {
+        [SerializeField] private AuraModuleConfig _config;
+        [SerializeField] private Transform _skillMount;
+
+        private void Awake()
+        {
+            if (_config == null) { Debug.LogError("[AuraModuleSetup] Config missing!", this); return; }
+
+            Transform mount = _skillMount != null ? _skillMount : transform;
+
+            var aura = new AuraModule();
+            aura.SetData(_config.Data);
+            aura.SetReloader(new SkillReloader(_config.Data.ShootDelay));
+            aura.SetObject(mount, _config.Damage, _config.CritChance, _config.CritMultiplier);
+            aura.Initialization();
+
+            GetComponent<Player>().RegisterWeapon(aura);
+        }
+    }
 }
